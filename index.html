@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CodeMate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="title-div">
+        <h3 id="title" style="display:inline;">codemate</h3>
+    </div>
+    <div id="start-btn-div" align="center">
+        <button id="start-btn" class="btn btn-outline-danger btn-lg btn-block pulse">START</button>
+    </div>
+    <div id="code-timer-div">
+        <div class="row align-items-center">
+            <div class="col-2"><i class="fa fa-heartbeat pulse-code" style="font-size:24px;color:rgb(223, 61, 61);"></i></div>
+            <div id="code-timer" class="col-7">
+                <span id="code-hours">00</span>
+                :
+                <span id="code-minutes">00</span>
+                :
+                <span id="code-seconds">00</span>
+            </div>
+            <div class="col-2">
+                <button id="end-btn" class="btn btn-danger">END</button>
+            </div>
+        </div>
+    </div>
+    <div id="cpr-btn-div">
+        <button id="cpr-btn" class="btn btn-outline-info btn-lg btn-block">Start CPR</button>
+    </div>
+    <div id="cpr-timer-div">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <button class="btn btn-info"><i class="fa fa-user" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
+            </div>
+            <div id="cpr-timer" class="col-7">
+                <span id="cpr-hours">00</span>
+                :
+                <span id="cpr-minutes">00</span>
+                :
+                <span id="cpr-seconds">00</span>
+            </div>
+            <div id="shock-count" class="col-2" align="center">
+                <span id="shock-badge" class='badge badge-secondary'></span>
+            </div>
+        </div>
+    </div>
+    <div id="shock-btn-div">
+        <button id="shock-btn" class="btn btn-outline-warning btn-lg btn-block">SHOCK</button>
+    </div>
+    <div id="shock-timer-div">
+        <div class="row align-items-center">
+            <div class="col-3">
+                <button class="btn btn-warning"><i class="fa fa-bolt" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
+            </div>
+            <div id="shock-timer" class="col-7">
+                <span id="shock-hours">00</span>
+                :
+                <span id="shock-minutes">00</span>
+                :
+                <span id="shock-seconds">00</span>
+            </div>
+            <div id="shock-count" class="col-2">
+                <span id="shock-badge" class='badge badge-secondary'></span>
+            </div>
+        </div>
+    </div>
+    <div id="med-btn-div">
+        <button id="med-btn" class="btn btn-outline-success btn-lg btn-block">MEDICATION</button>
+    </div>
+    <div id="med-timer-div">
+        
+    </div>
+    
+    
+    
+    <div id="cpr-timer-div">
+        <div class="row align-items-center">
+            <div class="col-2"><i class="fa fa-user" style="font-size:24px;color:rgb(99, 233, 133);"></i></div>
+            <div id="cpr-timer" class="col-10">
+                <span id="shock-hours">00</span>
+                :
+                <span id="shock-minutes">00</span>
+                :
+                <span id="shock-seconds">00</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-div" class="fixed-bottom bg-danger" align="center">
+        <button id="met-btn" class="btn btn-outline-light btn-block">METRONOME</button>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+</html>

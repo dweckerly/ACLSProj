@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+html, body {
+    height: 100%;
+}
+
+html, div {
+    font-family: 'Raleway', sans-serif;
+}
+
+#title-div {
+    background-color: rgb(223, 61, 61);
+    padding: .5em;
+    color: #fff;
+}
+
+#start-btn-div {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+#start-btn {
+    height: 80px;
+}
+
+#start-btn-div, #code-btn-div, #code-timer-div, #shock-btn-div, #cpr-btn-div, #med-btn-div, #shock-timer-div  {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+}
+
+#code-timer, #shock-timer {
+    font-size: 24px;
+    color: rgb(126, 126, 126);
+}
+
+#title, #code-btn-div, #code-timer-div, #shock-btn, #shock-timer-div, #cpr-btn, #cpr-timer-div, #med-btn, #med-timer-div {
+    display: none;
+}
+
+#code-timer, #shock-timer {
+    font-family: 'Roboto Slab', serif;
+}
+
+#shock-btn:hover {
+    color:#fff;
+}
+
+#shock-btn-container, #cpr-btn-container, #med-btn-container {
+    padding-bottom: 0.6em;
+}
+
+#shock-badge {
+    float:right;
+    color:white;
+    margin-top: 0.2em;
+}
+
+
+
+
+.pulse {
+    animation: pulse 0.8s infinite;
+}
+  
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+        box-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+        box-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+        box-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}
+
+.pulse-code {
+    animation: pulse-code 1s infinite;
+}
+  
+@-webkit-keyframes pulse-code {
+    0% {
+        -webkit-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        -webkit-text-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        -webkit-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}
+@keyframes pulse-code {
+    0% {
+        -moz-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+        text-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        -moz-text-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+        text-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        -moz-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+        text-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}
+
+

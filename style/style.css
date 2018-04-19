@@ -28,23 +28,36 @@ html, div {
     height: 80px;
 }
 
-#start-btn-div, #code-btn-div, #code-timer-div, #shock-btn-div, #cpr-btn-div, #med-btn-div, #shock-timer-div  {
+#start-btn-div, #code-btn-div, #code-timer-div, #shock-btn-div, #cpr-btn-div, #med-btn-div, #shock-timer-div, #cpr-timer-div  {
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 1em;
 }
 
-#code-timer, #shock-timer {
+#shock-container, #code-container, #cpr-container {
+    margin: 0;
+    padding: 0;
+}
+
+#shock-btn-small, #shock-timer, #shock-count, #cpr-btn-small, #cpr-timer, #cpr-count {
+    margin: 0;
+    padding: 0;
+}
+
+#shock-timer, #shock-count, #cpr-timer, #cpr-count {
+    border-top: 1px solid rgb(190, 190, 190);
+    border-bottom: 1px solid rgb(190, 190, 190);
+    border-right: 1px solid rgb(190, 190, 190);
+}
+
+#code-timer, #shock-timer, #cpr-timer {
+    font-family: 'Roboto Slab', serif;
     font-size: 24px;
     color: rgb(126, 126, 126);
 }
 
 #title, #code-btn-div, #code-timer-div, #shock-btn, #shock-timer-div, #cpr-btn, #cpr-timer-div, #med-btn, #med-timer-div {
     display: none;
-}
-
-#code-timer, #shock-timer {
-    font-family: 'Roboto Slab', serif;
 }
 
 #shock-btn:hover {
@@ -55,10 +68,10 @@ html, div {
     padding-bottom: 0.6em;
 }
 
-#shock-badge {
-    float:right;
-    color:white;
-    margin-top: 0.2em;
+#shock-badge, #cpr-badge {
+    font-size: 24px;
+    color:rgb(126, 126, 126);
+    font-family: 'Roboto Slab', serif;
 }
 
 
@@ -125,3 +138,63 @@ html, div {
 }
 
 
+.pulse-warn {
+    animation: pulse-warn 1s infinite;
+}
+  
+@-webkit-keyframes pulse-warn {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(238, 211, 58, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(238, 211, 58, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(238, 211, 58, 0);
+    }
+}
+@keyframes pulse-warn {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(238, 211, 58, 0.4);
+        box-shadow: 0 0 0 0 rgba(238, 211, 58, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(238, 211, 58, 0);
+        box-shadow: 0 0 0 10px rgba(238, 211, 58, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(238, 211, 58, 0);
+        box-shadow: 0 0 0 0 rgba(238, 211, 58, 0);
+    }
+}
+
+
+.pulse-danger {
+    animation: pulse-danger 0.5s infinite;
+}
+  
+@-webkit-keyframes pulse-danger {
+    0% {
+        -webkit-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        -webkit-text-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        -webkit-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}
+@keyframes pulse-danger {
+    0% {
+        -moz-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+        text-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        -moz-text-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+        text-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        -moz-text-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+        text-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}

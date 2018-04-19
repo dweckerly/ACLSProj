@@ -20,9 +20,11 @@
         <button id="start-btn" class="btn btn-outline-danger btn-lg btn-block pulse">START</button>
     </div>
     <div id="code-timer-div">
-        <div class="row align-items-center">
-            <div class="col-2"><i class="fa fa-heartbeat pulse-code" style="font-size:24px;color:rgb(223, 61, 61);"></i></div>
-            <div id="code-timer" class="col-7">
+        <div id="code-container" class="row align-items-center">
+            <div class="col-4" align="center">
+                <i class="fa fa-heartbeat pulse-code" style="font-size:36px;color:rgb(223, 61, 61);"></i>
+            </div>
+            <div id="code-timer" class="col-6" align="center">
                 <span id="code-minutes">00</span>
                 :
                 <span id="code-seconds">00</span>
@@ -36,17 +38,17 @@
         <button id="cpr-btn" class="btn btn-outline-info btn-lg btn-block">Start CPR</button>
     </div>
     <div id="cpr-timer-div">
-        <div class="row align-items-center">
-            <div class="col-3">
-                <button class="btn btn-info"><i class="fa fa-user" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
+        <div id="cpr-container" class="row align-items-center">
+            <div id="cpr-btn-small" class="col-4">
+                <button id="cpr-btn-cpr" class="btn btn-info btn-block"><i class="fa fa-pause" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
             </div>
-            <div id="cpr-timer" class="col-7">
+            <div id="cpr-timer" class="col-6" align="center">
                 <span id="cpr-minutes">00</span>
                 :
                 <span id="cpr-seconds">00</span>
             </div>
-            <div id="shock-count" class="col-2" align="center">
-                <span id="shock-badge" class='badge badge-secondary'></span>
+            <div id="cpr-count" class="col-2" align="center">
+                <span id="cpr-badge">-</span>
             </div>
         </div>
     </div>
@@ -54,17 +56,17 @@
         <button id="shock-btn" class="btn btn-outline-warning btn-lg btn-block">SHOCK</button>
     </div>
     <div id="shock-timer-div">
-        <div class="row align-items-center">
-            <div class="col-3">
-                <button class="btn btn-warning"><i class="fa fa-bolt" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
+        <div id="shock-container" class="row align-items-center">
+            <div id="shock-btn-small" class="col-4">
+                <button id="shock-btn-shock" class="btn btn-warning btn-block"><i class="fa fa-bolt" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
             </div>
-            <div id="shock-timer" class="col-7">
+            <div id="shock-timer" class="col-6" align="center">
                 <span id="shock-minutes">00</span>
                 :
                 <span id="shock-seconds">00</span>
             </div>
-            <div id="shock-count" class="col-2">
-                <span id="shock-badge" class='badge badge-secondary'></span>
+            <div id="shock-count" class="col-2" align="center">
+                <span id="shock-badge"></span>
             </div>
         </div>
     </div>

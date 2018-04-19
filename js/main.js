@@ -2,18 +2,14 @@ var timerCode = null;
 var timerShock = null;
 
 var codeTimer = {
-    'hr': 0,
     'min': 0,
-    'sec': 0,
-    'mili': 0
+    'sec': 0
 }
 var shockTimer = {
-    'hr': 0,
     'min': 0,
     'sec': 0
 }
 var medTimer = {
-    'hr': 0,
     'min': 0,
     'sec': 0
 }
@@ -55,7 +51,6 @@ function timerDisplay(id, arr) {
         arr['min']++;
         if(arr['min'] == 60) {
             arr['min'] = 0;
-            arr['hr']++;
         } 
         if(arr['min'] < 10) {
             $('#' + id + '-minutes').html('0' + arr['min']);
@@ -73,8 +68,6 @@ function timerDisplay(id, arr) {
 function clearTimer(id, arr) {
     arr['sec'] = 0;
     arr['min'] = 0;
-    arr['hr'] = 0;
     $('#' + id + '-seconds').html('00');
     $('#' + id + '-minutes').html('00');
-    $('#' + id + '-hours').html('00');
 }   

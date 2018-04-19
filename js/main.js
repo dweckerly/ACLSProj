@@ -23,7 +23,7 @@ var medTimer = {
 shockCount = 0;
 shock = false;
 
-cprPause = false;
+cprPause = true;
 cprPauseCount = 0;
 
 //shock button click functionality
@@ -39,6 +39,12 @@ $('#shock-btn-shock').click(function() {
 });
 
 function shockClick() {
+    if(!cprPause) {
+        $('#cpr-btn-cpr').removeClass('btn-info').addClass('btn-secondary');
+        $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:24px;color:rgb(255, 255, 255);"></i>')
+        cprPauseTimer();
+        cprPause = true;
+    }
     shockCount++;
     $('#shock-badge').html(shockCount);
     clearInterval(timerShock);
@@ -49,6 +55,7 @@ function shockClick() {
 }
 
 $('#cpr-btn').click(function() {
+    cprPause = false;
     $('#cpr-btn-div').fadeOut('fast', function() {
         $('#cpr-timer-div').fadeIn("fast", function() {});
     });

@@ -44,6 +44,11 @@ function shockClick() {
         $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:24px;color:rgb(255, 255, 255);"></i>')
         cprPauseTimer();
         cprPause = true;
+        // looking for ansynchronous alert...
+        // setTimeout(function() { alert('Shock administered. CPR has been paused.'); }, 1);
+    } else {
+        // looking for ansynchronous alert...
+        // setTimeout(function() { alert('Shock administered.'); }, 1);
     }
     shockCount++;
     $('#shock-badge').html(shockCount);

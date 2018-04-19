@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="title-div">
@@ -22,7 +21,7 @@
     <div id="code-timer-div">
         <div id="code-container" class="row align-items-center">
             <div class="col-4" align="center">
-                <i class="fa fa-heartbeat pulse-code" style="font-size:36px;color:rgb(223, 61, 61);"></i>
+                <i class="fa fa-heartbeat" style="font-size:36px;color:rgb(223, 61, 61);"></i>
             </div>
             <div id="code-timer" class="col-6" align="center">
                 <span id="code-minutes">00</span>
@@ -34,6 +33,7 @@
             </div>
         </div>
     </div>
+    <!--CPR btn section-->
     <div id="cpr-btn-div">
         <button id="cpr-btn" class="btn btn-outline-info btn-lg btn-block">Start CPR</button>
     </div>
@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+    <!--SHOCK btn section-->
     <div id="shock-btn-div">
         <button id="shock-btn" class="btn btn-outline-warning btn-lg btn-block">SHOCK</button>
     </div>
@@ -70,32 +71,91 @@
             </div>
         </div>
     </div>
+    <!--MEDICATION btn section-->
     <div id="med-btn-div">
-        <button id="med-btn" class="btn btn-outline-success btn-lg btn-block">MEDICATION</button>
+        <button id="med-btn" class="btn btn-outline-success btn-lg btn-block" data-toggle="modal" data-target="#med-modal">MEDICATION</button>
     </div>
-    <div id="med-timer-div">
-        
-    </div>
-    
-    
-    
-    <div id="cpr-timer-div">
-        <div class="row align-items-center">
-            <div class="col-2"><i class="fa fa-user" style="font-size:24px;color:rgb(99, 233, 133);"></i></div>
-            <div id="cpr-timer" class="col-10">
-                <span id="cpr-minutes">00</span>
-                :
-                <span id="cpr-seconds">00</span>
+    <!--MED MODAL-->
+    <div class="modal fade" id="med-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Medications</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--MEDICATIONS-->
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Adenosine
+                                </button>
+                            </h5>
+                            </div>
+                        
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Amiodarone
+                                </button>
+                            </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div class="card-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Atropine
+                                </button>
+                            </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                <div class="card-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <div id="med-timer-div">
+        
+    </div>
+
+    <div id="proc-btn-div">
+        <button id="proc-btn" class="btn btn-outline-secondary btn-lg btn-block">PROCEDURE</button>
+    </div>
+    
 
     <div id="footer-div" class="fixed-bottom bg-danger" align="center">
         <button id="met-btn" class="btn btn-outline-light btn-block">METRONOME</button>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="js/jquery.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="js/medications.js"></script>
 <script src="js/main.js"></script>
 </html>

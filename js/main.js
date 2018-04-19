@@ -103,6 +103,7 @@ function cprClick() {
     }, 1000);
 }
 
+
 // start button click functionality
 $('#start-btn').click(function() {
     $('#start-btn-div').fadeOut( "slow", function() {
@@ -113,6 +114,7 @@ $('#start-btn').click(function() {
         $('#shock-btn').fadeIn('slow', function() {});
         $('#cpr-btn').fadeIn('slow', function() {});
         $('#med-btn').fadeIn('slow', function() {});
+        $('#proc-btn').fadeIn('slow', function() {});
     });
 });
 
@@ -143,3 +145,5 @@ function clearTimer(id, arr) {
     $('#' + id + '-seconds').html('00');
     $('#' + id + '-minutes').html('00');
 }   
+
+var medData = JSON.parse(medications);

@@ -3,6 +3,8 @@ var timerShock = null;
 var timerCPR = null;
 var timerCPRPause = null;
 
+var metInterval = null;
+
 var codeTimer = {
     'min': 0,
     'sec': 0
@@ -25,6 +27,22 @@ shock = false;
 
 cprPause = true;
 cprPauseCount = 0;
+
+met = false;
+
+// metronome button functionality
+$('#met-btn').click(function () {
+    if(!met) {
+        met = true;
+        metInterval = setInterval(function () {
+            navigator.notification.beep(1);
+        }, 600);
+    } else {
+        met = false;
+        clearInterval(metInterval);
+    }
+});
+
 
 //shock button click functionality
 $('#shock-btn').click(function() {

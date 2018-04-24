@@ -44,6 +44,11 @@ function shockClick() {
         $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:24px;color:rgb(255, 255, 255);"></i>')
         cprPauseTimer();
         cprPause = true;
+        cordova.plugins.notification.local.schedule({
+            title: 'Defibrillation',
+            text: 'Shock administered. CPR stopped.',
+            foreground: true
+        });
         // looking for ansynchronous alert...
         // setTimeout(function() { alert('Shock administered. CPR has been paused.'); }, 1);
     } else {
@@ -92,6 +97,11 @@ function cprPauseTimer() {
         }
         if(cprPauseCount >= 10) {
             $('#cpr-container').removeClass('pulse-warn').addClass('pulse-danger');
+            cordova.plugins.notification.local.schedule({
+                title: 'CPR',
+                text: 'CPR has been stopped for over 10 seconds.',
+                foreground: true
+            });
         }
     }, 1000);
 }

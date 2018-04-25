@@ -15,17 +15,17 @@
 <body>
     <div id="title-div">
         <h3 id="title" style="display:inline;">codemate</h3>
-        <a href="#"><i class="fa fa-gear float-right" style="font-size:30px;color:white;display:inline;"></i></a>
+        <a href="#"><i class="fa fa-gear float-right" style="font-size:36px;color:white;display:inline;"></i></a>
     </div>
-    <div id="start-btn-div" align="center">
-        <button id="start-btn" class="btn btn-outline-danger btn-lg btn-block pulse">START</button>
+    <div id="start-btn-div-adult" class="start-btn-div" align="center">
+        <button id="start-btn-adult" class="btn btn-outline-danger btn-lg btn-block pulse">ADULT</button>
+    </div>
+    <div id="start-btn-div-pedi" class="start-btn-div" align="center">
+        <button id="start-btn-pedi" class="btn btn-outline-danger btn-lg btn-block pulse">PEDI</button>
     </div>
     <div id="code-timer-div">
         <div id="code-container" class="row align-items-center">
-            <div class="col-4" align="center">
-                <i class="fa fa-heartbeat" style="font-size:36px;color:rgb(223, 61, 61);"></i>
-            </div>
-            <div id="code-timer" class="col-6" align="center">
+            <div id="code-timer" class="col-8" align="center">
                 <span id="code-minutes">00</span>
                 :
                 <span id="code-seconds">00</span>
@@ -36,46 +36,46 @@
         </div>
     </div>
     <!--CPR btn section-->
-    <div id="cpr-btn-div">
-        <button id="cpr-btn" class="btn btn-outline-info btn-lg btn-block">Start CPR</button>
+    <div id="cpr-btn-div" class="big-block">
+        <button id="cpr-btn" class="btn btn-outline-info btn-lg btn-block inner-block">Start CPR</button>
     </div>
-    <div id="cpr-timer-div">
+    <div id="cpr-timer-div"  class="big-block">
         <div id="cpr-container" class="row align-items-center">
             <div id="cpr-btn-small" class="col-4">
-                <button id="cpr-btn-cpr" class="btn btn-info btn-block"><i class="fa fa-pause" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
+                <button id="cpr-btn-cpr" class="btn btn-info btn-block inner-block"><i class="fa fa-pause" style="font-size:36px;color:rgb(255, 255, 255);"></i></button>
             </div>
-            <div id="cpr-timer" class="col-6" align="center">
+            <div id="cpr-timer" class="col-6 inner-block" align="center">
                 <span id="cpr-minutes">00</span>
                 :
                 <span id="cpr-seconds">00</span>
             </div>
-            <div id="cpr-count" class="col-2" align="center">
+            <div id="cpr-count" class="col-2 inner-block" align="center">
                 <span id="cpr-badge">-</span>
             </div>
         </div>
     </div>
     <!--SHOCK btn section-->
-    <div id="shock-btn-div">
-        <button id="shock-btn" class="btn btn-outline-warning btn-lg btn-block">SHOCK</button>
+    <div id="shock-btn-div" class="big-block">
+        <button id="shock-btn" class="btn btn-outline-warning btn-lg btn-block inner-block">SHOCK</button>
     </div>
-    <div id="shock-timer-div">
+    <div id="shock-timer-div" class="big-block">
         <div id="shock-container" class="row align-items-center">
             <div id="shock-btn-small" class="col-4">
-                <button id="shock-btn-shock" class="btn btn-warning btn-block"><i class="fa fa-bolt" style="font-size:24px;color:rgb(255, 255, 255);"></i></button>
+                <button id="shock-btn-shock" class="btn btn-warning btn-block inner-block"><i class="fa fa-bolt" style="font-size:36px;color:rgb(255, 255, 255);"></i></button>
             </div>
-            <div id="shock-timer" class="col-6" align="center">
+            <div id="shock-timer" class="col-6 inner-block align-middle" align="center">
                 <span id="shock-minutes">00</span>
                 :
                 <span id="shock-seconds">00</span>
             </div>
-            <div id="shock-count" class="col-2" align="center">
+            <div id="shock-count" class="col-2 inner-block" align="center">
                 <span id="shock-badge"></span>
             </div>
         </div>
     </div>
     <!--MEDICATION btn section-->
-    <div id="med-btn-div">
-        <button id="med-btn" class="btn btn-outline-success btn-lg btn-block" data-toggle="modal" data-target="#med-modal">MEDICATION</button>
+    <div id="med-btn-div" class="big-block">
+        <button id="med-btn" class="btn btn-outline-success btn-lg btn-block inner-block" data-toggle="modal" data-target="#med-modal">MEDICATION</button>
     </div>
     <!--MED MODAL-->
     <div class="modal fade" id="med-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -146,13 +146,13 @@
         
     </div>
 
-    <div id="proc-btn-div">
+    <div id="proc-btn-div" class="big-block">
         <button id="proc-btn" class="btn btn-outline-secondary btn-lg btn-block">PROCEDURE</button>
     </div>
     
 
-    <div id="footer-div" class="fixed-bottom bg-danger" align="center">
-        <button id="met-btn" class="btn btn-outline-light btn-block">METRONOME</button>
+    <div id="footer-div" class="fixed-bottom bg-danger big-block" align="center">
+        <button id="met-btn" class="btn btn-outline-light btn-block inner-block">METRONOME</button>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

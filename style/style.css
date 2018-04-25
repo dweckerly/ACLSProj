@@ -7,6 +7,15 @@ html, body {
 
 html, div {
     font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+}
+
+.big-block {
+    height: 100px;
+}
+
+.inner-block {
+    height: 80px;
 }
 
 #title-div {
@@ -15,20 +24,22 @@ html, div {
     color: #fff;
 }
 
-#start-btn-div {
+#start-btn-div-adult {
+    margin-top: 30%;
+}
+
+.start-btn-div {
     margin: 0;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 60%;
     width: 100%;
+    display: block;
 }
 
 #start-btn {
     height: 80px;
 }
 
-#start-btn-div, #code-btn-div, #code-timer-div, #shock-btn-div, #cpr-btn-div, #med-btn-div, #shock-timer-div, #cpr-timer-div, #proc-btn-div  {
+.start-btn-div, #code-btn-div, #code-timer-div, #shock-btn-div, #cpr-btn-div, #med-btn-div, #shock-timer-div, #cpr-timer-div, #proc-btn-div  {
     padding-left: 2em;
     padding-right: 2em;
     padding-top: 1em;
@@ -52,7 +63,7 @@ html, div {
 
 #code-timer, #shock-timer, #cpr-timer {
     font-family: 'Roboto Slab', serif;
-    font-size: 24px;
+    font-size: 42px;
     color: rgb(126, 126, 126);
 }
 

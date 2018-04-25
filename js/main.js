@@ -30,6 +30,8 @@ cprPauseCount = 0;
 
 met = false;
 
+notify = true;
+
 // metronome button functionality
 $('#met-btn').click(function () {
     if(!met) {
@@ -59,7 +61,7 @@ $('#shock-btn-shock').click(function() {
 function shockClick() {
     if(!cprPause) {
         $('#cpr-btn-cpr').removeClass('btn-info').addClass('btn-secondary');
-        $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:24px;color:rgb(255, 255, 255);"></i>')
+        $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:30px;color:rgb(255, 255, 255);"></i>')
         cprPauseTimer();
         cprPause = true;
         cordova.plugins.notification.local.schedule({
@@ -93,15 +95,16 @@ $('#cpr-btn').click(function() {
 $('#cpr-btn-cpr').click(function () {
     if(!cprPause) {
         $('#cpr-btn-cpr').removeClass('btn-info').addClass('btn-secondary');
-        $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:24px;color:rgb(255, 255, 255);"></i>')
+        $('#cpr-btn-cpr').html('<i class="fa fa-play" style="font-size:36px;color:rgb(255, 255, 255);"></i>')
         cprPauseTimer();
         cprPause = true;
     } else {
         $('#cpr-btn-cpr').removeClass('btn-secondary').addClass('btn-info');
-        $('#cpr-btn-cpr').html('<i class="fa fa-pause" style="font-size:24px;color:rgb(255, 255, 255);"></i>')
+        $('#cpr-btn-cpr').html('<i class="fa fa-pause" style="font-size:36px;color:rgb(255, 255, 255);"></i>')
         cprClick();
         cprPause = false;
     }
+    notify = true;
 });
 
 function cprPauseTimer() {
@@ -115,11 +118,14 @@ function cprPauseTimer() {
         }
         if(cprPauseCount >= 10) {
             $('#cpr-container').removeClass('pulse-warn').addClass('pulse-danger');
-            cordova.plugins.notification.local.schedule({
-                title: 'CPR',
-                text: 'CPR has been stopped for over 10 seconds.',
-                foreground: true
-            });
+            if(notify) {
+                cordova.plugins.notification.local.schedule({
+                    title: 'CPR',
+                    text: 'CPR has been stopped for over 10 seconds.',
+                    foreground: true
+                });
+                notify = false;
+            } 
         }
     }, 1000);
 }
@@ -138,8 +144,9 @@ function cprClick() {
 
 
 // start button click functionality
-$('#start-btn').click(function() {
-    $('#start-btn-div').fadeOut( "slow", function() {
+$('#start-btn-adult').click(function() {
+    $('#start-btn-div-pedi').fadeOut('slow', function() {})
+    $('#start-btn-div-adult').fadeOut( "slow", function() {
         timerCode = setInterval(function() {
             timerDisplay('code', codeTimer);
         }, 1000);

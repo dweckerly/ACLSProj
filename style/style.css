@@ -10,6 +10,24 @@ html, div {
     font-size: 24px;
 }
 
+
+/*test css*/
+
+#form-wrapper {
+    margin: 10px;
+}
+
+#add-link {
+    text-decoration: none;
+}
+
+.modal-item {
+    width: 12em;
+    margin: 10px;
+}
+/*test css*/
+
+
 .big-block {
     height: 100px;
 }
@@ -67,7 +85,7 @@ html, div {
     color: rgb(126, 126, 126);
 }
 
-#title, #code-btn-div, #code-timer-div, #shock-btn, #shock-timer-div, #cpr-btn, #cpr-timer-div, #med-btn, #med-timer-div, #proc-btn {
+#title, #code-btn-div, #shock-btn, #shock-timer-div, #cpr-btn, #cpr-timer-div, #med-btn, #med-timer-div, #proc-btn {
     display: none;
 }
 

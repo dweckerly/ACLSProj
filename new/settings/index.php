@@ -26,7 +26,7 @@
     <div class="tab-content" id="settings-tab-content">
         <div class="tab-pane fade show active" id="medications" role="tabpanel" aria-labelledby="meds-tab">
             <div class="container" style="padding-top:40px;">
-                <button class="btn btn-primary" id="new-med-btn">Create Medication</button>
+                <button class="btn btn-outline-primary" id="new-med-btn">Create Medication</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -50,8 +50,8 @@ while($meds = mysqli_fetch_assoc($q)) {
                             <td><?php echo $meds['frequency']; ?></td>
                             <td><?php echo $meds['route']; ?></td>
                             <td>
-                                <button data="<?php echo $meds['id']; ?>" class="btn btn-warning edit-med-btn">Edit</button>
-                                <button data="<?php echo $meds['id']; ?>" class="btn btn-danger delete-med-btn">Delete</button>
+                                <button data="<?php echo $meds['id']; ?>" class="btn btn-outline-secondary edit-med-btn">Edit</button>
+                                <button data="<?php echo $meds['id']; ?>" class="btn btn-outline-danger delete-med-btn">Delete</button>
                             </td>
                         </tr>
 
@@ -64,7 +64,7 @@ while($meds = mysqli_fetch_assoc($q)) {
         </div>
         <div class="tab-pane fade" id="procedures" role="tabpanel" aria-labelledby="procs-tab">
             <div class="container" style="padding-top:40px;">
-                <button class="btn btn-primary" id="new-proc-btn">Create Procedure</button>
+                <button class="btn btn-outline-primary" id="new-proc-btn">Create Procedure</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -83,8 +83,8 @@ while($procs = mysqli_fetch_assoc($q)) {
                             <td><?php echo $procs['name']; ?></td>
                             <td><?php echo $procs['details']; ?></td>
                             <td>
-                                <button data="<?php echo $procs['id']; ?>" class="btn btn-warning edit-proc-btn">Edit</button>
-                                <button data="<?php echo $procs['id']; ?>" class="btn btn-danger delete-proc-btn">Delete</button>
+                                <button data="<?php echo $procs['id']; ?>" class="btn btn-outline-secondary edit-proc-btn">Edit</button>
+                                <button data="<?php echo $procs['id']; ?>" class="btn btn-outline-danger delete-proc-btn">Delete</button>
                             </td>
                         </tr>
 <?php
@@ -96,7 +96,7 @@ while($procs = mysqli_fetch_assoc($q)) {
         </div>
         <div class="tab-pane fade" id="timers" role="tabpanel" aria-labelledby="timers-tab">
             <div class="container" style="padding-top:40px;">
-                <button class="btn btn-primary" id="new-timer-btn">Create Timer</button>
+                <button class="btn btn-outline-primary" id="new-timer-btn">Create Timer</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -117,8 +117,8 @@ while($timers = mysqli_fetch_assoc($q)) {
                             <td><?php echo $timers['alertMin'] . " min " . $timers['alertSec'] . " sec"; ?></td>
                             <td><?php echo $timers['type'];?></td>
                             <td>
-                                <button data="<?php echo $timers['id']; ?>" class="btn btn-warning edit-timer-btn">Edit</button>
-                                <button data="<?php echo $timers['id']; ?>" class="btn btn-danger delete-timer-btn">Delete</button>
+                                <button data="<?php echo $timers['id']; ?>" class="btn btn-outline-secondary edit-timer-btn">Edit</button>
+                                <button data="<?php echo $timers['id']; ?>" class="btn btn-outline-danger delete-timer-btn">Delete</button>
                             </td>
                         </tr>
 <?php

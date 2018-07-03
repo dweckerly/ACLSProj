@@ -20,6 +20,24 @@
             <h2 class="timer"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></h2>
         </div>
     </div>
+    <div id="select-container" class="row justify-content-center" style="padding-top:10px;">
+        <div class="col-lg-6 col-8">
+            <form id="select-form">
+                <div id="form-wrapper" align="center">
+                    <label for="operation-select" class="sr-only">Operation Select</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><a id="add-link" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                        </div>
+                        <select class="form-control" id="operation-select">
+                            <option>Medications</option>
+                            <option>Procedures</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div align="center">
         <div class="text-center card" id="toolbar">
             <div class="card-body" id="toolbar-btn-container">

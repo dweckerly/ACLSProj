@@ -1,7 +1,10 @@
+$('#select-container').hide();
+
 $('.toolbar-btn').prop("disabled", true);
 $('#end-btn').prop("disabled", true);
 
 $('#start-btn').click(function () {
+    $('#select-container').fadeIn();
     $('.toolbar-btn').prop("disabled", false);
     $('#end-btn').prop("disabled", false);
     $("#start-btn-div").fadeOut("fast", function () {

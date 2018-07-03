@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+
+div {
+    font-family: 'Raleway', sans-serif;
+}
+
+#title-div {
+    background-color: rgb(223, 61, 61);
+    padding: .5em;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    display: -moz-box;
+    -moz-box-pack: justify;
+    -moz-box-align: center;
+    display: -ms-flexbox;
+    -ms-flex-pack: justify;
+    -ms-flex-align: center;
+    display: box;
+    box-pack: justify;
+    box-align: center;
+}
+
+/*
+#title {
+    display: inline;
+}
+*/
+#timer-container {
+    padding-top: 30px;
+    
+}
+
+.timer {
+    font-family: 'Roboto Slab', serif;
+}
+
+.timer-card {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.timer-card:hover {
+    background-color: rgb(236, 236, 236);
+ }
+
+.pulse {
+    animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(223, 61, 61, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(223, 61, 61, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(223, 61, 61, 0);
+    }
+}

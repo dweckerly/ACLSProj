@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code Mate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="jquery.js"></script>
+</head>
+<body class="bg-light">
+    <script>
+        var timers = {};
+    </script>
+    <div id="title-div">
+        <h2 id="title">codemate</h2>
+        <div id="main-timer">
+            <h2 class="timer"><span id="main-timer-minutes">00</span>:<span id="main-timer-seconds">00</span></h2>
+        </div>
+        <a href="#"><i class="fa fa-cog" style="font-size:36px;color:white;"></i></a>
+    </div>
+    <div align="center">
+        <div class="text-center card" id="toolbar">
+            <div class="card-body">
+                <button id="epi-btn" class="btn btn-outline-primary toolbar-btn">Epi</button>
+                <button class="btn btn-danger toolbar-btn">END</button>
+            </div>
+            
+        </div>
+    </div>
+    <div id="timer-container" class="row container">
+        <div class="col-lg-3 col-md-4 col-6" >
+            <div id="pulse-timer-div" class="card text-center timer-card" data="pulse">
+                <div class="timer-card" id="pulse-timer-btn" data="pulse">
+                    <div class="card-title">
+                        Pulse/Defib
+                    </div>
+                    <div class="card-text" id="pulse-timer">
+                        <h2 class="timer"><span id="pulse-timer-minutes">00</span>:<span id="pulse-timer-seconds">00</span></h2>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a data="pulse" id="pulse-timer-restart" class="btn btn-primary btn-lg text-white"><i class="fas fa-sync"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

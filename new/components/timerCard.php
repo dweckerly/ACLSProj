@@ -1,7 +1,7 @@
 <?php
 include_once("../includes/db.php");
-$id = $_POST['id'];
-$sql = "SELECT * FROM timers WHERE id = '$id'";
+$tag = $_POST['tag'];
+$sql = "SELECT * FROM timers WHERE dataTag = '$tag'";
 $q = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($q);
 
@@ -45,7 +45,7 @@ $row = mysqli_fetch_assoc($q);
     $('#<?php echo $row['dataTag']; ?>-timer-restart').click(function () {
         event.stopPropagation();
         var id = $(this).attr('data');
-        restartTimer(timers[id]);
+        restartTimer(timers[id], id);
     });
 
     startTimer(timers["<?php echo $row['dataTag']; ?>"]);

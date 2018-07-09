@@ -6,12 +6,12 @@ $('.toolbar-btn').click(function () {
         restartTimer(timers[tag]);
     } else {
         if(type == "timer") {
-            $.post("components/timerCard.php", {id: id}, function (data) {
+            $.post("components/timerCard.php", {id: id, tag: tag}, function (data) {
                 $('#timer-container').append(data).fadeIn("fast");
             });
         }
         if(type == "alert") {
-            $.post("components/alertModal.php", {id: id}, function (data) {
+            $.post("components/alertModal.php", {id: id, tag: tag}, function (data) {
                 $('#timer-container').append(data).fadeIn("fast");
             });
         }

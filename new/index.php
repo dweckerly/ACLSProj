@@ -20,22 +20,10 @@
             <h2 class="timer"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></h2>
         </div>
     </div>
-    <div id="select-container" class="row justify-content-center" style="padding-top:10px;">
+    <div id="select-container" class="row justify-content-center" style="padding-top:10px; padding-bottom:10px;">
         <div class="col-lg-6 col-8">
-            <form id="select-form">
-                <div id="form-wrapper" align="center">
-                    <label for="operation-select" class="sr-only">Operation Select</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><a id="add-link" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                        </div>
-                        <select class="form-control" id="operation-select">
-                            <option>Medications</option>
-                            <option>Procedures</option>
-                        </select>
-                    </div>
-                </div>
-            </form>
+            <button class="btn btn-lg" id="medications-btn">Medications</button>
+            <button class="btn btn-lg" id="procedures-btn">Procedures</button>
         </div>
     </div>
     <div align="center">
@@ -67,7 +55,12 @@ while($row = mysqli_fetch_assoc($q)) {
         </div>
     </div>
     <div id="timer-container" class="row container"></div>
-    <div id="modal-container"></div>
+    <div id="modal-container">
+<?php
+include_once("components/medModal.php");
+include_once("components/procModal.php");
+?>       
+    </div>
     <div id="start-container" class="row justify-content-center">
         <div id="start-btn-div" class="col-lg-4 col-6">
             <button id="start-btn" class="btn btn-danger btn-block">Start Code</button>

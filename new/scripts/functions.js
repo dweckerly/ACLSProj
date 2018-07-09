@@ -75,14 +75,14 @@ function clearTimer(arr) {
     $('#' + arr['id'] + '-seconds').html('0' + arr['sec']);
 }
 
-function restartTimer(arr) {
+function restartTimer(arr, tag) {
     clearTimer(arr);
     startTimer(arr);
     if(arr['count']) {
         arr['count'] = parseInt(arr['count']) + 1;
     }
     $("#" + arr['id'] + "-timer-div").removeClass('pulse');
-    $.post("components/alertModal.php", {id:arr['aid']}, function(data) {
+    $.post("components/alertModal.php", {id:arr['aid'], tag:tag}, function(data) {
         $('#modal-container').append(data);
     });
 }

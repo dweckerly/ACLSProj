@@ -26,7 +26,7 @@
     <div class="tab-content" id="settings-tab-content">
         <div class="tab-pane fade show active" id="medications" role="tabpanel" aria-labelledby="meds-tab">
             <div class="container" style="padding-top:40px;">
-                <button class="btn btn-outline-primary" id="new-med-btn">Create Medication</button>
+                <a class="btn btn-outline-primary" id="new-med-btn" href="newMed">Create Medication</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -64,7 +64,7 @@ while($meds = mysqli_fetch_assoc($q)) {
         </div>
         <div class="tab-pane fade" id="procedures" role="tabpanel" aria-labelledby="procs-tab">
             <div class="container" style="padding-top:40px;">
-                <button class="btn btn-outline-primary" id="new-proc-btn">Create Procedure</button>
+                <a class="btn btn-outline-primary" id="new-proc-btn" href="newProc">Create Procedure</a>
                 <table class="table">
                     <thead>
                         <tr>

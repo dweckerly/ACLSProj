@@ -6,6 +6,7 @@ $(document).ready(function() {
 });
 
 $('#start-btn').click(function() {
+    $('#edit-menu').hide();
     $('#start-container').fadeOut(function() {
         $('#options-container').fadeIn();
         $('#toolbar-container').fadeIn();

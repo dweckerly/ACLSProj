@@ -61,13 +61,12 @@ include_once("components/procModal.php");
 
     <div id="timer-container" class="container"></div>
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large"><i class="large material-icons">mode_edit</i></a>
+    <div id="edit-menu" class="fixed-action-btn">
+        <a class="btn-floating btn-large"><i class="large material-icons">edit</i></a>
         <ul>
-            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+            <li><a class="btn-floating red tooltipped" data-position="top" data-tooltip="Medications"><i class="material-icons">local_pharmacy</i></a></li>
+            <li><a class="btn-floating blue tooltipped" data-position="top" data-tooltip="Procedures"><i class="material-icons">healing</i></a></li>
+            <li><a class="btn-floating green tooltipped" data-position="top" data-tooltip="Quickbar"><i class="material-icons">add_box</i></a></li>
         </ul>
     </div>
       
@@ -80,6 +79,9 @@ include_once("components/procModal.php");
                 direction: 'left',
                 hoverEnabled: false
             });
+        });
+        $(document).ready(function(){
+            $('.tooltipped').tooltip();
         });
     </script>
 </body>

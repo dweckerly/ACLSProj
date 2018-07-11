@@ -4,7 +4,7 @@
             <div class="modal-body">
 
 <?php
-include_once("../includes/db.php");
+include_once("../../includes/db.php");
 $sql = "SELECT * FROM procedures";
 $query = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($query)) {

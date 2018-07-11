@@ -1,22 +1,20 @@
 <?php
-include_once("../includes/db.php");
+include_once("../../includes/db.php");
 $tag = $_POST['tag'];
 $sql = "SELECT * FROM timers WHERE dataTag = '$tag'";
 $q = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($q);
 
 ?>
-<div class="col-lg-3 col-md-4 col-6" >
-    <div id="<?php echo $row['dataTag']; ?>-timer-div" class="card text-center timer-card" data="<?php echo $row['dataTag']; ?>">
-        <div id="<?php echo $row['dataTag']; ?>-timer-btn">
-            <div class="card-title">
-                <?php echo $row['name'];?>
+<div class="col s6" >
+    <div id="<?php echo $row['dataTag']; ?>-timer-div" class="card horizontal small text-center timer-card" data="<?php echo $row['dataTag']; ?>">
+        <div class="card-stacked" id="<?php echo $row['dataTag']; ?>-timer-btn">
+            <div class="card-content">
+                <span class="card-title"><?php echo $row['name'];?></span>
+                <a data="<?php echo $row['dataTag']; ?>" data-alert="<?php echo $row['aid']; ?>" id="<?php echo $row['dataTag']; ?>-timer-restart" class="btn-floating halfway-fab waves-effect waves light"><i class="fas fa-sync"></i></a>
             </div>
-            <div class="card-text" id="<?php echo $row['dataTag']; ?>-timer">
-                <h2 class="timer"><span id="<?php echo $row['dataTag']; ?>-minutes">00</span>:<span id="<?php echo $row['dataTag']; ?>-seconds">00</span></h2>
-            </div>
-            <div class="card-body">
-                <a data="<?php echo $row['dataTag']; ?>" data-alert="<?php echo $row['aid']; ?>" id="<?php echo $row['dataTag']; ?>-timer-restart" class="btn btn-primary btn-lg text-white restart-timer"><i class="fas fa-sync"></i></a>
+            <div class="card-action" id="<?php echo $row['dataTag']; ?>-timer">
+                <h4 class="timer"><span id="<?php echo $row['dataTag']; ?>-minutes">00</span>:<span id="<?php echo $row['dataTag']; ?>-seconds">00</span></h4>
             </div>
         </div>
     </button>

@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Chicago');
 $id = $_POST['id'];
 $tag = $_POST['tag'];
-include_once("../includes/db.php");
+include_once("../../includes/db.php");
 $sql = "SELECT * FROM alerts WHERE dataTag = '$tag'";
 $q = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($q);

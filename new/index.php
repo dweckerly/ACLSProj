@@ -54,9 +54,12 @@ include_once("components/medModal.php");
 include_once("components/procModal.php");
 ?>       
     </div>
-    <div id="start-container" class="center valign-wrapper">
+    <div id="start-container" class="center" style="margin-top:80px;">
         <button id="start-btn" class="waves-effect waves-light btn-large pulse red lighten-2 valign">Start Code</button>
     </div>
+
+    <div id="timer-container" class="container"></div>
+
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large"><i class="large material-icons">mode_edit</i></a>
         <ul>

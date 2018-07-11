@@ -5,30 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Codemate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <script src="scripts/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="scripts/functions.js"></script>
 </head>
-<body class="bg-light">
-    <div id="title-div">
-        <h2 id="title">codemate</h2>
-        <div id="main-timer" class="animate-flicker">
-            <h2 class="timer"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></h2>
-        </div>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a id="nav-content" class="brand-logo center">codemate</a>
+            </div>
+        </nav>
     </div>
-    <div id="select-container" class="row justify-content-center" style="padding-top:10px; padding-bottom:10px;">
-        <div class="col-lg-6 col-8">
-            <button class="btn btn-lg" id="medications-btn">Medications</button>
-            <button class="btn btn-lg" id="procedures-btn">Procedures</button>
-        </div>
+    <div id="options-container" class="center" style="display:none; margin:15px;">
+        <a id="medications-btn" class="waves-effect waves-light btn">Medications</a>
+        <a id="procedures-btn" class="waves-effect waves-light btn">Procedures</a>
     </div>
-    <div align="center">
-        <div class="text-center card" id="toolbar">
-            <div class="card-body" id="toolbar-btn-container">
+    <div id="toolbar-container" class="center" style="display:none;">
 <?php
 include_once("includes/db.php");
 $sql = "SELECT * FROM toolbarButtons";
@@ -45,11 +39,10 @@ while($row = mysqli_fetch_assoc($q)) {
     $tag = $t['dataTag'];
     
 ?>
-                <button data="<?php echo $row['data'];?>" data-type="<?php echo $row['type'];?>" data-tag="<?php echo $tag;?>" class="btn btn-outline-secondary toolbar-btn"><?php echo $row['name'];?></button>
+        <button data="<?php echo $row['data'];?>" data-type="<?php echo $row['type'];?>" data-tag="<?php echo $tag;?>" class="btn grey toolbar-btn"><?php echo $row['name'];?></button>
 <?php
 }
 ?>
-                <button id="end-btn" class="btn btn-danger">END</button>
             </div>
             <script src="scripts/toolbar.js"></script>
         </div>
@@ -61,12 +54,26 @@ include_once("components/medModal.php");
 include_once("components/procModal.php");
 ?>       
     </div>
-    <div id="start-container" class="row justify-content-center">
-        <div id="start-btn-div" class="col-lg-4 col-6">
-            <button id="start-btn" class="btn btn-danger btn-block">Start Code</button>
-            <a href="/settings/" id="settings-btn" class="btn btn-secondary btn-block text-white">Settings</a>
-        </div>
+    <div id="start-container" class="center valign-wrapper">
+        <button id="start-btn" class="waves-effect waves-light btn-large pulse red lighten-2 valign">Start Code</button>
     </div>
-    <script src="main.js"></script>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large"><i class="large material-icons">mode_edit</i></a>
+        <ul>
+            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+      
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script  type="text/javascript" src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, options);
+        });
+    </script>
 </body>
 </html>

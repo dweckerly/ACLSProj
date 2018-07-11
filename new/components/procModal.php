@@ -36,7 +36,7 @@ $('.proc-btn').click(function () {
     var tag = $(this).attr('data-tag');
     $('#procedure-modal').modal('hide');
     if (tag in timers) {
-        restartTimer(timers[tag]);
+        restartTimer(timers[tag], tag);
     } else {
         if(type == "timer") {
             $.post("components/timerCard.php", {tag: tag}, function (data) {

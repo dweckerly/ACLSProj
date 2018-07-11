@@ -1,11 +1,14 @@
-$('#select-container').hide();
+$('#options-container').hide();
+$('#toolbar-container').hide();
 
-$('.toolbar-btn').prop("disabled", true);
-$('#end-btn').prop("disabled", true);
+$(document).ready(function () {
+    
+});
 
 $('#start-btn').click(function () {
-    $('#select-container').fadeIn();
-    $('.toolbar-btn').prop("disabled", false);
+    $('#options-container').fadeIn();
+    $('#toolbar-container').fadeIn();
+    $('#start-container').fadeOut();
     $('#end-btn').prop("disabled", false);
     $("#start-btn-div").fadeOut("fast", function () {
         $.post("components/timerCard.php", {tag:'pulse'}, function (data) {

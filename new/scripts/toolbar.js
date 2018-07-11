@@ -3,15 +3,15 @@ $('.toolbar-btn').click(function () {
     var id = $(this).attr('data');
     var tag = $(this).attr('data-tag');
     if (tag in timers) {
-        restartTimer(timers[tag]);
+        restartTimer(timers[tag], tag);
     } else {
         if(type == "timer") {
-            $.post("components/timerCard.php", {id: id, tag: tag}, function (data) {
+            $.post("components/timerCard.php", {tag: tag}, function (data) {
                 $('#timer-container').append(data).fadeIn("fast");
             });
         }
         if(type == "alert") {
-            $.post("components/alertModal.php", {id: id, tag: tag}, function (data) {
+            $.post("components/alertModal.php", {tag: tag}, function (data) {
                 $('#timer-container').append(data).fadeIn("fast");
             });
         }

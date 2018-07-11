@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="main.css"/>
     <script src="scripts/jquery.js"></script>
     <script src="scripts/functions.js"></script>
 </head>
@@ -19,7 +20,7 @@
         </nav>
     </div>
     <div id="options-container" class="center" style="display:none; margin:15px;">
-        <a id="medications-btn" class="waves-effect waves-light btn">Medications</a>
+        <a id="medications-btn" data-target="medication-modal" class="waves-effect waves-light btn modal-trigger">Medications</a>
         <a id="procedures-btn" class="waves-effect waves-light btn">Procedures</a>
     </div>
     <div id="toolbar-container" class="center" style="display:none;">
@@ -75,7 +76,10 @@ include_once("components/procModal.php");
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, options);
+            var instances = M.FloatingActionButton.init(elems, {
+                direction: 'left',
+                hoverEnabled: false
+            });
         });
     </script>
 </body>

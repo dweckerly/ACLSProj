@@ -43,7 +43,7 @@ function startTimer(arr) {
     arr['interval'] = setInterval(function () {
         if(arr['alert']) {
             if(arr['min'] == arr['alert']['min'] && arr['sec'] == arr['alert']['sec']) {
-                $("#" + arr['id'] + "-timer-div").addClass("pulse");
+                $("#" + arr['id'] + "-timer-div").addClass("pulse-red");
             }
         }
         timerDisplay(arr);
@@ -61,7 +61,7 @@ function clickTimer(arr) {
 }
 
 function pauseTimer(arr) {
-    $("#" + arr['id'] + "-timer-div").addClass("pause");
+    $("#" + arr['id'] + "-timer-card").addClass("pause");
     arr['running'] = false;
     clearInterval(arr['interval']);
 }
@@ -81,7 +81,7 @@ function restartTimer(arr, tag) {
     if(arr['count']) {
         arr['count'] = parseInt(arr['count']) + 1;
     }
-    $("#" + arr['id'] + "-timer-div").removeClass('pulse');
+    $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
     $.post("components/alertModal.php", {id:arr['aid'], tag:tag}, function(data) {
         $('#modal-container').append(data);
     });

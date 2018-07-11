@@ -6,18 +6,44 @@ $q = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($q);
 
 ?>
-<div class="col s6" >
-    <div id="<?php echo $row['dataTag']; ?>-timer-div" class="card horizontal small text-center timer-card" data="<?php echo $row['dataTag']; ?>">
-        <div class="card-stacked" id="<?php echo $row['dataTag']; ?>-timer-btn">
-            <div class="card-content">
-                <span class="card-title"><?php echo $row['name'];?></span>
-                <a data="<?php echo $row['dataTag']; ?>" data-alert="<?php echo $row['aid']; ?>" id="<?php echo $row['dataTag']; ?>-timer-restart" class="btn-floating halfway-fab waves-effect waves light"><i class="fas fa-sync"></i></a>
-            </div>
-            <div class="card-action" id="<?php echo $row['dataTag']; ?>-timer">
+<div class="col s6">
+    <div id="<?php echo $row['dataTag']; ?>-timer-card" class="card text-center timer-card">
+        <span class="card-title activator reveal-icon"><a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">info_outline</i></a></span>
+        <div id="<?php echo $row['dataTag']; ?>-timer-div" data="<?php echo $row['dataTag']; ?>">
+            <div class="card-content center">
                 <h4 class="timer"><span id="<?php echo $row['dataTag']; ?>-minutes">00</span>:<span id="<?php echo $row['dataTag']; ?>-seconds">00</span></h4>
             </div>
+            <div class="card-action center" id="<?php echo $row['dataTag']; ?>-timer">
+                <span class="flow-text truncate timer-name"><?php echo $row['name'];?></span>
+            </div>
         </div>
-    </button>
+        <a data="<?php echo $row['dataTag']; ?>" id="<?php echo $row['dataTag']; ?>-timer-restart" class="btn-floating halfway-fab waves-effect waves light"><i class="material-icons">refresh</i></a>
+        <div class="card-reveal">
+            <span class="grey-text card-title text-darken-4"><i class="material-icons right">close</i></span>
+<?php
+    if($row['type'] == 'medication') {
+        $data = $row['dataTag'];
+        $sql = "SELECT * FROM medications WHERE dataTag = '$data'";
+        $q = mysqli_query($conn, $sql);
+        $val = mysqli_fetch_assoc($q);
+?>
+            <p><?php echo $val['name']; ?></p>
+            <p><?php echo $val['doseAmount'] . " " . $val['doseUnit']; ?>, <?php echo $val['route']; ?></p>
+            <p id="<?php echo $row['dataTag']; ?>-count">1</p>
+<?php
+    } else {
+        $data = $row['dataTag'];
+        $sql = "SELECT * FROM procedures WHERE dataTag = '$data'";
+        $q = mysqli_query($conn, $sql);
+        $val = mysqli_fetch_assoc($q);
+?>
+            <p><?php echo $val['name']; ?></p>
+            <p>Details: <?php echo $val['details'];?></p>
+<?php
+    }
+?>
+        </div>
+    </div>
 </div>
 <script>
     timers["<?php echo $row['dataTag']; ?>"] = {

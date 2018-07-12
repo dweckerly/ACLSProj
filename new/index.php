@@ -49,6 +49,7 @@ while($row = mysqli_fetch_assoc($q)) {
 <?php
 include_once("components/medModal.php");
 include_once("components/procModal.php");
+include_once("components/infoModal.html");
 ?>       
     </div>
     <div id="start-container" class="center" style="margin-top:80px;">

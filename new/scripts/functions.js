@@ -134,3 +134,7 @@ function checkDose(arr) {
 function createBaseTimer() {
 
 }
+
+function displayInfo() {
+
+}

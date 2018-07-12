@@ -1,5 +1,5 @@
 <?php
-include_once("../../includes/db.php");
+include_once("../includes/db.php");
 $tag = $_POST['tag'];
 $sql = "SELECT * FROM timers WHERE dataTag = '$tag'";
 $q = mysqli_query($conn, $sql);
@@ -97,11 +97,18 @@ if($row['type'] == 'medication') {
             $('#proc-info').hide();
             $('#med-info').show();
             $('#med-dose').html("Dose: " + timers[tag]['doseAmount'] + " " + timers[tag]['doseUnit']);
-            $('#med-route').html("Route : " + timers[tag]['route']);
+            $('#med-route').html("Route: " + timers[tag]['route']);
         } else if (type == 'procedure') {
             $('#med-info').hide();
             $('#proc-info').show();
             $('#proc-details').html(timers[tag]['details']);
+        }
+        $('#count').html("Total: " + timers[tag]['count']);
+        $('#info-table-body').empty();
+        for(i = 0; i < actions.length; i++) {
+            if(actions[i]['tag'] == tag) {
+                $('#info-table-body').append("<tr><td>" + actions[i]['action'] + "</td><td>" + actions[i]['time'] + "</td></tr>");
+            }
         }
     });
 

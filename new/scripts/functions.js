@@ -16,8 +16,9 @@ $(document).ready(function() {
 function timeNow() {
     var d = new Date(),
         h = (d.getHours() < 10 ? '0' : '') + d.getHours(),
-        m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-    return h + ':' + m;
+        m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes(),
+        s = (d.getSeconds() < 10 ? '0' : '') + d.getSeconds();
+    return h + ':' + m + ':' + s;
 }
 
 function timerDisplay(arr) {
@@ -40,6 +41,8 @@ function timerDisplay(arr) {
 
 function startTimer(arr) {
     actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'started', 'time': timeNow() });
+    console.log(actions);
+    arr['actions'] = actions[actions.length - 1];
     callToast(arr['name']);
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
@@ -90,27 +93,7 @@ function restartTimer(arr) {
 
 function callToast(name) {
     var str = name + " recorded at " + timeNow() + ".";
-    M.toast({ html: str });
-}
-
-function createMedTimer(name, id, dose, route, alert, time, max, maxDose, timer) {
-    timers[name] = {
-        'id': id,
-        'min': 0,
-        'sec': 0,
-        'startTime': {
-            '1': timeNow()
-        },
-        'interval': null,
-        'count': 1,
-        'max': max,
-        'dose': dose,
-        'maxDose': maxDose,
-        'route': route,
-        'alert': alert,
-        'time': time,
-        'timer': timer
-    }
+    M.toast({ html: str, displayLength: 2000 });
 }
 
 function checkDose(arr) {

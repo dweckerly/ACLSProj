@@ -1,6 +1,13 @@
 <div class="modal" id="medication-modal">
     <div class="modal-content">
         <h4>Medications</h4>
+        <form>
+            <div class="input-field">
+                <input id="search" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+        </form>
 
 <?php
 include_once("../../includes/db.php");
@@ -36,6 +43,7 @@ $('#medications-btn').click(function () {
 $('.med-btn').click(function () {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
+    var name = $(this).html();
     if (tag in timers) {
         restartTimer(timers[tag]);
     } else {
@@ -45,6 +53,7 @@ $('.med-btn').click(function () {
             });
         }
         if(type == "alert") {
+            actions.push({'name':name, 'tag': tag, 'action':'pressed', 'time':timeNow()});
             callToast('<?php echo $row['name']; ?>');
         }
     }

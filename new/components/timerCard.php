@@ -71,7 +71,6 @@ $row = mysqli_fetch_assoc($q);
         var id = $(this).attr('data');
         restartTimer(timers[id]);
     });
-    
-    callToast('<?php echo $row['name']; ?>');
+
     startTimer(timers["<?php echo $row['dataTag']; ?>"]);
 </script>

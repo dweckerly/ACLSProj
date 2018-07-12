@@ -4,6 +4,7 @@ var timers = {};
 $(document).ready(function() {
     timers.code = {
         'id': 'main',
+        'name': 'Code Start',
         'min': 0,
         'sec': 0,
         'startTime': timeNow(),
@@ -39,12 +40,13 @@ function timerDisplay(arr) {
 
 function startTimer(arr) {
     actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'started', 'time': timeNow() });
+    callToast(arr['name']);
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
     arr['interval'] = setInterval(function() {
         if (arr['alert']) {
             if (arr['min'] == arr['alert']['min'] && arr['sec'] == arr['alert']['sec']) {
-                $("#" + arr['id'] + "-timer-div").addClass("pulse-red");
+                $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
             }
         }
         timerDisplay(arr);
@@ -84,7 +86,6 @@ function restartTimer(arr) {
         arr['count'] = parseInt(arr['count']) + 1;
     }
     $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
-    callToast(arr['name']);
 }
 
 function callToast(name) {

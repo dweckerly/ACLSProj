@@ -14,8 +14,14 @@
 <body>
     <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper">
+            <div id="logo-wrapper" class="nav-wrapper">
                 <a id="nav-content" class="brand-logo center">codemate</a>
+            </div>
+            <div id="code-timer-wrapper" class="nav-wrapper" style="display:none;">
+                <a class="brand-logo animate-flicker"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></a>
+                <ul class="right">
+                    <li><a id="end-btn" class="btn waves-effect waves-light red">End</a></li>
+                </ul>
             </div>
         </nav>
     </div>
@@ -29,18 +35,8 @@ include_once("includes/db.php");
 $sql = "SELECT * FROM toolbarButtons";
 $q = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($q)) {
-    $data = $row['data'];
-    if($row['type'] == "timer") {
-        $sql = "SELECT dataTag from timers WHERE id = '$data'";
-    } else if($row['type'] == "alert") {
-        $sql = "SELECT dataTag from alerts WHERE id = '$data'";
-    }
-    $query = mysqli_query($conn, $sql);
-    $t = mysqli_fetch_assoc($query);
-    $tag = $t['dataTag'];
-    
 ?>
-        <button data="<?php echo $row['data'];?>" data-type="<?php echo $row['type'];?>" data-tag="<?php echo $tag;?>" class="btn grey toolbar-btn"><?php echo $row['name'];?></button>
+        <button data-type="<?php echo $row['type'];?>" data-tag="<?php echo $row['data'];?>" class="btn grey toolbar-btn"><?php echo $row['name'];?></button>
 <?php
 }
 ?>
@@ -56,7 +52,7 @@ include_once("components/procModal.php");
 ?>       
     </div>
     <div id="start-container" class="center" style="margin-top:80px;">
-        <button id="start-btn" class="waves-effect waves-light btn-large pulse red lighten-2 valign">Start Code</button>
+        <button id="start-btn" class="waves-effect waves-light btn-large pulse red lighten-2">Start Code</button>
     </div>
 
     <div id="timer-container" class="container"></div>

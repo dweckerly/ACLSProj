@@ -1,4 +1,4 @@
-<div class="modal bottom-sheet" id="medication-modal">
+<div class="modal" id="medication-modal">
     <div class="modal-content">
         <h4>Medications</h4>
 
@@ -8,9 +8,10 @@ $sql = "SELECT * FROM medications";
 $query = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($query)) {
     $tag = $row['dataTag'];
-    $sql = "SELECT * FROM timers WHERE dataTag = '$dataTag'";
+    $sql = "SELECT * FROM timers WHERE dataTag = '$tag'";
     $q = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($q) > 0) {
+    $count = mysqli_num_rows($q);
+    if($count > 0) {
         $type = 'timer';
     } else {
         $type = 'alert';
@@ -29,14 +30,14 @@ $(document).ready(function(){
 });
       
 $('#medications-btn').click(function () {
-    console.log('clicked');
-    $('#medication-modal').modal('show');
+    $('#medication-modal').modal();
 });
+
 $('.med-btn').click(function () {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     if (tag in timers) {
-        restartTimer(timers[tag], tag);
+        restartTimer(timers[tag]);
     } else {
         if(type == "timer") {
             $.post("components/timerCard.php", {tag: tag}, function (data) {
@@ -44,9 +45,7 @@ $('.med-btn').click(function () {
             });
         }
         if(type == "alert") {
-            $.post("components/alertModal.php", {tag: tag}, function (data) {
-                $('#timer-container').append(data).fadeIn("fast");
-            });
+            callToast('<?php echo $row['name']; ?>');
         }
     }
 });

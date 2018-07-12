@@ -48,6 +48,7 @@ $row = mysqli_fetch_assoc($q);
 <script>
     timers["<?php echo $row['dataTag']; ?>"] = {
         'id':'<?php echo $row['dataTag']; ?>',
+        'name': '<?php echo $row['name'];?>',
         'min' : 0,
         'sec' : 0,
         'startTime' : timeNow(),
@@ -57,8 +58,7 @@ $row = mysqli_fetch_assoc($q);
         'alert' : {
             'min' : <?php echo $row['alertMin']; ?>,
             'sec' : <?php echo $row['alertSec']; ?>
-        },
-        'aid' : <?php echo $row['aid']; ?>
+        }
     }
     
     $('#<?php echo $row['dataTag']; ?>-timer-div').click(function () {
@@ -69,8 +69,9 @@ $row = mysqli_fetch_assoc($q);
     $('#<?php echo $row['dataTag']; ?>-timer-restart').click(function () {
         event.stopPropagation();
         var id = $(this).attr('data');
-        restartTimer(timers[id], id);
+        restartTimer(timers[id]);
     });
-
+    
+    callToast('<?php echo $row['name']; ?>');
     startTimer(timers["<?php echo $row['dataTag']; ?>"]);
 </script>

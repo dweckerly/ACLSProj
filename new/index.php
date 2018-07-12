@@ -21,7 +21,7 @@
     </div>
     <div id="options-container" class="center" style="display:none; margin:15px;">
         <a id="medications-btn" data-target="medication-modal" class="waves-effect waves-light btn modal-trigger">Medications</a>
-        <a id="procedures-btn" class="waves-effect waves-light btn">Procedures</a>
+        <a id="procedures-btn" data-target="procedure-modal" class="waves-effect waves-light btn modal-trigger">Procedures</a>
     </div>
     <div id="toolbar-container" class="center" style="display:none;">
 <?php

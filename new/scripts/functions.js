@@ -39,9 +39,12 @@ function timerDisplay(arr) {
     }
 }
 
-function startTimer(arr) {
-    actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'started', 'time': timeNow() });
-    console.log(actions);
+function startTimer(arr, restart) {
+    if (restart) {
+        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow() });
+    } else {
+        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow() });
+    }
     arr['actions'] = actions[actions.length - 1];
     callToast(arr['name']);
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
@@ -69,7 +72,7 @@ function clickTimer(arr) {
 function pauseTimer(arr) {
     $("#" + arr['id'] + "-timer-card").addClass("pause");
     arr['running'] = false;
-    actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'paused', 'time': timeNow() });
+    actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'pause', 'time': timeNow() });
     clearInterval(arr['interval']);
 }
 
@@ -84,7 +87,7 @@ function clearTimer(arr) {
 
 function restartTimer(arr) {
     clearTimer(arr);
-    startTimer(arr);
+    startTimer(arr, true);
     if (arr['count']) {
         arr['count'] = parseInt(arr['count']) + 1;
     }

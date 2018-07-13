@@ -66,12 +66,12 @@ if(mysqli_num_rows($q) > 0) {
 ?>
                             <input value="<?php echo $val['alertMin']; ?>" name="med-alert-min" id="med-alert-min" type="text" class="validate">
                             <label for="med-alert-min">Minutes</label>
-                            <span class="helper-text">Leave blank if no timer needed.</span>
+                            <span class="helper-text">Delete to remove timer.</span>
                         </div>
                         <div class="input-field col s6">
                             <input value="<?php echo $val['alertSec']; ?>" name="med-alert-sec" id="med-alert-sec" type="text" class="validate">
                             <label for="med-alert-sec">Seconds</label>
-                            <span class="helper-text">Leave blank if no timer needed.</span>
+                            <span class="helper-text">Delete to remove timer.</span>
 <?php
 } else {
 ?>

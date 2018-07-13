@@ -37,9 +37,9 @@ $q = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($q)) {
     $tag = $row['dataTag'];
     $sql = "SELECT * from timers WHERE dataTag = '$tag'";
-    $q = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($q) > 0) {
-        $val = mysqli_fetch_assoc($q);
+    $query = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($query) > 0) {
+        $val = mysqli_fetch_assoc($query);
         $alert = $val['alertMin'] . " min - " . $val['alertSec'] . " sec";
     } else {
         $alert = "none";

@@ -31,7 +31,6 @@ $('#metronome-btn').click(function() {
     } else {
         met = true;
         $(this).addClass('pause');
-        audio.play();
         metronomeInterval = setInterval(function() {
             audio.play();
         }, 600);

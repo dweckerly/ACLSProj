@@ -5,6 +5,7 @@ $(document).ready(function() {
 
 });
 
+
 $('#start-btn').click(function() {
     $('#edit-menu').fadeOut(function() {
         $('#code-timer-wrapper').fadeIn();

@@ -40,6 +40,7 @@ while($row = mysqli_fetch_assoc($q)) {
 <?php
 }
 ?>
+        <a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>
     </div>
     <script src="scripts/toolbar.js"></script>
     <div id="timer-container" class="row container"></div>

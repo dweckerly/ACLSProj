@@ -19,3 +19,21 @@ $('.toolbar-btn').click(function() {
 $('#end-btn').click(function() {
     // end the code..
 });
+
+var met = false;
+var metronomeInterval;
+$('#metronome-btn').click(function() {
+    var audio = new Audio('sounds/metronome.mp3');
+    if (met) {
+        clearInterval(metronomeInterval);
+        met = false;
+        $(this).removeClass('pause');
+    } else {
+        met = true;
+        $(this).addClass('pause');
+        audio.play();
+        metronomeInterval = setInterval(function() {
+            audio.play();
+        }, 600);
+    }
+});

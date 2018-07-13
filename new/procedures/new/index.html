@@ -19,29 +19,19 @@
             </div>
         </nav>
     </div>
-    <h3 class="header red-text text-lighten-2">Medications</h3>
+    <h3 class="header red-text text-lighten-2">Procedures</h3>
     <div class="row">
-        <form class="col s12" method="POST" action="insertMed.php">
+        <form class="col s12" method="POST" action="insertProc.php">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="med-name" type="text" class="validate" name="med-name">
+                    <input id="med-name" type="text" class="validate" name="proc-name">
                     <label for="med-name">Name</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
-                    <input id="med-dose-amount" type="text" class="validate" name="med-dose-amount">
-                    <label for="med-dose-amount">Dose Amount</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="med-dose-unit" type="text" class="validate" name="med-dose-unit">
-                    <label for="med-dose-unit">Dose Unit</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <input id="med-route" type="text" class="validate" name="med-route">
-                    <label for="med-route">Route</label>
+                <div class="input-field col s12">
+                    <input id="med-dose-amount" type="text" class="validate" name="proc-details">
+                    <label for="med-dose-amount">Details</label>
                 </div>
             </div>
             <div class="row">
@@ -49,12 +39,12 @@
                     Frequency:
                     <div class="input-field inline">
                         <div class="input-field col s6">
-                            <input id="med-alert-min" type="text" class="validate" name="med-alert-min">
+                            <input id="med-alert-min" type="text" class="validate" name="proc-alert-min">
                             <label for="med-alert-min">Minutes</label>
                             <span class="helper-text">Leave blank if no timer needed.</span>
                         </div>
                         <div class="input-field col s6">
-                            <input id="med-alert-sec" type="text" class="validate" name="med-alert-sec">
+                            <input id="med-alert-sec" type="text" class="validate" name="proc-alert-sec">
                             <label for="med-alert-sec">Seconds</label>
                             <span class="helper-text">Leave blank if no timer needed.</span>
                         </div>

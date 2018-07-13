@@ -82,7 +82,8 @@ if(mysqli_num_rows($q) > 0) {
                     </div>
                 </div>
             </div>
-            <button class="waves-effect waves-light btn" type="submit">Submit</button>
+            <input name="tag" value="<?php echo $tag; ?>" style="display:none;" />
+            <button class="waves-effect waves-light btn" type="submit">Update</button>
         </form>
     </div>
     <script type="text/javascript" src="../../js/materialize.min.js"></script>

@@ -6,7 +6,7 @@ $q = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($q);
 
 ?>
-<div class="col s6">
+<div class="col s6 m4 l3 xl2">
     <div id="<?php echo $row['dataTag']; ?>-timer-card" class="card text-center timer-card">
         <span class="card-title"><a class="btn-floating btn-small waves-effect waves-light red info-btn modal-trigger" data-target="info-modal" data="<?php echo $row['dataTag']; ?>" data-type="<?php echo $row['type']; ?>"><i class="material-icons">info_outline</i></a></span>
         <div id="<?php echo $row['dataTag']; ?>-timer-div" data="<?php echo $row['dataTag']; ?>">

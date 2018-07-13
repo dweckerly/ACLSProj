@@ -19,7 +19,7 @@ if($min == "") {
 }
 
 include_once("../../includes/db.php");
-$sql = "INSERT INTO procedures (name, dataTag, details) VALUES ('$name', '$tag', '$details')";
+$sql = "INSERT INTO procedures (name, details, dataTag) VALUES ('$name', '$details', '$tag')";
 mysqli_query($conn, $sql);
 
 if($timer) {

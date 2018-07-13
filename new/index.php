@@ -61,7 +61,7 @@ include_once("components/infoModal.html");
         <ul>
             <li><a class="btn-floating red tooltipped" data-position="top" data-tooltip="Medications" href="medications"><i class="material-icons">local_pharmacy</i></a></li>
             <li><a class="btn-floating blue tooltipped" data-position="top" data-tooltip="Procedures" href="procedures"><i class="material-icons">healing</i></a></li>
-            <li><a class="btn-floating green tooltipped" data-position="top" data-tooltip="Quickbar"><i class="material-icons">add_box</i></a></li>
+            <li><a class="btn-floating green tooltipped" data-position="top" data-tooltip="Quickbar" href="toolbar"><i class="material-icons">add_box</i></a></li>
         </ul>
     </div>
       

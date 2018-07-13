@@ -90,6 +90,7 @@ if(mysqli_num_rows($q) > 0) {
                     </div>
                 </div>
             </div>
+            <input name="tag" value="<?php echo $tag; ?>" style="display:none;" />
             <button class="waves-effect waves-light btn" type="submit">Update</button>
         </form>
 

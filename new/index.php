@@ -28,24 +28,13 @@
     <div id="options-container" class="center" style="display:none; margin:15px;">
         <a id="medications-btn" data-target="medication-modal" class="waves-effect waves-light btn modal-trigger">Medications</a>
         <a id="procedures-btn" data-target="procedure-modal" class="waves-effect waves-light btn modal-trigger">Procedures</a>
-    </div>
-    <div id="toolbar-container" class="center" style="display:none;">
-<?php
-include_once("includes/db.php");
-$sql = "SELECT * FROM toolbarButtons";
-$q = mysqli_query($conn, $sql);
-while($row = mysqli_fetch_assoc($q)) {
-?>
-        <button data-type="<?php echo $row['type'];?>" data-tag="<?php echo $row['data'];?>" class="btn grey toolbar-btn"><?php echo $row['name'];?></button>
-<?php
-}
-?>
         <a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>
     </div>
     <script src="scripts/toolbar.js"></script>
     <div id="timer-container" class="row container"></div>
     <div id="modal-container">
 <?php
+include_once("includes/db.php");
 include_once("components/medModal.php");
 include_once("components/procModal.php");
 include_once("components/infoModal.html");

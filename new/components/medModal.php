@@ -11,7 +11,7 @@
 
 <?php
 include_once("../includes/db.php");
-$sql = "SELECT * FROM medications";
+$sql = "SELECT * FROM medications ORDER BY name";
 $query = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($query)) {
     $tag = $row['dataTag'];
@@ -54,7 +54,7 @@ $('.med-btn').click(function () {
         }
         if(type == "alert") {
             actions.push({'name':name, 'tag': tag, 'action':'pressed', 'time':timeNow()});
-            callToast('<?php echo $row['name']; ?>');
+            callToast(name);
         }
     }
 });

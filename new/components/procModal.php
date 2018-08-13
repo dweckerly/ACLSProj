@@ -11,7 +11,7 @@
 
 <?php
 include_once("../includes/db.php");
-$sql = "SELECT * FROM procedures";
+$sql = "SELECT * FROM procedures ORDER BY name";
 $query = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($query)) {
     $tag = $row['dataTag'];

@@ -28,6 +28,11 @@
  }
 
 
+ .med-btn, .proc-btn {
+     width: 200px;;
+     margin: 10px;
+ }
+
  @keyframes pulse {
     0% {
         background-color: #fff;

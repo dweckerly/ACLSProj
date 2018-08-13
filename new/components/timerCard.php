@@ -8,7 +8,7 @@ $row = mysqli_fetch_assoc($q);
 ?>
 <div class="col s6 m4 l3 xl2">
     <div id="<?php echo $row['dataTag']; ?>-timer-card" class="card text-center timer-card">
-        <span class="card-title"><a class="btn-floating btn-small waves-effect waves-light red info-btn modal-trigger" data-target="info-modal" data="<?php echo $row['dataTag']; ?>" data-type="<?php echo $row['type']; ?>"><i class="material-icons">info_outline</i></a></span>
+        <span class="card-title"></span>
         <div id="<?php echo $row['dataTag']; ?>-timer-div" data="<?php echo $row['dataTag']; ?>">
             <div class="card-content center">
                 <h4 class="timer"><span id="<?php echo $row['dataTag']; ?>-minutes">00</span>:<span id="<?php echo $row['dataTag']; ?>-seconds">00</span></h4>
@@ -17,7 +17,7 @@ $row = mysqli_fetch_assoc($q);
                 <span class="flow-text truncate timer-name"><?php echo $row['name'];?></span>
             </div>
         </div>
-        <a data="<?php echo $row['dataTag']; ?>" id="<?php echo $row['dataTag']; ?>-timer-restart" class="btn-floating halfway-fab waves-effect waves light"><i class="material-icons">refresh</i></a>
+        <a class="btn-floating btn-small halfway-fab waves-effect waves-light red info-btn modal-trigger" data-target="info-modal" data="<?php echo $row['dataTag']; ?>" data-type="<?php echo $row['type']; ?>"><i class="material-icons">info_outline</i></a>
 <?php
 if($row['type'] == 'medication') {
     $data = $row['dataTag'];
@@ -78,12 +78,6 @@ if($row['type'] == 'medication') {
 }
 ?>
     $('#<?php echo $row['dataTag']; ?>-timer-div').click(function () {
-        var id = $(this).attr('data');
-        clickTimer(timers[id]);
-    });
-
-    $('#<?php echo $row['dataTag']; ?>-timer-restart').click(function () {
-        event.stopPropagation();
         var id = $(this).attr('data');
         restartTimer(timers[id]);
     });

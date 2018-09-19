@@ -12,7 +12,8 @@ var medications = [
         dataTag: "atro",
         doseAmount: 1,
         doseUnit: "MG",
-        route: "IV"
+        route: "IV",
+        type: "timer"
     },
     {
         name: "Sodium Bicarbonate",
@@ -20,7 +21,7 @@ var medications = [
         doseAmount: 50,
         doseUnit: "MEQ",
         route: "IVP",
-        type: "timer"
+        type: "alert"
     },
     {
         name: "Calcium Chloride",
@@ -97,7 +98,7 @@ var procedures = [
     }
 ];
 
-var timers = [
+var timersData = [
     {
         name: "Epinephrine",
         alertMin: 2,

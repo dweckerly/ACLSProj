@@ -53,6 +53,12 @@ function startTimer(arr, restart) {
         if (arr['alert']) {
             if (arr['min'] == arr['alert']['min'] && arr['sec'] == arr['alert']['sec']) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
+                cordova.plugins.notification.local.schedule({
+                    title: "",
+                    text: "",
+                    foreground: true,
+                    smallIcon: ''
+                });
             }
         }
         timerDisplay(arr);
@@ -99,6 +105,10 @@ function callToast(name) {
     M.toast({ html: str, displayLength: 2000 });
 }
 
+function clearAllIntervals() {
+    
+}
+
 function checkDose(arr) {
     var count = parseInt(arr['count']) + 1;
     var totalDose = parseFloat(arr['dose']) * count;
@@ -113,12 +123,7 @@ function checkDose(arr) {
             // too much
         }
     }
-
     arr['count'] = parseInt(arr['count']) + 1;
-}
-
-function createTimer(tag, type) {
-
 }
 
 function displayInfo() {

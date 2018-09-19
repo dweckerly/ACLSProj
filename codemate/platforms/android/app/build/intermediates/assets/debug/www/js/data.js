@@ -1,117 +1,130 @@
-var medications = {
-    1: {
+var medications = [
+    {
         name: "Epinephrine 1:10,000",
         dataTag: "epi",
         doseAmount: 0.5,
         doseUnit: "MG",
-        route: "IV"
+        route: "IV",
+        type: "timer"
     },
-    2: {
+    {
         name: "Atropine",
         dataTag: "atro",
         doseAmount: 1,
         doseUnit: "MG",
-        route: "IV"
+        route: "IV",
+        type: "timer"
     },
-    3: {
+    {
         name: "Sodium Bicarbonate",
         dataTag: "sobic",
         doseAmount: 50,
         doseUnit: "MEQ",
-        route: "IVP"
+        route: "IVP",
+        type: "alert"
     },
-    4: {
+    {
         name: "Calcium Chloride",
         dataTag: "cacl",
         doseAmount: 500,
         doseUnit: "MG",
-        route: "IVP"
+        route: "IVP",
+        type: "alert"
     },
-    5: {
+    {
         name: "Narcan",
         dataTag: "narca",
         doseAmount: 2,
         doseUnit: "MG",
-        route: "IV"
+        route: "IV",
+        type: "timer"
     },
-    6 : {
+    {
         name: "Dextrose 50",
         dataTag: "d50",
         doseAmount: 25,
         doseUnit: "Grams",
-        route: "IVP"
+        route: "IVP",
+        type: "alert"
     },
-    7: {
+    {
         name: "Glucagon",
         dataTag: "gluca",
         doseAmount: 1,
         doseUnit: "MG",
-        route: "IM"
+        route: "IM",
+        type: "alert"
     },
-    8: {
+    {
         name: "Mag Sulfate",
         dataTag: "magsulf",
         doseAmount: 2,
         douseUnit: "Grams",
-        route: "IVP"
+        route: "IVP",
+        type: "alert"
     }
-};
+];
 
-var procedures = {
-    1: {
+var procedures = [
+    {
         name: "Pulse Check",
         details: "Check for pulse",
-        dataTag: "pulse"
+        dataTag: "pulse",
+        tpye: "timer"
     },
-    2: {
+    {
         name: "I. V.",
         details: "",
-        dataTag: "iv"
+        dataTag: "iv",
+        type: "alert"
     },
-    3: {
+    {
         name: "Interosseous",
         details: "",
-        dataTag: "interos"
+        dataTag: "interos",
+        type: "alert"
     },
-    4: {
+    {
         name: "Intubation",
         details: "Check for pulse",
-        dataTag: "intubat"
+        dataTag: "intubat",
+        type: "alert"
     },
-    5: {
+    {
         name: "Nasogastric Tube",
         details: "",
-        dataTag: "nasogas"
+        dataTag: "nasogas",
+        type: "alert"
     }
-};
+];
 
-var timers = {
-    1 : {
+var timersData = [
+    {
         name: "Epinephrine",
         alertMin: 2,
         alertSec: 45,
         dataTag: "epi",
         type: "medication"
     },
-    2 : {
+    {
         name: "Pulse/Defib",
         alertMin: 1,
         alertSec: 45,
         dataTag: "pulse",
         type: "procedure"
     },
-    3 : {
+    {
         name: "Atropine",
         alertMin: 3,
         alertSec: 0,
         dataTag: "atro",
         type: "medication"
     },
-    4 : {
+    {
         name: "Narcan",
         alertMin: 15,
         alertSec: 0,
         dataTag: "narca",
         type: "medication"
     }
-}
+];

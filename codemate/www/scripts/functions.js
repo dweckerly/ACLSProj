@@ -113,7 +113,6 @@ function checkDose(arr) {
             // too much
         }
     }
-
     arr['count'] = parseInt(arr['count']) + 1;
 }
 

@@ -117,7 +117,7 @@ function checkDose(arr) {
     arr['count'] = parseInt(arr['count']) + 1;
 }
 
-function createBaseTimer() {
+function createTimer(tag, type) {
 
 }
 

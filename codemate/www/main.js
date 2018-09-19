@@ -17,6 +17,10 @@ $('#start-btn').click(function() {
     });
 });
 
+$('#main-info-btn').click(() => {
+    populateCodeInfo();
+    $('#code-info-modal').modal();
+});
 
 $('#end-btn').click(() => {
     console.log(actions);
@@ -24,8 +28,7 @@ $('#end-btn').click(() => {
     $('#main-nav').fadeOut();
     $('#options-container').fadeOut();
     $('#timer-container').fadeOut(() => {
-       $('#report-container').fadeIn();
-       console.log("called");
+        $('#report-container').fadeIn();
     });
 });
 
@@ -37,43 +40,77 @@ $('#back-to-code').click(() => {
     });
 });
 
+function getElapsedTime() {
+    let sTime = actions[0].time.split(':');
+    let eTime = timeNow().split(':');
+
+    let parsedTime = {
+        h: eTime[0] - sTime[0],
+        m: eTime[1] - sTime[1],
+        s: eTime[2] - sTime[2]
+    }
+    return parsedTime;
+}
+
 function populateReport() {
-    for(let i = 0; i < actions.length; i++) {
-        for(let j = 0; j < medications.length; j++) {
-            if(actions[i].tag == medications[j].dataTag) {
-                $('#report-list').append(`
-                <li class="collection-item">
-                    <table>
+    $('#report-table-body').remove();
+    $('#report-table').append(`<tbody id="report-table-body">
+    </tbody>`)
+    let eTime = getElapsedTime();
+    $('#code-start').html("Code Started: " + actions[0].time);
+    $('#elapsed-time').html("Elapsed time: " + eTime.h + ":" + eTime.m + ":" + eTime.s);
+    for (let i = 0; i < actions.length; i++) {
+        for (let j = 0; j < medications.length; j++) {
+            if (actions[i].tag == medications[j].dataTag) {
+                $('#report-table-body').append(`
                         <tr>
                             <td>` + actions[i].name + `</td>
-                            <td>` + medications[j].doseAmount + ` ` + medications[j].doseUnit +`</td>
-                            <td>` + medications[j].route + `</td>
+                            <td>` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + `</td>
                             <td>` + actions[i].time + `</td>
-                        </tr>
-                    </table>
-                </li>`);;
+                        </tr>`);;
             }
         }
-        for(let j = 0; j < procedures.length; j++) {
-            if(actions[i].tag == procedures[j].dataTag) {
-                $('#report-list').append(`
-            <li class="collection-item">
-                <table>
+        for (let j = 0; j < procedures.length; j++) {
+            if (actions[i].tag == procedures[j].dataTag) {
+                $('#report-table-body').append(`
                     <tr>
                         <td>` + actions[i].name + `</td>
                         <td>` + procedures[j].details + `</td>
-                        <td>` +  + `</td>
                         <td>` + actions[i].time + `</td>
-                    </tr>
-                </table>
-            </li>`);
+                    </tr>`);
+            }
+        }
+    }
+}
+
+function populateCodeInfo() {
+    $('.info-table-item').remove();
+    for (let i = 0; i < actions.length; i++) {
+        for (let j = 0; j < medications.length; j++) {
+            if (actions[i].tag == medications[j].dataTag) {
+                $('#code-info-table-body').append(`
+                        <tr class="info-table-item">
+                            <td>` + actions[i].name + `</td>
+                            <td>` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + `</td>
+                            <td>` + actions[i].time + `</td>
+                        </tr>`);
+            }
+        }
+        for (let j = 0; j < procedures.length; j++) {
+            if (actions[i].tag == procedures[j].dataTag) {
+                $('#code-info-table-body').append(`
+                    <tr class="info-table-item">
+                        <td>` + actions[i].name + `</td>
+                        <td>` + procedures[j].details + `</td>
+                        <td>` + actions[i].time + `</td>
+                    </tr>`);
             }
         }
     }
 }
 
 function populateMedicationModal() {
-    for(let i = 0; i < medications.length; i++) {
+    for (let i = 0; i < medications.length; i++) {
         $('#med-btn-container').append(
             "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
         );
@@ -81,7 +118,7 @@ function populateMedicationModal() {
 }
 
 function populateProcedureModal() {
-    for(let i = 0; i < procedures.length; i++) {
+    for (let i = 0; i < procedures.length; i++) {
         $('#proc-btn-container').append(
             "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
         );
@@ -91,43 +128,43 @@ function populateProcedureModal() {
 populateMedicationModal();
 populateProcedureModal();
 
-$('#medications-btn').click(function () {
+$('#medications-btn').click(function() {
     $('#medication-modal').modal();
 });
 
-$('#procedures-btn').click(function () {
+$('#procedures-btn').click(function() {
     $('#procedure-modal').modal();
 });
 
-$('.med-btn').click(function () {
+$('.med-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     var name = $(this).html();
     if (tag in timers) {
         restartTimer(timers[tag]);
     } else {
-        if(type == "timer") {
+        if (type == "timer") {
             createTimer(tag, 'medication');
         }
-        if(type == "alert") {
-            actions.push({'name':name, 'tag': tag, 'action':'pressed', 'time':timeNow()});
+        if (type == "alert") {
+            actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow() });
             callToast(name);
         }
     }
 });
 
-$('.proc-btn').click(function () {
+$('.proc-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     var name = $(this).html();
     if (tag in timers) {
         restartTimer(timers[tag]);
     } else {
-        if(type == "timer") {
+        if (type == "timer") {
             createTimer(tag, 'procedure');
         }
-        if(type == "alert") {
-            actions.push({'name':name, 'tag': tag, 'action':'pressed', 'time':timeNow()});
+        if (type == "alert") {
+            actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow() });
             callToast(name);
         }
     }
@@ -136,58 +173,58 @@ $('.proc-btn').click(function () {
 
 function createTimer(tag, type) {
     var data, item, t;
-    if(type == 'procedure') {
+    if (type == 'procedure') {
         data = procedures;
-    } else if(type == 'medication') {
+    } else if (type == 'medication') {
         data = medications;
     }
-    for(let i = 0; i < data.length; i++) {
-        if(data[i].dataTag == tag) {
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].dataTag == tag) {
             item = data[i];
         }
     }
 
-    for(let i = 0; i < timersData.length; i++) {
-        if(timersData[i].dataTag == item.dataTag) {
+    for (let i = 0; i < timersData.length; i++) {
+        if (timersData[i].dataTag == item.dataTag) {
             t = timersData[i];
         }
     }
 
-    if(type == 'procedure') {
+    if (type == 'procedure') {
         timers[item.dataTag] = {
-            'id':item.dataTag,
+            'id': item.dataTag,
             'name': item.name,
-            'type' : 'procedure',
-            'min' : 0,
-            'sec' : 0,
-            'startTime' : timeNow(),
-            'interval' : null,
-            'running' : true,
-            'count' : 1,
-            'alert' : {
-                'min' : t.alertMin,
-                'sec' : t.alertSec
+            'type': 'procedure',
+            'min': 0,
+            'sec': 0,
+            'startTime': timeNow(),
+            'interval': null,
+            'running': true,
+            'count': 1,
+            'alert': {
+                'min': t.alertMin,
+                'sec': t.alertSec
             },
             'details': item.details
         };
-    } else if(type == 'medication') {
+    } else if (type == 'medication') {
         timers[item.dataTag] = {
-            'id':item.dataTag,
+            'id': item.dataTag,
             'name': item.name,
-            'type' : 'medication',
-            'min' : 0,
-            'sec' : 0,
-            'startTime' : timeNow(),
-            'interval' : null,
-            'running' : true,
-            'count' : 1,
-            'alert' : {
-                'min' : t.alertMin,
-                'sec' : t.alertSec
+            'type': 'medication',
+            'min': 0,
+            'sec': 0,
+            'startTime': timeNow(),
+            'interval': null,
+            'running': true,
+            'count': 1,
+            'alert': {
+                'min': t.alertMin,
+                'sec': t.alertSec
             },
-            'doseAmount' : item.doseAmount,
+            'doseAmount': item.doseAmount,
             'doseUnit': item.doseUnit,
-            'route':  item.route
+            'route': item.route
         };
     }
 
@@ -241,7 +278,7 @@ $('.info-btn').click(function() {
     startTimer(timers[item.dataTag]);
 }
 
-$('.timer-card').click(function () {
+$('.timer-card').click(function() {
     var id = $(this).attr('data');
     console.log("timer card " + id + " clicked!");
     restartTimer(timers[id]);

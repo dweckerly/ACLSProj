@@ -41,24 +41,15 @@ $('#back-to-code').click(() => {
 });
 
 function getElapsedTime() {
-    let sTime = actions[0].time.split(':');
-    let eTime = timeNow().split(':');
-
-    let parsedTime = {
-        h: eTime[0] - sTime[0],
-        m: eTime[1] - sTime[1],
-        s: eTime[2] - sTime[2]
-    }
-    return parsedTime;
+    // will use this to add hours field for elapsed time
 }
 
 function populateReport() {
     $('#report-table-body').remove();
     $('#report-table').append(`<tbody id="report-table-body">
     </tbody>`)
-    let eTime = getElapsedTime();
     $('#code-start').html("Code Started: " + actions[0].time);
-    $('#elapsed-time').html("Elapsed time: " + eTime.h + ":" + eTime.m + ":" + eTime.s);
+    $('#elapsed-time').html("Elapsed time: " + timers.code.min + ":" + timers.code.sec);
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {

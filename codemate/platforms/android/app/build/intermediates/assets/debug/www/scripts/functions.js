@@ -53,7 +53,11 @@ function startTimer(arr, restart) {
         if (arr['alert']) {
             if (arr['min'] == arr['alert']['min'] && arr['sec'] == arr['alert']['sec']) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
-                navigator.notification.alert("", alertCallback, arr['name'])
+                app.plugins.notification.local.schedule({
+                    title: arr['name'],
+                    text: '',
+                    foreground: true
+                });
             }
         }
         timerDisplay(arr);

@@ -9,10 +9,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/index.js"></script>
     <script src="scripts/jquery.js"></script>
     <script src="scripts/functions.js"></script>
     <script src="js/data.js"></script>
-    <script src="js/index.js"></script>
 </head>
 
 <body>
@@ -178,6 +179,8 @@
         $(document).ready(function() {
             $('.tooltipped').tooltip();
         });
+
+        console.log('device ready');
     </script>
 </body>
 

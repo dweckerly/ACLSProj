@@ -1,3 +1,5 @@
+const metroSound = new Audio('sounds/metronome.mp3');
+
 $('.toolbar-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
@@ -23,7 +25,6 @@ $('#end-btn').click(function() {
 var met = false;
 var metronomeInterval;
 $('#metronome-btn').click(function() {
-    var audio = new Audio('sounds/metronome.mp3');
     if (met) {
         clearInterval(metronomeInterval);
         met = false;
@@ -32,7 +33,7 @@ $('#metronome-btn').click(function() {
         met = true;
         $(this).addClass('pause');
         metronomeInterval = setInterval(function() {
-            audio.play();
+            metroSound.play();
         }, 600);
     }
 });

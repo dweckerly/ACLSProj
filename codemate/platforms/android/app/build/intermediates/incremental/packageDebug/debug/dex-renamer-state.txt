@@ -1,4 +1,4 @@
-#Mon Oct 15 06:46:38 CDT 2018
+#Mon Oct 15 07:26:30 CDT 2018
 base.0=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
 file.0=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

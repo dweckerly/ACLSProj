@@ -53,16 +53,15 @@ function startTimer(arr, restart) {
         if (arr['alert']) {
             if (arr['min'] == arr['alert']['min'] && arr['sec'] == arr['alert']['sec']) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
-                cordova.plugins.notification.local.schedule({
-                    title: "",
-                    text: "",
-                    foreground: true,
-                    smallIcon: ''
-                });
+                navigator.notification.alert("", alertCallback, arr['name'])
             }
         }
         timerDisplay(arr);
     }, 1000);
+}
+
+function alertCallback() {
+
 }
 
 function clickTimer(arr) {

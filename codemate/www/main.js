@@ -40,10 +40,6 @@ $('#back-to-code').click(() => {
     });
 });
 
-function getElapsedTime() {
-    // will use this to add hours field for elapsed time
-}
-
 function populateReport() {
     $('#report-table-body').remove();
     $('#report-table').append(`<tbody id="report-table-body">
@@ -53,20 +49,22 @@ function populateReport() {
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
+                actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
                 $('#report-table-body').append(`
                 <tr class='report-row' data='` + i + `'> 
                 <td> ` + actions[i].name + ` </td> 
-                <td> ` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + ` </td> 
+                <td> ` + actions[i].desc + ` </td> 
                 <td> ` + actions[i].time + ` </td> 
                 </tr>`);;
             }
         }
         for (let j = 0; j < procedures.length; j++) {
             if (actions[i].tag == procedures[j].dataTag) {
+                actions[i].desc = procedures[j].details;
                 $('#report-table-body').append(`
                     <tr class='report-row' data='` + i + `'>
                         <td>` + actions[i].name + `</td>
-                        <td class='truncate'>` + procedures[j].details + `</td>
+                        <td class='truncate'>` + actions[i].desc + `</td>
                         <td>` + actions[i].time + `</td>
                     </tr>`);
             }
@@ -147,7 +145,7 @@ $('.med-btn').click(function() {
             createTimer(tag, 'medication');
         }
         if (type == "alert") {
-            actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow() });
+            actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': "" });
             callToast(name);
         }
     }
@@ -157,19 +155,32 @@ $('.proc-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     var name = $(this).html();
-    if (tag in timers) {
-        restartTimer(timers[tag]);
+    if (tag == 'iv' || tag == 'interos') {
+        showSiteOptions(tag);
     } else {
-        if (type == "timer") {
-            createTimer(tag, 'procedure');
-        }
-        if (type == "alert") {
-            actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow() });
-            callToast(name);
+        if (tag in timers) {
+            restartTimer(timers[tag]);
+        } else {
+            if (type == "timer") {
+                createTimer(tag, 'procedure');
+            }
+            if (type == "alert") {
+                actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': "" });
+                callToast(name);
+            }
         }
     }
 });
 
+// will need new modal here to specify options
+// also will add selection to action description when pushed
+function showSiteOptions(tag) {
+    if (tag == 'iv') {
+
+    } else if (tag == 'interos') {
+
+    }
+}
 
 function createTimer(tag, type) {
     var data, item, t;

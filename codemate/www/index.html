@@ -49,6 +49,7 @@
     <div class="modal" id="medication-modal">
         <div class="modal-content">
             <h4>Medications</h4>
+            <div id="quick-med-container"></div>
             <form>
                 <div class="input-field">
                     <input id="search" type="search" required>
@@ -71,6 +72,30 @@
                 </div>
             </form>
             <div id="proc-btn-container" align="center"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="site-selection-modal">
+        <div class="modal-content">
+            <h4 id='site-selection-title'>Select Site</h4>
+            <div id="site-selection-container" align="center">
+                <div class="input-field col sm-12">
+                    <select>
+                      <option value="" disabled selected>Side</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                    </select>
+                </div>
+                <div class="input-field col sm-12">
+                    <select>
+                      <option value="" disabled selected>Site</option>
+                      <option value="ac">AC</option>
+                      <option value="arm">Arm</option>
+                      <option value="ej">EJ</option>
+                      <option value="hand">Hand</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 

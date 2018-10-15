@@ -109,17 +109,29 @@ function populateCodeInfo() {
 
 function populateMedicationModal() {
     for (let i = 0; i < medications.length; i++) {
-        $('#med-btn-container').append(
-            "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
-        );
+        if (medications[i].dataTag == 'epi' || medications[i].dataTag == 'atro') {
+            $('#quick-med-container').append(
+                "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary deep-purple lighten-3 modal-close'>" + medications[i].name + "</button>"
+            )
+        } else {
+            $('#med-btn-container').append(
+                "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
+            );
+        }
     }
 }
 
 function populateProcedureModal() {
     for (let i = 0; i < procedures.length; i++) {
-        $('#proc-btn-container').append(
-            "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
-        );
+        if (procedures[i].dataTag == 'iv') {
+            $('#proc-btn-container').append(
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn'>" + procedures[i].name + "</button>"
+            );
+        } else {
+            $('#proc-btn-container').append(
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
+            );
+        }
     }
 }
 
@@ -155,8 +167,8 @@ $('.proc-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     var name = $(this).html();
-    if (tag == 'iv' || tag == 'interos') {
-        showSiteOptions(tag);
+    if (tag == 'iv') {
+        showSiteOptions();
     } else {
         if (tag in timers) {
             restartTimer(timers[tag]);
@@ -174,12 +186,10 @@ $('.proc-btn').click(function() {
 
 // will need new modal here to specify options
 // also will add selection to action description when pushed
-function showSiteOptions(tag) {
-    if (tag == 'iv') {
-
-    } else if (tag == 'interos') {
-
-    }
+function showSiteOptions() {
+    $('#procedure-modal').fadeOut(function() {
+        $('#site-selection-modal').fadeIn();
+    });
 }
 
 function createTimer(tag, type) {

@@ -27,12 +27,7 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        navigator.notification.alert(
-            'Script has loaded', // message
-            alertDismissed, // callback
-            'Loaded', // title
-            'Done' // buttonName
-        );
+        this.receivedEvent('deviceready');
     },
 
     // Update DOM on a Received Event
@@ -47,9 +42,5 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
-
-function alertDismissed() {
-
-}
 
 app.initialize();

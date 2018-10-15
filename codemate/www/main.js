@@ -54,17 +54,17 @@ function populateReport() {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
                 $('#report-table-body').append(`
-                        <tr>
-                            <td>` + actions[i].name + `</td>
-                            <td>` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + `</td>
-                            <td>` + actions[i].time + `</td>
-                        </tr>`);;
+                <tr class='report-row' data='` + i + `'> 
+                <td> ` + actions[i].name + ` </td> 
+                <td> ` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + ` </td> 
+                <td> ` + actions[i].time + ` </td> 
+                </tr>`);;
             }
         }
         for (let j = 0; j < procedures.length; j++) {
             if (actions[i].tag == procedures[j].dataTag) {
                 $('#report-table-body').append(`
-                    <tr>
+                    <tr class='report-row' data='` + i + `'>
                         <td>` + actions[i].name + `</td>
                         <td class='truncate'>` + procedures[j].details + `</td>
                         <td>` + actions[i].time + `</td>
@@ -72,6 +72,15 @@ function populateReport() {
             }
         }
     }
+    $('#report-table-body').append(`<script>
+        $('.report-row').click(function () {
+            showReportDetails($(this).attr('data'));
+        });
+    </script>`);
+}
+
+function showReportDetails(id) {
+    console.log('report details triggred : ' + id);
 }
 
 function populateCodeInfo() {

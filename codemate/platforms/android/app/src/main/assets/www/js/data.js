@@ -1,5 +1,4 @@
-var medications = [
-    {
+var medications = [{
         name: "Epinephrine 1:10,000",
         dataTag: "epi",
         doseAmount: 0.5,
@@ -65,8 +64,7 @@ var medications = [
     }
 ];
 
-var procedures = [
-    {
+var procedures = [{
         name: "Pulse Check",
         details: "Check for pulse",
         dataTag: "pulse",
@@ -86,7 +84,7 @@ var procedures = [
     },
     {
         name: "Intubation",
-        details: "Check for pulse",
+        details: "",
         dataTag: "intubat",
         type: "alert"
     },
@@ -98,8 +96,7 @@ var procedures = [
     }
 ];
 
-var timersData = [
-    {
+var timersData = [{
         name: "Epinephrine",
         alertMin: 2,
         alertSec: 45,

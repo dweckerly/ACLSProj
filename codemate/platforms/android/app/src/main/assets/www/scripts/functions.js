@@ -41,9 +41,9 @@ function timerDisplay(arr) {
 
 function startTimer(arr, restart) {
     if (restart) {
-        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow() });
+        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow(), 'desc': "" });
     } else {
-        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow() });
+        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow(), 'desc': "" });
     }
     arr['actions'] = actions[actions.length - 1];
     callToast(arr['name']);
@@ -78,7 +78,7 @@ function clickTimer(arr) {
 function pauseTimer(arr) {
     $("#" + arr['id'] + "-timer-card").addClass("pause");
     arr['running'] = false;
-    actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'pause', 'time': timeNow() });
+    actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'pause', 'time': timeNow(), 'desc': "" });
     clearInterval(arr['interval']);
 }
 
@@ -106,7 +106,7 @@ function callToast(name) {
 }
 
 function clearAllIntervals() {
-    
+
 }
 
 function checkDose(arr) {

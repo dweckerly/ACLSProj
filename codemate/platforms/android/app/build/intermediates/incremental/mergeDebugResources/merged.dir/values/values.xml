@@ -50,7 +50,7 @@
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
     <string name="activity_name">@string/launcher_name</string>
-    <string name="app_name">HelloCordova</string>
+    <string name="app_name">CodeMate</string>
     <string name="launcher_name">@string/app_name</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent"/>

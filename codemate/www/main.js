@@ -109,6 +109,7 @@ function populateCodeInfo() {
 
 function populateMedicationModal() {
     for (let i = 0; i < medications.length; i++) {
+        /*
         if (medications[i].dataTag == 'epi' || medications[i].dataTag == 'atro') {
             $('#quick-med-container').append(
                 "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary deep-purple lighten-3 modal-close'>" + medications[i].name + "</button>"
@@ -117,7 +118,10 @@ function populateMedicationModal() {
             $('#med-btn-container').append(
                 "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
             );
-        }
+        }*/
+        $('#med-btn-container').append(
+            "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
+        );
     }
 }
 

@@ -49,7 +49,7 @@ function populateReport() {
     $('#report-table').append(`<tbody id="report-table-body">
     </tbody>`)
     $('#code-start').html("Code Started: " + actions[0].time);
-    $('#elapsed-time').html("Elapsed time: " + timers.code.min + ":" + timers.code.sec);
+    $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
@@ -66,7 +66,7 @@ function populateReport() {
                 $('#report-table-body').append(`
                     <tr>
                         <td>` + actions[i].name + `</td>
-                        <td>` + procedures[j].details + `</td>
+                        <td class='truncate'>` + procedures[j].details + `</td>
                         <td>` + actions[i].time + `</td>
                     </tr>`);
             }
@@ -92,7 +92,7 @@ function populateCodeInfo() {
                 $('#code-info-table-body').append(`
                     <tr class="info-table-item">
                         <td>` + actions[i].name + `</td>
-                        <td>` + procedures[j].details + `</td>
+                        <td><span class="flow-text truncate">` + procedures[j].details + `</span></td>
                         <td>` + actions[i].time + `</td>
                     </tr>`);
             }
@@ -243,23 +243,25 @@ $('#` + item.dataTag + `-timer-div').click(function () {
 $('.info-btn').click(function() {
     var tag = $(this).attr('data');
     var type = $(this).attr('data-type');
-
+    var desc;
     $('#info-name').html(timers[tag]['name']);
     if (type == 'medication') {
         $('#proc-info').hide();
         $('#med-info').show();
         $('#med-dose').html("Dose: " + timers[tag]['doseAmount'] + " " + timers[tag]['doseUnit']);
         $('#med-route').html("Route: " + timers[tag]['route']);
+        desc = timers[tag]['doseAmount'] + " " + timers[tag]['doseUnit'] + ' - ' + timers[tag]['route'];
     } else if (type == 'procedure') {
         $('#med-info').hide();
         $('#proc-info').show();
         $('#proc-details').html(timers[tag]['details']);
+        desc = timers[tag]['details'];
     }
     $('#count').html("Total: " + timers[tag]['count']);
     $('#info-table-body').empty();
     for(i = 0; i < actions.length; i++) {
         if(actions[i]['tag'] == tag) {
-            $('#info-table-body').append("<tr><td>" + actions[i]['action'] + "</td><td>" + actions[i]['time'] + "</td></tr>");
+            $('#info-table-body').append("<tr><td>" + actions[i]['action'] + "</td><td>" + desc + "</td><td>" + actions[i]['time'] + "</td></tr>");
         }
     }
     $('#info-modal').modal();

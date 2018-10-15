@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
-    <script type="text/javascript" src="cordova.js"></script>
     <script src="js/index.js"></script>
     <script src="scripts/jquery.js"></script>
     <script src="scripts/functions.js"></script>
@@ -77,27 +76,50 @@
         </div>
     </div>
 
+    <div id="report-modal" class="modal">
+        <div class="modal-content" id="report-content-div">
+            <h4 class="red-text text-lighten-2">Edit Record</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input value="" id="report-action-name" type="text" class="validate">
+                </div>
+                <div class="input-field col s6">
+                    <input value="" id="report-action-time" type="time" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input value="" id="report-action-description" type="text" class="validate">
+                </div>
+            </div>
+            <button id="report-edit-btn" class='btn btn-outline-secondary med-btn modal-close'>Save</button>
+        </div>
+    </div>
+
     <div class="modal" id="site-selection-modal">
         <div class="modal-content">
-            <h4 id='site-selection-title'>Select Site</h4>
-            <div id="site-selection-container" align="center">
-                <div class="input-field col sm-12">
-                    <select>
-                      <option value="" disabled selected>Side</option>
-                      <option value="left">Left</option>
-                      <option value="right">Right</option>
+            <h4 id='site-selection-title' class="red-text text-lighten-2">Select Site</h4>
+            <div id="site-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="site-select-side">
+                        <option value="" disabled selected>Side</option>
+                        <option value="left">Left</option>
+                        <option value="right">Right</option>
                     </select>
                 </div>
-                <div class="input-field col sm-12">
-                    <select>
-                      <option value="" disabled selected>Site</option>
-                      <option value="ac">AC</option>
-                      <option value="arm">Arm</option>
-                      <option value="ej">EJ</option>
-                      <option value="hand">Hand</option>
+                <div class="input-field col s6">
+                    <select id="site-select-site">
+                        <option value="" disabled selected>Site</option>
+                        <option value="ac">AC</option>
+                        <option value="arm">Arm</option>
+                        <option value="ej">EJ</option>
+                        <option value="hand">Hand</option>
                     </select>
                 </div>
             </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="select-site-confirm">Confirm</button>
         </div>
     </div>
 
@@ -160,11 +182,6 @@
         </table>
     </div>
 
-    <div id="report-modal" class="modal bottom-sheet">
-        <div class="modal-content">
-        </div>
-    </div>
-
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script>
@@ -174,6 +191,13 @@
             var instances = M.FloatingActionButton.init(elems, {
                 direction: 'left',
                 hoverEnabled: false
+            });
+
+            $(document).ready(function(){
+                $('select').formSelect();
+            });
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
             });
         });
         $(document).ready(function() {

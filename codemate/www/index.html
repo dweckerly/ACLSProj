@@ -23,7 +23,7 @@
             </div>
             <div id="code-timer-wrapper" class="nav-wrapper" style="display:none;">
                 <ul class="left">
-                    <li><a id="main-info-btn" data-target="code-info-modal" class="btn waves-effect waves-light"><i class="material-icons">info_outline</i></a></li>
+                    <li><a id="main-back-btn" data-target="back-confirm-modal" class="btn waves-effect waves-light modal-trigger"><i class="material-icons">arrow_back</i></a></li>
                 </ul>
                 <a class="brand-logo animate-flicker"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></a>
                 <ul class="right">
@@ -124,21 +124,16 @@
         </div>
     </div>
 
-    <div class="modal" id="code-info-modal">
+    <div id="back-confirm-modal" class="modal">
         <div class="modal-content">
-            <h4>Code Record</h4>
-            <table id="code-info-table">
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Details</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="code-info-table-body"></tbody>
-            </table>
-            </ul>
+            <h4>Return to Home Screen?</h4>
+            <hr>
+            <div class="center">
+                <button class="btn waves-effect waves-light btn-large modal-close" id="confirm-back-btn">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
         </div>
+
     </div>
 
     <div id="info-modal" class="modal bottom-sheet">
@@ -194,18 +189,16 @@
                 hoverEnabled: false
             });
 
-            $(document).ready(function(){
+            $(document).ready(function() {
                 $('select').formSelect();
             });
-            $(document).ready(function(){
+            $(document).ready(function() {
                 $('.collapsible').collapsible();
             });
         });
         $(document).ready(function() {
             $('.tooltipped').tooltip();
         });
-
-        console.log('device ready');
     </script>
 </body>
 

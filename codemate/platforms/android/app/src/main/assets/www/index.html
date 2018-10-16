@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
-    <script type="text/javascript" src="cordova.js"></script>
     <script src="js/index.js"></script>
     <script src="scripts/jquery.js"></script>
     <script src="scripts/functions.js"></script>
@@ -20,11 +19,11 @@
     <div id="main-nav" class="navbar-fixed">
         <nav>
             <div id="logo-wrapper" class="nav-wrapper">
-                <a id="nav-content" class="brand-logo center">codemate</a>
+                <a id="nav-content" class="brand-logo center">CodeMate</a>
             </div>
             <div id="code-timer-wrapper" class="nav-wrapper" style="display:none;">
                 <ul class="left">
-                    <li><a id="main-info-btn" data-target="code-info-modal" class="btn waves-effect waves-light"><i class="material-icons">info_outline</i></a></li>
+                    <li><a id="main-back-btn" data-target="back-confirm-modal" class="btn waves-effect waves-light modal-trigger"><i class="material-icons">arrow_back</i></a></li>
                 </ul>
                 <a class="brand-logo animate-flicker"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></a>
                 <ul class="right">
@@ -77,45 +76,64 @@
         </div>
     </div>
 
+    <div id="report-modal" class="modal">
+        <div class="modal-content" id="report-content-div">
+            <h4 class="red-text text-lighten-2">Edit Record</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input value="" id="report-action-name" type="text" class="validate">
+                </div>
+                <div class="input-field col s6">
+                    <input value="" id="report-action-time" type="time" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input value="" id="report-action-description" type="text" class="validate">
+                </div>
+            </div>
+            <button id="report-edit-btn" class='btn btn-outline-secondary med-btn modal-close'>Save</button>
+        </div>
+    </div>
+
     <div class="modal" id="site-selection-modal">
         <div class="modal-content">
-            <h4 id='site-selection-title'>Select Site</h4>
-            <div id="site-selection-container" align="center">
-                <div class="input-field col sm-12">
-                    <select>
-                      <option value="" disabled selected>Side</option>
-                      <option value="left">Left</option>
-                      <option value="right">Right</option>
+            <h4 id='site-selection-title' class="red-text text-lighten-2">Select Site</h4>
+            <div id="site-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="site-select-side">
+                        <option value="" disabled selected>Side</option>
+                        <option value="Left">Left</option>
+                        <option value="Right">Right</option>
                     </select>
                 </div>
-                <div class="input-field col sm-12">
-                    <select>
-                      <option value="" disabled selected>Site</option>
-                      <option value="ac">AC</option>
-                      <option value="arm">Arm</option>
-                      <option value="ej">EJ</option>
-                      <option value="hand">Hand</option>
+                <div class="input-field col s6">
+                    <select id="site-select-site">
+                        <option value="" disabled selected>Site</option>
+                        <option value="AC">AC</option>
+                        <option value="Arm">Arm</option>
+                        <option value="EJ">EJ</option>
+                        <option value="Hand">Hand</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
             </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="select-site-confirm">Confirm</button>
+        </div>
     </div>
 
-    <div class="modal" id="code-info-modal">
+    <div id="back-confirm-modal" class="modal">
         <div class="modal-content">
-            <h4>Code Record</h4>
-            <table id="code-info-table">
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Details</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="code-info-table-body"></tbody>
-            </table>
-            </ul>
+            <h4>Return to Home Screen?</h4>
+            <hr>
+            <div class="center">
+                <button class="btn waves-effect waves-light btn-large modal-close" id="confirm-back-btn">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
         </div>
+
     </div>
 
     <div id="info-modal" class="modal bottom-sheet">
@@ -160,11 +178,6 @@
         </table>
     </div>
 
-    <div id="report-modal" class="modal bottom-sheet">
-        <div class="modal-content">
-        </div>
-    </div>
-
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script>
@@ -175,12 +188,17 @@
                 direction: 'left',
                 hoverEnabled: false
             });
+
+            $(document).ready(function() {
+                $('select').formSelect();
+            });
+            $(document).ready(function() {
+                $('.collapsible').collapsible();
+            });
         });
         $(document).ready(function() {
             $('.tooltipped').tooltip();
         });
-
-        console.log('device ready');
     </script>
 </body>
 

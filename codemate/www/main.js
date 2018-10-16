@@ -19,13 +19,15 @@ $('#start-btn').click(function() {
     });
 });
 
-$('#main-info-btn').click(() => {
-    populateCodeInfo();
-    $('#code-info-modal').modal();
+$('#main-back-btn').click(() => {
+    $('#back-confirm-modal').modal();
+});
+
+$('#confirm-back-btn').click(() => {
+    location.reload();
 });
 
 $('#end-btn').click(() => {
-    console.log(actions);
     populateReport();
     $('#main-nav').fadeOut();
     $('#options-container').fadeOut();
@@ -62,7 +64,7 @@ function populateReport() {
         }
         for (let j = 0; j < procedures.length; j++) {
             if (actions[i].tag == procedures[j].dataTag) {
-                if(actions[i].desc == "") {
+                if (actions[i].desc == "") {
                     actions[i].desc = procedures[j].details;
                 }
                 $('#report-table-body').append(`
@@ -206,7 +208,7 @@ $('#select-site-confirm').click(() => {
 $('#report-edit-btn').click(() => {
     let name = $('#report-action-name').val();
     let time = $('#report-action-time').val();
-    let desc =$('#report-action-description').val();
+    let desc = $('#report-action-description').val();
     actions[editActionId].name = name;
     actions[editActionId].time = time;
     actions[editActionId].desc = desc;
@@ -216,7 +218,7 @@ $('#report-edit-btn').click(() => {
 // will need new modal here to specify options
 // also will add selection to action description when pushed
 function showSiteOptions() {
-   $('#site-selection-modal').modal();
+    $('#site-selection-modal').modal();
 }
 
 function createTimer(tag, type) {

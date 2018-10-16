@@ -1,5 +1,7 @@
 $('#options-container').hide();
 
+var editActionId;
+
 $(document).ready(function() {
 
 });
@@ -17,13 +19,15 @@ $('#start-btn').click(function() {
     });
 });
 
-$('#main-info-btn').click(() => {
-    populateCodeInfo();
-    $('#code-info-modal').modal();
+$('#main-back-btn').click(() => {
+    $('#back-confirm-modal').modal();
+});
+
+$('#confirm-back-btn').click(() => {
+    location.reload();
 });
 
 $('#end-btn').click(() => {
-    console.log(actions);
     populateReport();
     $('#main-nav').fadeOut();
     $('#options-container').fadeOut();
@@ -51,7 +55,7 @@ function populateReport() {
             if (actions[i].tag == medications[j].dataTag) {
                 actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
                 $('#report-table-body').append(`
-                <tr class='report-row' data='` + i + `'> 
+                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                 <td> ` + actions[i].name + ` </td> 
                 <td> ` + actions[i].desc + ` </td> 
                 <td> ` + actions[i].time + ` </td> 
@@ -60,9 +64,11 @@ function populateReport() {
         }
         for (let j = 0; j < procedures.length; j++) {
             if (actions[i].tag == procedures[j].dataTag) {
-                actions[i].desc = procedures[j].details;
+                if (actions[i].desc == "") {
+                    actions[i].desc = procedures[j].details;
+                }
                 $('#report-table-body').append(`
-                    <tr class='report-row' data='` + i + `'>
+                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'>
                         <td>` + actions[i].name + `</td>
                         <td class='truncate'>` + actions[i].desc + `</td>
                         <td>` + actions[i].time + `</td>
@@ -78,7 +84,11 @@ function populateReport() {
 }
 
 function showReportDetails(id) {
-    console.log('report details triggred : ' + id);
+    $('#report-action-name').val(actions[id].name);
+    $('#report-action-time').val(actions[id].time);
+    $('#report-action-description').val(actions[id].desc);
+    editActionId = id;
+    $('#report-modal').modal();
 }
 
 function populateCodeInfo() {
@@ -128,9 +138,9 @@ function populateMedicationModal() {
 function populateProcedureModal() {
     for (let i = 0; i < procedures.length; i++) {
         if (procedures[i].dataTag == 'iv') {
-            $('#proc-btn-container').append(
-                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn'>" + procedures[i].name + "</button>"
-            );
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='site-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -188,12 +198,27 @@ $('.proc-btn').click(function() {
     }
 });
 
+$('#select-site-confirm').click(() => {
+    let side = $('#site-select-side').val();
+    let site = $('#site-select-site').val();
+    actions.push({ 'name': 'I.V.', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': "Site: " + side + " " + site });
+    callToast('I.V.');
+});
+
+$('#report-edit-btn').click(() => {
+    let name = $('#report-action-name').val();
+    let time = $('#report-action-time').val();
+    let desc = $('#report-action-description').val();
+    actions[editActionId].name = name;
+    actions[editActionId].time = time;
+    actions[editActionId].desc = desc;
+    populateReport();
+});
+
 // will need new modal here to specify options
 // also will add selection to action description when pushed
 function showSiteOptions() {
-    $('#procedure-modal').fadeOut(function() {
-        $('#site-selection-modal').fadeIn();
-    });
+    $('#site-selection-modal').modal();
 }
 
 function createTimer(tag, type) {

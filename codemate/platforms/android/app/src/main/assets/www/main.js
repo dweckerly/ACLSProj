@@ -2,6 +2,8 @@ $('#options-container').hide();
 
 var editActionId;
 
+document.addEventListener("backbutton", onBackKeyDown, false);
+
 $(document).ready(function() {
 
 });
@@ -22,6 +24,9 @@ $('#start-btn').click(function() {
 $('#main-back-btn').click(() => {
     $('#back-confirm-modal').modal();
 });
+
+function onBackKeyDown() {}
+
 
 $('#confirm-back-btn').click(() => {
     location.reload();
@@ -55,11 +60,11 @@ function populateReport() {
             if (actions[i].tag == medications[j].dataTag) {
                 actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
                 $('#report-table-body').append(`
-                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                <td> ` + actions[i].name + ` </td> 
-                <td> ` + actions[i].desc + ` </td> 
-                <td> ` + actions[i].time + ` </td> 
-                </tr>`);;
+                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                    <td> ` + actions[i].name + ` </td> 
+                    <td class='truncate'> ` + actions[i].desc + ` </td> 
+                    <td> ` + actions[i].time + ` </td> 
+                    </tr>`);
             }
         }
         for (let j = 0; j < procedures.length; j++) {
@@ -67,12 +72,30 @@ function populateReport() {
                 if (actions[i].desc == "") {
                     actions[i].desc = procedures[j].details;
                 }
-                $('#report-table-body').append(`
-                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'>
-                        <td>` + actions[i].name + `</td>
-                        <td class='truncate'>` + actions[i].desc + `</td>
-                        <td>` + actions[i].time + `</td>
-                    </tr>`);
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        $('#report-table-body').append(`
+                            <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+                            <td> ` + actions[i].name + ` </td> 
+                            <td class='truncate'> ` + actions[i].desc + ` </td> 
+                            <td> ` + actions[i].time + ` </td> 
+                            </tr>`);
+                    } else {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    }
+                } else {
+                    $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                }
             }
         }
     }
@@ -153,10 +176,14 @@ populateMedicationModal();
 populateProcedureModal();
 
 $('#medications-btn').click(function() {
+    $('#med-search').val("");
+    medModalSearch();
     $('#medication-modal').modal();
 });
 
 $('#procedures-btn').click(function() {
+    $('#proc-search').val("");
+    procModalSearch();
     $('#procedure-modal').modal();
 });
 
@@ -201,8 +228,17 @@ $('.proc-btn').click(function() {
 $('#select-site-confirm').click(() => {
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
-    actions.push({ 'name': 'I.V.', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': "Site: " + side + " " + site });
-    callToast('I.V.');
+    var flag = false;
+    if (side == null) {
+        side = "";
+        flag = true;
+    }
+    if (site == null) {
+        site = "";
+        flag = true;
+    }
+    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': "Site: " + side + " " + site, flag: flag });
+    callToast('IV');
 });
 
 $('#report-edit-btn').click(() => {
@@ -212,6 +248,16 @@ $('#report-edit-btn').click(() => {
     actions[editActionId].name = name;
     actions[editActionId].time = time;
     actions[editActionId].desc = desc;
+    if ('flag' in actions[editActionId]) {
+        if (actions[editActionId].flag) {
+            actions[editActionId].flag = false;
+        }
+    }
+    populateReport();
+});
+
+$('#report-delete-btn').click(() => {
+    actions.splice(editActionId, 1);
     populateReport();
 });
 

@@ -26,14 +26,14 @@ var met = false;
 var metronomeInterval;
 $('#metronome-btn').click(function() {
     if (met) {
-        clearInterval(metronomeInterval);
+        metronomeInterval.cancel();
         met = false;
         $(this).removeClass('pause');
     } else {
         met = true;
         $(this).addClass('pause');
-        metronomeInterval = setInterval(function() {
+        metronomeInterval = accurateInterval(600, function() {
             metroSound.play();
-        }, 600);
+        });
     }
 });

@@ -4,22 +4,7 @@
             "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-af\\values-af.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\e16f2e29fe222df53c8067dca029f21a\\res\\values-af\\values-af.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\david.weckerly\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-af\\values-af.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\david.weckerly\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0fae2277b21d3603c1bb77c6b6806fd1\\res\\values-af\\values-af.xml",
+                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-af\\values-af.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -1,5 +1,5 @@
 var medications = [{
-        name: "Epinephrine 1:10,000",
+        name: "Epinephrine",
         dataTag: "epi",
         doseAmount: 0.5,
         doseUnit: "MG",
@@ -71,7 +71,7 @@ var procedures = [{
         tpye: "timer"
     },
     {
-        name: "I. V.",
+        name: "IV",
         details: "",
         dataTag: "iv",
         type: "alert"
@@ -112,15 +112,15 @@ var timersData = [{
     },
     {
         name: "Atropine",
-        alertMin: 3,
-        alertSec: 0,
+        alertMin: 2,
+        alertSec: 45,
         dataTag: "atro",
         type: "medication"
     },
     {
         name: "Narcan",
-        alertMin: 15,
-        alertSec: 0,
+        alertMin: 14,
+        alertSec: 45,
         dataTag: "narca",
         type: "medication"
     }

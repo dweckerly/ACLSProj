@@ -7,10 +7,11 @@
     <title>Codemate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
     <script src="js/index.js"></script>
     <script src="scripts/jquery.js"></script>
+    <script src="js/acurate_interval.js"></script>
     <script src="scripts/functions.js"></script>
     <script src="js/data.js"></script>
 </head>
@@ -49,11 +50,12 @@
 
     <div class="modal" id="medication-modal">
         <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
             <h4>Medications</h4>
             <div id="quick-med-container"></div>
             <form>
                 <div class="input-field">
-                    <input id="search" type="search" required>
+                    <input id="med-search" type="search" onkeyup="medModalSearch()" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                 </div>
@@ -64,10 +66,11 @@
 
     <div class="modal" id="procedure-modal">
         <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
             <h4>Procedures</h4>
             <form>
                 <div class="input-field">
-                    <input id="search" type="search" required>
+                    <input id="proc-search" type="search" onkeyup="procModalSearch()" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                 </div>
@@ -78,6 +81,7 @@
 
     <div id="report-modal" class="modal">
         <div class="modal-content" id="report-content-div">
+            <i class="material-icons modal-close right">close</i>
             <h4 class="red-text text-lighten-2">Edit Record</h4>
             <div class="row">
                 <div class="input-field col s6">
@@ -92,7 +96,10 @@
                     <input value="" id="report-action-description" type="text" class="validate">
                 </div>
             </div>
-            <button id="report-edit-btn" class='btn btn-outline-secondary med-btn modal-close'>Save</button>
+            <div align="center">
+                <button id="report-edit-btn" class='btn btn-outline-secondary med-btn modal-close'>Save</button>
+                <button id="report-delete-btn" class='btn btn-outline-secondary med-btn red modal-close'>Delete</button>
+            </div>
         </div>
     </div>
 
@@ -126,6 +133,7 @@
 
     <div id="back-confirm-modal" class="modal">
         <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
             <h4>Return to Home Screen?</h4>
             <hr>
             <div class="center">
@@ -138,6 +146,7 @@
 
     <div id="info-modal" class="modal bottom-sheet">
         <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
             <h4 id="info-name" class="red-text text-lighten-2"></h4>
             <div id="proc-info">
                 <p id="proc-details"></p>
@@ -161,7 +170,9 @@
     </div>
 
     <div id="report-container">
-        <a id="back-to-code" class="waves-effect waves-light btn right"><i class="material-icons">arrow_back</i></a>
+        <div class="fixed-action-btn">
+            <a id="back-to-code" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
+        </div>
         <h3 class="header red-text text-lighten-2">Report</h3>
         <h5 id="code-start" class="center"></h5>
         <h5 id="elapsed-time" class="center"></h5>
@@ -177,7 +188,8 @@
             </tbody>
         </table>
     </div>
-
+    <script src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script>

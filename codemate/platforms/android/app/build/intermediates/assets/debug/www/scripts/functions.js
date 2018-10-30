@@ -53,6 +53,11 @@ function startTimer(arr, restart) {
         if (arr['alert']) {
             if (arr['min'] == arr['alert']['min'] && arr['sec'] == arr['alert']['sec']) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
+                cordova.plugins.notification.local.schedule({
+                    title: arr['name'],
+                    text: 'Timer expiring in 15 seconds.',
+                    foreground: true
+                });
             }
         }
         timerDisplay(arr);
@@ -123,6 +128,38 @@ function checkDose(arr) {
     }
     arr['count'] = parseInt(arr['count']) + 1;
 }
+
+function medModalSearch() {
+    // Declare variables
+    var input, filter, ul, li, i;
+    input = document.getElementById('med-search');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("med-btn-container");
+    li = ul.getElementsByTagName('button');
+    for (i = 0; i < li.length; i++) {
+        if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+function procModalSearch() {
+    var input, filter, ul, li, i;
+    input = document.getElementById('proc-search');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("proc-btn-container");
+    li = ul.getElementsByTagName('button');
+    for (i = 0; i < li.length; i++) {
+        if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
 
 function displayInfo() {
 

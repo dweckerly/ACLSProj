@@ -160,7 +160,6 @@ function procModalSearch() {
     }
 }
 
-
 function displayInfo() {
 
 }

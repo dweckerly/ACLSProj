@@ -131,14 +131,128 @@
         </div>
     </div>
 
-    <div id="back-confirm-modal" class="modal">
+    <div class="modal" id="io-selection-modal">
         <div class="modal-content">
-            <i class="material-icons modal-close right">close</i>
+            <h4 id='io-selection-title' class="red-text text-lighten-2">Select Site</h4>
+            <div id="io-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="io-select-size">
+                        <option value="" disabled selected>Size</option>
+                        <option value="Pink">Pink</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Yellow">Yellow</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select id="io-select-side">
+                        <option value="" disabled selected>Side</option>
+                        <option value="Left">Left</option>
+                        <option value="Right">Right</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select id="io-select-site">
+                        <option value="" disabled selected>Site</option>
+                        <option value="Prox. Tibia">Prox. Tibia</option>
+                        <option value="Dist. Tibia">Dist. Tibia</option>
+                        <option value="Prox. Humerous">Prox. Humerous</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="io-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="modal" id="pulse-selection-modal">
+        <div class="modal-content">
+            <h4 id='pulse-selection-title' class="red-text text-lighten-2">Pulse Check</h4>
+            <div id="pulse-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light modal-close std-btn" id="pulse-no-action">No Action</button>
+                    <button class="btn waves-effect waves-light std-btn" id="pulse-defib-btn" onclick="showDefibOptions()">Defibrillation</button>
+                    <div id="defib-options-container" style="display: hidden;">
+                        <div class="input-field col s6">
+                            <select id="defib-select-joules">
+                                <option value="" disabled selected>Joules</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="360">360</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light std-btn" id="pulse-cardio-btn" onclick="showCardioOptions()">Sync. Cardioversion</button>
+                    <div id="cardio-options-container" style="display: hidden;">
+                        <div class="input-field col s6">
+                            <select id="cardio-select-joules">
+                                <option value="" disabled selected>Joules</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="360">360</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="pulse-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="modal" id="intu-selection-modal">
+        <div class="modal-content">
+            <h4 id='intu-selection-title' class="red-text text-lighten-2">Intubation</h4>
+            <div id="intu-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light std-btn" id="intu-oral-select">Oral</button>
+                    <button class="btn waves-effect waves-light std-btn" id="intu-nasal-select">Nasal</button>
+                    <div id="intu-options-container" class="row">
+                        <div class="input-field col s6">
+                            <select id="intu-select-size">
+                                <option value="" disabled selected>Size</option>
+                                <option value="6.0">6.0</option>
+                                <option value="6.5">6.5</option>
+                                <option value="7.0">7.0</option>
+                                <option value="7.5">7.5</option>
+                                <option value="8.0">8.0</option>
+                                <option value="8.5">8.5</option>
+                                <option value="9.0">9.0</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="intu-select-depth">
+                                <option value="" disabled selected>Depth</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="intu-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div id="back-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
             <h4>Return to Home Screen?</h4>
             <hr>
-            <div class="center">
-                <button class="btn waves-effect waves-light btn-large modal-close" id="confirm-back-btn">Yes</button>
-                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close " id="confirm-back-btn" onclick="location.reload();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close ">No</button>
             </div>
         </div>
 
@@ -147,7 +261,7 @@
     <div id="info-modal" class="modal bottom-sheet">
         <div class="modal-content">
             <i class="material-icons modal-close right">close</i>
-            <h4 id="info-name" class="red-text text-lighten-2"></h4>
+            <h4 id="info-name" class="red-text text-lighten-2 "></h4>
             <div id="proc-info">
                 <p id="proc-details"></p>
             </div>
@@ -175,7 +289,7 @@
         </div>
         <h3 class="header red-text text-lighten-2">Report</h3>
         <h5 id="code-start" class="center"></h5>
-        <h5 id="elapsed-time" class="center"></h5>
+        <h5 id="elapsed-time" class="center "></h5>
         <table id="report-table" class="highlight centered">
             <thead>
                 <tr>
@@ -188,12 +302,11 @@
             </tbody>
         </table>
     </div>
-    <script src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <script src="cordova.js "></script>
+    <script type="text/javascript " src="js/index.js "></script>
+    <script type="text/javascript " src="js/materialize.min.js "></script>
+    <script type="text/javascript " src="main.js "></script>
     <script>
-        $('#report-container').hide();
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.fixed-action-btn');
             var instances = M.FloatingActionButton.init(elems, {

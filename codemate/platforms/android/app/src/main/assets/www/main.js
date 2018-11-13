@@ -1,6 +1,12 @@
 $('#options-container').hide();
+$('#report-container').hide();
 
 var editActionId;
+var defibOptionsVisible = false;
+var cardioOptionsVisible = false;
+
+var oralSelect = false;
+var nasalSelect = false;
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 
@@ -26,11 +32,6 @@ $('#main-back-btn').click(() => {
 });
 
 function onBackKeyDown() {}
-
-
-$('#confirm-back-btn').click(() => {
-    location.reload();
-});
 
 $('#end-btn').click(() => {
     populateReport();
@@ -164,6 +165,18 @@ function populateProcedureModal() {
             $('#proc-btn-container').append(`
             <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='site-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
+        } else if (procedures[i].dataTag == 'interos') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='io-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'pulse') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pulse-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'intubat') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='intu-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -210,6 +223,12 @@ $('.proc-btn').click(function() {
     var name = $(this).html();
     if (tag == 'iv') {
         showSiteOptions();
+    } else if (tag == 'interos') {
+        showIOOptions();
+    } else if (tag == 'intubat') {
+        showIntubationOptions();
+    } else if (tag == 'pulse') {
+        showPulseOptions();
     } else {
         if (tag in timers) {
             restartTimer(timers[tag]);
@@ -241,6 +260,53 @@ $('#select-site-confirm').click(() => {
     callToast('IV');
 });
 
+$('#io-selection-confirm').click(() => {
+    let size = $('#io-select-size').val();
+    let side = $('#io-select-side').val();
+    let site = $('#io-select-site').val();
+    var flag = false;
+    if (size == null) {
+        size = "";
+        flag = true;
+    }
+    if (site == null) {
+        site = "";
+        flag = true;
+    }
+    if (side == null) {
+        side = "";
+        flag = true;
+    }
+    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': "Size: " + size + ", Site: " + side + " " + site, flag: flag });
+    callToast('Interosseous');
+});
+
+$('#pulse-no-action').click(() => {
+    restartTimer(timers['pulse']);
+});
+
+$('#pulse-selection-confirm').click(() => {
+    var flag = false;
+    if (cardioOptionsVisible) {
+        if ($('#cardio-select-joules').val() == null) {
+            var desc = "Sync. Cardioversion (?) joules";
+        } else {
+            var desc = "Sync. Cardioversion " + $('#cardio-select-joules').val() + " joules";
+        }
+    } else if (defibOptionsVisible) {
+        if ($('#defib-select-joules').val() == null) {
+            var desc = "Defibrillation (?) joules";
+        } else {
+            var desc = "Defibrillation " + $('#defib-select-joules').val() + " joules";
+        }
+    } else {
+        var desc = "Check for pulse";
+    }
+    restartTimer(timers['pulse']);
+    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pulse Check');
+});
+
 $('#report-edit-btn').click(() => {
     let name = $('#report-action-name').val();
     let time = $('#report-action-time').val();
@@ -259,6 +325,7 @@ $('#report-edit-btn').click(() => {
 $('#report-delete-btn').click(() => {
     actions.splice(editActionId, 1);
     populateReport();
+    // need to check for count and decrement as necessary
 });
 
 // will need new modal here to specify options
@@ -266,6 +333,80 @@ $('#report-delete-btn').click(() => {
 function showSiteOptions() {
     $('#site-selection-modal').modal();
 }
+
+function showIOOptions() {
+    $('#io-selection-modal').modal();
+}
+
+function showPulseOptions() {
+    $('#cardio-options-container').hide();
+    cardioOptionsVisible = false;
+    $('#defib-options-container').hide();
+    defibOptionsVisible = false;
+    $('#pulse-defib-btn').removeClass('red');
+    $('#pulse-cardio-btn').removeClass('red');
+    $('#pulse-selection-modal').modal();
+}
+
+function showIntubationOptions() {
+    oralSelect = false;
+    $('#intu-oral-select').removeClass('red');
+    nasalSelect = false;
+    $('#intu-nasal-select').removeClass('red');
+    $('#intu-selection-modal').modal();
+}
+
+$('#intu-oral-select').click(() => {
+    if (!oralSelect) {
+        oralSelect = true;
+        $('#intu-oral-select').addClass('red');
+    }
+
+    if (nasalSelect) {
+        nasalSelect = false;
+        $('#intu-nasal-select').removeClass('red');
+    }
+});
+
+$('#intu-nasal-select').click(() => {
+    if (!nasalSelect) {
+        nasalSelect = true;
+        $('#intu-nasal-select').addClass('red');
+    }
+
+    if (oralSelect) {
+        oralSelect = false;
+        $('#intu-oral-select').removeClass('red');
+    }
+});
+
+$('#intu-selection-confirm').click(() => {
+    var flag = false;
+    if ($('#intu-select-size').val() == null) {
+        flag = true;
+        var size = '';
+    } else {
+        var size = $('#intu-select-size').val();
+    }
+
+    if ($('#intu-select-depth').val() == null) {
+        flag = true;
+        var depth = '';
+    } else {
+        var depth = $('#intu-select-depth').val();
+    }
+
+    if (oralSelect) {
+        var desc = "Oral - Size: " + size + ", Depth: " + depth;
+    } else if (nasalSelect) {
+        var desc = "Nasal - Size: " + size + ", Depth: " + depth;
+    } else {
+        flag = true;
+        var desc = "Size: " + size + ", Depth: " + depth;
+    }
+    actions.push({ 'name': 'Intubation', 'tag': 'intubat', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Intubation');
+});
 
 function createTimer(tag, type) {
     var data, item, t;
@@ -378,6 +519,41 @@ $('.info-btn').click(function() {
 
 $('.timer-card').click(function() {
     var id = $(this).attr('data');
-    console.log("timer card " + id + " clicked!");
     restartTimer(timers[id]);
 });
+
+function showDefibOptions() {
+    if (defibOptionsVisible) {
+        $('#defib-options-container').hide();
+        defibOptionsVisible = false;
+        $('#pulse-defib-btn').removeClass('red');
+    } else {
+        $('#defib-options-container').show();
+        defibOptionsVisible = true;
+        $('#pulse-defib-btn').addClass('red');
+    }
+
+    if (cardioOptionsVisible) {
+        $('#cardio-options-container').hide();
+        cardioOptionsVisible = false;
+        $('#pulse-cardio-btn').removeClass('red');
+    }
+}
+
+function showCardioOptions() {
+    if (cardioOptionsVisible) {
+        $('#cardio-options-container').hide();
+        cardioOptionsVisible = false;
+        $('#pulse-cardio-btn').removeClass('red');
+    } else {
+        $('#cardio-options-container').show();
+        cardioOptionsVisible = true;
+        $('#pulse-cardio-btn').addClass('red');
+    }
+
+    if (defibOptionsVisible) {
+        $('#defib-options-container').hide();
+        defibOptionsVisible = false;
+        $('#pulse-defib-btn').removeClass('red');
+    }
+}

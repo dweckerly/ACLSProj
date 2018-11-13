@@ -277,7 +277,7 @@ $('#io-selection-confirm').click(() => {
         side = "";
         flag = true;
     }
-    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + " at Site: " + side + " " + site, flag: flag });
+    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': "Size: " + size + ", Site: " + side + " " + site, flag: flag });
     callToast('Interosseous');
 });
 
@@ -381,7 +381,31 @@ $('#intu-nasal-select').click(() => {
 });
 
 $('#intu-selection-confirm').click(() => {
+    var flag = false;
+    if ($('#intu-select-size').val() == null) {
+        flag = true;
+        var size = '';
+    } else {
+        var size = $('#intu-select-size').val();
+    }
 
+    if ($('#intu-select-depth').val() == null) {
+        flag = true;
+        var depth = '';
+    } else {
+        var depth = $('#intu-select-depth').val();
+    }
+
+    if (oralSelect) {
+        var desc = "Oral - Size: " + size + ", Depth: " + depth;
+    } else if (nasalSelect) {
+        var desc = "Nasal - Size: " + size + ", Depth: " + depth;
+    } else {
+        flag = true;
+        var desc = "Size: " + size + ", Depth: " + depth;
+    }
+    actions.push({ 'name': 'Intubation', 'tag': 'intubat', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Intubation');
 });
 
 function createTimer(tag, type) {

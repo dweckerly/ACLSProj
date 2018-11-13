@@ -101,6 +101,7 @@ function restartTimer(arr) {
         arr['count'] = parseInt(arr['count']) + 1;
     }
     $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
+    $("#" + arr['id'] + "-count").html("count: " + arr['count']);
 }
 
 function callToast(name) {
@@ -130,7 +131,6 @@ function checkDose(arr) {
 }
 
 function medModalSearch() {
-    // Declare variables
     var input, filter, ul, li, i;
     input = document.getElementById('med-search');
     filter = input.value.toUpperCase();
@@ -159,7 +159,6 @@ function procModalSearch() {
         }
     }
 }
-
 
 function displayInfo() {
 

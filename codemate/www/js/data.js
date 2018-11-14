@@ -11,7 +11,8 @@ var medications = [{
         dataTag: "epi-drip",
         dose: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0],
         unit: "mcg/min",
-        type: "drip"
+        route: "drip",
+        type: "alert"
     },
     {
         name: "Atropine",
@@ -26,14 +27,16 @@ var medications = [{
         dataTag: "diprivan-drip",
         dose: [5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0],
         unit: "mcg/kg/min",
-        type: "drip"
+        route: "drip",
+        type: "alert"
     },
     {
         name: "Dopamine",
         dataTag: "dopamine-drip",
         dose: [5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0],
         unit: "mcg/kg/min",
-        type: "drip"
+        route: "drip",
+        type: "alert"
     },
     {
         name: "Sodium Bicarbonate",
@@ -56,7 +59,8 @@ var medications = [{
         dataTag: "levophed-drip",
         dose: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0],
         unit: "mcg/min",
-        type: "drip"
+        route: "drip",
+        type: "alert"
     },
     {
         name: "Narcan",
@@ -95,7 +99,8 @@ var medications = [{
         dataTag: "neosyn-drip",
         dose: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0],
         unit: "mcg/min",
-        type: "drip"
+        route: "drip",
+        type: "alert"
     },
 ];
 

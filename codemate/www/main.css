@@ -38,6 +38,10 @@
     color: #ef5350;
 }
 
+.collap-body {
+    display: none;
+}
+
 @keyframes pulse {
     0% {
         background-color: #fff;

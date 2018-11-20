@@ -115,44 +115,36 @@ function showReportDetails(id) {
     $('#report-modal').modal();
 }
 
-function populateCodeInfo() {
-    $('.info-table-item').remove();
-    for (let i = 0; i < actions.length; i++) {
-        for (let j = 0; j < medications.length; j++) {
-            if (actions[i].tag == medications[j].dataTag) {
-                $('#code-info-table-body').append(`
-                        <tr class="info-table-item">
-                            <td>` + actions[i].name + `</td>
-                            <td>` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + `</td>
-                            <td>` + actions[i].time + `</td>
-                        </tr>`);
-            }
-        }
-        for (let j = 0; j < procedures.length; j++) {
-            if (actions[i].tag == procedures[j].dataTag) {
-                $('#code-info-table-body').append(`
-                    <tr class="info-table-item">
-                        <td>` + actions[i].name + `</td>
-                        <td><span class="flow-text truncate">` + procedures[j].details + `</span></td>
-                        <td>` + actions[i].time + `</td>
-                    </tr>`);
-            }
+function populateMedicationModal() {
+    for (let i = 0; i < medications.length; i++) {
+        if (medications[i].route == 'drip') {
+            $('#med-btn-container').append(`
+            <button data-tag="` + medications[i].dataTag +`" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <label>` + medications[i].unit + `</label>
+                </div>
+                <button class="btn btn-outline-secondary med-btn-confirm modal-close">Confirm</button>
+            </div>
+            `);
+        } else {
+            $('#med-btn-container').append(`
+            <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
+            `); 
         }
     }
 }
 
-function populateMedicationModal() {
-    for (let i = 0; i < medications.length; i++) {
-        if (medications[i].type == 'drip') {
-            $('#med-btn-container').append(
-                "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close yellow lighten-3 drip'>" + medications[i].name + " DRIP</button>"
-            );
-        } else {
-            $('#med-btn-container').append(
-                "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
-            );
-        }
-    }
+function returnDoseOptions(med) {
+    let opts = "";
+    med.dose.forEach(function (e) {
+        opts += " <option value='" + e + "'>" + e +"</option> ";
+    });
+    return opts;
 }
 
 function populateProcedureModal() {
@@ -196,7 +188,14 @@ $('#procedures-btn').click(function() {
     $('#procedure-modal').modal();
 });
 
-$('.med-btn').click(function() {
+$('.drop-med-btn').click(function() {
+    $(".collap-body").each(function () {
+        $(this).css("display", "none");
+    });
+    $('#' + $(this).attr('data-tag') + '-body').css("display", "block");
+});
+
+$('.alert-med-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     var name = $(this).html();

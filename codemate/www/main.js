@@ -59,11 +59,11 @@ function populateReport() {
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
-                if(actions[i].desc == ""){
+                if (actions[i].desc == "") {
                     actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
                 }
-                if('flag' in actions[i]) {
-                    if(actions[i].flag) {
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
@@ -139,7 +139,7 @@ function populateMedicationModal() {
     for (let i = 0; i < medications.length; i++) {
         if (medications[i].route == 'drip') {
             $('#med-btn-container').append(`
-            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag +`" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
             <div class="collap-body" id="` + medications[i].dataTag + `-body">
                 <div class="input-field col s6">
                     <select id="` + medications[i].dataTag + `-dose-select">
@@ -148,21 +148,21 @@ function populateMedicationModal() {
                     </select>
                     <label id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</label>
                 </div>
-                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close">Confirm</button>
+                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
             </div>
             `);
         } else {
             $('#med-btn-container').append(`
             <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
-            `); 
+            `);
         }
     }
 }
 
 function returnDoseOptions(med) {
     let opts = "";
-    med.dose.forEach(function (e) {
-        opts += " <option value='" + e + "'>" + e +"</option> ";
+    med.dose.forEach(function(e) {
+        opts += " <option value='" + e + "'>" + e + "</option> ";
     });
     return opts;
 }
@@ -209,13 +209,13 @@ $('#procedures-btn').click(function() {
 });
 
 $('.drop-med-btn').click(function() {
-    if($('#' + $(this).attr('data-tag') + '-body').css("display") == 'none') {
-        $(".collap-body").each(function () {
+    if ($('#' + $(this).attr('data-tag') + '-body').css("display") == 'none') {
+        $(".collap-body").each(function() {
             $(this).css("display", "none");
         });
         $('#' + $(this).attr('data-tag') + '-body').css("display", "block");
     } else {
-        $(".collap-body").each(function () {
+        $(".collap-body").each(function() {
             $(this).css("display", "none");
         });
     }
@@ -238,20 +238,20 @@ $('.alert-med-btn').click(function() {
     }
 });
 
-$(".med-btn-confirm").click(function () {
+$(".med-btn-confirm").click(function() {
     var tag = $(this).attr('data-tag');
     var name = $('#' + tag + '-btn-label').html();
-    if($('#' + tag + '-dose-select').val() != null) {
+    if ($('#' + tag + '-dose-select').val() != null) {
         var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html();
         var flag = false;
     } else {
         var desc = "? " + $('#' + tag + '-unit').html();
         var flag = true;
     }
-    $(".collap-body").each(function () {
+    $(".collap-body").each(function() {
         $(this).css("display", "none");
     });
-    actions.push({'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag});
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
     callToast(name);
 });
 

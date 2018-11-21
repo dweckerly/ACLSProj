@@ -59,13 +59,33 @@ function populateReport() {
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
-                actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
-                $('#report-table-body').append(`
+                if (actions[i].desc == "") {
+                    actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
+                }
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    } else {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    }
+                } else {
+                    $('#report-table-body').append(`
                     <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                     <td> ` + actions[i].name + ` </td> 
                     <td class='truncate'> ` + actions[i].desc + ` </td> 
                     <td> ` + actions[i].time + ` </td> 
                     </tr>`);
+                }
             }
         }
         for (let j = 0; j < procedures.length; j++) {
@@ -115,48 +135,36 @@ function showReportDetails(id) {
     $('#report-modal').modal();
 }
 
-function populateCodeInfo() {
-    $('.info-table-item').remove();
-    for (let i = 0; i < actions.length; i++) {
-        for (let j = 0; j < medications.length; j++) {
-            if (actions[i].tag == medications[j].dataTag) {
-                $('#code-info-table-body').append(`
-                        <tr class="info-table-item">
-                            <td>` + actions[i].name + `</td>
-                            <td>` + medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route + `</td>
-                            <td>` + actions[i].time + `</td>
-                        </tr>`);
-            }
-        }
-        for (let j = 0; j < procedures.length; j++) {
-            if (actions[i].tag == procedures[j].dataTag) {
-                $('#code-info-table-body').append(`
-                    <tr class="info-table-item">
-                        <td>` + actions[i].name + `</td>
-                        <td><span class="flow-text truncate">` + procedures[j].details + `</span></td>
-                        <td>` + actions[i].time + `</td>
-                    </tr>`);
-            }
+function populateMedicationModal() {
+    for (let i = 0; i < medications.length; i++) {
+        if (medications[i].route == 'drip') {
+            $('#med-btn-container').append(`
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <label id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</label>
+                </div>
+                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+            </div>
+            `);
+        } else {
+            $('#med-btn-container').append(`
+            <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
+            `);
         }
     }
 }
 
-function populateMedicationModal() {
-    for (let i = 0; i < medications.length; i++) {
-        /*
-        if (medications[i].dataTag == 'epi' || medications[i].dataTag == 'atro') {
-            $('#quick-med-container').append(
-                "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary deep-purple lighten-3 modal-close'>" + medications[i].name + "</button>"
-            )
-        } else {
-            $('#med-btn-container').append(
-                "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
-            );
-        }*/
-        $('#med-btn-container').append(
-            "<button data-type='" + medications[i].type + "' data-tag='" + medications[i].dataTag + "' class='btn btn-outline-secondary med-btn modal-close'>" + medications[i].name + "</button>"
-        );
-    }
+function returnDoseOptions(med) {
+    let opts = "";
+    med.dose.forEach(function(e) {
+        opts += " <option value='" + e + "'>" + e + "</option> ";
+    });
+    return opts;
 }
 
 function populateProcedureModal() {
@@ -200,7 +208,20 @@ $('#procedures-btn').click(function() {
     $('#procedure-modal').modal();
 });
 
-$('.med-btn').click(function() {
+$('.drop-med-btn').click(function() {
+    if ($('#' + $(this).attr('data-tag') + '-body').css("display") == 'none') {
+        $(".collap-body").each(function() {
+            $(this).css("display", "none");
+        });
+        $('#' + $(this).attr('data-tag') + '-body').css("display", "block");
+    } else {
+        $(".collap-body").each(function() {
+            $(this).css("display", "none");
+        });
+    }
+});
+
+$('.alert-med-btn').click(function() {
     var type = $(this).attr('data-type');
     var tag = $(this).attr('data-tag');
     var name = $(this).html();
@@ -215,6 +236,23 @@ $('.med-btn').click(function() {
             callToast(name);
         }
     }
+});
+
+$(".med-btn-confirm").click(function() {
+    var tag = $(this).attr('data-tag');
+    var name = $('#' + tag + '-btn-label').html();
+    if ($('#' + tag + '-dose-select').val() != null) {
+        var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html();
+        var flag = false;
+    } else {
+        var desc = "? " + $('#' + tag + '-unit').html();
+        var flag = true;
+    }
+    $(".collap-body").each(function() {
+        $(this).css("display", "none");
+    });
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
+    callToast(name);
 });
 
 $('.proc-btn').click(function() {

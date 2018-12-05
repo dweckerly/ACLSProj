@@ -23,7 +23,7 @@ $('#start-btn').click(function() {
     $('#start-container').fadeOut(function() {
         $('#options-container').fadeIn();
         startTimer(timers.code);
-        createTimer("pulse", "procedure");
+        $('#pulse-btn').click();
     });
 });
 
@@ -193,7 +193,7 @@ function populateProcedureModal() {
             `);
         } else if (procedures[i].dataTag == 'pulse') {
             $('#proc-btn-container').append(`
-            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pulse-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            <button id="pulse-btn" data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pulse-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
         } else if (procedures[i].dataTag == 'intubat') {
             $('#proc-btn-container').append(`
@@ -226,7 +226,6 @@ $('#procedures-btn').click(function() {
 });
 
 $('.drop-med-btn').click(function() {
-    $(this).get(0).scrollIntoView({ block: "center", behavior: "smooth" });
     if ($('#' + $(this).attr('data-tag') + '-body').css("display") == 'none') {
         $(".collap-body").each(function() {
             $(this).css("display", "none");
@@ -237,6 +236,7 @@ $('.drop-med-btn').click(function() {
             $(this).css("display", "none");
         });
     }
+    $(this).get(0).scrollIntoView({ block: "center", behavior: "smooth" });
 });
 
 $('.alert-med-btn').click(function() {
@@ -338,7 +338,7 @@ $('#io-selection-confirm').click(() => {
 });
 
 $('#pulse-no-action').click(() => {
-    restartTimer(timers['pulse']);
+    $('#pulse-selection-confirm').click();
 });
 
 $('#pulse-selection-confirm').click(() => {
@@ -358,7 +358,11 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         var desc = "Check for pulse";
     }
-    restartTimer(timers['pulse']);
+    if('pulse' in timers) {
+        restartTimer(timers['pulse']);
+    } else {
+        createTimer("pulse", "procedure");
+    }
     actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Pulse Check');
 });
@@ -540,7 +544,11 @@ function createTimer(tag, type) {
 $('#` + item.dataTag + `-timer-div').click(function () {
     var id = $(this).attr('data');
     $('#` + item.dataTag + `-count').html("count: " + (timers[id].count + 1));
-    restartTimer(timers[id]);
+    if(id == 'pulse') {
+        $('#pulse-btn').click();
+    } else {
+        restartTimer(timers[id]);
+    }
 });
 $('.info-btn').click(function() {
     var tag = $(this).attr('data');

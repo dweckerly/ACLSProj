@@ -199,6 +199,9 @@ populateProcedureModal();
 $('#medications-btn').click(function() {
     $('#med-search').val("");
     medModalSearch();
+    $(".collap-body").each(function() {
+        $(this).css("display", "none");
+    });
     $('#medication-modal').modal();
 });
 
@@ -209,6 +212,7 @@ $('#procedures-btn').click(function() {
 });
 
 $('.drop-med-btn').click(function() {
+    $(this).get(0).scrollIntoView({ block: "center", behavior: "smooth" });
     if ($('#' + $(this).attr('data-tag') + '-body').css("display") == 'none') {
         $(".collap-body").each(function() {
             $(this).css("display", "none");

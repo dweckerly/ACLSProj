@@ -50,16 +50,17 @@
 
     <div class="modal" id="medication-modal">
         <div class="modal-content">
-            <i class="material-icons modal-close right">close</i>
-            <h4 id="medications-modal-title">Medications</h4>
-            <div id="quick-med-container"></div>
-            <form>
-                <div class="input-field">
-                    <input id="med-search" type="search" onkeyup="medModalSearch()" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
+            <div>
+                <i class="material-icons modal-close right">close</i>
+                <h4 id="medications-modal-title">Medications</h4>
+                <form>
+                    <div class="input-field">
+                        <input id="med-search" type="search" onkeyup="medModalSearch()" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
             <div id="med-btn-container" align="center"></div>
         </div>
     </div>

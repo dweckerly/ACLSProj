@@ -146,7 +146,21 @@ function populateMedicationModal() {
                         <option value="" disabled selected>Amount</option>
                         ` + returnDoseOptions(medications[i]) + `
                     </select>
-                    <label id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</label>
+                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                </div>
+                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+            </div>
+            `);
+        } else if (medications[i].route == 'IVP') {
+            $('#med-btn-container').append(`
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
                 </div>
                 <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
             </div>

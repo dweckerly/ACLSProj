@@ -9,16 +9,16 @@ var medications = [{
     {
         name: "Calcium Chloride",
         dataTag: "cacl",
-        doseAmount: 500,
-        doseUnit: "MG",
+        dose: [0.5, 1],
+        unit: "Grams",
         route: "IVP",
         type: "alert"
     },
     {
         name: "Dextrose 50",
         dataTag: "d50",
-        doseAmount: 25,
-        doseUnit: "Grams",
+        dose: [25, 50],
+        unit: "Grams",
         route: "IVP",
         type: "alert"
     },
@@ -73,8 +73,8 @@ var medications = [{
     {
         name: "Mag Sulfate",
         dataTag: "magsulf",
-        doseAmount: 2,
-        douseUnit: "Grams",
+        dose: [1, 2],
+        unit: "Grams",
         route: "IVP",
         type: "alert"
     },
@@ -97,8 +97,8 @@ var medications = [{
     {
         name: "Sodium Bicarbonate",
         dataTag: "sobic",
-        doseAmount: 50,
-        doseUnit: "MEQ",
+        dose: [50, 100],
+        unit: "MEQ",
         route: "IVP",
         type: "alert"
     }

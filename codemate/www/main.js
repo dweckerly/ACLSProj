@@ -199,6 +199,10 @@ function populateProcedureModal() {
             $('#proc-btn-container').append(`
             <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='intu-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
+        } else if (procedures[i].dataTag == 'nasogas') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='naso-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -285,6 +289,8 @@ $('.proc-btn').click(function() {
         showIntubationOptions();
     } else if (tag == 'pulse') {
         showPulseOptions();
+    } else if (tag == 'nasogas') {
+        showNasoOptions();
     } else {
         if (tag in timers) {
             restartTimer(timers[tag]);
@@ -416,6 +422,10 @@ function showIntubationOptions() {
     $('#intu-selection-modal').modal();
 }
 
+function showNasoOptions() {
+    $('#naso-selection-modal').modal();
+}
+
 $('#intu-oral-select').click(() => {
     if (!oralSelect) {
         oralSelect = true;
@@ -466,6 +476,24 @@ $('#intu-selection-confirm').click(() => {
     }
     actions.push({ 'name': 'Intubation', 'tag': 'intubat', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Intubation');
+});
+
+$('#naso-selection-confirm').click(() => {
+    var flag = false;
+    if ($('#naso-select-size').val() == null) {
+        flag = true;
+        var size = '';
+    } else {
+        var size = $('#naso-select-size').val();
+    }
+
+    if(flag) {
+        var desc = "";
+    } else {
+        var desc = "Size: " + size;
+    }
+    actions.push({ 'name': 'Nasogastric Tube', 'tag': 'nasogas', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Nasogastric Tube');
 });
 
 function createTimer(tag, type) {

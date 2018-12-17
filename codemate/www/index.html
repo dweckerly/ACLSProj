@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="modal" id="site-selection-modal">
+    <div class="modal modal-fixed-footer" id="site-selection-modal">
         <div class="modal-content">
             <h4 id='site-selection-title' class="red-text text-lighten-2">Select Site</h4>
             <div id="site-selection-container" class="row" align="center">
@@ -125,6 +125,17 @@
                         <option value="Other">Other</option>
                     </select>
                 </div>
+                <div class="input-field col s6">
+                    <select id="site-select-gauge">
+                        <option value="" disabled selected>Gauge</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                        <option value="24">24</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -132,7 +143,7 @@
         </div>
     </div>
 
-    <div class="modal" id="io-selection-modal">
+    <div class="modal modal-fixed-footer" id="io-selection-modal">
         <div class="modal-content">
             <h4 id='io-selection-title' class="red-text text-lighten-2">Select Site</h4>
             <div id="io-selection-container" class="row" align="center">
@@ -204,7 +215,7 @@
         </div>
     </div>
 
-    <div class="modal" id="intu-selection-modal">
+    <div class="modal modal-fixed-footer" id="intu-selection-modal">
         <div class="modal-content">
             <h4 id='intu-selection-title' class="red-text text-lighten-2">Intubation</h4>
             <div id="intu-selection-container" class="row" align="center">
@@ -243,6 +254,30 @@
         </div>
         <div class="modal-footer">
             <button class="btn waves-effect waves-light modal-close " id="intu-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="modal modal-fixed-footer" id="naso-selection-modal">
+        <div class="modal-content">
+            <h4 id='naso-selection-title' class="red-text text-lighten-2">Nasogastric Tube</h4>
+            <div id="naso-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <div id="naso-options-container" class="row">
+                        <div class="input-field col s6">
+                            <select id="naso-select-size">
+                                <option value="" disabled selected>Size</option>
+                                <option value="12">12</option>
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18">18</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="naso-selection-confirm">Confirm</button>
         </div>
     </div>
 

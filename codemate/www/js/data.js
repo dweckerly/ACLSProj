@@ -101,6 +101,14 @@ var medications = [{
         unit: "MEQ",
         route: "IVP",
         type: "alert"
+    },
+    {
+        name: "Vasopressin",
+        dataTag: "vasop",
+        dose: [0.01, 0.02, 0.03, 0.04],
+        unit: "u/h",
+        route: "drip",
+        type: "alert"
     }
 ];
 

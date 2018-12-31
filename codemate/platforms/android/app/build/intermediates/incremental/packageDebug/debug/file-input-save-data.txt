@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Dec 31 17:18:31 CST 2018
+#Mon Dec 31 17:39:25 CST 2018
 5.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 42.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 22.path=www/plugins/cordova-plugin-file/www/Entry.js

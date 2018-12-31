@@ -54,13 +54,15 @@ function timerDisplay(arr) {
 }
 
 function startTimer(arr, restart) {
-    if (restart) {
-        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow(), 'desc': "" });
-    } else {
-        actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow(), 'desc': "" });
+    if (arr['id'] != 'pulse') {
+        if (restart) {
+            actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow(), 'desc': "" });
+        } else {
+            actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow(), 'desc': "" });
+        }
+        callToast(arr['name']);
     }
     arr['actions'] = actions[actions.length - 1];
-    callToast(arr['name']);
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
     arr['interval'] = setInterval(function() {

@@ -204,7 +204,7 @@ function generatePDF() {
     }
 
     pdfhtml += '</tbody></table></body></html>';
-    fromData(pdfhtml, options)
+    pdf.fromData(pdfhtml, options)
         .then(function(base64) {
             // To define the type of the Blob
             var contentType = "application/pdf";

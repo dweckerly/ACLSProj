@@ -127,6 +127,21 @@ function populateReport() {
     </script>`);
 }
 
+function generatePDF() {
+    var filename = "CodeMate-Report-" + getDate() + ".pdf";
+    var options = {
+        documentSize: 'A4',
+        landscape: "portrait",
+        type: "share",
+        fileName: filename
+    };
+
+    var pdfhtml = '<html><head><link rel="stylesheet" href="css/materialize.css"><link rel="stylesheet" href="main.css"></head><body>';
+
+
+    pdfhtml.append('</body></html>');
+}
+
 function showReportDetails(id) {
     $('#report-action-name').val(actions[id].name);
     $('#report-action-time').val(actions[id].time);

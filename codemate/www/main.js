@@ -301,9 +301,14 @@ $('.proc-btn').click(function() {
 });
 
 $('#select-site-confirm').click(() => {
+    let size = $('#site-select-size').val();
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
     var flag = false;
+    if (size == null) {
+        size = "";
+        flag = true;
+    }
     if (side == null) {
         side = "";
         flag = true;
@@ -312,7 +317,7 @@ $('#select-site-confirm').click(() => {
         site = "";
         flag = true;
     }
-    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': "Site: " + side + " " + site, flag: flag });
+    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + "G, Site: " + side + " " + site, flag: flag });
     callToast('IV');
 });
 
@@ -358,7 +363,7 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         var desc = "Check for pulse";
     }
-    if('pulse' in timers) {
+    if ('pulse' in timers) {
         restartTimer(timers['pulse']);
     } else {
         createTimer("pulse", "procedure");

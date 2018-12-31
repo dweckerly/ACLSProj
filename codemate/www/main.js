@@ -306,18 +306,18 @@ $('#select-site-confirm').click(() => {
     let site = $('#site-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "";
+        size = "N/A";
         flag = true;
     }
     if (side == null) {
-        side = "";
+        side = "N/A";
         flag = true;
     }
     if (site == null) {
-        site = "";
+        site = "N/A";
         flag = true;
     }
-    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + "G, Site: " + side + " " + site, flag: flag });
+    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
     callToast('IV');
 });
 
@@ -327,18 +327,18 @@ $('#io-selection-confirm').click(() => {
     let site = $('#io-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "";
+        size = "N/A";
         flag = true;
     }
     if (site == null) {
-        site = "";
+        site = "N/A";
         flag = true;
     }
     if (side == null) {
-        side = "";
+        side = "N/A";
         flag = true;
     }
-    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': "Size: " + size + ", Site: " + side + " " + site, flag: flag });
+    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
     callToast('Interosseous');
 });
 

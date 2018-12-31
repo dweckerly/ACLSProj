@@ -211,7 +211,7 @@ function generatePDF() {
 
             // if cordova.file is not available use instead :
             // var folderpath = "file:///storage/emulated/0/Download/";
-            var folderpath = "file:///storage/emulated/0/Download/"; //you can select other folders
+            var folderpath = cordova.file.externalRootDirectory + "Download/"; //you can select other folders
             savebase64AsPDF(folderpath, fileName, base64, contentType);
         })
         .catch((err) => console.err(err));

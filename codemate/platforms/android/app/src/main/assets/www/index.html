@@ -39,14 +39,19 @@
         <a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>
     </div>
     <script src="scripts/toolbar.js"></script>
-    <div id="timer-container" class="row container"></div>
-    <div id="modal-container">
-    </div>
-    <div id="start-container" class="center" style="margin-top:80px;">
-        <button id="start-btn" class="waves-effect waves-light btn-large pulse red lighten-2">Start Code</button>
-    </div>
 
-    <div id="timer-container" class="container"></div>
+    <div id="timer-container" class="row container"></div>
+
+    <div id="modal-container"></div>
+
+    <div id="start-container" class="center">
+        <button style="margin-top:80px;" id="start-btn" class="waves-effect waves-light btn-large pulse red lighten-2">Start Code</button>
+        <div style="margin-top: 300px;">
+            <button id="add-new-med-btn" class="btn-floating btn-large">
+                <i class="large material-icons">local_pharmacy</i>
+            </button>
+        </div>
+    </div>
 
     <div class="modal" id="medication-modal">
         <div class="modal-content">
@@ -94,7 +99,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input value="" id="report-action-description" type="text" class="validate">
+                    <textarea value="" id="report-action-description" type="text" class="materialize-textarea"></textarea>
                 </div>
             </div>
             <div align="center">
@@ -104,10 +109,19 @@
         </div>
     </div>
 
-    <div class="modal" id="site-selection-modal">
+    <div class="modal modal-fixed-footer" id="site-selection-modal">
         <div class="modal-content">
             <h4 id='site-selection-title' class="red-text text-lighten-2">Select Site</h4>
             <div id="site-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="site-select-size">
+                        <option value="" disabled selected>Size</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                    </select>
+                </div>
                 <div class="input-field col s6">
                     <select id="site-select-side">
                         <option value="" disabled selected>Side</option>
@@ -115,7 +129,7 @@
                         <option value="Right">Right</option>
                     </select>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <select id="site-select-site">
                         <option value="" disabled selected>Site</option>
                         <option value="AC">AC</option>
@@ -132,7 +146,7 @@
         </div>
     </div>
 
-    <div class="modal" id="io-selection-modal">
+    <div class="modal modal-fixed-footer" id="io-selection-modal">
         <div class="modal-content">
             <h4 id='io-selection-title' class="red-text text-lighten-2">Select Site</h4>
             <div id="io-selection-container" class="row" align="center">
@@ -204,7 +218,7 @@
         </div>
     </div>
 
-    <div class="modal" id="intu-selection-modal">
+    <div class="modal modal-fixed-footer" id="intu-selection-modal">
         <div class="modal-content">
             <h4 id='intu-selection-title' class="red-text text-lighten-2">Intubation</h4>
             <div id="intu-selection-container" class="row" align="center">
@@ -302,6 +316,74 @@
             <tbody id="report-table-body">
             </tbody>
         </table>
+        <button id="pdf-btn" class="waves-effect waves-light med-btn btn-large">Save Report</button>
+    </div>
+
+    <div id="med-edit" hidden>
+        <div class="fixed-action-btn">
+            <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
+        </div>
+        <div class="center" style="margin-top:80px;">
+            <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
+        </div>
+        <div id="new-med-list">
+
+        </div>
+        <div id="new-med-form" hidden>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="new-med-name" type="text" class="validate">
+                            <label for="new-med-name">Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" value="IVP" checked />
+                                    <span>IVP</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" value="drip"/>
+                                    <span>Drip</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="new-med-min-dose" type="number" step="0.01" class="validate">
+                            <label for="new-med-min-dose">Min Dose</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="new-med-max-dose" type="number" step="0.01" class="validate">
+                            <label for="new-med-max-dose">Max Dose</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="new-med-dose-inc" type="number" step="0.01" class="validate">
+                            <label for="new-med-min-dose">Increment</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="new-med-dose-unit" type="text" class="validate">
+                            <label for="new-med-max-dose">Unit</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="row center">
+                    <p id="new-med-form-message" class="red-text"></p>
+                </div>
+                <div align="center">
+                    <button id="new-med-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
+                    <button id="new-med-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>

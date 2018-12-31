@@ -39,6 +39,16 @@ module.exports = [
     "clobbers": [
       "cordova.plugins.notification.local"
     ]
+  },
+  {
+    "id": "cordova-pdf-generator.pdf",
+    "file": "plugins/cordova-pdf-generator/www/pdf.js",
+    "pluginId": "cordova-pdf-generator",
+    "clobbers": [
+      "cordova.plugins.pdf",
+      "pugin.pdf",
+      "pdf"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -48,7 +58,8 @@ module.exports.metadata =
   "cordova-plugin-device": "2.0.2",
   "cordova-plugin-dialogs": "2.0.1",
   "cordova-plugin-local-notification": "0.9.0-beta.3",
-  "cordova-plugin-whitelist": "1.3.3"
+  "cordova-plugin-whitelist": "1.3.3",
+  "cordova-pdf-generator": "2.0.4"
 };
 // BOTTOM OF METADATA
 });

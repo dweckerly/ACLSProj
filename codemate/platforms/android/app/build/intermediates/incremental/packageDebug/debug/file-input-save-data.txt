@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Oct 29 18:07:39 CDT 2018
+#Mon Dec 31 17:11:32 CST 2018
 17.baseType=DIRECTORY
 4.path=www/js/data.js
 25.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
@@ -10,10 +10,12 @@
 11.set=DEX
 2.baseType=DIRECTORY
 27.set=ASSET
+30.baseType=DIRECTORY
+30.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 4.baseType=DIRECTORY
 14.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 16.set=ASSET
-count=30
+count=31
 6.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 13.path=www/cordova-js-src/android/promptbasednativeapi.js
 6.baseType=DIRECTORY
@@ -31,6 +33,7 @@ count=30
 10.baseType=DIRECTORY
 15.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 26.set=ASSET
+30.path=www/scripts/jquery.js
 7.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 14.path=www/cordova-js-src/plugin/android/app.js
 15.set=ASSET
@@ -68,6 +71,7 @@ count=30
 19.set=ASSET
 0.set=ASSET
 1.baseType=DIRECTORY
+30.set=ASSET
 21.path=www/plugins/cordova-plugin-local-notification/www/local-notification.js
 3.baseType=DIRECTORY
 5.set=ASSET
@@ -100,7 +104,7 @@ count=30
 18.path=www/css/materialize.css
 4.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 11.path=classes.dex
-29.path=www/scripts/jquery.js
+29.path=www/plugins/cordova-pdf-generator/www/pdf.js
 23.set=ASSET
 9.set=ASSET
 3.path=www/css/materialize.min.css

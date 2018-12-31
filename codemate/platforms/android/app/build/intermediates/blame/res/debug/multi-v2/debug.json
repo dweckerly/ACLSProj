@@ -61,21 +61,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-in_values-in.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-in\\values-in.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
             "map": [
                 {
@@ -134,6 +119,21 @@
             ]
         },
         {
+            "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-in_values-in.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-in\\values-in.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-sw_values-sw.arsc.flat",
             "map": [
                 {
@@ -149,10 +149,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-fr-rCA_values-fr-rCA.arsc.flat",
+            "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-hr_values-hr.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-fr-rCA\\values-fr-rCA.xml",
+                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-hr\\values-hr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -164,10 +164,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-hr_values-hr.arsc.flat",
+            "outputFile": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-fr-rCA_values-fr-rCA.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-hr\\values-hr.xml",
+                    "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\values-fr-rCA\\values-fr-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -8,12 +8,12 @@
         "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\bc323415a3a4c40ed6bded426e24e611\\res\\layout\\notification_template_lines_media.xml"
     },
     {
-        "merged": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
-    },
-    {
         "merged": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",

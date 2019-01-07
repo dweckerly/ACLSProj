@@ -15,9 +15,6 @@ $(document).ready(function() {
 });
 
 $('#start-btn').click(function() {
-    $('#edit-menu').fadeOut(function() {
-        $('#code-timer-wrapper').fadeIn();
-    });
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();
     $('#start-container').fadeOut(function() {
@@ -126,6 +123,103 @@ function populateReport() {
         });
     </script>`);
 }
+
+function generatePDF() {
+    var filename = "CodeMate_Report_" + getDate() + ".pdf";
+    var options = {
+        documentSize: 'A4',
+        landscape: "portrait",
+        type: "base64",
+        fileName: filename
+    };
+
+    var pdfhtml = '<html><head><link rel="stylesheet" href="css/materialize.css"><link rel="stylesheet" href="main.css"></head><body>';
+
+    pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
+    pdfhtml += "<h3>Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html() + "</h3>";
+    pdfhtml += `<table><tbody id="report-table-body">`;
+    for (let i = 0; i < actions.length; i++) {
+        for (let j = 0; j < medications.length; j++) {
+            if (actions[i].tag == medications[j].dataTag) {
+                if (actions[i].desc == "") {
+                    actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
+                }
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        pdfhtml += `
+                        <tr class='report-row' bgcolor="#f0e68c"> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`;
+                    } else {
+                        pdfhtml += `
+                        <tr class='report-row'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`;
+                    }
+                } else {
+                    pdfhtml += `
+                    <tr class='report-row'> 
+                    <td> ` + actions[i].name + ` </td> 
+                    <td> ` + actions[i].desc + ` </td> 
+                    <td> ` + actions[i].time + ` </td> 
+                    </tr>`;
+                }
+            }
+        }
+        for (let j = 0; j < procedures.length; j++) {
+            if (actions[i].tag == procedures[j].dataTag) {
+                if (actions[i].desc == "") {
+                    actions[i].desc = procedures[j].details;
+                }
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        pdfhtml += `
+                            <tr class='report-row' bgcolor="#f0e68c"> 
+                            <td> ` + actions[i].name + ` </td> 
+                            <td class='truncate'> ` + actions[i].desc + ` </td> 
+                            <td> ` + actions[i].time + ` </td> 
+                            </tr>`;
+                    } else {
+                        pdfhtml += `
+                        <tr class='report-row'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`;
+                    }
+                } else {
+                    pdfhtml += `
+                        <tr class='report-row'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`;
+                }
+            }
+        }
+    }
+
+    pdfhtml += '</tbody></table></body></html>';
+    pdf.fromData(pdfhtml, options)
+        .then(function(base64) {
+            // To define the type of the Blob
+            var contentType = "application/pdf";
+
+            // if cordova.file is not available use instead :
+            // var folderpath = "file:///storage/emulated/0/Download/";
+            var folderpath = cordova.file.externalRootDirectory + "Download/"; //you can select other folders
+            savebase64AsPDF(folderpath, fileName, base64, contentType);
+        })
+        .catch((err) => console.err(err));
+}
+
+$('#save-report').click(() => {
+    generatePDF();
+});
 
 function showReportDetails(id) {
     $('#report-action-name').val(actions[id].name);
@@ -301,18 +395,23 @@ $('.proc-btn').click(function() {
 });
 
 $('#select-site-confirm').click(() => {
+    let size = $('#site-select-size').val();
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
     var flag = false;
+    if (size == null) {
+        size = "N/A";
+        flag = true;
+    }
     if (side == null) {
-        side = "";
+        side = "N/A";
         flag = true;
     }
     if (site == null) {
-        site = "";
+        site = "N/A";
         flag = true;
     }
-    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': "Site: " + side + " " + site, flag: flag });
+    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
     callToast('IV');
 });
 
@@ -322,18 +421,18 @@ $('#io-selection-confirm').click(() => {
     let site = $('#io-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "";
+        size = "N/A";
         flag = true;
     }
     if (site == null) {
-        site = "";
+        site = "N/A";
         flag = true;
     }
     if (side == null) {
-        side = "";
+        side = "N/A";
         flag = true;
     }
-    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': "Size: " + size + ", Site: " + side + " " + site, flag: flag });
+    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
     callToast('Interosseous');
 });
 
@@ -358,7 +457,7 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         var desc = "Check for pulse";
     }
-    if('pulse' in timers) {
+    if ('pulse' in timers) {
         restartTimer(timers['pulse']);
     } else {
         createTimer("pulse", "procedure");
@@ -621,3 +720,63 @@ function showCardioOptions() {
         $('#pulse-defib-btn').removeClass('red');
     }
 }
+
+$('#add-new-med-btn').click(() => {
+    $('#main-nav').fadeOut();
+    $('#start-container').fadeOut(function() {
+        $('#med-edit').fadeIn();
+        $('#main-nav').fadeIn();
+    });
+});
+
+$('#back-to-start').click(() => {
+    $('#main-nav').fadeOut();
+    $('#med-edit').fadeOut(function() {
+        $('#start-container').fadeIn();
+        $('#main-nav').fadeIn();
+    });
+});
+
+$('#add-med-btn').click(() => {
+    $('#add-med-btn').fadeOut(() => {
+        $('#new-med-form').fadeIn();
+    });
+});
+
+
+$('#new-med-cancel-btn').click(() => {
+    $('#new-med-name').val('');
+    $('#new-med-min-dose').val('');
+    $('#new-med-max-dose').val('');
+    $('#new-med-dose-inc').val('');
+    $('#new-med-dose-unit').val('');
+    $('#new-med-form').fadeOut(() => {
+        $('#add-med-btn').fadeIn();
+    });
+});
+
+$('#new-med-save-btn').click(() => {
+    let name = $('#new-med-name').val();
+    let type;
+    var radios = document.getElementsByName('group1');
+    $(radios).each(function() {
+        if (this.checked) {
+            type = this.value;
+        }
+    });
+    let min = $('#new-med-min-dose').val();
+    let max = $('#new-med-max-dose').val();
+    let inc = $('#new-med-dose-inc').val();
+    let unit = $('#new-med-dose-unit').val();
+
+    var err = '';
+    if (name.trim() == '' || min.trim() == '' || max.trim() == '' || inc.trim() == '' || unit.trim() == '') {
+        err += "Please complete all fields before saving.";
+    }
+    if (err != '') {
+        $('#new-med-form-message').html(err);
+    } else {
+        //save the damn medication...
+        console.log('saving');
+    }
+});

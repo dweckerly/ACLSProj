@@ -1,0 +1,61 @@
+{
+  "_from": "cordova-pdf-generator",
+  "_id": "cordova-pdf-generator@2.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-xOz+1DoQIM7OeTfB/7KhCVaDq1U=",
+  "_location": "/cordova-pdf-generator",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-pdf-generator",
+    "name": "cordova-pdf-generator",
+    "escapedName": "cordova-pdf-generator",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-pdf-generator/-/cordova-pdf-generator-2.0.4.tgz",
+  "_shasum": "c4ecfed43a1020cece7937c1ffb2a1095683ab55",
+  "_spec": "cordova-pdf-generator",
+  "_where": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate",
+  "author": {
+    "name": "cesar"
+  },
+  "bugs": {
+    "url": "https://github.com/cesarvr/pdf-generator/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-pdf-generator",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "is a HTML to PDF (offline) Generator.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.4.0"
+    }
+  ],
+  "homepage": "https://github.com/cesarvr/pdf-generator#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "name": "cordova-pdf-generator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cesarvr/pdf-generator.git"
+  },
+  "version": "2.0.4"
+}

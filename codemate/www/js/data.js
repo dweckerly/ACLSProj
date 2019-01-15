@@ -182,6 +182,13 @@ var timersData = [{
     }
 ];
 
-localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
-var medications = JSON.parse(localStorage.getItem('defaultMedications'));
-console.log(medications);
+var medTest = JSON.parse(localStorage.getItem('defaultMedications'));
+
+if (medTest == null) {
+    localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
+    var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+    console.log("null medTest");
+} else {
+    console.log("populated medTest");
+    var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+}

@@ -586,7 +586,7 @@ $('#naso-selection-confirm').click(() => {
         var size = $('#naso-select-size').val();
     }
 
-    if(flag) {
+    if (flag) {
         var desc = "";
     } else {
         var desc = "Size: " + size;
@@ -749,9 +749,23 @@ function showCardioOptions() {
     }
 }
 
+function populateEditMedList() {
+    $('#new-med-list').empty();
+    $(medications).each(function(key, value) {
+        $('#new-med-list').append(`
+        <a class="edit-med" onclick="editMedication(` + key + `)">` + value.name + ` </a>
+        `);
+    });
+}
+
+function editMedication(key) {
+
+}
+
 $('#add-new-med-btn').click(() => {
     $('#main-nav').fadeOut();
     $('#start-container').fadeOut(function() {
+        populateEditMedList();
         $('#med-edit').fadeIn();
         $('#main-nav').fadeIn();
     });

@@ -118,6 +118,12 @@
 
 .floating {
     position: fixed;
-  top: 0;
-  width: 100%;
+    top: 0;
+    width: 100%;
+}
+
+.edit-med {
+    display: block;
+    text-align: center;
+    cursor: pointer;
 }

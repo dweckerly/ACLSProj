@@ -1,5 +1,4 @@
-var medications = [
-    {
+var defaultMedications = [{
         name: "Amnioderone",
         dataTag: "amni",
         dose: [150, 300],
@@ -149,7 +148,7 @@ var procedures = [{
         name: "Pulse Check",
         details: "Check for pulse",
         dataTag: "pulse",
-        tpye: "timer"
+        type: "timer"
     },
 ];
 
@@ -182,3 +181,7 @@ var timersData = [{
         type: "medication"
     }
 ];
+
+localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
+var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+console.log(medications);

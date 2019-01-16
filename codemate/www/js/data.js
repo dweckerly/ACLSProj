@@ -183,7 +183,7 @@ var timersData = [{
 ];
 
 var medTest = JSON.parse(localStorage.getItem('defaultMedications'));
-
+var newMedTest = JSON.parse(localStorage.getItem('New_Medications'));
 if (medTest == null) {
     localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
     var medications = JSON.parse(localStorage.getItem('defaultMedications'));
@@ -191,4 +191,8 @@ if (medTest == null) {
 } else {
     console.log("populated medTest");
     var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+}
+
+if (newMedTest != null) {
+    medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
 }

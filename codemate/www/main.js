@@ -17,6 +17,7 @@ $(document).ready(function() {
 $('#start-btn').click(function() {
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();
+    populateMedicationModal();
     $('#start-container').fadeOut(function() {
         $('#options-container').fadeIn();
         startTimer(timers.code);
@@ -305,7 +306,6 @@ function populateProcedureModal() {
     }
 }
 
-populateMedicationModal();
 populateProcedureModal();
 
 $('#medications-btn').click(function() {
@@ -787,25 +787,29 @@ $('#add-med-btn').click(() => {
 
 
 $('#new-med-cancel-btn').click(() => {
+    returnToAddNewMedication();
+});
+
+function returnToAddNewMedication() {
     $('#new-med-name').val('');
     $('#new-med-min-dose').val('');
     $('#new-med-max-dose').val('');
     $('#new-med-dose-inc').val('');
     $('#new-med-dose-unit').val('');
     $('#new-med-form').fadeOut(() => {
+        populateEditMedList();
         $('#add-med-btn').fadeIn();
     });
-});
+}
 
 $('#new-med-save-btn').click(() => {
     let name = $('#new-med-name').val();
-    let type;
-    var radios = document.getElementsByName('group1');
-    $(radios).each(function() {
-        if (this.checked) {
-            type = this.value;
-        }
-    });
+    let route;
+    if ($('#ivp-type').prop('checked')) {
+        route = "IVP";
+    } else if ($('#drip-type').prop('checked')) {
+        route = "drip";
+    }
     let min = $('#new-med-min-dose').val();
     let max = $('#new-med-max-dose').val();
     let inc = $('#new-med-dose-inc').val();
@@ -819,6 +823,33 @@ $('#new-med-save-btn').click(() => {
         $('#new-med-form-message').html(err);
     } else {
         //save the damn medication...
-        console.log('saving');
+        var newMed = {
+            name: name,
+            dataTag: name + '-' + route,
+            dose: createDoseArray(min, max, inc),
+            unit: unit,
+            route: route,
+            type: "alert"
+        }
+        var newMeds = JSON.parse(localStorage.getItem('New_Medications'));
+        if (newMeds == null) {
+            var newMedArray = [];
+            newMedArray.push(newMed);
+            localStorage.setItem('New_Medications', JSON.stringify(newMedArray));
+            medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
+        } else {
+            newMeds.push(newMed);
+            localStorage.setItem('New_Medications', JSON.stringify(newMeds));
+            medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
+        }
+        returnToAddNewMedication();
     }
 });
+
+function createDoseArray(min, max, inc) {
+    var arr = [];
+    for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
+        arr.push(i.toFixed(2));
+    }
+    return arr;
+}

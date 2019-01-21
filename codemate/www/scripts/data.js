@@ -196,3 +196,4 @@ if (medTest == null) {
 if (newMedTest != null) {
     medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
 }
+console.log(medications);

@@ -9,11 +9,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
-    <script src="js/index.js"></script>
-    <script src="scripts/jquery.js"></script>
-    <script src="js/acurate_interval.js"></script>
-    <script src="scripts/functions.js"></script>
-    <script src="js/data.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js "></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
+    <script type="text/javascript" src="scripts/data.js"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
         <a id="procedures-btn" data-target="procedure-modal" class="waves-effect waves-light btn modal-trigger">Procedures</a>
         <a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>
     </div>
-    <script src="scripts/toolbar.js"></script>
+    <script src="scripts/metronome.js"></script>
 
     <div id="timer-container" class="row container"></div>
 
@@ -422,25 +422,11 @@
     </div>
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>
-    <script type="text/javascript " src="js/materialize.min.js "></script>
+    <script type="text/javascript " src="scripts/buttons.js "></script>
+    <script type="text/javascript " src="scripts/editMeds.js "></script>
     <script type="text/javascript " src="main.js "></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'left',
-                hoverEnabled: false
-            });
-        });
-        $(document).ready(function() {
-            $('select').formSelect();
-        });
-        $(document).ready(function() {
-            $('.tooltipped').tooltip();
-        });
-        $(document).ready(function() {
-            $('.collapsible').collapsible();
-        });
+        initMaterial();
     </script>
 </body>
 

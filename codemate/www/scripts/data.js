@@ -145,6 +145,12 @@ var procedures = [{
         type: "alert"
     },
     {
+        name: "Pacing",
+        details: "",
+        dataTag: "pacing",
+        type: "alert"
+    },
+    {
         name: "Pulse Check",
         details: "Check for pulse",
         dataTag: "pulse",

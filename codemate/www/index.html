@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/materialize.min.js "></script>
     <script type="text/javascript" src="scripts/functions.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
+    <script type="text/javascript" src="scripts/navigation.js"></script>
 </head>
 
 <body>
@@ -277,7 +278,7 @@
             <div id="naso-selection-container" class="row" align="center">
                 <div class="input-field col s12">
                     <div id="naso-options-container" class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <select id="naso-select-size">
                                 <option value="" disabled selected>Size</option>
                                 <option value="12">12</option>
@@ -292,6 +293,53 @@
         </div>
         <div class="modal-footer">
             <button class="btn waves-effect waves-light modal-close " id="naso-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="modal modal-fixed-footer" id="pacing-selection-modal">
+        <div class="modal-content">
+            <h4 id='pacing-selection-title' class="red-text text-lighten-2">Paced</h4>
+            <div id="pacing-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="pacing-select-rate">
+                        <option value="" disabled selected>Rate</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select id="pacing-select-ma">
+                        <option value="" disabled selected>MA</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                        <option value="110">110</option>
+                        <option value="120">120</option>
+                        <option value="130">130</option>
+                        <option value="140">140</option>
+                        <option value="150">150</option>
+                        <option value="160">160</option>
+                        <option value="170">170</option>
+                        <option value="180">180</option>
+                        <option value="190">190</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="pacing-selection-confirm">Confirm</button>
         </div>
     </div>
 

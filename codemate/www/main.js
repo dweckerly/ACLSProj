@@ -8,8 +8,6 @@ var cardioOptionsVisible = false;
 var oralSelect = false;
 var nasalSelect = false;
 
-document.addEventListener("backbutton", onBackKeyDown, false);
-
 $(document).ready(function() {
 
 });
@@ -28,8 +26,6 @@ $('#start-btn').click(function() {
 $('#main-back-btn').click(() => {
     $('#back-confirm-modal').modal();
 });
-
-function onBackKeyDown() {}
 
 function populateReport() {
     $('#report-table-body').remove();
@@ -285,6 +281,10 @@ function populateProcedureModal() {
             $('#proc-btn-container').append(`
             <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='naso-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
+        } else if (procedures[i].dataTag == 'pacing') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pacing-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -308,7 +308,9 @@ $('.proc-btn').click(function() {
     } else if (tag == 'pulse') {
         showPulseOptions();
     } else if (tag == 'nasogas') {
-        showNasoOptions();
+        //showNasoOptions();
+    } else if (tag == 'pacing') {
+
     } else {
         if (tag in timers) {
             restartTimer(timers[tag]);
@@ -328,6 +330,7 @@ $('#select-site-confirm').click(() => {
     let size = $('#site-select-size').val();
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
+    let gauge = $('#site-select-gauge').val();
     var flag = false;
     if (size == null) {
         size = "N/A";
@@ -339,6 +342,10 @@ $('#select-site-confirm').click(() => {
     }
     if (site == null) {
         site = "N/A";
+        flag = true;
+    }
+    if (gauge == null) {
+        gauge = "N/A";
         flag = true;
     }
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
@@ -396,6 +403,19 @@ $('#pulse-selection-confirm').click(() => {
     callToast('Pulse Check');
 });
 
+$('#pacing-selection-confirm').click(() => {
+    let rate = $('#pacing-select-rate').val();
+    let ma = $('#pacing-select-ma').val();
+    let flag = false;
+    if (rate == null || ma == null) {
+        flag = true;
+    }
+    console.log(flag);
+    let desc = "Rate: " + rate + ", MA: " + ma;
+    actions.push({ 'name': 'Pacing', 'tag': 'pacing', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pacing');
+});
+
 $('#report-edit-btn').click(() => {
     let name = $('#report-action-name').val();
     let time = $('#report-action-time').val();
@@ -419,13 +439,6 @@ $('#report-delete-btn').click(() => {
 
 // will need new modal here to specify options
 // also will add selection to action description when pushed
-function showSiteOptions() {
-    $('#site-selection-modal').modal();
-}
-
-function showIOOptions() {
-    $('#io-selection-modal').modal();
-}
 
 function showPulseOptions() {
     $('#cardio-options-container').hide();
@@ -445,8 +458,12 @@ function showIntubationOptions() {
     $('#intu-selection-modal').modal();
 }
 
-function showNasoOptions() {
-    $('#naso-selection-modal').modal();
+function showIOOptions() {
+
+}
+
+function showSiteOptions() {
+
 }
 
 $('#intu-oral-select').click(() => {

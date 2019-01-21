@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
-    <script src="js/index.js"></script>
-    <script src="scripts/jquery.js"></script>
-    <script src="js/acurate_interval.js"></script>
-    <script src="scripts/functions.js"></script>
-    <script src="js/data.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js "></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
+    <script type="text/javascript" src="scripts/data.js"></script>
+    <script type="text/javascript" src="scripts/navigation.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@
         <a id="procedures-btn" data-target="procedure-modal" class="waves-effect waves-light btn modal-trigger">Procedures</a>
         <a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>
     </div>
-    <script src="scripts/toolbar.js"></script>
+    <script src="scripts/metronome.js"></script>
 
     <div id="timer-container" class="row container"></div>
 
@@ -137,6 +138,17 @@
                         <option value="EJ">EJ</option>
                         <option value="Hand">Hand</option>
                         <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select id="site-select-gauge">
+                        <option value="" disabled selected>Gauge</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                        <option value="24">24</option>
                     </select>
                 </div>
             </div>
@@ -260,6 +272,77 @@
         </div>
     </div>
 
+    <div class="modal modal-fixed-footer" id="naso-selection-modal">
+        <div class="modal-content">
+            <h4 id='naso-selection-title' class="red-text text-lighten-2">Nasogastric Tube</h4>
+            <div id="naso-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <div id="naso-options-container" class="row">
+                        <div class="input-field col s12">
+                            <select id="naso-select-size">
+                                <option value="" disabled selected>Size</option>
+                                <option value="12">12</option>
+                                <option value="14">14</option>
+                                <option value="16">16</option>
+                                <option value="18">18</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="naso-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
+    <div class="modal modal-fixed-footer" id="pacing-selection-modal">
+        <div class="modal-content">
+            <h4 id='pacing-selection-title' class="red-text text-lighten-2">Paced</h4>
+            <div id="pacing-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="pacing-select-rate">
+                        <option value="" disabled selected>Rate</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select id="pacing-select-ma">
+                        <option value="" disabled selected>MA</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                        <option value="100">100</option>
+                        <option value="110">110</option>
+                        <option value="120">120</option>
+                        <option value="130">130</option>
+                        <option value="140">140</option>
+                        <option value="150">150</option>
+                        <option value="160">160</option>
+                        <option value="170">170</option>
+                        <option value="180">180</option>
+                        <option value="190">190</option>
+                        <option value="200">200</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="pacing-selection-confirm">Confirm</button>
+        </div>
+    </div>
+
     <div id="back-confirm-modal" class="modal">
         <div class="modal-content ">
             <i class="material-icons modal-close right ">close</i>
@@ -342,13 +425,13 @@
                         <div class="input-field col s12">
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" value="IVP" checked />
+                                    <input id="ivp-type" name="group1" type="radio" value="IVP" checked />
                                     <span>IVP</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" value="drip"/>
+                                    <input id="drip-type" name="group1" type="radio" value="drip"/>
                                     <span>Drip</span>
                                 </label>
                             </p>
@@ -385,27 +468,16 @@
             </div>
         </div>
     </div>
+    <div class="footer" id="report-footer">
+        <a id="code-term " class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
+    </div>
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>
-    <script type="text/javascript " src="js/materialize.min.js "></script>
+    <script type="text/javascript " src="scripts/buttons.js "></script>
+    <script type="text/javascript " src="scripts/editMeds.js "></script>
     <script type="text/javascript " src="main.js "></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'left',
-                hoverEnabled: false
-            });
-        });
-        $(document).ready(function() {
-            $('select').formSelect();
-        });
-        $(document).ready(function() {
-            $('.tooltipped').tooltip();
-        });
-        $(document).ready(function() {
-            $('.collapsible').collapsible();
-        });
+        initMaterial();
     </script>
 </body>
 

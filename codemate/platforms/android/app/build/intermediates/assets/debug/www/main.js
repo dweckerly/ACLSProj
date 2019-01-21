@@ -8,8 +8,6 @@ var cardioOptionsVisible = false;
 var oralSelect = false;
 var nasalSelect = false;
 
-document.addEventListener("backbutton", onBackKeyDown, false);
-
 $(document).ready(function() {
 
 });
@@ -17,6 +15,7 @@ $(document).ready(function() {
 $('#start-btn').click(function() {
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();
+    populateMedicationModal();
     $('#start-container').fadeOut(function() {
         $('#options-container').fadeIn();
         startTimer(timers.code);
@@ -26,25 +25,6 @@ $('#start-btn').click(function() {
 
 $('#main-back-btn').click(() => {
     $('#back-confirm-modal').modal();
-});
-
-function onBackKeyDown() {}
-
-$('#end-btn').click(() => {
-    populateReport();
-    $('#main-nav').fadeOut();
-    $('#options-container').fadeOut();
-    $('#timer-container').fadeOut(() => {
-        $('#report-container').fadeIn();
-    });
-});
-
-$('#back-to-code').click(() => {
-    $('#report-container').fadeOut(() => {
-        $('#main-nav').fadeIn();
-        $('#options-container').fadeIn();
-        $('#timer-container').fadeIn();
-    });
 });
 
 function populateReport() {
@@ -217,7 +197,7 @@ function generatePDF() {
         .catch((err) => console.err(err));
 }
 
-$('#save-report').click(() => {
+$('#pdf-btn').click(() => {
     generatePDF();
 });
 
@@ -265,6 +245,10 @@ function populateMedicationModal() {
             `);
         }
     }
+    dropMeds();
+    alertMeds()
+    confirmMeds();
+    initMaterial();
 }
 
 function returnDoseOptions(med) {
@@ -293,6 +277,14 @@ function populateProcedureModal() {
             $('#proc-btn-container').append(`
             <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='intu-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
+        } else if (procedures[i].dataTag == 'nasogas') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='naso-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'pacing') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pacing-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -301,71 +293,7 @@ function populateProcedureModal() {
     }
 }
 
-populateMedicationModal();
 populateProcedureModal();
-
-$('#medications-btn').click(function() {
-    $('#med-search').val("");
-    medModalSearch();
-    $(".collap-body").each(function() {
-        $(this).css("display", "none");
-    });
-    $('#medication-modal').modal();
-});
-
-$('#procedures-btn').click(function() {
-    $('#proc-search').val("");
-    procModalSearch();
-    $('#procedure-modal').modal();
-});
-
-$('.drop-med-btn').click(function() {
-    if ($('#' + $(this).attr('data-tag') + '-body').css("display") == 'none') {
-        $(".collap-body").each(function() {
-            $(this).css("display", "none");
-        });
-        $('#' + $(this).attr('data-tag') + '-body').css("display", "block");
-    } else {
-        $(".collap-body").each(function() {
-            $(this).css("display", "none");
-        });
-    }
-    $(this).get(0).scrollIntoView({ block: "center", behavior: "smooth" });
-});
-
-$('.alert-med-btn').click(function() {
-    var type = $(this).attr('data-type');
-    var tag = $(this).attr('data-tag');
-    var name = $(this).html();
-    if (tag in timers) {
-        restartTimer(timers[tag]);
-    } else {
-        if (type == "timer") {
-            createTimer(tag, 'medication');
-        }
-        if (type == "alert") {
-            actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': "" });
-            callToast(name);
-        }
-    }
-});
-
-$(".med-btn-confirm").click(function() {
-    var tag = $(this).attr('data-tag');
-    var name = $('#' + tag + '-btn-label').html();
-    if ($('#' + tag + '-dose-select').val() != null) {
-        var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html();
-        var flag = false;
-    } else {
-        var desc = "? " + $('#' + tag + '-unit').html();
-        var flag = true;
-    }
-    $(".collap-body").each(function() {
-        $(this).css("display", "none");
-    });
-    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
-    callToast(name);
-});
 
 $('.proc-btn').click(function() {
     var type = $(this).attr('data-type');
@@ -379,6 +307,10 @@ $('.proc-btn').click(function() {
         showIntubationOptions();
     } else if (tag == 'pulse') {
         showPulseOptions();
+    } else if (tag == 'nasogas') {
+        //showNasoOptions();
+    } else if (tag == 'pacing') {
+
     } else {
         if (tag in timers) {
             restartTimer(timers[tag]);
@@ -398,6 +330,7 @@ $('#select-site-confirm').click(() => {
     let size = $('#site-select-size').val();
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
+    let gauge = $('#site-select-gauge').val();
     var flag = false;
     if (size == null) {
         size = "N/A";
@@ -409,6 +342,10 @@ $('#select-site-confirm').click(() => {
     }
     if (site == null) {
         site = "N/A";
+        flag = true;
+    }
+    if (gauge == null) {
+        gauge = "N/A";
         flag = true;
     }
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
@@ -466,6 +403,19 @@ $('#pulse-selection-confirm').click(() => {
     callToast('Pulse Check');
 });
 
+$('#pacing-selection-confirm').click(() => {
+    let rate = $('#pacing-select-rate').val();
+    let ma = $('#pacing-select-ma').val();
+    let flag = false;
+    if (rate == null || ma == null) {
+        flag = true;
+    }
+    console.log(flag);
+    let desc = "Rate: " + rate + ", MA: " + ma;
+    actions.push({ 'name': 'Pacing', 'tag': 'pacing', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pacing');
+});
+
 $('#report-edit-btn').click(() => {
     let name = $('#report-action-name').val();
     let time = $('#report-action-time').val();
@@ -489,13 +439,6 @@ $('#report-delete-btn').click(() => {
 
 // will need new modal here to specify options
 // also will add selection to action description when pushed
-function showSiteOptions() {
-    $('#site-selection-modal').modal();
-}
-
-function showIOOptions() {
-    $('#io-selection-modal').modal();
-}
 
 function showPulseOptions() {
     $('#cardio-options-container').hide();
@@ -513,6 +456,14 @@ function showIntubationOptions() {
     nasalSelect = false;
     $('#intu-nasal-select').removeClass('red');
     $('#intu-selection-modal').modal();
+}
+
+function showIOOptions() {
+
+}
+
+function showSiteOptions() {
+
 }
 
 $('#intu-oral-select').click(() => {
@@ -565,6 +516,24 @@ $('#intu-selection-confirm').click(() => {
     }
     actions.push({ 'name': 'Intubation', 'tag': 'intubat', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Intubation');
+});
+
+$('#naso-selection-confirm').click(() => {
+    var flag = false;
+    if ($('#naso-select-size').val() == null) {
+        flag = true;
+        var size = '';
+    } else {
+        var size = $('#naso-select-size').val();
+    }
+
+    if (flag) {
+        var desc = "";
+    } else {
+        var desc = "Size: " + size;
+    }
+    actions.push({ 'name': 'Nasogastric Tube', 'tag': 'nasogas', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Nasogastric Tube');
 });
 
 function createTimer(tag, type) {
@@ -720,63 +689,3 @@ function showCardioOptions() {
         $('#pulse-defib-btn').removeClass('red');
     }
 }
-
-$('#add-new-med-btn').click(() => {
-    $('#main-nav').fadeOut();
-    $('#start-container').fadeOut(function() {
-        $('#med-edit').fadeIn();
-        $('#main-nav').fadeIn();
-    });
-});
-
-$('#back-to-start').click(() => {
-    $('#main-nav').fadeOut();
-    $('#med-edit').fadeOut(function() {
-        $('#start-container').fadeIn();
-        $('#main-nav').fadeIn();
-    });
-});
-
-$('#add-med-btn').click(() => {
-    $('#add-med-btn').fadeOut(() => {
-        $('#new-med-form').fadeIn();
-    });
-});
-
-
-$('#new-med-cancel-btn').click(() => {
-    $('#new-med-name').val('');
-    $('#new-med-min-dose').val('');
-    $('#new-med-max-dose').val('');
-    $('#new-med-dose-inc').val('');
-    $('#new-med-dose-unit').val('');
-    $('#new-med-form').fadeOut(() => {
-        $('#add-med-btn').fadeIn();
-    });
-});
-
-$('#new-med-save-btn').click(() => {
-    let name = $('#new-med-name').val();
-    let type;
-    var radios = document.getElementsByName('group1');
-    $(radios).each(function() {
-        if (this.checked) {
-            type = this.value;
-        }
-    });
-    let min = $('#new-med-min-dose').val();
-    let max = $('#new-med-max-dose').val();
-    let inc = $('#new-med-dose-inc').val();
-    let unit = $('#new-med-dose-unit').val();
-
-    var err = '';
-    if (name.trim() == '' || min.trim() == '' || max.trim() == '' || inc.trim() == '' || unit.trim() == '') {
-        err += "Please complete all fields before saving.";
-    }
-    if (err != '') {
-        $('#new-med-form-message').html(err);
-    } else {
-        //save the damn medication...
-        console.log('saving');
-    }
-});

@@ -124,6 +124,21 @@
 
 .edit-med {
     display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 80px;
+    margin-left: 80px;
     text-align: center;
     cursor: pointer;
+}
+
+.footer {
+    background-color: #fff;
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
 }

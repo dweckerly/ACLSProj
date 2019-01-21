@@ -1,4 +1,12 @@
-var medications = [{
+var defaultMedications = [{
+        name: "Amnioderone",
+        dataTag: "amni",
+        dose: [150, 300],
+        unit: "MG",
+        route: "IVP",
+        type: "alert"
+    },
+    {
         name: "Atropine",
         dataTag: "atro",
         doseAmount: 1,
@@ -25,7 +33,7 @@ var medications = [{
     {
         name: "Diprivan",
         dataTag: "diprivan-drip",
-        dose: [5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0],
+        dose: [5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0],
         unit: "mcg/kg/min",
         route: "drip",
         type: "alert"
@@ -33,7 +41,7 @@ var medications = [{
     {
         name: "Dopamine",
         dataTag: "dopamine-drip",
-        dose: [5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0],
+        dose: [5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0],
         unit: "mcg/kg/min",
         route: "drip",
         type: "alert"
@@ -101,6 +109,14 @@ var medications = [{
         unit: "MEQ",
         route: "IVP",
         type: "alert"
+    },
+    {
+        name: "Vasopressin",
+        dataTag: "vasop",
+        dose: [0.01, 0.02, 0.03, 0.04],
+        unit: "u/h",
+        route: "drip",
+        type: "alert"
     }
 ];
 
@@ -129,10 +145,16 @@ var procedures = [{
         type: "alert"
     },
     {
+        name: "Pacing",
+        details: "",
+        dataTag: "pacing",
+        type: "alert"
+    },
+    {
         name: "Pulse Check",
         details: "Check for pulse",
         dataTag: "pulse",
-        tpye: "timer"
+        type: "timer"
     },
 ];
 
@@ -165,3 +187,19 @@ var timersData = [{
         type: "medication"
     }
 ];
+
+var medTest = JSON.parse(localStorage.getItem('defaultMedications'));
+var newMedTest = JSON.parse(localStorage.getItem('New_Medications'));
+if (medTest == null) {
+    localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
+    var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+    console.log("null medTest");
+} else {
+    console.log("populated medTest");
+    var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+}
+
+if (newMedTest != null) {
+    medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
+}
+console.log(medications);

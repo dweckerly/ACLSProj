@@ -125,10 +125,6 @@ function callToast(name) {
     M.toast({ html: str, displayLength: 2000 });
 }
 
-function clearAllIntervals() {
-
-}
-
 function checkDose(arr) {
     var count = parseInt(arr['count']) + 1;
     var totalDose = parseFloat(arr['dose']) * count;
@@ -176,6 +172,28 @@ function procModalSearch() {
     }
 }
 
-function displayInfo() {
+function initMaterial() {
+    $(document).ready(function() {
+        $('.modal').modal();
+    });
+    $(document).ready(function() {
+        $('.fixed-action-btn').floatingActionButton();
+    });
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+    $(document).ready(function() {
+        $('.tooltipped').tooltip();
+    });
+    $(document).ready(function() {
+        $('.collapsible').collapsible();
+    });
+}
 
+function createDoseArray(min, max, inc) {
+    var arr = [];
+    for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
+        arr.push(i.toFixed(2));
+    }
+    return arr;
 }

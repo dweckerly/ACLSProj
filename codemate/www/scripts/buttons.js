@@ -90,7 +90,33 @@ $('#end-btn').click(() => {
 $('#back-to-start').click(() => {
     $('#main-nav').fadeOut();
     $('#med-edit').fadeOut(function() {
+        $('#med-proc-edit-container').show();
+        $('#history-container').hide();
+        $('#add-edit-proc').hide();
+        $('#add-edit-med').hide();
         $('#start-container').fadeIn();
         $('#main-nav').fadeIn();
     });
 });
+
+$('#edit-med-btn').click(() => {
+    $('#med-proc-edit-container').fadeOut(() => {
+        $('#add-edit-med').fadeIn();
+    });
+});
+
+$('#edit-proc-btn').click(() => {
+    $('#med-proc-edit-container').fadeOut(() => {
+        $('#add-edit-proc').fadeIn();
+    });
+});
+
+$('#history-btn').click(() => {
+    $('#med-proc-edit-container').fadeOut(() => {
+        $('#history-container').fadeIn();
+    });
+});
+
+$('#code-term').click(() => {
+    window.print();
+})

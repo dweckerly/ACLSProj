@@ -10,6 +10,14 @@ function populateEditMedList() {
     });
 }
 
+function populateProcedureList() {
+
+}
+
+function populateHistory() {
+
+}
+
 function editMedication(key) {
 
 }
@@ -18,11 +26,11 @@ $('#add-new-med-btn').click(() => {
     $('#main-nav').fadeOut();
     $('#start-container').fadeOut(function() {
         populateEditMedList();
+        populateHistory();
+        populateProcedureList();
         $('#new-med-form').hide();
-        $('#add-med-btn').fadeIn();
         $('#med-edit').fadeIn();
         $('#main-nav').fadeIn();
-        $('#new-med-list').fadeIn();
     });
 });
 
@@ -70,7 +78,6 @@ $('#new-med-save-btn').click(() => {
     if (err != '') {
         $('#new-med-form-message').html(err);
     } else {
-        //save the damn medication...
         var newMed = {
             name: name,
             dataTag: name + '-' + route,

@@ -405,11 +405,23 @@
         <div class="fixed-action-btn">
             <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
         </div>
-        <div class="center" style="margin-top:80px;">
-            <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
+        <div id="med-proc-edit-container">
+            <button id="edit-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">Edit Medications</button>
+            <button id="edit-proc-btn" class="waves-effect waves-light btn-large red lighten-2 center">Edit Procedures</button>
+            <button id="history-btn" class="waves-effect waves-light btn-large center">History</button>
         </div>
-        <div id="new-med-list">
-
+        <div id="history-container" hidden></div>
+        <div id="add-edit-proc" hidden>
+            <div class="center" style="margin-top:80px;">
+                <button id="add-proc-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Procedure  <i class="material-icons right">add</i></button>
+            </div>
+            <div id="new-proc-list"></div>
+        </div>
+        <div id="add-edit-med" hidden>
+            <div class="center" style="margin-top:80px;">
+                <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
+            </div>
+            <div id="new-med-list"></div>
         </div>
         <div id="new-med-form" hidden>
             <div class="row">
@@ -468,7 +480,7 @@
         </div>
     </div>
     <div class="footer" id="report-footer">
-        <a id="code-term " class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
+        <a id="code-term" class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
     </div>
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>

@@ -116,7 +116,3 @@ $('#history-btn').click(() => {
         $('#history-container').fadeIn();
     });
 });
-
-$('#code-term').click(() => {
-    window.print();
-})

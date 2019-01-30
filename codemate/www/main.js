@@ -44,18 +44,14 @@ function populateReport() {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td style="white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;"> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                     } else {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td style="white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;"> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                     }
@@ -63,9 +59,7 @@ function populateReport() {
                     $('#report-table-body').append(`
                     <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                     <td> ` + actions[i].name + ` </td> 
-                    <td style="white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;"> ` + actions[i].desc + ` </td> 
+                    <td class="report-desc"> ` + actions[i].desc + ` </td> 
                     <td> ` + actions[i].time + ` </td> 
                     </tr>`);
                 }
@@ -81,18 +75,14 @@ function populateReport() {
                         $('#report-table-body').append(`
                             <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                             <td> ` + actions[i].name + ` </td> 
-                            <td style="white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;"> ` + actions[i].desc + ` </td> 
+                            <td class="report-desc"> ` + actions[i].desc + ` </td> 
                             <td> ` + actions[i].time + ` </td> 
                             </tr>`);
                     } else {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td style="white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;"> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                     }
@@ -100,9 +90,7 @@ function populateReport() {
                     $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td style="white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;"> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                 }

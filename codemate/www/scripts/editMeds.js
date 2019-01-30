@@ -15,6 +15,20 @@ function populateProcedureList() {
 }
 
 function populateHistory() {
+    if (codeHistory.length > 0) {
+        for (var i = 0; i < codeHistory.length; i++) {
+            $('#history-container').append(`
+                <button class="edit-med waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + +`</button>
+            `);
+        }
+    } else {
+        $('#history-container').append(`
+            <h4 class="center">No history found</h4>
+        `);
+    }
+}
+
+function viewHistory(index) {
 
 }
 

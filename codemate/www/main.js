@@ -245,7 +245,6 @@ $('#select-site-confirm').click(() => {
     let size = $('#site-select-size').val();
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
-    let gauge = $('#site-select-gauge').val();
     var flag = false;
     if (size == null) {
         size = "N/A";
@@ -257,10 +256,6 @@ $('#select-site-confirm').click(() => {
     }
     if (site == null) {
         site = "N/A";
-        flag = true;
-    }
-    if (gauge == null) {
-        gauge = "N/A";
         flag = true;
     }
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });

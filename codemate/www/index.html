@@ -116,11 +116,13 @@
             <div id="site-selection-container" class="row" align="center">
                 <div class="input-field col s6">
                     <select id="site-select-size">
-                        <option value="" disabled selected>Size</option>
+                        <option value="" disabled selected>Gauge</option>
+                        <option value="14">14</option>
                         <option value="16">16</option>
                         <option value="18">18</option>
                         <option value="20">20</option>
                         <option value="22">22</option>
+                        <option value="24">24</option>
                     </select>
                 </div>
                 <div class="input-field col s6">
@@ -138,17 +140,6 @@
                         <option value="EJ">EJ</option>
                         <option value="Hand">Hand</option>
                         <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="input-field col s6">
-                    <select id="site-select-gauge">
-                        <option value="" disabled selected>Gauge</option>
-                        <option value="14">14</option>
-                        <option value="16">16</option>
-                        <option value="18">18</option>
-                        <option value="20">20</option>
-                        <option value="22">22</option>
-                        <option value="24">24</option>
                     </select>
                 </div>
             </div>
@@ -407,9 +398,9 @@
             <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
         </div>
         <div id="med-proc-edit-container">
-            <button id="edit-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">Edit Medications</button>
-            <button id="edit-proc-btn" class="waves-effect waves-light btn-large red lighten-2 center">Edit Procedures</button>
-            <button id="history-btn" class="waves-effect waves-light btn-large center">History</button>
+            <button id="edit-med-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Medications <i class="material-icons right">edit</i></button>
+            <button id="edit-proc-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Procedures <i class="material-icons right">edit</i></button>
+            <button id="history-btn" class="settings-btn waves-effect waves-light btn-large center">History <i class="material-icons right">dehaze</i></button>
         </div>
         <div id="history-container" hidden></div>
         <div id="add-edit-proc" hidden>

@@ -203,8 +203,6 @@ if (newMedTest != null) {
 
 var codeHistory = [];
 if (!jQuery.isEmptyObject(JSON.parse(localStorage.getItem('Code_History')))) {
-    var cHist = [];
-    cHist.push(JSON.parse(localStorage.getItem('Code_History')));
-    codeHistory.push(cHist)
+    codeHistory = JSON.parse(localStorage.getItem('Code_History'));
 }
 console.log(codeHistory);

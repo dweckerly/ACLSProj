@@ -73,7 +73,7 @@ function returnToAddNewMedication() {
 }
 
 $('#new-med-save-btn').click(() => {
-    let name = $('#new-med-name').val();
+    var name = $('#new-med-name').val();
     let route;
     if ($('#ivp-type').prop('checked')) {
         route = "IVP";
@@ -92,22 +92,23 @@ $('#new-med-save-btn').click(() => {
     if (err != '') {
         $('#new-med-form-message').html(err);
     } else {
+        let tag = name.replace(/\s/g, "") + '-' + route;
         var newMed = {
             name: name,
-            dataTag: name + '-' + route,
+            dataTag: tag,
             dose: createDoseArray(min, max, inc),
             unit: unit,
             route: route,
             type: "alert"
         }
-        var newMeds = JSON.parse(localStorage.getItem('New_Medications'));
         medications = JSON.parse(localStorage.getItem('defaultMedications'));
-        if (newMeds == null) {
+        if (JSON.parse(localStorage.getItem('New_Medications')) == null) {
             var newMedArray = [];
             newMedArray.push(newMed);
             localStorage.setItem('New_Medications', JSON.stringify(newMedArray));
             medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
         } else {
+            var newMeds = [];
             newMeds.push(newMed);
             localStorage.setItem('New_Medications', JSON.stringify(newMeds));
             medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));

@@ -334,6 +334,17 @@
         </div>
     </div>
 
+    <div class="modal modal-fixed-footer" id="new-proc-modal">
+        <div class="modal-content">
+            <h4 id='new-proc-title' class="red-text text-lighten-2"></h4>
+            <div id="new-selection-container" class="row" align="center">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm">Confirm</button>
+        </div>
+    </div>
+
     <div id="back-confirm-modal" class="modal">
         <div class="modal-content ">
             <i class="material-icons modal-close right ">close</i>
@@ -344,7 +355,6 @@
                 <button class="btn waves-effect waves-light btn-large modal-close ">No</button>
             </div>
         </div>
-
     </div>
 
     <div id="info-modal" class="modal bottom-sheet">
@@ -409,8 +419,9 @@
         </div>
 
         <div id="new-proc-edit" hidden>
+            <p id="new-proc-err" class="red-text"></p>
             <div id="new-proc-container">
-                <div class="row">
+                <div id="proc-form-container" class="row">
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
@@ -436,8 +447,8 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12 center">
-                                    <a class="waves-effect waves-light btn">Add Value</a>
-                                    <a class="waves-effect waves-light btn red">Delete Value</a>
+                                    <a onclick="addVal(0)" class="waves-effect waves-light btn">Add Value</a>
+                                    <a id="del-btn-0" onclick="delVal(0)" class="waves-effect waves-light btn red disabled">Delete Value</a>
                                 </div>
                             </div>
                         </div>

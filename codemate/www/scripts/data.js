@@ -205,4 +205,12 @@ var codeHistory = [];
 if (!jQuery.isEmptyObject(JSON.parse(localStorage.getItem('Code_History')))) {
     codeHistory = JSON.parse(localStorage.getItem('Code_History'));
 }
-console.log(codeHistory);
+
+console.log(JSON.parse(localStorage.getItem('New_Procedures')));
+var newProcedures = [];
+if (JSON.parse(localStorage.getItem('New_Procedures')) != null) {
+    newProcedures = JSON.parse(localStorage.getItem('New_Procedures'));
+    $(newProcedures).each((index) => {
+        procedures.push(newProcedures[index]);
+    });
+}

@@ -113,6 +113,7 @@ function showReportDetails(id) {
 }
 
 function populateMedicationModal() {
+    medications.sort(sortByProperty('name'));
     for (let i = 0; i < medications.length; i++) {
         if (medications[i].route == 'drip') {
             $('#med-btn-container').append(`
@@ -163,6 +164,7 @@ function returnDoseOptions(med) {
 }
 
 function populateProcedureModal() {
+    procedures.sort(sortByProperty('name'));
     for (let i = 0; i < procedures.length; i++) {
         if (procedures[i].dataTag == 'iv') {
             $('#proc-btn-container').append(`
@@ -188,6 +190,10 @@ function populateProcedureModal() {
             $('#proc-btn-container').append(`
             <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pacing-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
+        } else if (procedures[i].dataTag == 'new') {
+            $('#proc-btn-container').append(
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' data-target='new-proc-modal' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
+            );
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -195,7 +201,6 @@ function populateProcedureModal() {
         }
     }
 }
-
 populateProcedureModal();
 
 $('.proc-btn').click(function() {
@@ -227,6 +232,10 @@ $('.proc-btn').click(function() {
             }
         }
     }
+});
+
+$('.proc-new-btn').click(() => {
+
 });
 
 $('#select-site-confirm').click(() => {

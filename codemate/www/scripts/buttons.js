@@ -1,3 +1,6 @@
+var paramIndex = 0;
+var newProcArr = [];
+
 $('#medications-btn').click(function() {
     $('#med-search').val("");
     medModalSearch();
@@ -5,6 +8,7 @@ $('#medications-btn').click(function() {
         $(this).css("display", "none");
     });
     $('#medication-modal').modal();
+
 });
 
 $('#procedures-btn').click(function() {
@@ -107,7 +111,15 @@ $('#edit-med-btn').click(() => {
 
 $('#edit-proc-btn').click(() => {
     $('#med-proc-edit-container').fadeOut(() => {
+        newProcArr.push(0);
+        paramIndex = 1;
         $('#add-edit-proc').fadeIn();
+    });
+});
+
+$('#add-edit-proc').click(() => {
+    $('#add-edit-proc').fadeOut(() => {
+        $('#new-proc-edit').fadeIn();
     });
 });
 
@@ -116,3 +128,47 @@ $('#history-btn').click(() => {
         $('#history-container').fadeIn();
     });
 });
+
+$('#add-param-btn').click(() => {
+    newProcArr.push(0);
+    $('#new-proc-parameters').append(`
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="new-proc-param-` + paramIndex + `" type="text" class="validate">
+            <label for="new-proc-param-` + paramIndex + `">Parameter</label>
+        </div>
+    </div>
+    <div id="param-` + paramIndex + `-val-container">
+        <div id="new-proc-val-` + paramIndex + `-` + newProcArr[paramIndex] + `-container" class="row">
+            <div class="input-field col s6 center">
+                <input id="new-proc-val-` + paramIndex + `-` + newProcArr[paramIndex] + `" type="text" class="validate">
+                <label for="new-proc-val-` + paramIndex + `-` + newProcArr[paramIndex] + `">Value</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 center">
+            <a onclick="addVal(` + paramIndex + `)" class="waves-effect waves-light btn">Add Value</a>
+            <a onclick="delVal(` + paramIndex + `)" class="waves-effect waves-light btn red">Delete Value</a>
+        </div>
+    </div>
+    `);
+    paramIndex++;
+});
+
+function addVal(param) {
+    newProcArr[param] = newProcArr[param] + 1;
+    $("#param-" + param + "-val-container").append(`
+    <div id="new-proc-val-` + param + `-` + newProcArr[param] + `-container" class="row">
+        <div class="input-field col s6 center">
+            <input id="new-proc-val-` + param + `-` + newProcArr[param] + `" type="text" class="validate">
+            <label for="new-proc-val-` + param + `-` + newProcArr[param] + `">Value</label>
+        </div>
+    </div>
+    `);
+}
+
+function delVal(param) {
+    $("#new-proc-val-" + paramIndex + `-` + newProcArr[paramIndex] + "-container").remove();
+    newProcArr[param] = newProcArr[param] - 1;
+}

@@ -10,6 +10,28 @@ function populateEditMedList() {
     });
 }
 
+function populateProcedureList() {
+
+}
+
+function populateHistory() {
+    if (codeHistory.length > 0) {
+        for (var i = 0; i < codeHistory.length; i++) {
+            $('#history-container').append(`
+                <button class="edit-med waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + +`</button>
+            `);
+        }
+    } else {
+        $('#history-container').append(`
+            <h4 class="center">No history found</h4>
+        `);
+    }
+}
+
+function viewHistory(index) {
+
+}
+
 function editMedication(key) {
 
 }
@@ -18,11 +40,11 @@ $('#add-new-med-btn').click(() => {
     $('#main-nav').fadeOut();
     $('#start-container').fadeOut(function() {
         populateEditMedList();
+        populateHistory();
+        populateProcedureList();
         $('#new-med-form').hide();
-        $('#add-med-btn').fadeIn();
         $('#med-edit').fadeIn();
         $('#main-nav').fadeIn();
-        $('#new-med-list').fadeIn();
     });
 });
 
@@ -51,7 +73,7 @@ function returnToAddNewMedication() {
 }
 
 $('#new-med-save-btn').click(() => {
-    let name = $('#new-med-name').val();
+    var name = $('#new-med-name').val();
     let route;
     if ($('#ivp-type').prop('checked')) {
         route = "IVP";
@@ -70,23 +92,23 @@ $('#new-med-save-btn').click(() => {
     if (err != '') {
         $('#new-med-form-message').html(err);
     } else {
-        //save the damn medication...
+        let tag = name.replace(/\s/g, "") + '-' + route;
         var newMed = {
             name: name,
-            dataTag: name + '-' + route,
+            dataTag: tag,
             dose: createDoseArray(min, max, inc),
             unit: unit,
             route: route,
             type: "alert"
         }
-        var newMeds = JSON.parse(localStorage.getItem('New_Medications'));
         medications = JSON.parse(localStorage.getItem('defaultMedications'));
-        if (newMeds == null) {
+        if (JSON.parse(localStorage.getItem('New_Medications')) == null) {
             var newMedArray = [];
             newMedArray.push(newMed);
             localStorage.setItem('New_Medications', JSON.stringify(newMedArray));
             medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
         } else {
+            var newMeds = [];
             newMeds.push(newMed);
             localStorage.setItem('New_Medications', JSON.stringify(newMeds));
             medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));

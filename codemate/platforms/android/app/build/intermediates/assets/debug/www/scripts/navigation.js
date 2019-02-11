@@ -4,7 +4,8 @@ var pageMap = {};
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 
-function onBackKeyDown() {
+function onBackKeyDown(e) {
+    e.preventDefault();
     /* save for later
     if (currentPage != "start") {
         e.preventDefault();

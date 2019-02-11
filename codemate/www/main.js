@@ -12,6 +12,11 @@ $(document).ready(function() {
 
 });
 
+
+document.addEventListener("backbutton", onBackKeyDown, false);
+
+function onBackKeyDown() {}
+
 $('#start-btn').click(function() {
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();

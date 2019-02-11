@@ -116,11 +116,13 @@
             <div id="site-selection-container" class="row" align="center">
                 <div class="input-field col s6">
                     <select id="site-select-size">
-                        <option value="" disabled selected>Size</option>
+                        <option value="" disabled selected>Gauge</option>
+                        <option value="14">14</option>
                         <option value="16">16</option>
                         <option value="18">18</option>
                         <option value="20">20</option>
                         <option value="22">22</option>
+                        <option value="24">24</option>
                     </select>
                 </div>
                 <div class="input-field col s6">
@@ -138,17 +140,6 @@
                         <option value="EJ">EJ</option>
                         <option value="Hand">Hand</option>
                         <option value="Other">Other</option>
-                    </select>
-                </div>
-                <div class="input-field col s6">
-                    <select id="site-select-gauge">
-                        <option value="" disabled selected>Gauge</option>
-                        <option value="14">14</option>
-                        <option value="16">16</option>
-                        <option value="18">18</option>
-                        <option value="20">20</option>
-                        <option value="22">22</option>
-                        <option value="24">24</option>
                     </select>
                 </div>
             </div>
@@ -343,6 +334,17 @@
         </div>
     </div>
 
+    <div class="modal modal-fixed-footer" id="new-proc-modal">
+        <div class="modal-content">
+            <h4 id='new-proc-title' class="red-text text-lighten-2"></h4>
+            <div id="new-selection-container" class="row" align="center">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm">Confirm</button>
+        </div>
+    </div>
+
     <div id="back-confirm-modal" class="modal">
         <div class="modal-content ">
             <i class="material-icons modal-close right ">close</i>
@@ -353,7 +355,6 @@
                 <button class="btn waves-effect waves-light btn-large modal-close ">No</button>
             </div>
         </div>
-
     </div>
 
     <div id="info-modal" class="modal bottom-sheet">
@@ -400,16 +401,70 @@
             </tbody>
         </table>
     </div>
-
     <div id="med-edit" hidden>
         <div class="fixed-action-btn">
             <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
         </div>
-        <div class="center" style="margin-top:80px;">
-            <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
+        <div id="med-proc-edit-container">
+            <button id="edit-med-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Medications <i class="material-icons right">edit</i></button>
+            <button id="edit-proc-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Procedures <i class="material-icons right">edit</i></button>
+            <button id="history-btn" class="settings-btn waves-effect waves-light btn-large center">History <i class="material-icons right">dehaze</i></button>
         </div>
-        <div id="new-med-list">
+        <div id="history-container" hidden></div>
+        <div id="add-edit-proc" hidden>
+            <div class="center" style="margin-top:80px;">
+                <button id="add-proc-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Procedure  <i class="material-icons right">add</i></button>
+            </div>
+            <div id="new-proc-list"></div>
+        </div>
 
+        <div id="new-proc-edit" hidden>
+            <p id="new-proc-err" class="red-text"></p>
+            <div id="new-proc-container">
+                <div id="proc-form-container" class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="new-proc-name" type="text" class="validate">
+                                <label for="new-proc-name">Name</label>
+                            </div>
+                        </div>
+                        <div id="new-proc-parameters">
+                            <a id="add-param-btn" class="btn waves-effect waves-light">Add Parameter<i class="material-icons">add</i></a>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="new-proc-param-0" type="text" class="validate">
+                                    <label for="new-proc-param-0">Parameter</label>
+                                </div>
+                            </div>
+                            <div id="param-0-val-container">
+                                <div class="row">
+                                    <div class="input-field col s6 center">
+                                        <input id="new-proc-val-0-0" type="text" class="validate">
+                                        <label for="new-proc-val-0-0">Value</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 center">
+                                    <a onclick="addVal(0)" class="waves-effect waves-light btn">Add Value</a>
+                                    <a id="del-btn-0" onclick="delVal(0)" class="waves-effect waves-light btn red disabled">Delete Value</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div align="center">
+                <button id="new-proc-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
+                <button id="new-proc-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
+            </div>
+        </div>
+        <div id="add-edit-med" hidden>
+            <div class="center" style="margin-top:80px;">
+                <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
+            </div>
+            <div id="new-med-list"></div>
         </div>
         <div id="new-med-form" hidden>
             <div class="row">
@@ -468,12 +523,13 @@
         </div>
     </div>
     <div class="footer" id="report-footer">
-        <a id="code-term " class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
+        <a id="code-term" class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
     </div>
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>
     <script type="text/javascript " src="scripts/buttons.js "></script>
     <script type="text/javascript " src="scripts/editMeds.js "></script>
+    <script type="text/javascript " src="scripts/saveCode.js "></script>
     <script type="text/javascript " src="main.js "></script>
     <script>
         initMaterial();

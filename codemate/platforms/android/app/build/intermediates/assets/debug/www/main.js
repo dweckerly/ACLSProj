@@ -12,6 +12,11 @@ $(document).ready(function() {
 
 });
 
+
+document.addEventListener("backbutton", onBackKeyDown, false);
+
+function onBackKeyDown() {}
+
 $('#start-btn').click(function() {
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();
@@ -44,14 +49,14 @@ function populateReport() {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                     } else {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                     }
@@ -59,7 +64,7 @@ function populateReport() {
                     $('#report-table-body').append(`
                     <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                     <td> ` + actions[i].name + ` </td> 
-                    <td class='truncate'> ` + actions[i].desc + ` </td> 
+                    <td class="report-desc"> ` + actions[i].desc + ` </td> 
                     <td> ` + actions[i].time + ` </td> 
                     </tr>`);
                 }
@@ -75,14 +80,14 @@ function populateReport() {
                         $('#report-table-body').append(`
                             <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                             <td> ` + actions[i].name + ` </td> 
-                            <td class='truncate'> ` + actions[i].desc + ` </td> 
+                            <td class="report-desc"> ` + actions[i].desc + ` </td> 
                             <td> ` + actions[i].time + ` </td> 
                             </tr>`);
                     } else {
                         $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                     }
@@ -90,7 +95,7 @@ function populateReport() {
                     $('#report-table-body').append(`
                         <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                         <td> ` + actions[i].name + ` </td> 
-                        <td class='truncate'> ` + actions[i].desc + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
                         <td> ` + actions[i].time + ` </td> 
                         </tr>`);
                 }
@@ -113,6 +118,7 @@ function showReportDetails(id) {
 }
 
 function populateMedicationModal() {
+    medications.sort(sortByProperty('name'));
     for (let i = 0; i < medications.length; i++) {
         if (medications[i].route == 'drip') {
             $('#med-btn-container').append(`
@@ -163,6 +169,7 @@ function returnDoseOptions(med) {
 }
 
 function populateProcedureModal() {
+    procedures.sort(sortByProperty('name'));
     for (let i = 0; i < procedures.length; i++) {
         if (procedures[i].dataTag == 'iv') {
             $('#proc-btn-container').append(`
@@ -188,6 +195,10 @@ function populateProcedureModal() {
             $('#proc-btn-container').append(`
             <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pacing-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
             `);
+        } else if (procedures[i].dataTag == 'new') {
+            $('#proc-btn-container').append(
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' data-target='new-proc-modal' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
+            );
         } else {
             $('#proc-btn-container').append(
                 "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
@@ -195,7 +206,6 @@ function populateProcedureModal() {
         }
     }
 }
-
 populateProcedureModal();
 
 $('.proc-btn').click(function() {
@@ -229,11 +239,14 @@ $('.proc-btn').click(function() {
     }
 });
 
+$('.proc-new-btn').click(() => {
+
+});
+
 $('#select-site-confirm').click(() => {
     let size = $('#site-select-size').val();
     let side = $('#site-select-side').val();
     let site = $('#site-select-site').val();
-    let gauge = $('#site-select-gauge').val();
     var flag = false;
     if (size == null) {
         size = "N/A";
@@ -245,10 +258,6 @@ $('#select-site-confirm').click(() => {
     }
     if (site == null) {
         site = "N/A";
-        flag = true;
-    }
-    if (gauge == null) {
-        gauge = "N/A";
         flag = true;
     }
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });

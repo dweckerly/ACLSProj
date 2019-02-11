@@ -132,6 +132,17 @@
     cursor: pointer;
 }
 
+.settings-btn {
+    display: block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 80px;
+    margin-left: 80px;
+    width: 60%;
+    text-align: center;
+    cursor: pointer;
+}
+
 .footer {
     background-color: #fff;
     display: none;
@@ -141,4 +152,11 @@
     width: 100%;
     text-align: center;
     z-index: 1000;
+}
+
+.report-desc {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

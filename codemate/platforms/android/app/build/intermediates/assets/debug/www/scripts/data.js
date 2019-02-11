@@ -193,13 +193,24 @@ var newMedTest = JSON.parse(localStorage.getItem('New_Medications'));
 if (medTest == null) {
     localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
     var medications = JSON.parse(localStorage.getItem('defaultMedications'));
-    console.log("null medTest");
 } else {
-    console.log("populated medTest");
     var medications = JSON.parse(localStorage.getItem('defaultMedications'));
 }
 
 if (newMedTest != null) {
     medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
 }
-console.log(medications);
+
+var codeHistory = [];
+if (!jQuery.isEmptyObject(JSON.parse(localStorage.getItem('Code_History')))) {
+    codeHistory = JSON.parse(localStorage.getItem('Code_History'));
+}
+
+console.log(JSON.parse(localStorage.getItem('New_Procedures')));
+var newProcedures = [];
+if (JSON.parse(localStorage.getItem('New_Procedures')) != null) {
+    newProcedures = JSON.parse(localStorage.getItem('New_Procedures'));
+    $(newProcedures).each((index) => {
+        procedures.push(newProcedures[index]);
+    });
+}

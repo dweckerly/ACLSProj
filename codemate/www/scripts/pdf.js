@@ -1,14 +1,7 @@
 function generatePDF() {
     var filename = "CodeMate_Report_" + getDate() + ".pdf";
-    var options = {
-        documentSize: 'A4',
-        landscape: "portrait",
-        type: "base64",
-        fileName: filename
-    };
-
-    var pdfhtml = '<html><head><link rel="stylesheet" href="css/materialize.css"><link rel="stylesheet" href="main.css"></head><body>';
-
+    //var pdfhtml = '<html><head><link rel="stylesheet" href="css/pdf.css" /></head><body>';
+    var pdfhtml = '<html><head></head><body>';
     pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
     pdfhtml += "<h3>Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html() + "</h3>";
     pdfhtml += `<table><tbody id="report-table-body">`;
@@ -78,17 +71,11 @@ function generatePDF() {
     }
 
     pdfhtml += '</tbody></table></body></html>';
-    pdf.fromData(pdfhtml, options)
-        .then(function(base64) {
-            // To define the type of the Blob
-            var contentType = "application/pdf";
-
-            // if cordova.file is not available use instead :
-            // var folderpath = "file:///storage/emulated/0/Download/";
-            var folderpath = cordova.file.externalRootDirectory + "Download/"; //you can select other folders
-            savebase64AsPDF(folderpath, fileName, base64, contentType);
-        })
-        .catch((err) => console.err(err));
+    console.log(pdfhtml);
+    var printWindow = window.open('', '', 'height=630,width=360');
+    printWindow.document.write(pdfhtml);
+    printWindow.document.close();
+    printWindow.print();
 }
 
 $('#pdf-btn').click(() => {

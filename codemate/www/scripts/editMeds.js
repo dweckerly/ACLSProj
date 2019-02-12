@@ -63,6 +63,11 @@ function populateEditMedication() {
         $('#new-med-dose-inc').val(0);
     }
     $('#new-med-dose-unit').val(medications[editKey].unit);
+    $('#name-label').addClass('active');
+    $('#min-label').addClass('active');
+    $('#max-label').addClass('active');
+    $('#inc-label').addClass('active');
+    $('#dose-label').addClass('active');
 }
 
 $('#add-new-med-btn').click(() => {
@@ -79,6 +84,7 @@ $('#add-new-med-btn').click(() => {
 
 $('#add-med-btn').click(() => {
     $('#new-med-list').fadeOut();
+    clearNewMedForm();
     $('#add-med-btn').fadeOut(() => {
         $('#new-med-form').fadeIn();
     });
@@ -88,6 +94,22 @@ $('#new-med-cancel-btn').click(() => {
     editing = false;
     returnToAddNewMedication();
 });
+
+function clearNewMedForm() {
+    editing = false;
+    $('#new-med-name').val('');
+    $('#drip-type').prop('checked', false);
+    $('#ivp-type').prop('checked', true);
+    $('#new-med-min-dose').val('');
+    $('#new-med-max-dose').val('');
+    $('#new-med-dose-inc').val('');
+    $('#new-med-dose-unit').val('');
+    $('#name-label').removeClass('active');
+    $('#min-label').removeClass('active');
+    $('#max-label').removeClass('active');
+    $('#inc-label').removeClass('active');
+    $('#dose-label').removeClass('active');
+}
 
 function returnToAddNewMedication() {
     $('#new-med-name').val('');
@@ -152,3 +174,15 @@ $('#new-med-save-btn').click(() => {
         returnToAddNewMedication();
     }
 });
+
+$('#edit-med-btn').click(() => {
+    $('#med-proc-edit-container').fadeOut(() => {
+        toEditMedList();
+    });
+});
+
+function toEditMedList() {
+    $('#add-med-btn').show();
+    $('#new-med-list').show();
+    $('#add-edit-med').fadeIn();
+}

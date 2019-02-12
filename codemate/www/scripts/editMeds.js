@@ -21,7 +21,7 @@ function populateHistory() {
     if (codeHistory.length > 0) {
         for (var i = 0; i < codeHistory.length; i++) {
             $('#history-container').append(`
-                <button class="edit-med waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + +`</button>
+                <button class="edit-med waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + codeHistory[i].name + `</button>
             `);
         }
     } else {
@@ -156,21 +156,9 @@ $('#new-med-save-btn').click(() => {
                 route: route,
                 type: "alert"
             }
-            medications = JSON.parse(localStorage.getItem('defaultMedications'));
-            if (JSON.parse(localStorage.getItem('New_Medications')) == null) {
-                var newMedArray = [];
-                newMedArray.push(newMed);
-                localStorage.setItem('New_Medications', JSON.stringify(newMedArray));
-                medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
-            } else {
-                var newMeds = JSON.parse(localStorage.getItem('New_Medications'));
-                newMeds.push(newMed);
-                localStorage.setItem('New_Medications', JSON.stringify(newMeds));
-                medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
-                console.log(medications);
-            }
+            medications.push(newMed);
+            localStorage.setItem('Medications', JSON.stringify(medications));
         }
-
         returnToAddNewMedication();
     }
 });

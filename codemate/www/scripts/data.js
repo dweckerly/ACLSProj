@@ -188,26 +188,22 @@ var timersData = [{
     }
 ];
 
-var medTest = JSON.parse(localStorage.getItem('defaultMedications'));
-var newMedTest = JSON.parse(localStorage.getItem('New_Medications'));
+var medTest = JSON.parse(localStorage.getItem('Medications'));
 if (medTest == null) {
-    localStorage.setItem('defaultMedications', JSON.stringify(defaultMedications));
-    var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+    localStorage.setItem('Medications', JSON.stringify(defaultMedications));
+    var medications = JSON.parse(localStorage.getItem('Medications'));
 } else {
-    var medications = JSON.parse(localStorage.getItem('defaultMedications'));
+    var medications = JSON.parse(localStorage.getItem('Medications'));
 }
 
-if (newMedTest != null) {
-    medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
-}
-
-var codeHistory = [];
+var codeHistory;
 if (!jQuery.isEmptyObject(JSON.parse(localStorage.getItem('Code_History')))) {
     codeHistory = JSON.parse(localStorage.getItem('Code_History'));
+} else {
+    codeHistory = [];
 }
 
-console.log(JSON.parse(localStorage.getItem('New_Procedures')));
-var newProcedures = [];
+var newProcedures;
 if (JSON.parse(localStorage.getItem('New_Procedures')) != null) {
     newProcedures = JSON.parse(localStorage.getItem('New_Procedures'));
     $(newProcedures).each((index) => {

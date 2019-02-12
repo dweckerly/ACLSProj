@@ -1,3 +1,5 @@
+//import { jsPDF } from 'jspdf';
+
 function generatePDF() {
     var filename = "CodeMate_Report_" + getDate() + ".pdf";
     //var pdfhtml = '<html><head><link rel="stylesheet" href="css/pdf.css" /></head><body>';

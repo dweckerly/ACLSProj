@@ -1,3 +1,5 @@
+import { jsPDF } from 'jspdf';
+
 function generatePDF() {
     var filename = "CodeMate_Report_" + getDate() + ".pdf";
     //var pdfhtml = '<html><head><link rel="stylesheet" href="css/pdf.css" /></head><body>';
@@ -79,18 +81,18 @@ function generatePDF() {
 }
 
 $('#pdf-btn').click(() => {
-    var doc = new jsPDF()
+    var doc = new jsPDF();
 
-    doc.text('Hello world!', 10, 10)
-    doc.save('a4.pdf')
-        /*
-            let options = {
-                documentSize: 'A4',
-                type: 'base64'
-            }
+    doc.text('Hello world!', 10, 10);
+    doc.save('a4.pdf');
+    /*
+        let options = {
+            documentSize: 'A4',
+            type: 'base64'
+        }
 
-            pdf.fromData('<html><h1>Hello World</h1></html>', options)
-                .then((base64) => 'ok') // it will
-                .catch((err) => console.err(err))*/
-        //generatePDF();
+        pdf.fromData('<html><h1>Hello World</h1></html>', options)
+            .then((base64) => 'ok') // it will
+            .catch((err) => console.err(err))*/
+    //generatePDF();
 });

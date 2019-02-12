@@ -107,9 +107,18 @@ $('#edit-proc-btn').click(() => {
     $('#med-proc-edit-container').fadeOut(() => {
         newProcArr.push(0);
         paramIndex = 1;
+        populateNewProcList();
         $('#add-edit-proc').fadeIn();
     });
 });
+
+function populateNewProcList() {
+    $('#new-proc-list').empty();
+    $(newProcedures).each(function(key, value) {
+        var proc = `<a class="edit-med waves-effect waves-light btn" onclick="editMedication(` + key + `)">` + value.name + `</a>`
+        $('#new-proc-list').append(proc);
+    });
+}
 
 $('#add-edit-proc').click(() => {
     $('#add-edit-proc').fadeOut(() => {

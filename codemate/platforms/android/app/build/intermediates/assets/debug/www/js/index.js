@@ -28,9 +28,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
-        document.addEventListener("backbutton", function (e) {
+        document.addEventListener("backbutton", function(e) {
             e.preventDefault();
-        }, false );
+        }, false);
     },
 
     // Update DOM on a Received Event
@@ -42,7 +42,10 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        let options = {
+            documentSize: 'A4',
+            type: 'base64'
+        }
     }
 };
 

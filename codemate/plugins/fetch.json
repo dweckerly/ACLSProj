@@ -42,7 +42,7 @@
   "cordova-pdf-generator": {
     "source": {
       "type": "registry",
-      "id": "cordova-pdf-generator"
+      "id": "cordova-pdf-generator@^2.0.4"
     },
     "is_top_level": true,
     "variables": {}

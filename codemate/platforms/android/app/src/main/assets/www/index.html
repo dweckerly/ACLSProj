@@ -472,7 +472,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="new-med-name" type="text" class="validate">
-                            <label for="new-med-name">Name</label>
+                            <label id="name-label" for="new-med-name">Name</label>
                         </div>
                     </div>
                     <div class="row">
@@ -494,21 +494,21 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <input id="new-med-min-dose" type="number" step="0.01" class="validate">
-                            <label for="new-med-min-dose">Min Dose</label>
+                            <label id="min-label" for="new-med-min-dose">Min Dose</label>
                         </div>
                         <div class="input-field col s6">
                             <input id="new-med-max-dose" type="number" step="0.01" class="validate">
-                            <label for="new-med-max-dose">Max Dose</label>
+                            <label id="max-label" for="new-med-max-dose">Max Dose</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <input id="new-med-dose-inc" type="number" step="0.01" class="validate">
-                            <label for="new-med-min-dose">Increment</label>
+                            <label id="inc-label" for="new-med-dose-inc">Increment</label>
                         </div>
                         <div class="input-field col s6">
                             <input id="new-med-dose-unit" type="text" class="validate">
-                            <label for="new-med-max-dose">Unit</label>
+                            <label id="dose-label" for="new-med-dose-unit">Unit</label>
                         </div>
                     </div>
                 </form>
@@ -524,12 +524,14 @@
     </div>
     <div class="footer" id="report-footer">
         <a id="code-term" class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
+        <a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2">Print Report</a>
     </div>
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>
     <script type="text/javascript " src="scripts/buttons.js "></script>
     <script type="text/javascript " src="scripts/editMeds.js "></script>
     <script type="text/javascript " src="scripts/saveCode.js "></script>
+    <script type="text/javascript " src="scripts/pdf.js "></script>
     <script type="text/javascript " src="main.js "></script>
     <script>
         initMaterial();

@@ -4,7 +4,7 @@ function generatePDF() {
     var pdfhtml = '<html><head></head><body>';
     pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
     pdfhtml += "<h3>Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html() + "</h3>";
-    pdfhtml += `<table><tbody id="report-table-body">`;
+    pdfhtml += `<table><tbody id="report-table-body" style="border:1px, solid, black"><tr><th>Name</th><th>Details</th><th>Time</th></tr>`;
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
@@ -79,5 +79,18 @@ function generatePDF() {
 }
 
 $('#pdf-btn').click(() => {
-    generatePDF();
+    var doc = new jsPDF();
+
+    doc.text('Hello world!', 10, 10);
+    doc.save('a4.pdf');
+    /*
+        let options = {
+            documentSize: 'A4',
+            type: 'base64'
+        }
+
+        pdf.fromData('<html><h1>Hello World</h1></html>', options)
+            .then((base64) => 'ok') // it will
+            .catch((err) => console.err(err))*/
+    //generatePDF();
 });

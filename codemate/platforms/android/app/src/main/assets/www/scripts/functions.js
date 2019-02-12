@@ -200,6 +200,6 @@ function createDoseArray(min, max, inc) {
 
 var sortByProperty = function(property) {
     return function(x, y) {
-        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+        return ((x[property].toUpperCase() === y[property].toUpperCase()) ? 0 : ((x[property].toUpperCase() > y[property].toUpperCase()) ? 1 : -1));
     };
 };

@@ -103,12 +103,6 @@ $('#back-to-start').click(() => {
     });
 });
 
-$('#edit-med-btn').click(() => {
-    $('#med-proc-edit-container').fadeOut(() => {
-        $('#add-edit-med').fadeIn();
-    });
-});
-
 $('#edit-proc-btn').click(() => {
     $('#med-proc-edit-container').fadeOut(() => {
         newProcArr.push(0);

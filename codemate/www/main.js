@@ -198,7 +198,7 @@ function populateProcedureModal() {
             `);
         } else if (procedures[i].dataTag == 'new') {
             $('#proc-btn-container').append(
-                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' data-target='new-proc-modal' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' data-target='new-proc-modal' class='btn btn-outline-secondary proc-btn modal-close modal-trigger' onclick='newProcPopulate(" + i + ")'>" + procedures[i].name + "</button>"
             );
         } else {
             $('#proc-btn-container').append(
@@ -225,6 +225,8 @@ $('.proc-btn').click(function() {
         //showNasoOptions();
     } else if (tag == 'pacing') {
 
+    } else if (tag == 'new') {
+
     } else {
         if (tag in timers) {
             restartTimer(timers[tag]);
@@ -240,8 +242,46 @@ $('.proc-btn').click(function() {
     }
 });
 
-$('.proc-new-btn').click(() => {
+function newProcPopulate(key) {
+    $('#new-proc-confirm').attr('data-tag', key);
+    $('#new-proc-title').html(procedures[key].name);
+    $('#new-selection-container').empty();
+    $(procedures[key].params).each(function() {
+        let id = "new-select-" + this.name.replace(/\s/g, "");
+        $('#new-selection-container').append(`
+        <div class="input-field col s12">
+            <select id="` + id + `">
+                <option value="" disabled selected>` + this.name + `</option>
+        `);
+        $(this.vals).each(function() {
+            $('#' + id).append(`
+                <option value="` + this + `">` + this + `</option>
+            `);
+        });
+        $('#new-selection-container').append(`
+            </select>
+        </div>`);
+    });
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+}
 
+$('#new-proc-confirm').click(function() {
+    let id = $(this).attr('data-tag');
+    let name = procedures[id].name;
+    let tag = procedures[id].dataTag;
+    let desc = "";
+    $('#new-selection-container').find('select').each(function() {
+        let label = this.id.replace('new-select-', "");
+        let val = $(this).val();
+        desc += label + ': ' + val + ', ';
+    });
+
+    desc = desc.slice(0, -2)
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc });
+    callToast(name);
+    console.log(actions);
 });
 
 $('#select-site-confirm').click(() => {

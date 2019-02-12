@@ -92,6 +92,9 @@ $('#end-btn').click(() => {
 });
 
 $('#back-to-start').click(() => {
+    actions = [];
+    $('#report-container').fadeOut();
+    $('#report-footer').fadeOut();
     $('#main-nav').fadeOut();
     $('#med-edit').fadeOut(function() {
         $('#med-proc-edit-container').show();

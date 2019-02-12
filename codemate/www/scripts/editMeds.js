@@ -29,7 +29,13 @@ function populateHistory() {
 }
 
 function viewHistory(index) {
-
+    actions = codeHistory[index].actions;
+    populateReport();
+    $('#code-term').hide();
+    $('#history-container').fadeOut(() => {
+        $('#report-container').fadeIn();
+        $('#report-footer').fadeIn();
+    });
 }
 
 function editMedication(key) {

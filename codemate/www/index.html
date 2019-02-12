@@ -341,7 +341,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm">Confirm</button>
+            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm" data-tag="0">Confirm</button>
         </div>
     </div>
 
@@ -529,6 +529,18 @@
             <hr>
             <div class="center ">
                 <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteMedication();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-proc-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this procedure?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteProcedure();">Yes</button>
                 <button class="btn waves-effect waves-light btn-large modal-close">No</button>
             </div>
         </div>

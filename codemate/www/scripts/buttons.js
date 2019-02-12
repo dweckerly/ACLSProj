@@ -115,9 +115,13 @@ $('#edit-proc-btn').click(() => {
 function populateNewProcList() {
     $('#new-proc-list').empty();
     $(newProcedures).each(function(key, value) {
-        var proc = `<a class="edit-med waves-effect waves-light btn" onclick="editMedication(` + key + `)">` + value.name + `</a>`
+        var proc = `<a class="edit-proc waves-effect waves-light btn" onclick="editProc(` + key + `)">` + value.name + `</a>`
         $('#new-proc-list').append(proc);
     });
+}
+
+function editProc(key) {
+
 }
 
 $('#add-edit-proc').click(() => {

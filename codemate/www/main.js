@@ -18,6 +18,7 @@ document.addEventListener("backbutton", onBackKeyDown, false);
 function onBackKeyDown() {}
 
 $('#start-btn').click(function() {
+    $('#code-term').show();
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();
     populateMedicationModal();

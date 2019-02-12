@@ -209,4 +209,10 @@ if (JSON.parse(localStorage.getItem('New_Procedures')) != null) {
     $(newProcedures).each((index) => {
         procedures.push(newProcedures[index]);
     });
+} else {
+    newProcedures = [];
 }
+
+console.log(JSON.parse(localStorage.getItem('Medications')));
+console.log(JSON.parse(localStorage.getItem('New_Procedures')));
+console.log(JSON.parse(localStorage.getItem('Code_History')));

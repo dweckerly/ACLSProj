@@ -4,16 +4,20 @@ var fileName = "test.pdf";
 var fileUrl = "";
 
 function generatePDF() {
-    fileName = "CM_Report_" + getDate() + "_" + timeNow() + ".pdf";
+    var date = getDate();
+    var time = timeNow();
+    fileName = "CM_Report_" + date + "_" + time + ".pdf";
 
     console.log("generating pdf...");
     var doc = new jsPDF();
 
     //var pdfhtml = '<html><head><link rel="stylesheet" href="css/pdf.css" /></head><body>';
-    var pdfhtml = '<html><head></head><body>';
+    var pdfhtml = '<html><head><link rel="stylesheet" href="../css/materialize.min.css"></head><body>';
+    pdfhtml += "<h1>CodeMate Report - " + date + " " + time + "</h1>"
     pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
     pdfhtml += "<h3>Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html() + "</h3>";
-    pdfhtml += `<table><tbody id="report-table-body" style="border:1px, solid, black"><tr><th>Name</th><th>Details</th><th>Time</th></tr>`;
+    pdfhtml += "<h3>Reason: " + $('#term-reason').html() + "</h3>";
+    pdfhtml += `<table style="width:100%"><tbody id="report-table-body" style="border:1px solid black"><tr style="float:left"><th>Name</th><th>Details</th><th>Time</th></tr>`;
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {
@@ -81,46 +85,58 @@ function generatePDF() {
 
     pdfhtml += '</tbody></table></body></html>';
 
-    doc.text(20, 20, 'HELLO!');
+    var opts = {
+        documentSize: "A4",
+        landscape: "portrait",
+        type: "share",
+        fileName: fileName
+    }
 
-    doc.setFont("courier");
-    doc.setFontType("normal");
-    doc.text(20, 30, pdfhtml);
+    pdf.fromData(pdfhtml,
+            opts)
+        .then(function() {})
+        .catch(function() {});
+    /* console.log('adding to doc...');
+     doc.fromHTML(pdfhtml, 20, 20, { 'width': 600 });
+     console.log('saving...');
+     doc.save(fileName);
+     console.log('save complete');
+     /*
+         var pdfOutput = doc.output();
+         console.log(pdfOutput);
 
-    var pdfOutput = doc.output();
-    console.log(pdfOutput);
+         console.log("file system...");
+         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
 
-    //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
-    console.log("file system...");
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+             console.log(fileSystem.name);
+             console.log(fileSystem.root.name);
+             console.log(fileSystem.root.fullPath);
 
-        console.log(fileSystem.name);
-        console.log(fileSystem.root.name);
-        console.log(fileSystem.root.fullPath);
+             fileSystem.root.getFile("test.pdf", { create: true }, function(entry) {
+                 var fileEntry = entry;
+                 console.log(entry);
+                 fileUrl = fileEntry.toURL();
+                 console.log(fileEntry.toURL());
+                 entry.createWriter(function(writer) {
+                     writer.onwrite = function(evt) {
+                         console.log("write success");
+                     };
 
-        fileSystem.root.getFile("test.pdf", { create: true }, function(entry) {
-            var fileEntry = entry;
-            console.log(entry);
-            fileUrl = fileEntry.toURL();
-            console.log(fileEntry.toURL());
-            entry.createWriter(function(writer) {
-                writer.onwrite = function(evt) {
-                    console.log("write success");
-                };
+                     console.log("writing to file");
+                     writer.write(pdfOutput);
+                     window.open("data:application/pdf," + encodeURI(fileEntry));
+                 }, function(error) {
+                     console.log(error);
+                 });
 
-                console.log("writing to file");
-                writer.write(pdfOutput);
-            }, function(error) {
-                console.log(error);
-            });
-
-            gadget.setPrintDocument("text/html", "Print", pdfhtml);
-            gadget.openPrintDialog();
-            /*console.log(pdfhtml);
-            var printWindow = window.open('', '', 'height=630,width=360');
-            printWindow.document.write(pdfhtml);
-            printWindow.document.close();
-            printWindow.print();*/
-        });
-    });
+                 //gadget.setPrintDocument("pdf", "Print", pdfhtml);
+                 //gadget.openPrintDialog();
+                 /*console.log(pdfhtml);
+                 var printWindow = window.open('', '', 'height=630,width=360');
+                 printWindow.document.write(pdfhtml);
+                 printWindow.document.close();
+                 printWindow.print();
+             });
+         });
+         */
 }

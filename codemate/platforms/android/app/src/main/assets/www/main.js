@@ -19,6 +19,7 @@ function onBackKeyDown() {}
 
 $('#start-btn').click(function() {
     $('#print-report').hide();
+    $('#term-reason').hide();
     $('#code-term').show();
     $('#logo-wrapper').hide();
     $('#code-timer-wrapper').show();

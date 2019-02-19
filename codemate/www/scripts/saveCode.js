@@ -14,7 +14,8 @@ function codeTerm(reason) {
     actions.push({
         name: "End Code",
         desc: reason,
-        time: timeNow()
+        time: timeNow(),
+        date: getDate()
     });
     actions.push({
         name: 'elasped time',

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Feb 19 11:32:53 CST 2019
+#Tue Feb 19 12:49:07 CST 2019
 56.path=www/plugins/cordova-plugin-device/www/device.js
 5.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 42.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\debug

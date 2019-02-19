@@ -11,10 +11,10 @@ INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\androi
 	android:name
 		ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:12:127-200
 manifest
-ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
 MERGED from [me.leolin:ShortcutBadger:1.1.21] C:\Users\David\.gradle\caches\transforms-1\files-1.1\ShortcutBadger-1.1.21.aar\9c3c6008fba21f034fd658c6b1585431\AndroidManifest.xml:2:1-52:12
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\David\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\ec7c36a1fc8049169f6ba822ccc5bf1f\AndroidManifest.xml:17:1-31:12
 MERGED from [:CordovaLib] C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
@@ -24,9 +24,9 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\David\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\David\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\834ab3e8a75b08c91547f6295f926924\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\David\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\5c4efdb508568aedda948b5927089ed1\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\David\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\1eae7fef9d800492ea71a1e432159e1d\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:1-30:12
 	package
 		ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:2:102-135
 		INJECTED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml
@@ -181,10 +181,14 @@ uses-permission#android.permission.WAKE_LOCK
 ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:27:5-68
 	android:name
 		ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:27:22-65
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:28:5-81
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:28:5-80
 	android:name
-		ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:28:22-78
+		ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:28:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:29:5-81
+	android:name
+		ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:29:22-78
 meta-data#android.support.FILE_PROVIDER_PATHS
 ADDED from C:\Users\David\Documents\Github\ACLSProj\codemate\platforms\android\app\src\main\AndroidManifest.xml:13:13-134
 	android:resource

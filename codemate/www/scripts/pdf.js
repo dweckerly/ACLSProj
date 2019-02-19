@@ -1,18 +1,12 @@
 function generatePDF() {
-    var date;
-    var time;
-    $(actions).each(function(index, value) {
-        if (value.name == 'Code End') {
-            date = value.date;
-            time = value.time;
-        }
-    });
+    var date = actions[actions.length - 2].date;
+    var time = actions[actions.length - 2].time;
 
     var fileName = "CM_Report_" + date + "_" + time + ".pdf";
     var pdfhtml = '<html><head><link rel="stylesheet" href="../css/materialize.min.css"></head><body>';
     pdfhtml += "<h1>CodeMate Report - " + date + " " + time + "</h1>"
     pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
-    pdfhtml += "<h3>Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html() + "</h3>";
+    pdfhtml += "<h3>" + actions[actions.length - 1].desc + "</h3>";
     pdfhtml += "<h3>Reason: " + $('#term-reason').html() + "</h3>";
     pdfhtml += `<table style="width:100%"><tbody id="report-table-body" style="border:1px solid black"><tr><th>Name</th><th>Details</th><th>Time</th></tr>`;
     for (let i = 0; i < actions.length; i++) {

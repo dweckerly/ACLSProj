@@ -18,7 +18,7 @@ function populateHistory() {
     if (codeHistory.length > 0) {
         for (var i = 0; i < codeHistory.length; i++) {
             $('#history-container').append(`
-                <button class="history waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + codeHistory[i].name + `</button>
+                <button class="history waves-effect waves-light btn-large" onclick="viewHistory(` + i + `)">` + codeHistory[i].name + `</button>
             `);
         }
     } else {
@@ -33,6 +33,11 @@ function viewHistory(index) {
     populateReport();
     $('#code-term').hide();
     $('#history-container').fadeOut(() => {
+        $('#code-start').html(actions[actions.length - 2].date + " - " + actions[actions.length - 2].time);
+        $('#elapsed-time').html(actions[actions.length - 1].desc);
+        $('#term-reason').html(actions[actions.length - 2].desc);
+        $('#term-reason').show();
+        $('#print-report').show();
         $('#report-container').fadeIn();
         $('#report-footer').fadeIn();
     });

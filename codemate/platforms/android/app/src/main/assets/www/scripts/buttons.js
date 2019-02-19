@@ -92,6 +92,9 @@ $('#end-btn').click(() => {
 });
 
 $('#back-to-start').click(() => {
+    actions = [];
+    $('#report-container').fadeOut();
+    $('#report-footer').fadeOut();
     $('#main-nav').fadeOut();
     $('#med-edit').fadeOut(function() {
         $('#med-proc-edit-container').show();
@@ -107,9 +110,22 @@ $('#edit-proc-btn').click(() => {
     $('#med-proc-edit-container').fadeOut(() => {
         newProcArr.push(0);
         paramIndex = 1;
+        populateNewProcList();
         $('#add-edit-proc').fadeIn();
     });
 });
+
+function populateNewProcList() {
+    $('#new-proc-list').empty();
+    $(newProcedures).each(function(key, value) {
+        var proc = `<a class="edit-proc waves-effect waves-light btn" onclick="editProc(` + key + `)">` + value.name + `</a>`
+        $('#new-proc-list').append(proc);
+    });
+}
+
+function editProc(key) {
+
+}
 
 $('#add-edit-proc').click(() => {
     $('#add-edit-proc').fadeOut(() => {

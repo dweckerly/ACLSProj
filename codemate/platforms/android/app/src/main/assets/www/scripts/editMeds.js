@@ -13,15 +13,12 @@ function populateEditMedList() {
     });
 }
 
-function populateProcedureList() {
-
-}
-
 function populateHistory() {
+    $('#history-container').empty();
     if (codeHistory.length > 0) {
         for (var i = 0; i < codeHistory.length; i++) {
             $('#history-container').append(`
-                <button class="edit-med waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + +`</button>
+                <button class="history waves-effect waves-light btn" onclick="viewHistory(` + i + `)">` + codeHistory[i].name + `</button>
             `);
         }
     } else {
@@ -32,7 +29,13 @@ function populateHistory() {
 }
 
 function viewHistory(index) {
-
+    actions = codeHistory[index].actions;
+    populateReport();
+    $('#code-term').hide();
+    $('#history-container').fadeOut(() => {
+        $('#report-container').fadeIn();
+        $('#report-footer').fadeIn();
+    });
 }
 
 function editMedication(key) {
@@ -41,6 +44,7 @@ function editMedication(key) {
     $('#new-med-list').fadeOut();
     populateEditMedication();
     $('#add-med-btn').fadeOut(() => {
+        $('#new-med-delete-btn').show();
         $('#new-med-form').fadeIn();
     });
 }
@@ -75,7 +79,7 @@ $('#add-new-med-btn').click(() => {
     $('#start-container').fadeOut(function() {
         populateEditMedList();
         populateHistory();
-        populateProcedureList();
+        populateNewProcList();
         $('#new-med-form').hide();
         $('#med-edit').fadeIn();
         $('#main-nav').fadeIn();
@@ -85,10 +89,17 @@ $('#add-new-med-btn').click(() => {
 $('#add-med-btn').click(() => {
     $('#new-med-list').fadeOut();
     clearNewMedForm();
+    $('#new-med-delete-btn').hide();
     $('#add-med-btn').fadeOut(() => {
         $('#new-med-form').fadeIn();
     });
 });
+
+function deleteMedication() {
+    medications.splice(editKey, 1);
+    localStorage.setItem('Medications', JSON.stringify(medications));
+    returnToAddNewMedication();
+}
 
 $('#new-med-cancel-btn').click(() => {
     editing = false;
@@ -146,6 +157,10 @@ $('#new-med-save-btn').click(() => {
     } else {
         if (editing) {
             editing = false;
+            medications[editKey].name = name;
+            medications[editKey].dose = createDoseArray(min, max, inc);
+            medications[editKey].unit = unit;
+            medications[editKey].route = route;
         } else {
             let tag = name.replace(/\s/g, "") + '-' + route;
             var newMed = {
@@ -156,21 +171,9 @@ $('#new-med-save-btn').click(() => {
                 route: route,
                 type: "alert"
             }
-            medications = JSON.parse(localStorage.getItem('defaultMedications'));
-            if (JSON.parse(localStorage.getItem('New_Medications')) == null) {
-                var newMedArray = [];
-                newMedArray.push(newMed);
-                localStorage.setItem('New_Medications', JSON.stringify(newMedArray));
-                medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
-            } else {
-                var newMeds = JSON.parse(localStorage.getItem('New_Medications'));
-                newMeds.push(newMed);
-                localStorage.setItem('New_Medications', JSON.stringify(newMeds));
-                medications = medications.concat(JSON.parse(localStorage.getItem('New_Medications')));
-                console.log(medications);
-            }
+            medications.push(newMed);
         }
-
+        localStorage.setItem('Medications', JSON.stringify(medications));
         returnToAddNewMedication();
     }
 });

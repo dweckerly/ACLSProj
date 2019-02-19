@@ -15,6 +15,7 @@
     <script type="text/javascript" src="scripts/functions.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
     <script type="text/javascript" src="scripts/navigation.js"></script>
+    <script src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
 </head>
 
 <body>
@@ -548,7 +549,7 @@
 
     <div class="footer" id="report-footer">
         <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
-        <!--<a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2">Print Report</a>-->
+        <a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Print Report</a>
     </div>
 
     <div id="code-term-modal" class="modal">

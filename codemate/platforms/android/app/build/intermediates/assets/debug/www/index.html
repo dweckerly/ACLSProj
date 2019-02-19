@@ -15,6 +15,7 @@
     <script type="text/javascript" src="scripts/functions.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
     <script type="text/javascript" src="scripts/navigation.js"></script>
+    <script src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
 </head>
 
 <body>
@@ -341,7 +342,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm">Confirm</button>
+            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm" data-tag="0">Confirm</button>
         </div>
     </div>
 
@@ -356,7 +357,6 @@
             </div>
         </div>
     </div>
-
     <div id="info-modal" class="modal bottom-sheet">
         <div class="modal-content">
             <i class="material-icons modal-close right">close</i>
@@ -403,7 +403,7 @@
     </div>
     <div id="med-edit" hidden>
         <div class="fixed-action-btn">
-            <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
+            <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">home</i></a>
         </div>
         <div id="med-proc-edit-container">
             <button id="edit-med-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Medications <i class="material-icons right">edit</i></button>
@@ -517,15 +517,53 @@
                 </div>
                 <div align="center">
                     <button id="new-med-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
+                    <button id="new-med-delete-btn" data-target="delete-confirm-modal" class='btn btn-outline-secondary med-btn purple modal-trigger'>Delete</button>
                     <button id="new-med-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="footer" id="report-footer">
-        <a id="code-term" class="waves-effect waves-light btn-large red lighten-2">Code Termination</a>
-        <a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2">Print Report</a>
+    <div id="delete-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this medication?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteMedication();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
+        </div>
     </div>
+
+    <div id="delete-proc-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this procedure?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteProcedure();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" id="report-footer">
+        <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
+        <a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Print Report</a>
+    </div>
+
+    <div id="code-term-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Code Termination</h4>
+            <hr>
+            <div class="center">
+                <button class="btn waves-effect waves-light btn-large modal-close" onclick="codeTerm('Deceased');">Deceased</button>
+                <button class="btn waves-effect waves-light btn-large modal-close" onclick="codeTerm('ROSC');">ROSC</button>
+            </div>
+        </div>
+    </div>
+
     <script src="cordova.js "></script>
     <script type="text/javascript " src="js/index.js "></script>
     <script type="text/javascript " src="scripts/buttons.js "></script>

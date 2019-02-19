@@ -1,4 +1,4 @@
-//import { jsPDF } from 'jspdf';
+var gadget = new cloudprint.Gadget();
 
 function generatePDF() {
     var filename = "CodeMate_Report_" + getDate() + ".pdf";
@@ -73,14 +73,17 @@ function generatePDF() {
     }
 
     pdfhtml += '</tbody></table></body></html>';
-    console.log(pdfhtml);
+    gadget.setPrintDocument("text/html", "Print", pdfhtml);
+    /*console.log(pdfhtml);
     var printWindow = window.open('', '', 'height=630,width=360');
     printWindow.document.write(pdfhtml);
     printWindow.document.close();
-    printWindow.print();
+    printWindow.print();*/
 }
 
+/*
 $('#pdf-btn').click(() => {
+
     var doc = new jsPDF();
 
     doc.text('Hello world!', 10, 10);
@@ -93,6 +96,7 @@ $('#pdf-btn').click(() => {
 
         pdf.fromData('<html><h1>Hello World</h1></html>', options)
             .then((base64) => 'ok') // it will
-            .catch((err) => console.err(err))*/
+            .catch((err) => console.err(err))
     //generatePDF();
 });
+*/

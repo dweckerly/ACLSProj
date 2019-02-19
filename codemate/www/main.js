@@ -642,3 +642,5 @@ function showCardioOptions() {
         $('#pulse-defib-btn').removeClass('red');
     }
 }
+
+//

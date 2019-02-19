@@ -122,7 +122,9 @@
     width: 100%;
 }
 
-.edit-med {
+.edit-med,
+.edit-proc,
+.history {
     display: block;
     margin-bottom: 20px;
     margin-top: 20px;

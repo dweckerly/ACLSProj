@@ -4,6 +4,9 @@ $('#code-term').click(() => {
 
 function codeTerm(reason) {
     $('#code-term').hide();
+    $('#print-report').show();
+    $('#term-reason').html(reason);
+    $('#term-reason').show();
     for (var member in timers) {
         clearInterval(timers[member].interval);
         delete timers[member];
@@ -12,6 +15,10 @@ function codeTerm(reason) {
         name: "End Code",
         desc: reason,
         time: timeNow()
+    });
+    actions.push({
+        name: 'elasped time',
+        desc: $('#elapsed-time').html()
     });
     saveCode(reason);
 }

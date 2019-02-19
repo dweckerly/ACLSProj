@@ -1,7 +1,14 @@
-//import { jsPDF } from 'jspdf';
+var gadget = new cloudprint.Gadget();
+var fileName = "test.pdf";
+
+var fileUrl = "";
 
 function generatePDF() {
-    var filename = "CodeMate_Report_" + getDate() + ".pdf";
+    fileName = "CM_Report_" + getDate() + "_" + timeNow() + ".pdf";
+
+    console.log("generating pdf...");
+    var doc = new jsPDF();
+
     //var pdfhtml = '<html><head><link rel="stylesheet" href="css/pdf.css" /></head><body>';
     var pdfhtml = '<html><head></head><body>';
     pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
@@ -73,26 +80,47 @@ function generatePDF() {
     }
 
     pdfhtml += '</tbody></table></body></html>';
-    console.log(pdfhtml);
-    var printWindow = window.open('', '', 'height=630,width=360');
-    printWindow.document.write(pdfhtml);
-    printWindow.document.close();
-    printWindow.print();
+
+    doc.text(20, 20, 'HELLO!');
+
+    doc.setFont("courier");
+    doc.setFontType("normal");
+    doc.text(20, 30, pdfhtml);
+
+    var pdfOutput = doc.output();
+    console.log(pdfOutput);
+
+    //NEXT SAVE IT TO THE DEVICE'S LOCAL FILE SYSTEM
+    console.log("file system...");
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+
+        console.log(fileSystem.name);
+        console.log(fileSystem.root.name);
+        console.log(fileSystem.root.fullPath);
+
+        fileSystem.root.getFile("test.pdf", { create: true }, function(entry) {
+            var fileEntry = entry;
+            console.log(entry);
+            fileUrl = fileEntry.toURL();
+            console.log(fileEntry.toURL());
+            entry.createWriter(function(writer) {
+                writer.onwrite = function(evt) {
+                    console.log("write success");
+                };
+
+                console.log("writing to file");
+                writer.write(pdfOutput);
+            }, function(error) {
+                console.log(error);
+            });
+
+            gadget.setPrintDocument("text/html", "Print", pdfhtml);
+            gadget.openPrintDialog();
+            /*console.log(pdfhtml);
+            var printWindow = window.open('', '', 'height=630,width=360');
+            printWindow.document.write(pdfhtml);
+            printWindow.document.close();
+            printWindow.print();*/
+        });
+    });
 }
-
-$('#pdf-btn').click(() => {
-    var doc = new jsPDF();
-
-    doc.text('Hello world!', 10, 10);
-    doc.save('a4.pdf');
-    /*
-        let options = {
-            documentSize: 'A4',
-            type: 'base64'
-        }
-
-        pdf.fromData('<html><h1>Hello World</h1></html>', options)
-            .then((base64) => 'ok') // it will
-            .catch((err) => console.err(err))*/
-    //generatePDF();
-});

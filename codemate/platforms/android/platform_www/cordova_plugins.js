@@ -222,6 +222,39 @@ module.exports = [
       "cordova"
     ],
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-inappbrowser.inappbrowser",
+    "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+    "pluginId": "cordova-plugin-inappbrowser",
+    "clobbers": [
+      "cordova.InAppBrowser.open",
+      "window.open"
+    ]
+  },
+  {
+    "id": "cordova-plugin-file-transfer.FileTransferError",
+    "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+    "pluginId": "cordova-plugin-file-transfer",
+    "clobbers": [
+      "window.FileTransferError"
+    ]
+  },
+  {
+    "id": "cordova-plugin-file-transfer.FileTransfer",
+    "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+    "pluginId": "cordova-plugin-file-transfer",
+    "clobbers": [
+      "window.FileTransfer"
+    ]
+  },
+  {
+    "id": "cordova-open.Open",
+    "file": "plugins/cordova-open/www/disusered.open.js",
+    "pluginId": "cordova-open",
+    "merges": [
+      "cordova.plugins.disusered"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -233,7 +266,10 @@ module.exports.metadata =
   "cordova-plugin-local-notification": "0.9.0-beta.3",
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-pdf-generator": "2.0.4",
-  "cordova-plugin-file": "6.0.1"
+  "cordova-plugin-file": "6.0.1",
+  "cordova-plugin-inappbrowser": "3.0.0",
+  "cordova-plugin-file-transfer": "1.7.1",
+  "cordova-open": "1.0.12"
 };
 // BOTTOM OF METADATA
 });

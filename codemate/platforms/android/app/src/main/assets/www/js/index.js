@@ -31,6 +31,7 @@ var app = {
         document.addEventListener("backbutton", function(e) {
             e.preventDefault();
         }, false);
+        window.open = cordova.InAppBrowser.open;
     },
 
     // Update DOM on a Received Event

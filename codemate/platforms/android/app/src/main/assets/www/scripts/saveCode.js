@@ -4,6 +4,7 @@ $('#code-term').click(() => {
 
 function codeTerm(reason) {
     $('#code-term').hide();
+    $('#print-report').show();
     for (var member in timers) {
         clearInterval(timers[member].interval);
         delete timers[member];

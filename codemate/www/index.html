@@ -15,6 +15,8 @@
     <script type="text/javascript" src="scripts/functions.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
     <script type="text/javascript" src="scripts/navigation.js"></script>
+    <script type="text/javascript" src="js/pdf/jspdf.debug.js"></script>
+    <script type="text/javascript" src="js/pdf/jspdf.min.js"></script>
     <script src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
 </head>
 
@@ -389,6 +391,7 @@
         <h3 class="header red-text text-lighten-2">Report</h3>
         <h5 id="code-start" class="center"></h5>
         <h5 id="elapsed-time" class="center "></h5>
+        <h5 id="term-reason" class="center" hidden></h5>
         <table id="report-table" class="highlight centered">
             <thead>
                 <tr>
@@ -549,7 +552,8 @@
 
     <div class="footer" id="report-footer">
         <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
-        <a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Print Report</a>
+        <a id="print-report" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Print Report</a>
+        <!--<a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2" onclick="openReportFile()">Open Report</a>-->
     </div>
 
     <div id="code-term-modal" class="modal">
@@ -560,6 +564,7 @@
             <div class="center">
                 <button class="btn waves-effect waves-light btn-large modal-close" onclick="codeTerm('Deceased');">Deceased</button>
                 <button class="btn waves-effect waves-light btn-large modal-close" onclick="codeTerm('ROSC');">ROSC</button>
+                <button class="btn waves-effect waves-light btn-large modal-close" onclick="codeTerm('Transferred Care');">Transferred Care</button>
             </div>
         </div>
     </div>

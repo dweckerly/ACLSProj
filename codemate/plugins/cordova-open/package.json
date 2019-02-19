@@ -1,0 +1,73 @@
+{
+  "_from": "cordova-open",
+  "_id": "cordova-open@1.0.12",
+  "_inBundle": false,
+  "_integrity": "sha1-PdbvwZLOxaPnRpVfPNYbmZ9NhDA=",
+  "_location": "/cordova-open",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-open",
+    "name": "cordova-open",
+    "escapedName": "cordova-open",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-open/-/cordova-open-1.0.12.tgz",
+  "_shasum": "3dd6efc192cec5a3e746955f3cd61b999f4d8430",
+  "_spec": "cordova-open",
+  "_where": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate",
+  "author": {
+    "name": "Carlos Antonio"
+  },
+  "bugs": {
+    "url": "https://github.com/disusered/cordova-open/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "com.disusered.open",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Open audio, video, images and more with applications installed on the user's device",
+  "devDependencies": {
+    "eslint": "^0.24.1",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0"
+  },
+  "homepage": "https://github.com/disusered/cordova-open",
+  "keywords": [
+    "cordova",
+    "file",
+    "open",
+    "intent",
+    "video",
+    "audio",
+    "image",
+    "photo",
+    "pdf",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-open",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/disusered/cordova-open.git"
+  },
+  "scripts": {
+    "lint": "gulp lint",
+    "watch": "gulp watch"
+  },
+  "version": "1.0.12"
+}

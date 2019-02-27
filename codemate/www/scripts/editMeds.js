@@ -1,6 +1,8 @@
 var editing = false;
 var editKey;
 
+var historyKey;
+
 function populateEditMedList() {
     $('#new-med-list').empty();
     $(medications).each(function(key, value) {
@@ -29,6 +31,7 @@ function populateHistory() {
 }
 
 function viewHistory(index) {
+    historyKey = index;
     actions = codeHistory[index].actions;
     populateReport();
     $('#code-term').hide();
@@ -40,7 +43,13 @@ function viewHistory(index) {
         $('#print-report').show();
         $('#report-container').fadeIn();
         $('#report-footer').fadeIn();
+        $('#report-delete-btn').show();
     });
+}
+
+function deleteReport() {
+    codeHistory.splice(historyKey, 1);
+    localStorage.setItem('Code_History', JSON.stringify(codeHistory));
 }
 
 function editMedication(key) {

@@ -122,6 +122,10 @@
     width: 100%;
 }
 
+#add-new-med-btn {
+    bottom: 80px;
+}
+
 .edit-med,
 .edit-proc,
 .history {

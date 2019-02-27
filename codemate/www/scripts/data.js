@@ -120,7 +120,7 @@ var defaultMedications = [{
     }
 ];
 
-var procedures = [{
+var defaultProcedures = [{
         name: "Interosseous",
         details: "",
         dataTag: "interos",
@@ -203,6 +203,7 @@ if (!jQuery.isEmptyObject(JSON.parse(localStorage.getItem('Code_History')))) {
     codeHistory = [];
 }
 
+var procedures = defaultProcedures;
 var newProcedures;
 if (JSON.parse(localStorage.getItem('New_Procedures')) != null) {
     newProcedures = JSON.parse(localStorage.getItem('New_Procedures'));

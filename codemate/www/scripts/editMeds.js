@@ -43,13 +43,22 @@ function viewHistory(index) {
         $('#print-report').show();
         $('#report-container').fadeIn();
         $('#report-footer').fadeIn();
-        $('#report-delete-btn').show();
+        $('#view-report-delete-btn').show();
     });
 }
 
 function deleteReport() {
     codeHistory.splice(historyKey, 1);
     localStorage.setItem('Code_History', JSON.stringify(codeHistory));
+    populateHistory();
+    returnToHistory();
+}
+
+function returnToHistory() {
+    $('#report-footer').fadeOut();
+    $('#report-container').fadeOut(() => {
+        $('#history-container').fadeIn();
+    });
 }
 
 function editMedication(key) {

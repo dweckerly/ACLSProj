@@ -1,6 +1,3 @@
-var paramIndex = 0;
-var newProcArr = [];
-
 $('#medications-btn').click(function() {
     $('#med-search').val("");
     medModalSearch();

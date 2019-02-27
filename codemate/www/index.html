@@ -430,7 +430,7 @@
                             </div>
                         </div>
                         <div id="new-proc-parameters">
-                            <a id="add-param-btn" class="btn waves-effect waves-light">Add Parameter<i class="material-icons">add</i></a>
+                            <a id="add-param-btn" class="btn waves-effect waves-light" onclick="addNewProcParam()">Add Parameter<i class="material-icons">add</i></a>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="new-proc-param-0" type="text" class="validate">
@@ -548,10 +548,22 @@
         </div>
     </div>
 
+    <div id="delete-report-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this report?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteReport();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
+        </div>
+    </div>
+
     <div class="footer" id="report-footer">
         <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
         <a id="print-report" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Get PDF</a>
-        <a id="report-delete-btn" class="waves-effect waves-light btn-large lighten-2 purple" onclick="deleteReport()">Delete</a>
+        <a id="view-report-delete-btn" data-target="delete-report-confirm-modal" class="waves-effect waves-light btn-large lighten-2 purple modal-trigger">Delete</a>
     </div>
 
     <div id="code-term-modal" class="modal">

@@ -1,4 +1,8 @@
+var paramIndex = 0;
+var newProcArr = [];
+
 var editProcIndex;
+var editProcFlag = false;
 
 $('#edit-proc-btn').click(() => {
     $('#med-proc-edit-container').fadeOut(() => {
@@ -19,7 +23,7 @@ function populateNewProcList() {
 
 function editProc(key) {
     editProcIndex = key;
-    console.log(newProcedures);
+    editProcFlag = true;
     resetNewProc();
     $('#new-proc-name').val(newProcedures[key].name);
     $('#new-proc-name-label').addClass("active");
@@ -55,10 +59,6 @@ $('#history-btn').click(() => {
     $('#med-proc-edit-container').fadeOut(() => {
         $('#history-container').fadeIn();
     });
-});
-
-$('#add-param-btn').click(() => {
-    addNewProcParam();
 });
 
 function addNewProcParam() {
@@ -146,13 +146,22 @@ function getNewProcParams() {
 }
 
 function saveProcedure(proc) {
+    paramIndex = 0;
+    newProcArr = [];
     newProcedures.push(proc);
     localStorage.setItem('New_Procedures', JSON.stringify(newProcedures));
     procedures.push(proc);
     resetNewProc();
+    if (editProcFlag) {
+        editProcFlag = false;
+        deleteProcedure();
+    }
 }
 
 $('#new-proc-cancel-btn').click(() => {
+    paramIndex = 0;
+    newProcArr = [];
+    editProcFlag = false;
     resetNewProc();
 });
 
@@ -169,7 +178,7 @@ function resetNewProc() {
                     </div>
                 </div>
                 <div id="new-proc-parameters">
-                    <a id="add-param-btn" class="btn waves-effect waves-light">Add Parameter<i class="material-icons">add</i></a>
+                    <a id="add-param-btn" class="btn waves-effect waves-light" onclick="addNewProcParam()">Add Parameter<i class="material-icons">add</i></a>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="new-proc-param-0" type="text" class="validate">
@@ -199,12 +208,18 @@ function resetNewProc() {
 }
 
 function deleteProcedure() {
+    paramIndex = 0;
+    newProcArr = [];
     newProcedures.splice(editProcIndex, 1);
     localStorage.setItem('New_Procedures', JSON.stringify(newProcedures));
     procedures = defaultProcedures;
     $(newProcedures).each((index) => {
         procedures.push(newProcedures[index]);
     });
+    returnToProcedures();
+}
+
+function returnToProcedures() {
     populateNewProcList();
     resetNewProc();
 }

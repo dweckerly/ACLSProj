@@ -8,16 +8,18 @@ var cardioOptionsVisible = false;
 var oralSelect = false;
 var nasalSelect = false;
 
+var worker = new Worker('scripts/metronome.js');
+
 $(document).ready(function() {
 
 });
-
 
 document.addEventListener("backbutton", onBackKeyDown, false);
 
 function onBackKeyDown() {}
 
 $('#start-btn').click(function() {
+    $('#view-report-delete-btn').hide();
     $('#print-report').hide();
     $('#term-reason').hide();
     $('#code-term').show();

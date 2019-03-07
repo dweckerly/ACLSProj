@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package io.cordova.hellocordova;
+package io.cordova.codemate;
 
 public final class R {
   public static final class attr {
@@ -215,12 +215,12 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderAuthority io.cordova.hellocordova:fontProviderAuthority}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderCerts io.cordova.hellocordova:fontProviderCerts}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderFetchStrategy io.cordova.hellocordova:fontProviderFetchStrategy}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout io.cordova.hellocordova:fontProviderFetchTimeout}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderPackage io.cordova.hellocordova:fontProviderPackage}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderQuery io.cordova.hellocordova:fontProviderQuery}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderAuthority io.cordova.codemate:fontProviderAuthority}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderCerts io.cordova.codemate:fontProviderCerts}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderFetchStrategy io.cordova.codemate:fontProviderFetchStrategy}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout io.cordova.codemate:fontProviderFetchTimeout}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderPackage io.cordova.codemate:fontProviderPackage}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderQuery io.cordova.codemate:fontProviderQuery}</code></td><td></td></tr>
      * </table>
      * @see #FontFamily_fontProviderAuthority
      * @see #FontFamily_fontProviderCerts
@@ -234,17 +234,17 @@ public final class R {
         0x7f010005, 0x7f010006
       };
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontProviderAuthority}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontProviderAuthority}
      * attribute's value can be found in the {@link #FontFamily} array.
      *
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name io.cordova.hellocordova:fontProviderAuthority
+     * @attr name io.cordova.codemate:fontProviderAuthority
      */
     public static final int FontFamily_fontProviderAuthority=0;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontProviderCerts}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontProviderCerts}
      * attribute's value can be found in the {@link #FontFamily} array.
      *
      * <p>May be a reference to another resource, in the form
@@ -252,11 +252,11 @@ public final class R {
      * attribute in the form
      * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
      *
-     * @attr name io.cordova.hellocordova:fontProviderCerts
+     * @attr name io.cordova.codemate:fontProviderCerts
      */
     public static final int FontFamily_fontProviderCerts=1;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontProviderFetchStrategy}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontProviderFetchStrategy}
      * attribute's value can be found in the {@link #FontFamily} array.
      *
      * <p>Must be one of the following constant values.</p>
@@ -269,11 +269,11 @@ public final class R {
      * <tr><td>blocking</td><td>0</td><td></td></tr>
      * </table>
      *
-     * @attr name io.cordova.hellocordova:fontProviderFetchStrategy
+     * @attr name io.cordova.codemate:fontProviderFetchStrategy
      */
     public static final int FontFamily_fontProviderFetchStrategy=2;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontProviderFetchTimeout}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontProviderFetchTimeout}
      * attribute's value can be found in the {@link #FontFamily} array.
      *
      * <p>May be an integer value, such as "<code>100</code>".
@@ -286,27 +286,27 @@ public final class R {
      * <tr><td>forever</td><td>ffffffff</td><td></td></tr>
      * </table>
      *
-     * @attr name io.cordova.hellocordova:fontProviderFetchTimeout
+     * @attr name io.cordova.codemate:fontProviderFetchTimeout
      */
     public static final int FontFamily_fontProviderFetchTimeout=3;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontProviderPackage}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontProviderPackage}
      * attribute's value can be found in the {@link #FontFamily} array.
      *
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name io.cordova.hellocordova:fontProviderPackage
+     * @attr name io.cordova.codemate:fontProviderPackage
      */
     public static final int FontFamily_fontProviderPackage=4;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontProviderQuery}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontProviderQuery}
      * attribute's value can be found in the {@link #FontFamily} array.
      *
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name io.cordova.hellocordova:fontProviderQuery
+     * @attr name io.cordova.codemate:fontProviderQuery
      */
     public static final int FontFamily_fontProviderQuery=5;
     /**
@@ -316,9 +316,9 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #FontFamilyFont_font io.cordova.hellocordova:font}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_fontStyle io.cordova.hellocordova:fontStyle}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_fontWeight io.cordova.hellocordova:fontWeight}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_font io.cordova.codemate:font}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_fontStyle io.cordova.codemate:fontStyle}</code></td><td></td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_fontWeight io.cordova.codemate:fontWeight}</code></td><td></td></tr>
      * </table>
      * @see #FontFamilyFont_font
      * @see #FontFamilyFont_fontStyle
@@ -328,7 +328,7 @@ public final class R {
         0x7f010000, 0x7f010007, 0x7f010008
       };
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#font}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#font}
      * attribute's value can be found in the {@link #FontFamilyFont} array.
      *
      * <p>May be a reference to another resource, in the form
@@ -336,11 +336,11 @@ public final class R {
      * attribute in the form
      * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
      *
-     * @attr name io.cordova.hellocordova:font
+     * @attr name io.cordova.codemate:font
      */
     public static final int FontFamilyFont_font=0;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontStyle}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontStyle}
      * attribute's value can be found in the {@link #FontFamilyFont} array.
      *
      * <p>Must be one of the following constant values.</p>
@@ -353,16 +353,16 @@ public final class R {
      * <tr><td>normal</td><td>0</td><td></td></tr>
      * </table>
      *
-     * @attr name io.cordova.hellocordova:fontStyle
+     * @attr name io.cordova.codemate:fontStyle
      */
     public static final int FontFamilyFont_fontStyle=1;
     /**
-     * <p>This symbol is the offset where the {@link io.cordova.hellocordova.R.attr#fontWeight}
+     * <p>This symbol is the offset where the {@link io.cordova.codemate.R.attr#fontWeight}
      * attribute's value can be found in the {@link #FontFamilyFont} array.
      *
      * <p>May be an integer value, such as "<code>100</code>".
      *
-     * @attr name io.cordova.hellocordova:fontWeight
+     * @attr name io.cordova.codemate:fontWeight
      */
     public static final int FontFamilyFont_fontWeight=2;
   }

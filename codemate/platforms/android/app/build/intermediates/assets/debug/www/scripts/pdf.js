@@ -8,7 +8,7 @@ function generatePDF() {
     pdfhtml += "<h3>Code Started: " + actions[0].time + "</h3>";
     pdfhtml += "<h3>" + actions[actions.length - 1].desc + "</h3>";
     pdfhtml += "<h3>Reason: " + $('#term-reason').html() + "</h3>";
-    pdfhtml += `<table style="width:100%"><tbody id="report-table-body" style="border:1px solid black"><tr><th>Name</th><th>Details</th><th>Time</th></tr>`;
+    pdfhtml += `<table style="width:100%"><tbody id="report-table-body" style="border:1px solid black"><tr><th>Action</th><th>Details</th><th>Time</th></tr>`;
     for (let i = 0; i < actions.length; i++) {
         for (let j = 0; j < medications.length; j++) {
             if (actions[i].tag == medications[j].dataTag) {

@@ -15,9 +15,6 @@
     <script type="text/javascript" src="scripts/functions.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
     <script type="text/javascript" src="scripts/navigation.js"></script>
-    <script type="text/javascript" src="js/pdf/jspdf.debug.js"></script>
-    <script type="text/javascript" src="js/pdf/jspdf.min.js"></script>
-    <script src="https://www.google.com/cloudprint/client/cpgadget.js"></script>
 </head>
 
 <body>
@@ -40,7 +37,7 @@
     <div id="options-container" class="center" style="display:none; margin:15px;">
         <a id="medications-btn" data-target="medication-modal" class="waves-effect waves-light btn modal-trigger">Medications</a>
         <a id="procedures-btn" data-target="procedure-modal" class="waves-effect waves-light btn modal-trigger">Procedures</a>
-        <a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>
+        <!--<a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>-->
     </div>
     <script src="scripts/metronome.js"></script>
 
@@ -429,22 +426,22 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="new-proc-name" type="text" class="validate">
-                                <label for="new-proc-name">Name</label>
+                                <label id="new-proc-name-label" for="new-proc-name">Name</label>
                             </div>
                         </div>
                         <div id="new-proc-parameters">
-                            <a id="add-param-btn" class="btn waves-effect waves-light">Add Parameter<i class="material-icons">add</i></a>
+                            <a id="add-param-btn" class="btn waves-effect waves-light" onclick="addNewProcParam()">Add Parameter<i class="material-icons">add</i></a>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <input id="new-proc-param-0" type="text" class="validate">
-                                    <label for="new-proc-param-0">Parameter</label>
+                                    <label id="new-proc-param-0-label" for="new-proc-param-0">Parameter</label>
                                 </div>
                             </div>
                             <div id="param-0-val-container">
                                 <div class="row">
                                     <div class="input-field col s6 center">
                                         <input id="new-proc-val-0-0" type="text" class="validate">
-                                        <label for="new-proc-val-0-0">Value</label>
+                                        <label id="new-proc-val-0-0-label" for="new-proc-val-0-0">Value</label>
                                     </div>
                                 </div>
                             </div>
@@ -460,6 +457,7 @@
             </div>
             <div align="center">
                 <button id="new-proc-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
+                <button hidden id="new-proc-delete-btn" data-target="delete-proc-confirm-modal" class='btn btn-outline-secondary med-btn purple modal-trigger'>Delete</button>
                 <button id="new-proc-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
             </div>
         </div>
@@ -550,10 +548,22 @@
         </div>
     </div>
 
+    <div id="delete-report-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this report?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteReport();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
+            </div>
+        </div>
+    </div>
+
     <div class="footer" id="report-footer">
         <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
-        <a id="print-report" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Print Report</a>
-        <!--<a id="pdf-btn" class="waves-effect waves-light btn-large lighten-2" onclick="openReportFile()">Open Report</a>-->
+        <a id="print-report" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Get PDF</a>
+        <a id="view-report-delete-btn" data-target="delete-report-confirm-modal" class="waves-effect waves-light btn-large lighten-2 purple modal-trigger">Delete</a>
     </div>
 
     <div id="code-term-modal" class="modal">
@@ -573,6 +583,7 @@
     <script type="text/javascript " src="js/index.js "></script>
     <script type="text/javascript " src="scripts/buttons.js "></script>
     <script type="text/javascript " src="scripts/editMeds.js "></script>
+    <script type="text/javascript " src="scripts/editProcs.js "></script>
     <script type="text/javascript " src="scripts/saveCode.js "></script>
     <script type="text/javascript " src="scripts/pdf.js "></script>
     <script type="text/javascript " src="main.js "></script>

@@ -8,8 +8,6 @@ var cardioOptionsVisible = false;
 var oralSelect = false;
 var nasalSelect = false;
 
-var worker = new Worker('scripts/metronome.js');
-
 $(document).ready(function() {
 
 });
@@ -139,7 +137,7 @@ function populateMedicationModal() {
                 <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
             </div>
             `);
-        } else if (medications[i].route == 'IVP') {
+        } else if (medications[i].route == 'IVP' && medications[i].type != "timer") {
             $('#med-btn-container').append(`
             <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
             <div class="collap-body" id="` + medications[i].dataTag + `-body">
@@ -151,8 +149,20 @@ function populateMedicationModal() {
                     <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
                 </div>
                 <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-            </div>
-            `);
+            </div>`);
+        } else if (medications[i].route == 'IVP' && medications[i].type == "timer") {
+            $('#med-btn-container').append(`
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                </div>
+                <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+            </div>`);
         } else {
             $('#med-btn-container').append(`
             <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
@@ -544,8 +554,8 @@ function createTimer(tag, type) {
                 'min': t.alertMin,
                 'sec': t.alertSec
             },
-            'doseAmount': item.doseAmount,
-            'doseUnit': item.doseUnit,
+            'doseAmount': item.dose,
+            'doseUnit': item.unit,
             'route': item.route
         };
     }

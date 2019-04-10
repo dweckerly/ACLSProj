@@ -9,9 +9,9 @@ var defaultMedications = [{
     {
         name: "Atropine",
         dataTag: "atro",
-        doseAmount: 1,
-        doseUnit: "MG",
-        route: "IV",
+        dose: [1],
+        unit: "MG",
+        route: "IVP",
         type: "timer"
     },
     {
@@ -49,9 +49,9 @@ var defaultMedications = [{
     {
         name: "Epinephrine",
         dataTag: "epi",
-        doseAmount: 1.0,
-        doseUnit: "MG",
-        route: "IV",
+        dose: [1.0],
+        unit: "MG",
+        route: "IVP",
         type: "timer"
     },
     {
@@ -65,9 +65,9 @@ var defaultMedications = [{
     {
         name: "Glucagon",
         dataTag: "gluca",
-        doseAmount: 1,
-        doseUnit: "MG",
-        route: "IM",
+        dose: [1],
+        unit: "MG",
+        route: "IVP",
         type: "alert"
     },
     {
@@ -89,9 +89,9 @@ var defaultMedications = [{
     {
         name: "Narcan",
         dataTag: "narca",
-        doseAmount: 2,
-        doseUnit: "MG",
-        route: "IV",
+        dose: [2],
+        unit: "MG",
+        route: "IVP",
         type: "timer"
     },
     {

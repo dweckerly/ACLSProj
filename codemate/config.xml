@@ -28,7 +28,6 @@
     <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
     <plugin name="cordova-pdf-generator" spec="^2.0.4" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
     <plugin name="cordova-open" spec="^1.0.12" />
     <engine name="android" spec="^7.1.1" />
 </widget>

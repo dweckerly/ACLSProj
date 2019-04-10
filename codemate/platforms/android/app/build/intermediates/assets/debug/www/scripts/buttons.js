@@ -63,6 +63,9 @@ function confirmMeds() {
         $(".collap-body").each(function() {
             $(this).css("display", "none");
         });
+        if ($(this).attr('data-timer')) {
+            createTimer(tag, 'medication');
+        }
         actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
         callToast(name);
     });

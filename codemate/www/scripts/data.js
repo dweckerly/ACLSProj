@@ -145,7 +145,7 @@ var defaultMedications = [{
 ];
 
 var defaultProcedures = [{
-        name: "Interosseous",
+        name: "Intraosseous",
         details: "",
         dataTag: "interos",
         type: "alert",

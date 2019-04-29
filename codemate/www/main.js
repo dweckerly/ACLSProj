@@ -336,8 +336,8 @@ $('#io-selection-confirm').click(() => {
         side = "N/A";
         flag = true;
     }
-    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
-    callToast('Interosseous');
+    actions.push({ 'name': 'Intraosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
+    callToast('Intraosseous');
 });
 
 $('#pulse-no-action').click(() => {

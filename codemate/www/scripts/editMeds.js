@@ -212,3 +212,13 @@ function toEditMedList() {
     $('#new-med-list').show();
     $('#add-edit-med').fadeIn();
 }
+
+function showTimerContainer() {
+    $('#timer-label').css("color", "#4db6ac");
+    $('#timer-input-container').show();
+}
+
+function hideTimerContainer() {
+    $('#timer-label').css("color", "lightgrey");
+    $('#timer-input-container').hide();
+}

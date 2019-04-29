@@ -503,22 +503,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12" id="timer-selection-container">
+                        <div class="input-field col s6" align="center">
+                            <h3 id="timer-label" style="color: lightgrey;">Timer</h3>
+                        </div>
+                        <div class="input-field col s6" id="timer-selection-container">
                             <p>
                                 <label>
-                                    <input id="timer-no" name="group2" type="radio" value="false" checked />
-                                    <span>No Timer</span>
+                                    <input id="timer-no" name="group2" type="radio" value="false" onclick="hideTimerContainer()" checked />
+                                    <span>No</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input id="timer-yes" name="group2" type="radio" value="true"/>
-                                    <span>Has Timer</span>
+                                    <input id="timer-yes" name="group2" type="radio" value="true" onclick="showTimerContainer()"/>
+                                    <span>Yes</span>
                                 </label>
                             </p>
                         </div>
                     </div>
-                    <div class="row" hidden>
+                    <div id="timer-input-container" class="row" hidden>
                         <div class="input-field col s6">
                             <input id="timer-minute" type="number" step="1" min="0" class="validate">
                             <label id="timer-minute-label" for="timer-minute">Minutes</label>

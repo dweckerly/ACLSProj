@@ -137,7 +137,7 @@ function populateMedicationModal() {
                 <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
             </div>
             `);
-        } else if (medications[i].route == 'IVP' && medications[i].type != "timer") {
+        } else if (medications[i].route == 'IVP' && medications[i].timer == false) {
             $('#med-btn-container').append(`
             <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
             <div class="collap-body" id="` + medications[i].dataTag + `-body">
@@ -150,7 +150,7 @@ function populateMedicationModal() {
                 </div>
                 <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
             </div>`);
-        } else if (medications[i].route == 'IVP' && medications[i].type == "timer") {
+        } else if (medications[i].route == 'IVP' && medications[i].timer != false) {
             $('#med-btn-container').append(`
             <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
             <div class="collap-body" id="` + medications[i].dataTag + `-body">

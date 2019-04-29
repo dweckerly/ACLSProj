@@ -202,8 +202,9 @@ function createDoseArray(min, max, inc) {
     return arr;
 }
 
-function showTimerConfirm() {
-    $('')
+function showTimerConfirm(tag) {
+    $('#timer-confirm-title').html(medications[tag].name);
+    $('#timer-confirm-desc').html();
     $('#timer-confirm-modal').modal();
 }
 

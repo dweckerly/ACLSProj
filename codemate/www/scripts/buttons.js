@@ -64,7 +64,11 @@ function confirmMeds() {
             $(this).css("display", "none");
         });
         if ($(this).attr('data-timer')) {
-            createTimer(tag, 'medication');
+            if (tag in timers) {
+                restartTimer(timers[tag]);
+            } else {
+                createTimer(tag, 'medication');
+            }
         }
         actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
         callToast(name);

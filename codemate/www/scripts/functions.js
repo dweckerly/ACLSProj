@@ -110,6 +110,10 @@ function clearTimer(arr) {
     $('#' + arr['id'] + '-seconds').html('0' + arr['sec']);
 }
 
+function resetTimer(arr) {
+
+}
+
 function restartTimer(arr) {
     clearTimer(arr);
     startTimer(arr, true);
@@ -196,6 +200,11 @@ function createDoseArray(min, max, inc) {
         arr.push(i.toFixed(2));
     }
     return arr;
+}
+
+function showTimerConfirm() {
+    $('')
+    $('#timer-confirm-modal').modal();
 }
 
 var sortByProperty = function(property) {

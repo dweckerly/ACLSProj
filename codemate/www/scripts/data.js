@@ -149,35 +149,35 @@ var defaultProcedures = [{
         details: "",
         dataTag: "interos",
         type: "alert",
-        timer: "false"
+        timer: false
     },
     {
         name: "Intubation",
         details: "",
         dataTag: "intubat",
         type: "alert",
-        timer: "false"
+        timer: false
     },
     {
         name: "IV",
         details: "",
         dataTag: "iv",
         type: "alert",
-        timer: "false"
+        timer: false
     },
     {
         name: "Nasogastric Tube",
         details: "",
         dataTag: "nasogas",
         type: "alert",
-        timer: "false"
+        timer: false
     },
     {
         name: "Pacing",
         details: "",
         dataTag: "pacing",
         type: "alert",
-        timer: "false"
+        timer: false
     },
     {
         name: "Pulse Check",
@@ -189,36 +189,6 @@ var defaultProcedures = [{
             sec: 45
         }
     },
-];
-
-var timersData = [{
-        name: "Epinephrine",
-        alertMin: 2,
-        alertSec: 55,
-        dataTag: "epi",
-        type: "medication"
-    },
-    {
-        name: "Pulse/Defib",
-        alertMin: 1,
-        alertSec: 45,
-        dataTag: "pulse",
-        type: "procedure"
-    },
-    {
-        name: "Atropine",
-        alertMin: 2,
-        alertSec: 55,
-        dataTag: "atro",
-        type: "medication"
-    },
-    {
-        name: "Narcan",
-        alertMin: 14,
-        alertSec: 55,
-        dataTag: "narca",
-        type: "medication"
-    }
 ];
 
 var medTest = JSON.parse(localStorage.getItem('Medications'));

@@ -366,6 +366,7 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         createTimer("pulse", "procedure");
     }
+    $('#pulse-count').html("count: " + (timers['pulse'].count + 1));
     actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Pulse Check');
 });
@@ -504,7 +505,7 @@ $('#naso-selection-confirm').click(() => {
 });
 
 function createTimer(tag, type) {
-    var data, item, t;
+    var data, item;
     if (type == 'procedure') {
         data = procedures;
     } else if (type == 'medication') {
@@ -513,12 +514,6 @@ function createTimer(tag, type) {
     for (let i = 0; i < data.length; i++) {
         if (data[i].dataTag == tag) {
             item = data[i];
-        }
-    }
-
-    for (let i = 0; i < timersData.length; i++) {
-        if (timersData[i].dataTag == item.dataTag) {
-            t = timersData[i];
         }
     }
 
@@ -534,8 +529,8 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': t.alertMin,
-                'sec': t.alertSec
+                'min': item.timer.min,
+                'sec': item.timer.sec
             },
             'details': item.details
         };
@@ -551,48 +546,62 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': t.alertMin,
-                'sec': t.alertSec
+                'min': item.timer.min,
+                'sec': item.timer.sec
             },
             'doseAmount': item.dose,
             'doseUnit': item.unit,
             'route': item.route
         };
     }
-
-    $('#timer-container').append(`
-<div class="col s6 m4 l3 xl2">
-    <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card" align="center">
-        <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
-        <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
-            <div class="card-content center">
-                <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
-            </div>
-            <div class="card-action center" id="` + item.dataTag + `-timer">
-                <span class="flow-text truncate timer-name">` + item.name + `</span>
+    if (item.dataTag == "pulse") {
+        $('#timer-container').append(`
+        <div class="col s6 m4 l3 xl2">
+            <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card" align="center">
+                <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
+                <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
+                    <div class="card-content center">
+                        <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
+                    </div>
+                    <div class="card-action center" id="` + item.dataTag + `-timer">
+                        <span class="flow-text truncate timer-name">` + item.name + `</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<script>
-$('#` + item.dataTag + `-timer-div').click(function () {
-    var id = $(this).attr('data');
-    $('#` + item.dataTag + `-count').html("count: " + (timers[id].count + 1));
-    if(id == 'pulse') {
-        $('#pulse-btn').click();
+        <script>
+        $('#` + item.dataTag + `-timer-div').click(function () {
+            $('#pulse-btn').click();
+        });
+        </script>
+            `);
+        startTimer(timers[item.dataTag]);
     } else {
-        restartTimer(timers[id]);
+        $('#timer-container').append(`
+        <div class="col s6 m4 l3 xl2">
+            <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card modal-trigger" data-target="timer-confirm-modal" align="center">
+                <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
+                <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
+                    <div class="card-content center">
+                        <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
+                    </div>
+                    <div class="card-action center" id="` + item.dataTag + `-timer">
+                        <span class="flow-text truncate timer-name">` + item.name + `</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        $('#` + item.dataTag + `-timer-div').click(function () {
+            $('#` + item.dataTag + `-count').html("count: " + (timers[id].count + 1));
+            showTimerConfirm(` + item.dataTag + `);
+        });
+        </script>
+            `);
+        startTimer(timers[item.dataTag]);
+        initMaterial();
     }
-});
-</script>
-    `);
-    startTimer(timers[item.dataTag]);
 }
-
-$('.timer-card').click(function() {
-    var id = $(this).attr('data');
-    restartTimer(timers[id]);
-});
 
 function showDefibOptions() {
     if (defibOptionsVisible) {

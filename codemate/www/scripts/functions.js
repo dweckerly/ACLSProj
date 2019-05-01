@@ -197,7 +197,7 @@ function initMaterial() {
 function createDoseArray(min, max, inc) {
     var arr = [];
     if (inc == 0) {
-        arr.push(min.toFixed(2));
+        arr.push(parseFloat(min).toFixed(2));
     } else {
         for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
             arr.push(i.toFixed(2));

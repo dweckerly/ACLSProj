@@ -167,7 +167,6 @@ $('#new-med-save-btn').click(() => {
     } else if ($('#drip-type').prop('checked')) {
         route = "drip";
     }
-
     let timer;
     if ($('#timer-no').prop('checked')) {
         timer = false;

@@ -52,13 +52,24 @@ function dropMeds() {
 function confirmMeds() {
     $(".med-btn-confirm").click(function() {
         var tag = $(this).attr('data-tag');
+        var med;
+        for (i = 0; i < medications.length; i++) {
+            if (medications[i].dataTag == tag) {
+                med = medications[i];
+            }
+        }
         var name = $('#' + tag + '-btn-label').html();
         if ($('#' + tag + '-dose-select').val() != null) {
-            var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html();
+            var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html() + " " + med.route;
             var flag = false;
         } else {
-            var desc = "? " + $('#' + tag + '-unit').html();
-            var flag = true;
+            if (med.dose.length > 1) {
+                var desc = "? " + med.unit + " " + med.route;;
+                var flag = true;
+            } else {
+                var desc = med.dose[0] + " " + med.unit + " " + med.route;;
+                var flag = false;
+            }
         }
         $(".collap-body").each(function() {
             $(this).css("display", "none");

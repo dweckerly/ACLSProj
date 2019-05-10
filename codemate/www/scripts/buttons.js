@@ -131,3 +131,13 @@ $(".rhytm-btn").click(function() {
     actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
     callToast(name);
 });
+
+$('#timer-confirm-btn').click(function() {
+    let tag = this.dataTag;
+    let name = $('#timer-confirm-title').html();
+    let desc = $('#timer-confirm-desc').html();
+    $('#' + tag + '-count').html("count: " + (timers[tag].count + 1) + "");
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
+    callToast(name);
+
+});

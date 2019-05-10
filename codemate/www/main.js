@@ -387,12 +387,14 @@ $('#pulse-selection-confirm').click(() => {
     if (cardioOptionsVisible) {
         if ($('#cardio-select-joules').val() == null) {
             var desc = "Sync. Cardioversion (?) joules";
+            flag = true;
         } else {
             var desc = "Sync. Cardioversion " + $('#cardio-select-joules').val() + " joules";
         }
     } else if (defibOptionsVisible) {
         if ($('#defib-select-joules').val() == null) {
             var desc = "Defibrillation (?) joules";
+            flag = true;
         } else {
             var desc = "Defibrillation " + $('#defib-select-joules').val() + " joules";
         }
@@ -631,8 +633,7 @@ function createTimer(tag, type) {
         </div>
         <script>
         $('#` + item.dataTag + `-timer-div').click(function () {
-            $('#` + item.dataTag + `-count').html("count: " + (timers[id].count + 1));
-            showTimerConfirm(` + item.dataTag + `);
+            setTimerConfirmData("` + item.dataTag + `");
         });
         </script>
             `);

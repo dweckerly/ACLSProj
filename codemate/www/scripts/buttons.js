@@ -92,6 +92,7 @@ $('#back-to-code').click(() => {
     $('#report-container').fadeOut(() => {
         $('#main-nav').fadeIn();
         $('#options-container').fadeIn();
+        $('#rhythm-footer').fadeIn();
         $('#timer-container').fadeIn();
     });
 });
@@ -100,6 +101,7 @@ $('#end-btn').click(() => {
     populateReport();
     $('#main-nav').fadeOut();
     $('#options-container').fadeOut();
+    $('#rhythm-footer').fadeOut();
     $('#timer-container').fadeOut(() => {
         $('#report-container').fadeIn();
         $('#report-footer').fadeIn();
@@ -124,12 +126,12 @@ $('#back-to-start').click(() => {
 });
 
 $(".rhytm-btn").click(function() {
-    let data = this.data;
-    let name = "Rhythm: " + data;;
+    let data = $(this).attr('data');
+    let name = data;
     let tag = "rhythm-" + data;
-    let desc = name;
+    let desc = "Rhythm: " + data;
     actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
-    callToast(name);
+    callToast(desc);
 });
 
 $('#timer-confirm-btn').click(function() {

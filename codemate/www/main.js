@@ -26,6 +26,7 @@ $('#start-btn').click(function() {
     populateMedicationModal();
     $('#start-container').fadeOut(function() {
         $('#options-container').fadeIn();
+        $('#rhythm-footer').fadeIn();
         startTimer(timers.code);
         $('#pulse-btn').click();
     });
@@ -42,67 +43,29 @@ function populateReport() {
     $('#code-start').html("Code Started: " + actions[0].time);
     $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
     for (let i = 0; i < actions.length; i++) {
-        for (let j = 0; j < medications.length; j++) {
-            if (actions[i].tag == medications[j].dataTag) {
-                if (actions[i].desc == "") {
-                    actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
-                }
-                if ('flag' in actions[i]) {
-                    if (actions[i].flag) {
-                        $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                    } else {
-                        $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                    }
-                } else {
-                    $('#report-table-body').append(`
-                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+        if ('flag' in actions[i]) {
+            if (actions[i].flag) {
+                $('#report-table-body').append(`
+                    <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                     <td> ` + actions[i].name + ` </td> 
                     <td class="report-desc"> ` + actions[i].desc + ` </td> 
                     <td> ` + actions[i].time + ` </td> 
                     </tr>`);
-                }
+            } else {
+                $('#report-table-body').append(`
+                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                <td> ` + actions[i].name + ` </td> 
+                <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                <td> ` + actions[i].time + ` </td> 
+                </tr>`);
             }
-        }
-        for (let j = 0; j < procedures.length; j++) {
-            if (actions[i].tag == procedures[j].dataTag) {
-                if (actions[i].desc == "") {
-                    actions[i].desc = procedures[j].details;
-                }
-                if ('flag' in actions[i]) {
-                    if (actions[i].flag) {
-                        $('#report-table-body').append(`
-                            <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
-                            <td> ` + actions[i].name + ` </td> 
-                            <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                            <td> ` + actions[i].time + ` </td> 
-                            </tr>`);
-                    } else {
-                        $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                    }
-                } else {
-                    $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                }
-            }
+        } else {
+            $('#report-table-body').append(`
+                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                <td> ` + actions[i].name + ` </td> 
+                <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                <td> ` + actions[i].time + ` </td> 
+                </tr>`);
         }
     }
     $('#report-table-body').append(`<script>

@@ -1,7 +1,7 @@
 {
     "name": "codemate",
     "displayName": "CodeMate",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A cardiopulmonary event tracker.",
     "main": "index.js",
     "scripts": {

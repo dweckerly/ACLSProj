@@ -406,7 +406,7 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         createTimer("pulse", "procedure");
     }
-    $('#pulse-count').html("count: " + (timers['pulse'].count + 1));
+    $('#pulse-count').html("count: " + timers['pulse'].count);
     actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Pulse Check');
 });

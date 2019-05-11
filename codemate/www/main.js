@@ -293,6 +293,7 @@ $('#new-proc-confirm').click(function() {
         let val = $(this).val();
         if(val == null || val == undefined || val == "") {
             flag = true;
+            val = '?';
         }
         desc += label + ': ' + val + ', ';
     });

@@ -287,16 +287,19 @@ $('#new-proc-confirm').click(function() {
     let name = procedures[id].name;
     let tag = procedures[id].dataTag;
     let desc = "";
+    let flag = false;
     $('#new-selection-container').find('select').each(function() {
         let label = this.id.replace('new-select-', "");
         let val = $(this).val();
+        if(val == null || val == undefined || val == "") {
+            flag = true;
+        }
         desc += label + ': ' + val + ', ';
     });
+    desc = desc.slice(0, -2);
 
-    desc = desc.slice(0, -2)
-    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc });
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
     callToast(name);
-    console.log(actions);
 });
 
 $('#select-site-confirm').click(() => {

@@ -175,12 +175,12 @@ $('#new-med-save-btn').click(() => {
             err = "Please input valid timer information.";
         } else {
             let tMin, tSec;
-            if ($('#timer-second').val() == undefined) {
+            if ($('#timer-second').val() == undefined || $('#timer-second').val() == null || $('#timer-second').val() == "") {
                 tSec = 0;
             } else {
                 tSec = parseInt($('#timer-second').val());
             }
-            if ($('#timer-minute').val() == undefined) {
+            if ($('#timer-minute').val() == undefined || $('#timer-minute').val() == null || $('#timer-minute').val() == "") {
                 tMin = 0;
             } else {
                 tMin = parseInt($('#timer-minute').val());
@@ -211,6 +211,7 @@ $('#new-med-save-btn').click(() => {
             medications[editKey].dose = createDoseArray(min, max, inc);
             medications[editKey].unit = unit;
             medications[editKey].route = route;
+            medications[editKey].timer = timer;
         } else {
             let tag = name.replace(/\s/g, "") + '-' + route;
             var newMed = {

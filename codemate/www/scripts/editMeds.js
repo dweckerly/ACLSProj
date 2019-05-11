@@ -82,6 +82,22 @@ function populateEditMedication() {
         $('#ivp-type').prop('checked', true);
     }
 
+    if(!medications[editKey].timer) {
+        $('#timer-no').prop('checked', true);
+        $('#timer-yes').prop('checked', false);
+        hideTimerContainer();
+        $('#timer-minute-label').removeClass('active');
+        $('#timer-second-label').removeClass('active');
+    } else {
+        $('#timer-no').prop('checked', false);
+        $('#timer-yes').prop('checked', true);
+        showTimerContainer();
+        $('#timer-minute-label').addClass('active');
+        $('#timer-minute').val(medications[editKey].timer.min);
+        $('#timer-second-label').addClass('active');
+        $('#timer-second').val(medications[editKey].timer.sec);
+    }
+
     $('#new-med-min-dose').val(medications[editKey].dose[0]);
     $('#new-med-max-dose').val(medications[editKey].dose[medications[editKey].dose.length - 1]);
     if (medications[editKey].dose.length > 1) {

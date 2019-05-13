@@ -107,3 +107,12 @@ $('#back-to-start').click(() => {
         location.reload();
     });
 });
+
+$(".rhytm-btn").click(function() {
+    let data = this.data;
+    let name = "Rhythm: " + data;;
+    let tag = "rhythm-" + data;
+    let desc = name;
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
+    callToast(name);
+});

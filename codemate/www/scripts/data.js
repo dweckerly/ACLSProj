@@ -1,5 +1,5 @@
 var defaultMedications = [{
-        name: "Amioderone",
+        name: "Amiodarone",
         dataTag: "amni",
         dose: [150, 300],
         unit: "MG",

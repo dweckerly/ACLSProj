@@ -26,8 +26,6 @@ function codeTerm(reason) {
 }
 
 function saveCode(reason) {
-    console.log(codeHistory);
     codeHistory.push({ name: reason.substring(0, 1) + ": " + getDate(), actions: actions });
-    console.log(codeHistory);
     localStorage.setItem('Code_History', JSON.stringify(codeHistory));
 }

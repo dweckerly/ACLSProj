@@ -298,7 +298,6 @@ $('#new-proc-confirm').click(function() {
         desc += label + ': ' + val + ', ';
     });
     desc = desc.slice(0, -2);
-
     actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
     callToast(name);
 });

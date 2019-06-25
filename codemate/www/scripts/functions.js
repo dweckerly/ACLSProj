@@ -54,14 +54,6 @@ function timerDisplay(arr) {
 }
 
 function startTimer(arr, restart) {
-    /*if (arr['id'] != 'pulse') {
-        if (restart) {
-            actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow(), 'desc': "" });
-        } else {
-            actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow(), 'desc': "" });
-        }
-        callToast(arr['name']);
-    }*/
     arr['actions'] = actions[actions.length - 1];
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
@@ -78,10 +70,6 @@ function startTimer(arr, restart) {
         }
         timerDisplay(arr);
     }, 1000);
-}
-
-function alertCallback() {
-
 }
 
 function clickTimer(arr) {
@@ -108,10 +96,6 @@ function clearTimer(arr) {
     arr['sec'] = 0;
     $('#' + arr['id'] + '-minutes').html('0' + arr['min']);
     $('#' + arr['id'] + '-seconds').html('0' + arr['sec']);
-}
-
-function resetTimer(arr) {
-
 }
 
 function restartTimer(arr) {
@@ -206,13 +190,6 @@ function createDoseArray(min, max, inc) {
     return arr;
 }
 
-/*
-function showTimerConfirm(tag) {
-    $('#timer-confirm-title').html(medications[tag].name);
-    $('#timer-confirm-desc').html();
-    $('#timer-confirm-modal').modal();
-}*/
-
 var sortByProperty = function(property) {
     return function(x, y) {
         return ((x[property].toUpperCase() === y[property].toUpperCase()) ? 0 : ((x[property].toUpperCase() > y[property].toUpperCase()) ? 1 : -1));
@@ -234,7 +211,6 @@ function findLatestActionByTag(dataTag) {
             console.log(actions[i]);
             return actions[i];
         }
-    }
-    console.log(null);
+    };
     return null;
 }

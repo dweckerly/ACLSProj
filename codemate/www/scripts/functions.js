@@ -105,6 +105,11 @@ function incrementCount(arr) {
 function decrementCount(arr) {
     if (arr['count']) {
         arr['count'] = parseInt(arr['count']) - 1;
+        if(arr.actions.time == actions[editActionId].time) {
+            // deleted item is the same as the timer
+            // need to restart the timer to the next startTime
+            console.log(true);
+        }
         $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
         $("#" + arr['id'] + "-count").html("count: " + arr['count']);
     }

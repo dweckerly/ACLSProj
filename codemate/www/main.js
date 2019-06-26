@@ -371,14 +371,13 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         var desc = "Check for pulse";
     }
+    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pulse Check');
     if ('pulse' in timers) {
         restartTimer(timers['pulse']);
     } else {
         createTimer("pulse", "procedure");
     }
-    $('#pulse-count').html("count: " + timers['pulse'].count);
-    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
-    callToast('Pulse Check');
 });
 
 $('#pacing-selection-confirm').click(() => {
@@ -413,9 +412,6 @@ $('#report-delete-btn').click(() => {
     actions.splice(editActionId, 1);
     populateReport();
 });
-
-// will need new modal here to specify options
-// also will add selection to action description when pushed
 
 function showPulseOptions() {
     $('#cardio-options-container').hide();

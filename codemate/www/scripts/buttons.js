@@ -127,10 +127,9 @@ $('#back-to-start').click(() => {
 
 $(".rhytm-btn").click(function() {
     let data = $(this).attr('data');
-    let name = data;
     let tag = "rhythm-" + data;
-    let desc = "Rhythm: " + data;
-    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
+    let desc = data;
+    actions.push({ 'name': "Rhythm", 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
     callToast(desc);
 });
 

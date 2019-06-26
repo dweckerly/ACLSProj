@@ -105,10 +105,13 @@ function incrementCount(arr) {
 function decrementCount(arr) {
     if (arr['count']) {
         arr['count'] = parseInt(arr['count']) - 1;
+        $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
+        $("#" + arr['id'] + "-count").html("count: " + arr['count']);
     }
     if(arr['count'] == 0) {
         clearTimer(arr);
-        $("#" + arr['id'] + "-timer-card").remove();
+        $("#" + arr['id'] + "-timer-card").parent().remove();
+        delete timers[arr['id']];
     }
 }
 
@@ -212,9 +215,8 @@ function setTimerConfirmData(tag) {
 function findLatestActionByTag(dataTag) {
     for (let i = (actions.length - 1); i >= 0; i--) {
         if (actions[i].tag == dataTag) {
-            console.log(actions[i]);
             return actions[i];
         }
-    };
+    }
     return null;
 }

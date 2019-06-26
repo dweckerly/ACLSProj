@@ -40,39 +40,41 @@ function populateReport() {
     $('#report-table-body').remove();
     $('#report-table').append(`<tbody id="report-table-body">
     </tbody>`)
-    $('#code-start').html("Code Started: " + actions[0].time);
-    $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
-    for (let i = 0; i < actions.length; i++) {
-        if ('flag' in actions[i]) {
-            if (actions[i].flag) {
-                $('#report-table-body').append(`
-                    <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+    if(actions.length > 0) {
+        $('#code-start').html("Code Started: " + actions[0].time);
+        $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
+        for (let i = 0; i < actions.length; i++) {
+            if ('flag' in actions[i]) {
+                if (actions[i].flag) {
+                    $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                } else {
+                    $('#report-table-body').append(`
+                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
                     <td> ` + actions[i].name + ` </td> 
                     <td class="report-desc"> ` + actions[i].desc + ` </td> 
                     <td> ` + actions[i].time + ` </td> 
                     </tr>`);
+                }
             } else {
                 $('#report-table-body').append(`
-                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                <td> ` + actions[i].name + ` </td> 
-                <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                <td> ` + actions[i].time + ` </td> 
-                </tr>`);
+                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                    <td> ` + actions[i].name + ` </td> 
+                    <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                    <td> ` + actions[i].time + ` </td> 
+                    </tr>`);
             }
-        } else {
-            $('#report-table-body').append(`
-                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                <td> ` + actions[i].name + ` </td> 
-                <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                <td> ` + actions[i].time + ` </td> 
-                </tr>`);
         }
+        $('#report-table-body').append(`<script>
+            $('.report-row').click(function () {
+                showReportDetails($(this).attr('data'));
+            });
+        </script>`);
     }
-    $('#report-table-body').append(`<script>
-        $('.report-row').click(function () {
-            showReportDetails($(this).attr('data'));
-        });
-    </script>`);
 }
 
 function showReportDetails(id) {
@@ -405,9 +407,9 @@ $('#report-edit-btn').click(() => {
 });
 
 $('#report-delete-btn').click(() => {
+    decrementCount(timers[actions[editActionId].tag]);
     actions.splice(editActionId, 1);
     populateReport();
-    // need to check for count and decrement as necessary
 });
 
 // will need new modal here to specify options
@@ -573,12 +575,12 @@ function createTimer(tag, type) {
                     </div>
                 </div>
             </div>
+            <script>
+            $('#` + item.dataTag + `-timer-div').click(function () {
+                $('#pulse-btn').click();
+            });
+            </script>
         </div>
-        <script>
-        $('#` + item.dataTag + `-timer-div').click(function () {
-            $('#pulse-btn').click();
-        });
-        </script>
             `);
         startTimer(timers[item.dataTag]);
     } else {

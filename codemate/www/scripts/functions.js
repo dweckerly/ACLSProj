@@ -53,7 +53,7 @@ function timerDisplay(arr) {
     }
 }
 
-function startTimer(arr, restart) {
+function startTimer(arr) {
     arr['actions'] = actions[actions.length - 1];
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
@@ -100,7 +100,7 @@ function clearTimer(arr) {
 
 function restartTimer(arr) {
     clearTimer(arr);
-    startTimer(arr, true);
+    startTimer(arr);
     incrementCount(arr);
     $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
     $("#" + arr['id'] + "-count").html("count: " + arr['count']);
@@ -117,6 +117,7 @@ function decrementCount(arr) {
         arr['count'] = parseInt(arr['count']) - 1;
     }
     if(arr['count'] == 0) {
+        clearTimer(arr);
         $("#" + arr['id'] + "-timer-card").remove();
     }
 }

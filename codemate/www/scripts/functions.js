@@ -72,16 +72,6 @@ function startTimer(arr) {
     }, 1000);
 }
 
-function clickTimer(arr) {
-    if (arr) {
-        if (arr['running'] == true) {
-            pauseTimer(arr);
-        } else {
-            startTimer(arr);
-        }
-    }
-}
-
 function pauseTimer(arr) {
     $("#" + arr['id'] + "-timer-card").addClass("pause");
     arr['running'] = false;

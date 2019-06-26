@@ -7,7 +7,7 @@ function codeTerm(reason) {
     $('#print-report').show();
     $('#term-reason').html(reason);
     $('#term-reason').show();
-    $('#elasped-time').html('Elasped time: ' + $('#main-minutes').html() + ":" + $('#main-seconds').html());
+    $('#elapsed-time').html('Elapsed time: ' + $('#main-minutes').html() + ":" + $('#main-seconds').html());
     for (var member in timers) {
         clearInterval(timers[member].interval);
         delete timers[member];
@@ -19,8 +19,8 @@ function codeTerm(reason) {
         date: getDate()
     });
     actions.push({
-        name: 'elasped time',
-        desc: 'Elasped time: ' + $('#main-minutes').html() + ":" + $('#main-seconds').html()
+        name: 'elapsed time',
+        desc: 'Elapsed time: ' + $('#main-minutes').html() + ":" + $('#main-seconds').html()
     });
     saveCode(reason);
 }

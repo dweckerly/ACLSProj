@@ -384,7 +384,6 @@ $('#pacing-selection-confirm').click(() => {
     if (rate == null || ma == null) {
         flag = true;
     }
-    console.log(flag);
     let desc = "Rate: " + rate + ", MA: " + ma;
     actions.push({ 'name': 'Pacing', 'tag': 'pacing', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Pacing');

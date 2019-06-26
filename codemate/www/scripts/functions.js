@@ -101,11 +101,24 @@ function clearTimer(arr) {
 function restartTimer(arr) {
     clearTimer(arr);
     startTimer(arr, true);
+    incrementCount(arr);
+    $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
+    $("#" + arr['id'] + "-count").html("count: " + arr['count']);
+}
+
+function incrementCount(arr) {
     if (arr['count']) {
         arr['count'] = parseInt(arr['count']) + 1;
     }
-    $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
-    $("#" + arr['id'] + "-count").html("count: " + arr['count']);
+}
+
+function decrementCount(arr) {
+    if (arr['count']) {
+        arr['count'] = parseInt(arr['count']) - 1;
+    }
+    if(arr['count'] == 0) {
+        $("#" + arr['id'] + "-timer-card").remove();
+    }
 }
 
 function callToast(name) {

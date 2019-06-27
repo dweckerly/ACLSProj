@@ -170,15 +170,12 @@ function clearNewMedForm() {
     $('#timer-minute').removeClass('active');
     $('#timer-second').removeClass('active');
     $('#timer-alert').removeClass('active');
+    $('#new-med-form-message').html('');
 
 }
 
 function returnToAddNewMedication() {
-    $('#new-med-name').val('');
-    $('#new-med-min-dose').val('');
-    $('#new-med-max-dose').val('');
-    $('#new-med-dose-inc').val('');
-    $('#new-med-dose-unit').val('');
+    clearNewMedForm()
     $('#new-med-form').fadeOut(() => {
         populateEditMedList();
         $('#add-med-btn').fadeIn();

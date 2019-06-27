@@ -229,9 +229,28 @@ $('#new-med-save-btn').click(() => {
     let max = $('#new-med-max-dose').val();
     let inc = $('#new-med-dose-inc').val();
     let unit = $('#new-med-dose-unit').val();
-    if (name.trim() == '' || min.trim() == '' || max.trim() == '' || inc.trim() == '' || unit.trim() == '') {
-        err = "Please complete all fields before saving.";
+    if (name.trim() == '') {
+        err = "Please enter a name for the medication.";
+    } else if ((min.trim() == '' && max.trim() == '')) {
+        err = "Please enter a min or max dose.";
+    } else if (unit.trim() == '') {
+        err = "Please enter a unit."
     }
+
+    if (min.trim() == '') {
+        min = max;
+    } else if (max.trim() == '') {
+        max = min;
+    }
+
+    if (inc.trim() == '') {
+        inc = 0;
+    }
+
+    if (parseFloat(min).toFixed(2) > parseFloat(max).toFixed(2)) {
+        err = "Max does must be more than the min dose."
+    }
+
     if (err != '') {
         $('#new-med-form-message').html(err);
     } else {

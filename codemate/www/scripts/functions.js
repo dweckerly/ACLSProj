@@ -194,6 +194,9 @@ function createDoseArray(min, max, inc) {
     var arr = [];
     if (inc == 0) {
         arr.push(parseFloat(min).toFixed(2));
+        if (max != min) {
+            arr.push(parseFloat(max).toFixed(2));
+        }
     } else {
         for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
             arr.push(i.toFixed(2));

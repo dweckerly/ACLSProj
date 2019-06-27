@@ -122,7 +122,7 @@ function decrementCount(arr) {
 
 function callToast(name) {
     var str = name + " recorded at " + timeNow() + ".";
-    M.toast({ html: str, displayLength: 1000 });
+    M.toast({ html: str, displayLength: 800, inDuration: 200, outDuration: 200 });
 }
 
 function checkDose(arr) {

@@ -105,7 +105,7 @@ function incrementCount(arr) {
 function decrementCount(arr) {
     if (arr['count']) {
         arr['count'] = parseInt(arr['count']) - 1;
-        if(arr.actions.time == actions[editActionId].time) {
+        if (arr.actions.time == actions[editActionId].time) {
             // deleted item is the same as the timer
             // need to restart the timer to the next startTime
             console.log(true);
@@ -113,7 +113,7 @@ function decrementCount(arr) {
         $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
         $("#" + arr['id'] + "-count").html("count: " + arr['count']);
     }
-    if(arr['count'] == 0) {
+    if (arr['count'] == 0) {
         clearTimer(arr);
         $("#" + arr['id'] + "-timer-card").parent().remove();
         delete timers[arr['id']];
@@ -122,7 +122,7 @@ function decrementCount(arr) {
 
 function callToast(name) {
     var str = name + " recorded at " + timeNow() + ".";
-    M.toast({ html: str, displayLength: 2000 });
+    M.toast({ html: str, displayLength: 1000 });
 }
 
 function checkDose(arr) {

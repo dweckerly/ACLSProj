@@ -40,11 +40,11 @@ function populateReport() {
     $('#report-table-body').remove();
     $('#report-table').append(`<tbody id="report-table-body">
     </tbody>`)
-    if(actions.length > 0) {
+    if (actions.length > 0) {
         $('#code-start').html("Code Started: " + actions[0].time);
         $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
         for (let i = 0; i < actions.length; i++) {
-            if(actions[i].name != "elapsed time"){
+            if (actions[i].name != "elapsed time") {
                 if ('flag' in actions[i]) {
                     if (actions[i].flag) {
                         $('#report-table-body').append(`
@@ -295,7 +295,7 @@ $('#new-proc-confirm').click(function() {
     $('#new-selection-container').find('select').each(function() {
         let label = this.id.replace('new-select-', "");
         let val = $(this).val();
-        if(val == null || val == undefined || val == "") {
+        if (val == null || val == undefined || val == "") {
             flag = true;
             val = '?';
         }
@@ -312,15 +312,15 @@ $('#select-site-confirm').click(() => {
     let site = $('#site-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "N/A";
+        size = "Size: ?";
         flag = true;
     }
     if (side == null) {
-        side = "N/A";
+        side = "Side: ?";
         flag = true;
     }
     if (site == null) {
-        site = "N/A";
+        site = "Site: ?";
         flag = true;
     }
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
@@ -333,15 +333,15 @@ $('#io-selection-confirm').click(() => {
     let site = $('#io-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "N/A";
+        size = "Size: ?";
         flag = true;
     }
     if (site == null) {
-        site = "N/A";
+        site = "Site: ?";
         flag = true;
     }
     if (side == null) {
-        side = "N/A";
+        side = "Side: ?";
         flag = true;
     }
     actions.push({ 'name': 'Intraosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
@@ -408,7 +408,9 @@ $('#report-edit-btn').click(() => {
 });
 
 $('#report-delete-btn').click(() => {
-    decrementCount(timers[actions[editActionId].tag]);
+    if (timers[actions[editActionId].tag]) {
+        decrementCount(timers[actions[editActionId].tag]);
+    }
     actions.splice(editActionId, 1);
     populateReport();
 });

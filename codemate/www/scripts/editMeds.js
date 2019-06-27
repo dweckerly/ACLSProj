@@ -82,7 +82,7 @@ function populateEditMedication() {
         $('#ivp-type').prop('checked', true);
     }
 
-    if(!medications[editKey].timer) {
+    if (!medications[editKey].timer) {
         $('#timer-no').prop('checked', true);
         $('#timer-yes').prop('checked', false);
         hideTimerContainer();
@@ -190,7 +190,7 @@ $('#new-med-save-btn').click(() => {
         if (($('#timer-minute').val() == '' && $('#timer-second').val() == '')) {
             err = "Please input valid timer information.";
         } else {
-            let tMin, tSec;
+            let tMin, tSec, alert;
             if ($('#timer-second').val() == undefined || $('#timer-second').val() == null || $('#timer-second').val() == "") {
                 tSec = 0;
             } else {
@@ -201,12 +201,18 @@ $('#new-med-save-btn').click(() => {
             } else {
                 tMin = parseInt($('#timer-minute').val());
             }
+            if ($('#timer-minute').val() == undefined || $('#timer-minute').val() == null || $('#timer-minute').val() == "") {
+                alert = 0;
+            } else {
+                alert = parseInt($('#timer-alert').val());
+            }
             if (tMin == 0 && tSec == 0) {
                 err = "Please input valid timer information.";
             } else {
                 timer = {
                     min: tMin,
-                    sec: tSec
+                    sec: tSec,
+                    alert: alert
                 }
             }
         }

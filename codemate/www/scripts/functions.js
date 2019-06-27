@@ -63,7 +63,7 @@ function startTimer(arr) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
                 cordova.plugins.notification.local.schedule({
                     title: arr['name'],
-                    text: 'Timer expiring in 15 seconds.',
+                    text: 'Timer expiring in ' + arr['alert'] + ' seconds.',
                     foreground: true
                 });
             }
@@ -224,4 +224,16 @@ function findLatestActionByTag(dataTag) {
         }
     }
     return null;
+}
+
+function timerAlertCalc(min, sec, alert) {
+    sec += (60 * min) - alert;
+    min = 0;
+    if (sec >= 60) {
+        for (i = sec; i >= 60; i -= 60) {
+            min++;
+            sec -= 60;
+        }
+    }
+    return { min: min, sec: sec };
 }

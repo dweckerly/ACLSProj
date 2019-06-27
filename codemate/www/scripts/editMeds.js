@@ -88,6 +88,7 @@ function populateEditMedication() {
         hideTimerContainer();
         $('#timer-minute-label').removeClass('active');
         $('#timer-second-label').removeClass('active');
+        $('#timer-alert-label').removeClass('active');
     } else {
         $('#timer-no').prop('checked', false);
         $('#timer-yes').prop('checked', true);
@@ -96,6 +97,8 @@ function populateEditMedication() {
         $('#timer-minute').val(medications[editKey].timer.min);
         $('#timer-second-label').addClass('active');
         $('#timer-second').val(medications[editKey].timer.sec);
+        $('#timer-alert-label').addClass('active');
+        $('#timer-alert').val(medications[editKey].timer.alert);
     }
 
     $('#new-med-min-dose').val(medications[editKey].dose[0]);
@@ -206,13 +209,18 @@ $('#new-med-save-btn').click(() => {
             } else {
                 alert = parseInt($('#timer-alert').val());
             }
-            if (tMin == 0 && tSec == 0) {
-                err = "Please input valid timer information.";
+            let totalTime = tSec + (60 * tMin);
+            if (alert >= totalTime) {
+                err = "Alert must be less than total time.";
             } else {
-                timer = {
-                    min: tMin,
-                    sec: tSec,
-                    alert: alert
+                if (tMin == 0 && tSec == 0) {
+                    err = "Please input valid timer information.";
+                } else {
+                    timer = {
+                        min: tMin,
+                        sec: tSec,
+                        alert: alert
+                    }
                 }
             }
         }

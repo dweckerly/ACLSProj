@@ -523,7 +523,7 @@ function createTimer(tag, type) {
             item = data[i];
         }
     }
-
+    let alertTime = timerAlertCalc(item.timer.min, item.timer.sec, item.timer.alert)
     if (type == 'procedure') {
         timers[item.dataTag] = {
             'id': item.dataTag,
@@ -536,8 +536,8 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': item.timer.min,
-                'sec': item.timer.sec
+                'min': alertTime.min,
+                'sec': alertTime.sec
             },
             'details': item.details
         };
@@ -553,8 +553,8 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': item.timer.min,
-                'sec': item.timer.sec
+                'min': alertTime.min,
+                'sec': alertTime.sec
             },
             'doseAmount': item.dose,
             'doseUnit': item.unit,

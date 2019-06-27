@@ -162,6 +162,15 @@ function clearNewMedForm() {
     $('#max-label').removeClass('active');
     $('#inc-label').removeClass('active');
     $('#dose-label').removeClass('active');
+    $('#timer-yes').prop('checked', false);
+    $('#timer-no').prop('checked', true);
+    $('#timer-minute').val('');
+    $('#timer-second').val('');
+    $('#timer-alert').val('');
+    $('#timer-minute').removeClass('active');
+    $('#timer-second').removeClass('active');
+    $('#timer-alert').removeClass('active');
+
 }
 
 function returnToAddNewMedication() {

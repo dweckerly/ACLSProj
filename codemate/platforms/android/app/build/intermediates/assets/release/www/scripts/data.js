@@ -1,10 +1,11 @@
 var defaultMedications = [{
-        name: "Amnioderone",
+        name: "Amioderone",
         dataTag: "amni",
         dose: [150, 300],
         unit: "MG",
         route: "IVP",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Atropine",
@@ -12,7 +13,11 @@ var defaultMedications = [{
         dose: [1],
         unit: "MG",
         route: "IVP",
-        type: "timer"
+        type: "timer",
+        timer: {
+            min: 2,
+            sec: 45
+        }
     },
     {
         name: "Calcium Chloride",
@@ -20,7 +25,8 @@ var defaultMedications = [{
         dose: [0.5, 1],
         unit: "Grams",
         route: "IVP",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Dextrose 50",
@@ -28,7 +34,8 @@ var defaultMedications = [{
         dose: [25, 50],
         unit: "Grams",
         route: "IVP",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Diprivan",
@@ -36,7 +43,8 @@ var defaultMedications = [{
         dose: [5.0, 10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0],
         unit: "mcg/kg/min",
         route: "drip",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Dopamine",
@@ -44,7 +52,8 @@ var defaultMedications = [{
         dose: [5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0],
         unit: "mcg/kg/min",
         route: "drip",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Epinephrine",
@@ -52,7 +61,11 @@ var defaultMedications = [{
         dose: [1.0],
         unit: "MG",
         route: "IVP",
-        type: "timer"
+        type: "timer",
+        timer: {
+            min: 2,
+            sec: 45
+        }
     },
     {
         name: "Epinephrine",
@@ -60,7 +73,8 @@ var defaultMedications = [{
         dose: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0],
         unit: "mcg/min",
         route: "drip",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Glucagon",
@@ -68,7 +82,8 @@ var defaultMedications = [{
         dose: [1],
         unit: "MG",
         route: "IVP",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Levophed",
@@ -76,7 +91,8 @@ var defaultMedications = [{
         dose: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0],
         unit: "mcg/min",
         route: "drip",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Mag Sulfate",
@@ -84,7 +100,8 @@ var defaultMedications = [{
         dose: [1, 2],
         unit: "Grams",
         route: "IVP",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Narcan",
@@ -92,7 +109,11 @@ var defaultMedications = [{
         dose: [2],
         unit: "MG",
         route: "IVP",
-        type: "timer"
+        type: "timer",
+        timer: {
+            min: 14,
+            sec: 45,
+        }
     },
     {
         name: "Neosynephrine",
@@ -100,7 +121,8 @@ var defaultMedications = [{
         dose: [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0],
         unit: "mcg/min",
         route: "drip",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Sodium Bicarbonate",
@@ -108,7 +130,8 @@ var defaultMedications = [{
         dose: [50, 100],
         unit: "MEQ",
         route: "IVP",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Vasopressin",
@@ -116,76 +139,56 @@ var defaultMedications = [{
         dose: [0.01, 0.02, 0.03, 0.04],
         unit: "u/h",
         route: "drip",
-        type: "alert"
+        type: "alert",
+        timer: false
     }
 ];
 
 var defaultProcedures = [{
-        name: "Interosseous",
+        name: "Intraosseous",
         details: "",
         dataTag: "interos",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Intubation",
         details: "",
         dataTag: "intubat",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "IV",
         details: "",
         dataTag: "iv",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Nasogastric Tube",
         details: "",
         dataTag: "nasogas",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Pacing",
         details: "",
         dataTag: "pacing",
-        type: "alert"
+        type: "alert",
+        timer: false
     },
     {
         name: "Pulse Check",
         details: "Check for pulse",
         dataTag: "pulse",
-        type: "timer"
+        type: "timer",
+        timer: {
+            min: 1,
+            sec: 45
+        }
     },
-];
-
-var timersData = [{
-        name: "Epinephrine",
-        alertMin: 2,
-        alertSec: 55,
-        dataTag: "epi",
-        type: "medication"
-    },
-    {
-        name: "Pulse/Defib",
-        alertMin: 1,
-        alertSec: 45,
-        dataTag: "pulse",
-        type: "procedure"
-    },
-    {
-        name: "Atropine",
-        alertMin: 2,
-        alertSec: 55,
-        dataTag: "atro",
-        type: "medication"
-    },
-    {
-        name: "Narcan",
-        alertMin: 14,
-        alertSec: 55,
-        dataTag: "narca",
-        type: "medication"
-    }
 ];
 
 var medTest = JSON.parse(localStorage.getItem('Medications'));

@@ -26,6 +26,7 @@ $('#start-btn').click(function() {
     populateMedicationModal();
     $('#start-container').fadeOut(function() {
         $('#options-container').fadeIn();
+        $('#rhythm-footer').fadeIn();
         startTimer(timers.code);
         $('#pulse-btn').click();
     });
@@ -42,67 +43,29 @@ function populateReport() {
     $('#code-start').html("Code Started: " + actions[0].time);
     $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
     for (let i = 0; i < actions.length; i++) {
-        for (let j = 0; j < medications.length; j++) {
-            if (actions[i].tag == medications[j].dataTag) {
-                if (actions[i].desc == "") {
-                    actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
-                }
-                if ('flag' in actions[i]) {
-                    if (actions[i].flag) {
-                        $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                    } else {
-                        $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                    }
-                } else {
-                    $('#report-table-body').append(`
-                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+        if ('flag' in actions[i]) {
+            if (actions[i].flag) {
+                $('#report-table-body').append(`
+                    <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
                     <td> ` + actions[i].name + ` </td> 
                     <td class="report-desc"> ` + actions[i].desc + ` </td> 
                     <td> ` + actions[i].time + ` </td> 
                     </tr>`);
-                }
+            } else {
+                $('#report-table-body').append(`
+                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                <td> ` + actions[i].name + ` </td> 
+                <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                <td> ` + actions[i].time + ` </td> 
+                </tr>`);
             }
-        }
-        for (let j = 0; j < procedures.length; j++) {
-            if (actions[i].tag == procedures[j].dataTag) {
-                if (actions[i].desc == "") {
-                    actions[i].desc = procedures[j].details;
-                }
-                if ('flag' in actions[i]) {
-                    if (actions[i].flag) {
-                        $('#report-table-body').append(`
-                            <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
-                            <td> ` + actions[i].name + ` </td> 
-                            <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                            <td> ` + actions[i].time + ` </td> 
-                            </tr>`);
-                    } else {
-                        $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                    }
-                } else {
-                    $('#report-table-body').append(`
-                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                        <td> ` + actions[i].name + ` </td> 
-                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                        <td> ` + actions[i].time + ` </td> 
-                        </tr>`);
-                }
-            }
+        } else {
+            $('#report-table-body').append(`
+                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                <td> ` + actions[i].name + ` </td> 
+                <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                <td> ` + actions[i].time + ` </td> 
+                </tr>`);
         }
     }
     $('#report-table-body').append(`<script>
@@ -123,46 +86,84 @@ function showReportDetails(id) {
 function populateMedicationModal() {
     medications.sort(sortByProperty('name'));
     for (let i = 0; i < medications.length; i++) {
-        if (medications[i].route == 'drip') {
-            $('#med-btn-container').append(`
-            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
-            <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                <div class="input-field col s6">
-                    <select id="` + medications[i].dataTag + `-dose-select">
-                        <option value="" disabled selected>Amount</option>
-                        ` + returnDoseOptions(medications[i]) + `
-                    </select>
-                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+        if (medications[i].route == 'drip' && medications[i].timer == false) {
+            if (medications[i].dose.length > 1) {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
+                <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                    <div class="input-field col s6">
+                        <select id="` + medications[i].dataTag + `-dose-select">
+                            <option value="" disabled selected>Amount</option>
+                            ` + returnDoseOptions(medications[i]) + `
+                        </select>
+                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                    </div>
+                    <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
                 </div>
-                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-            </div>
-            `);
-        } else if (medications[i].route == 'IVP' && medications[i].type != "timer") {
-            $('#med-btn-container').append(`
-            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
-            <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                <div class="input-field col s6">
-                    <select id="` + medications[i].dataTag + `-dose-select">
-                        <option value="" disabled selected>Amount</option>
-                        ` + returnDoseOptions(medications[i]) + `
-                    </select>
-                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                `);
+            } else {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip med-btn-confirm modal-close med-btn'>` + medications[i].name + ` DRIP</button>
+                `);
+            }
+        } else if (medications[i].route == 'drip' && medications[i].timer != false) {
+            if (medications[i].dose.length > 1) {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
+                <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                    <div class="input-field col s6">
+                        <select id="` + medications[i].dataTag + `-dose-select">
+                            <option value="" disabled selected>Amount</option>
+                            ` + returnDoseOptions(medications[i]) + `
+                        </select>
+                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                    </div>
+                    <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
                 </div>
-                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-            </div>`);
-        } else if (medications[i].route == 'IVP' && medications[i].type == "timer") {
-            $('#med-btn-container').append(`
-            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
-            <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                <div class="input-field col s6">
-                    <select id="` + medications[i].dataTag + `-dose-select">
-                        <option value="" disabled selected>Amount</option>
-                        ` + returnDoseOptions(medications[i]) + `
-                    </select>
-                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
-                </div>
-                <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-            </div>`);
+                `);
+            } else {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-timer="yes" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip med-btn-confirm modal-close med-btn'>` + medications[i].name + ` DRIP</button>
+                `);
+            }
+        } else if (medications[i].route == 'IVP' && medications[i].timer == false) {
+            if (medications[i].dose.length > 1) {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
+                <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                    <div class="input-field col s6">
+                        <select id="` + medications[i].dataTag + `-dose-select">
+                            <option value="" disabled selected>Amount</option>
+                            ` + returnDoseOptions(medications[i]) + `
+                        </select>
+                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                    </div>
+                    <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+                </div>`);
+            } else {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary med-btn-confirm modal-close med-btn'>` + medications[i].name + `</button>
+                `);
+            }
+        } else if (medications[i].route == 'IVP' && medications[i].timer != false) {
+            if (medications[i].dose.length > 1) {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
+                <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                    <div class="input-field col s6">
+                        <select id="` + medications[i].dataTag + `-dose-select">
+                            <option value="" disabled selected>Amount</option>
+                            ` + returnDoseOptions(medications[i]) + `
+                        </select>
+                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                    </div>
+                    <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+                </div>`);
+            } else {
+                $('#med-btn-container').append(`
+                <button id="` + medications[i].dataTag + `-btn-label" data-timer="yes" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary med-btn-confirm modal-close med-btn'>` + medications[i].name + `</button>
+                `);
+            }
         } else {
             $('#med-btn-container').append(`
             <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
@@ -286,16 +287,20 @@ $('#new-proc-confirm').click(function() {
     let name = procedures[id].name;
     let tag = procedures[id].dataTag;
     let desc = "";
+    let flag = false;
     $('#new-selection-container').find('select').each(function() {
         let label = this.id.replace('new-select-', "");
         let val = $(this).val();
+        if(val == null || val == undefined || val == "") {
+            flag = true;
+            val = '?';
+        }
         desc += label + ': ' + val + ', ';
     });
+    desc = desc.slice(0, -2);
 
-    desc = desc.slice(0, -2)
-    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc });
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
     callToast(name);
-    console.log(actions);
 });
 
 $('#select-site-confirm').click(() => {
@@ -336,8 +341,8 @@ $('#io-selection-confirm').click(() => {
         side = "N/A";
         flag = true;
     }
-    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
-    callToast('Interosseous');
+    actions.push({ 'name': 'Intraosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
+    callToast('Intraosseous');
 });
 
 $('#pulse-no-action').click(() => {
@@ -349,12 +354,14 @@ $('#pulse-selection-confirm').click(() => {
     if (cardioOptionsVisible) {
         if ($('#cardio-select-joules').val() == null) {
             var desc = "Sync. Cardioversion (?) joules";
+            flag = true;
         } else {
             var desc = "Sync. Cardioversion " + $('#cardio-select-joules').val() + " joules";
         }
     } else if (defibOptionsVisible) {
         if ($('#defib-select-joules').val() == null) {
             var desc = "Defibrillation (?) joules";
+            flag = true;
         } else {
             var desc = "Defibrillation " + $('#defib-select-joules').val() + " joules";
         }
@@ -366,6 +373,7 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         createTimer("pulse", "procedure");
     }
+    $('#pulse-count').html("count: " + timers['pulse'].count);
     actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Pulse Check');
 });
@@ -504,7 +512,7 @@ $('#naso-selection-confirm').click(() => {
 });
 
 function createTimer(tag, type) {
-    var data, item, t;
+    var data, item;
     if (type == 'procedure') {
         data = procedures;
     } else if (type == 'medication') {
@@ -513,12 +521,6 @@ function createTimer(tag, type) {
     for (let i = 0; i < data.length; i++) {
         if (data[i].dataTag == tag) {
             item = data[i];
-        }
-    }
-
-    for (let i = 0; i < timersData.length; i++) {
-        if (timersData[i].dataTag == item.dataTag) {
-            t = timersData[i];
         }
     }
 
@@ -534,8 +536,8 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': t.alertMin,
-                'sec': t.alertSec
+                'min': item.timer.min,
+                'sec': item.timer.sec
             },
             'details': item.details
         };
@@ -551,75 +553,61 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': t.alertMin,
-                'sec': t.alertSec
+                'min': item.timer.min,
+                'sec': item.timer.sec
             },
             'doseAmount': item.dose,
             'doseUnit': item.unit,
             'route': item.route
         };
     }
-
-    $('#timer-container').append(`
-<div class="col s6 m4 l3 xl2">
-    <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card" align="center">
-        <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
-        <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
-            <div class="card-content center">
-                <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
-            </div>
-            <div class="card-action center" id="` + item.dataTag + `-timer">
-                <span class="flow-text truncate timer-name">` + item.name + `</span>
+    if (item.dataTag == "pulse") {
+        $('#timer-container').append(`
+        <div class="col s6 m4 l3 xl2">
+            <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card" align="center">
+                <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
+                <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
+                    <div class="card-content center">
+                        <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
+                    </div>
+                    <div class="card-action center" id="` + item.dataTag + `-timer">
+                        <span class="flow-text truncate timer-name">` + item.name + `</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <a class="btn-floating btn-small halfway-fab waves-effect waves-light red info-btn modal-trigger" data-target="info-modal" data="` + item.dataTag + `" data-type="` + type + `"><i class="material-icons">info_outline</i></a>
-    </div>
-</div>
-<script>
-$('#` + item.dataTag + `-timer-div').click(function () {
-    var id = $(this).attr('data');
-    $('#` + item.dataTag + `-count').html("count: " + (timers[id].count + 1));
-    if(id == 'pulse') {
-        $('#pulse-btn').click();
+        <script>
+        $('#` + item.dataTag + `-timer-div').click(function () {
+            $('#pulse-btn').click();
+        });
+        </script>
+            `);
+        startTimer(timers[item.dataTag]);
     } else {
-        restartTimer(timers[id]);
+        $('#timer-container').append(`
+        <div class="col s6 m4 l3 xl2">
+            <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card modal-trigger" data-target="timer-confirm-modal" align="center">
+                <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
+                <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
+                    <div class="card-content center">
+                        <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
+                    </div>
+                    <div class="card-action center" id="` + item.dataTag + `-timer">
+                        <span class="flow-text truncate timer-name">` + item.name + `</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        $('#` + item.dataTag + `-timer-div').click(function () {
+            setTimerConfirmData("` + item.dataTag + `");
+        });
+        </script>
+            `);
+        startTimer(timers[item.dataTag]);
+        initMaterial();
     }
-});
-$('.info-btn').click(function() {
-    var tag = $(this).attr('data');
-    var type = $(this).attr('data-type');
-    var desc;
-    $('#info-name').html(timers[tag]['name']);
-    if (type == 'medication') {
-        $('#proc-info').hide();
-        $('#med-info').show();
-        $('#med-dose').html("Dose: " + timers[tag]['doseAmount'] + " " + timers[tag]['doseUnit']);
-        $('#med-route').html("Route: " + timers[tag]['route']);
-        desc = timers[tag]['doseAmount'] + " " + timers[tag]['doseUnit'] + ' - ' + timers[tag]['route'];
-    } else if (type == 'procedure') {
-        $('#med-info').hide();
-        $('#proc-info').show();
-        $('#proc-details').html(timers[tag]['details']);
-        desc = timers[tag]['details'];
-    }
-    $('#count').html("Total: " + timers[tag]['count']);
-    $('#info-table-body').empty();
-    for(i = 0; i < actions.length; i++) {
-        if(actions[i]['tag'] == tag) {
-            $('#info-table-body').append("<tr><td>" + actions[i]['action'] + "</td><td>" + desc + "</td><td>" + actions[i]['time'] + "</td></tr>");
-        }
-    }
-    $('#info-modal').modal();
-});
-</script>
-    `);
-    startTimer(timers[item.dataTag]);
 }
-
-$('.timer-card').click(function() {
-    var id = $(this).attr('data');
-    restartTimer(timers[id]);
-});
 
 function showDefibOptions() {
     if (defibOptionsVisible) {
@@ -656,5 +644,3 @@ function showCardioOptions() {
         $('#pulse-defib-btn').removeClass('red');
     }
 }
-
-//

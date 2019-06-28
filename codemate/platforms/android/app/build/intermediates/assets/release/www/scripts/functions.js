@@ -54,14 +54,14 @@ function timerDisplay(arr) {
 }
 
 function startTimer(arr, restart) {
-    if (arr['id'] != 'pulse') {
+    /*if (arr['id'] != 'pulse') {
         if (restart) {
             actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow(), 'desc': "" });
         } else {
             actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow(), 'desc': "" });
         }
         callToast(arr['name']);
-    }
+    }*/
     arr['actions'] = actions[actions.length - 1];
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
@@ -108,6 +108,10 @@ function clearTimer(arr) {
     arr['sec'] = 0;
     $('#' + arr['id'] + '-minutes').html('0' + arr['min']);
     $('#' + arr['id'] + '-seconds').html('0' + arr['sec']);
+}
+
+function resetTimer(arr) {
+
 }
 
 function restartTimer(arr) {
@@ -192,14 +196,45 @@ function initMaterial() {
 
 function createDoseArray(min, max, inc) {
     var arr = [];
-    for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
-        arr.push(i.toFixed(2));
+    if (inc == 0) {
+        arr.push(parseFloat(min).toFixed(2));
+    } else {
+        for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
+            arr.push(i.toFixed(2));
+        }
     }
     return arr;
 }
+
+/*
+function showTimerConfirm(tag) {
+    $('#timer-confirm-title').html(medications[tag].name);
+    $('#timer-confirm-desc').html();
+    $('#timer-confirm-modal').modal();
+}*/
 
 var sortByProperty = function(property) {
     return function(x, y) {
         return ((x[property].toUpperCase() === y[property].toUpperCase()) ? 0 : ((x[property].toUpperCase() > y[property].toUpperCase()) ? 1 : -1));
     };
 };
+
+function setTimerConfirmData(tag) {
+    var action = findLatestActionByTag(tag);
+    if (action) {
+        $('#timer-confirm-title').html(action.name);
+        $('#timer-confirm-desc').html(action.desc);
+        $('#timer-confirm-btn').attr('data-tag', tag);
+    }
+}
+
+function findLatestActionByTag(dataTag) {
+    for (let i = (actions.length - 1); i >= 0; i--) {
+        if (actions[i].tag == dataTag) {
+            console.log(actions[i]);
+            return actions[i];
+        }
+    }
+    console.log(null);
+    return null;
+}

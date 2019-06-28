@@ -82,6 +82,22 @@ function populateEditMedication() {
         $('#ivp-type').prop('checked', true);
     }
 
+    if(!medications[editKey].timer) {
+        $('#timer-no').prop('checked', true);
+        $('#timer-yes').prop('checked', false);
+        hideTimerContainer();
+        $('#timer-minute-label').removeClass('active');
+        $('#timer-second-label').removeClass('active');
+    } else {
+        $('#timer-no').prop('checked', false);
+        $('#timer-yes').prop('checked', true);
+        showTimerContainer();
+        $('#timer-minute-label').addClass('active');
+        $('#timer-minute').val(medications[editKey].timer.min);
+        $('#timer-second-label').addClass('active');
+        $('#timer-second').val(medications[editKey].timer.sec);
+    }
+
     $('#new-med-min-dose').val(medications[editKey].dose[0]);
     $('#new-med-max-dose').val(medications[editKey].dose[medications[editKey].dose.length - 1]);
     if (medications[editKey].dose.length > 1) {
@@ -159,6 +175,7 @@ function returnToAddNewMedication() {
 }
 
 $('#new-med-save-btn').click(() => {
+    var err = '';
     var name = $('#new-med-name').val();
     let route;
     if ($('#ivp-type').prop('checked')) {
@@ -166,14 +183,40 @@ $('#new-med-save-btn').click(() => {
     } else if ($('#drip-type').prop('checked')) {
         route = "drip";
     }
+    let timer;
+    if ($('#timer-no').prop('checked')) {
+        timer = false;
+    } else if ($('#timer-yes').prop('checked')) {
+        if (($('#timer-minute').val() == '' && $('#timer-second').val() == '')) {
+            err = "Please input valid timer information.";
+        } else {
+            let tMin, tSec;
+            if ($('#timer-second').val() == undefined || $('#timer-second').val() == null || $('#timer-second').val() == "") {
+                tSec = 0;
+            } else {
+                tSec = parseInt($('#timer-second').val());
+            }
+            if ($('#timer-minute').val() == undefined || $('#timer-minute').val() == null || $('#timer-minute').val() == "") {
+                tMin = 0;
+            } else {
+                tMin = parseInt($('#timer-minute').val());
+            }
+            if (tMin == 0 && tSec == 0) {
+                err = "Please input valid timer information.";
+            } else {
+                timer = {
+                    min: tMin,
+                    sec: tSec
+                }
+            }
+        }
+    }
     let min = $('#new-med-min-dose').val();
     let max = $('#new-med-max-dose').val();
     let inc = $('#new-med-dose-inc').val();
     let unit = $('#new-med-dose-unit').val();
-
-    var err = '';
     if (name.trim() == '' || min.trim() == '' || max.trim() == '' || inc.trim() == '' || unit.trim() == '') {
-        err += "Please complete all fields before saving.";
+        err = "Please complete all fields before saving.";
     }
     if (err != '') {
         $('#new-med-form-message').html(err);
@@ -184,6 +227,7 @@ $('#new-med-save-btn').click(() => {
             medications[editKey].dose = createDoseArray(min, max, inc);
             medications[editKey].unit = unit;
             medications[editKey].route = route;
+            medications[editKey].timer = timer;
         } else {
             let tag = name.replace(/\s/g, "") + '-' + route;
             var newMed = {
@@ -192,7 +236,8 @@ $('#new-med-save-btn').click(() => {
                 dose: createDoseArray(min, max, inc),
                 unit: unit,
                 route: route,
-                type: "alert"
+                type: "alert",
+                timer: timer
             }
             medications.push(newMed);
         }
@@ -211,4 +256,14 @@ function toEditMedList() {
     $('#add-med-btn').show();
     $('#new-med-list').show();
     $('#add-edit-med').fadeIn();
+}
+
+function showTimerContainer() {
+    $('#timer-label').css("color", "#4db6ac");
+    $('#timer-input-container').show();
+}
+
+function hideTimerContainer() {
+    $('#timer-label').css("color", "lightgrey");
+    $('#timer-input-container').hide();
 }

@@ -40,39 +40,43 @@ function populateReport() {
     $('#report-table-body').remove();
     $('#report-table').append(`<tbody id="report-table-body">
     </tbody>`)
-    $('#code-start').html("Code Started: " + actions[0].time);
-    $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
-    for (let i = 0; i < actions.length; i++) {
-        if ('flag' in actions[i]) {
-            if (actions[i].flag) {
-                $('#report-table-body').append(`
-                    <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
-                    <td> ` + actions[i].name + ` </td> 
-                    <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                    <td> ` + actions[i].time + ` </td> 
-                    </tr>`);
-            } else {
-                $('#report-table-body').append(`
-                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                <td> ` + actions[i].name + ` </td> 
-                <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                <td> ` + actions[i].time + ` </td> 
-                </tr>`);
+    if (actions.length > 0) {
+        $('#code-start').html("Code Started: " + actions[0].time);
+        $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
+        for (let i = 0; i < actions.length; i++) {
+            if (actions[i].name != "elapsed time") {
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        $('#report-table-body').append(`
+                            <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+                            <td> ` + actions[i].name + ` </td> 
+                            <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                            <td> ` + actions[i].time + ` </td> 
+                            </tr>`);
+                    } else {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    }
+                } else {
+                    $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                }
             }
-        } else {
-            $('#report-table-body').append(`
-                <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
-                <td> ` + actions[i].name + ` </td> 
-                <td class="report-desc"> ` + actions[i].desc + ` </td> 
-                <td> ` + actions[i].time + ` </td> 
-                </tr>`);
         }
+        $('#report-table-body').append(`<script>
+            $('.report-row').click(function () {
+                showReportDetails($(this).attr('data'));
+            });
+        </script>`);
     }
-    $('#report-table-body').append(`<script>
-        $('.report-row').click(function () {
-            showReportDetails($(this).attr('data'));
-        });
-    </script>`);
 }
 
 function showReportDetails(id) {
@@ -291,14 +295,13 @@ $('#new-proc-confirm').click(function() {
     $('#new-selection-container').find('select').each(function() {
         let label = this.id.replace('new-select-', "");
         let val = $(this).val();
-        if(val == null || val == undefined || val == "") {
+        if (val == null || val == undefined || val == "") {
             flag = true;
             val = '?';
         }
         desc += label + ': ' + val + ', ';
     });
     desc = desc.slice(0, -2);
-
     actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
     callToast(name);
 });
@@ -309,15 +312,15 @@ $('#select-site-confirm').click(() => {
     let site = $('#site-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "N/A";
+        size = "Size: ?";
         flag = true;
     }
     if (side == null) {
-        side = "N/A";
+        side = "Side: ?";
         flag = true;
     }
     if (site == null) {
-        site = "N/A";
+        site = "Site: ?";
         flag = true;
     }
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
@@ -330,15 +333,15 @@ $('#io-selection-confirm').click(() => {
     let site = $('#io-select-site').val();
     var flag = false;
     if (size == null) {
-        size = "N/A";
+        size = "Size: ?";
         flag = true;
     }
     if (site == null) {
-        site = "N/A";
+        site = "Site: ?";
         flag = true;
     }
     if (side == null) {
-        side = "N/A";
+        side = "Side: ?";
         flag = true;
     }
     actions.push({ 'name': 'Intraosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
@@ -368,14 +371,13 @@ $('#pulse-selection-confirm').click(() => {
     } else {
         var desc = "Check for pulse";
     }
+    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pulse Check');
     if ('pulse' in timers) {
         restartTimer(timers['pulse']);
     } else {
         createTimer("pulse", "procedure");
     }
-    $('#pulse-count').html("count: " + timers['pulse'].count);
-    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
-    callToast('Pulse Check');
 });
 
 $('#pacing-selection-confirm').click(() => {
@@ -385,7 +387,6 @@ $('#pacing-selection-confirm').click(() => {
     if (rate == null || ma == null) {
         flag = true;
     }
-    console.log(flag);
     let desc = "Rate: " + rate + ", MA: " + ma;
     actions.push({ 'name': 'Pacing', 'tag': 'pacing', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('Pacing');
@@ -407,13 +408,12 @@ $('#report-edit-btn').click(() => {
 });
 
 $('#report-delete-btn').click(() => {
+    if (timers[actions[editActionId].tag]) {
+        decrementCount(timers[actions[editActionId].tag]);
+    }
     actions.splice(editActionId, 1);
     populateReport();
-    // need to check for count and decrement as necessary
 });
-
-// will need new modal here to specify options
-// also will add selection to action description when pushed
 
 function showPulseOptions() {
     $('#cardio-options-container').hide();
@@ -523,7 +523,7 @@ function createTimer(tag, type) {
             item = data[i];
         }
     }
-
+    let alertTime = timerAlertCalc(item.timer.min, item.timer.sec, item.timer.alert)
     if (type == 'procedure') {
         timers[item.dataTag] = {
             'id': item.dataTag,
@@ -536,8 +536,8 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': item.timer.min,
-                'sec': item.timer.sec
+                'min': alertTime.min,
+                'sec': alertTime.sec
             },
             'details': item.details
         };
@@ -553,8 +553,8 @@ function createTimer(tag, type) {
             'running': true,
             'count': 1,
             'alert': {
-                'min': item.timer.min,
-                'sec': item.timer.sec
+                'min': alertTime.min,
+                'sec': alertTime.sec
             },
             'doseAmount': item.dose,
             'doseUnit': item.unit,
@@ -575,12 +575,12 @@ function createTimer(tag, type) {
                     </div>
                 </div>
             </div>
+            <script>
+            $('#` + item.dataTag + `-timer-div').click(function () {
+                $('#pulse-btn').click();
+            });
+            </script>
         </div>
-        <script>
-        $('#` + item.dataTag + `-timer-div').click(function () {
-            $('#pulse-btn').click();
-        });
-        </script>
             `);
         startTimer(timers[item.dataTag]);
     } else {

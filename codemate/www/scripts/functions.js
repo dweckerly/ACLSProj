@@ -53,15 +53,7 @@ function timerDisplay(arr) {
     }
 }
 
-function startTimer(arr, restart) {
-    /*if (arr['id'] != 'pulse') {
-        if (restart) {
-            actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'restart', 'time': timeNow(), 'desc': "" });
-        } else {
-            actions.push({ 'name': arr['name'], 'tag': arr['id'], 'action': 'start', 'time': timeNow(), 'desc': "" });
-        }
-        callToast(arr['name']);
-    }*/
+function startTimer(arr) {
     arr['actions'] = actions[actions.length - 1];
     $("#" + arr['id'] + "-timer-card").removeClass("pause");
     arr['running'] = true;
@@ -71,27 +63,13 @@ function startTimer(arr, restart) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
                 cordova.plugins.notification.local.schedule({
                     title: arr['name'],
-                    text: 'Timer expiring in 15 seconds.',
+                    text: 'Timer expiring in ' + arr['alert'] + ' seconds.',
                     foreground: true
                 });
             }
         }
         timerDisplay(arr);
     }, 1000);
-}
-
-function alertCallback() {
-
-}
-
-function clickTimer(arr) {
-    if (arr) {
-        if (arr['running'] == true) {
-            pauseTimer(arr);
-        } else {
-            startTimer(arr);
-        }
-    }
 }
 
 function pauseTimer(arr) {
@@ -110,23 +88,41 @@ function clearTimer(arr) {
     $('#' + arr['id'] + '-seconds').html('0' + arr['sec']);
 }
 
-function resetTimer(arr) {
-
-}
-
 function restartTimer(arr) {
     clearTimer(arr);
-    startTimer(arr, true);
-    if (arr['count']) {
-        arr['count'] = parseInt(arr['count']) + 1;
-    }
+    startTimer(arr);
+    incrementCount(arr);
     $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
     $("#" + arr['id'] + "-count").html("count: " + arr['count']);
 }
 
+function incrementCount(arr) {
+    if (arr['count']) {
+        arr['count'] = parseInt(arr['count']) + 1;
+    }
+}
+
+function decrementCount(arr) {
+    if (arr['count']) {
+        arr['count'] = parseInt(arr['count']) - 1;
+        if (arr.actions.time == actions[editActionId].time) {
+            // deleted item is the same as the timer
+            // need to restart the timer to the next startTime
+            console.log(true);
+        }
+        $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
+        $("#" + arr['id'] + "-count").html("count: " + arr['count']);
+    }
+    if (arr['count'] == 0) {
+        clearTimer(arr);
+        $("#" + arr['id'] + "-timer-card").parent().remove();
+        delete timers[arr['id']];
+    }
+}
+
 function callToast(name) {
     var str = name + " recorded at " + timeNow() + ".";
-    M.toast({ html: str, displayLength: 2000 });
+    M.toast({ html: str, displayLength: 800, inDuration: 200, outDuration: 200 });
 }
 
 function checkDose(arr) {
@@ -198,6 +194,9 @@ function createDoseArray(min, max, inc) {
     var arr = [];
     if (inc == 0) {
         arr.push(parseFloat(min).toFixed(2));
+        if (max != min) {
+            arr.push(parseFloat(max).toFixed(2));
+        }
     } else {
         for (i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inc)) {
             arr.push(i.toFixed(2));
@@ -205,13 +204,6 @@ function createDoseArray(min, max, inc) {
     }
     return arr;
 }
-
-/*
-function showTimerConfirm(tag) {
-    $('#timer-confirm-title').html(medications[tag].name);
-    $('#timer-confirm-desc').html();
-    $('#timer-confirm-modal').modal();
-}*/
 
 var sortByProperty = function(property) {
     return function(x, y) {
@@ -231,10 +223,20 @@ function setTimerConfirmData(tag) {
 function findLatestActionByTag(dataTag) {
     for (let i = (actions.length - 1); i >= 0; i--) {
         if (actions[i].tag == dataTag) {
-            console.log(actions[i]);
             return actions[i];
         }
     }
-    console.log(null);
     return null;
+}
+
+function timerAlertCalc(min, sec, alert) {
+    sec += (60 * min) - alert;
+    min = 0;
+    if (sec >= 60) {
+        for (i = sec; i >= 60; i -= 60) {
+            min++;
+            sec -= 60;
+        }
+    }
+    return { min: min, sec: sec };
 }

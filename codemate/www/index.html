@@ -3,10 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Codemate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="main.css" />
     <script type="text/javascript" src="js/index.js"></script>
@@ -14,7 +12,6 @@
     <script type="text/javascript" src="js/materialize.min.js "></script>
     <script type="text/javascript" src="scripts/functions.js"></script>
     <script type="text/javascript" src="scripts/data.js"></script>
-    <script type="text/javascript" src="scripts/navigation.js"></script>
 </head>
 
 <body>
@@ -25,11 +22,11 @@
             </div>
             <div id="code-timer-wrapper" class="nav-wrapper" style="display:none;">
                 <ul class="left">
-                    <li><a id="main-back-btn" data-target="back-confirm-modal" class="btn waves-effect waves-light modal-trigger"><i class="material-icons">arrow_back</i></a></li>
+                    <li><a id="main-back-btn" data-target="back-confirm-modal" class="btn waves-effect waves-light modal-trigger red"><i class="material-icons">arrow_back</i></a></li>
                 </ul>
                 <a class="brand-logo animate-flicker"><span id="main-minutes">00</span>:<span id="main-seconds">00</span></a>
                 <ul class="right">
-                    <li><a id="end-btn" class="btn waves-effect waves-light red">Report</a></li>
+                    <li><a id="end-btn" class="btn waves-effect waves-light ">Report</a></li>
                 </ul>
             </div>
         </nav>
@@ -37,10 +34,7 @@
     <div id="options-container" class="center" style="display:none; margin:15px;">
         <a id="medications-btn" data-target="medication-modal" class="waves-effect waves-light btn modal-trigger">Medications</a>
         <a id="procedures-btn" data-target="procedure-modal" class="waves-effect waves-light btn modal-trigger">Procedures</a>
-        <!--<a id="metronome-btn" class="btn waves-effect waves-light purple lighten-2"><i class="material-icons">audiotrack</i></a>-->
     </div>
-    <!--<script src="scripts/metronome.js"></script>-->
-
     <div id="rhythm-footer" class="footer">
         <div align="center">
             <button data-target="rhythm-modal" class="btn btn-large waves-effect waves-light modal-trigger">Rhythm</button>
@@ -68,7 +62,6 @@
                 <form>
                     <div class="input-field">
                         <input id="med-search" type="search" onkeyup="medModalSearch()" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
                 </form>
@@ -84,7 +77,6 @@
             <form>
                 <div class="input-field">
                     <input id="proc-search" type="search" onkeyup="procModalSearch()" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                 </div>
             </form>
@@ -159,7 +151,7 @@
     <div class="modal modal-fixed-footer" id="io-selection-modal">
         <div class="modal-content">
             <i class="material-icons modal-close right">close</i>
-            <h4 id='io-selection-title' class="red-text text-lighten-2">Interoseous</h4>
+            <h4 id='io-selection-title' class="red-text text-lighten-2">Intraosseous</h4>
             <div id="io-selection-container" class="row" align="center">
                 <div class="input-field col s6">
                     <select id="io-select-size">
@@ -510,6 +502,7 @@
                         <div class="input-field col s6">
                             <input id="new-med-dose-inc" type="number" min="0" step="0.01" class="validate">
                             <label id="inc-label" for="new-med-dose-inc">Increment</label>
+                            <span class="helper-text">Steps between min dose and max dose.</span>
                         </div>
                         <div class="input-field col s6">
                             <input id="new-med-dose-unit" type="text" class="validate">
@@ -543,6 +536,11 @@
                         <div class="input-field col s6">
                             <input id="timer-second" type="number" step="1" min="0" class="validate">
                             <label id="timer-second-label" for="timer-second">Seconds</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="timer-alert" type="number" step="1" min="0" class="validate">
+                            <label id="timer-alert-label" for="timer-second">Alert</label>
+                            <span class="helper-text">Seconds before timer expiration to be alerted.</span>
                         </div>
                     </div>
                 </form>

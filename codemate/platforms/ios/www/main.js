@@ -1,0 +1,631 @@
+$('#options-container').hide();
+$('#report-container').hide();
+
+var editActionId;
+var defibOptionsVisible = false;
+var cardioOptionsVisible = false;
+
+var oralSelect = false;
+var nasalSelect = false;
+
+$(document).ready(function() {
+
+});
+
+document.addEventListener("backbutton", onBackKeyDown, false);
+
+function onBackKeyDown() {}
+
+$('#start-btn').click(function() {
+    $('#view-report-delete-btn').hide();
+    $('#print-report').hide();
+    $('#term-reason').hide();
+    $('#code-term').show();
+    $('#logo-wrapper').hide();
+    $('#code-timer-wrapper').show();
+    populateMedicationModal();
+    $('#start-container').fadeOut(function() {
+        $('#options-container').fadeIn();
+        startTimer(timers.code);
+        $('#pulse-btn').click();
+    });
+});
+
+$('#main-back-btn').click(() => {
+    $('#back-confirm-modal').modal();
+});
+
+function populateReport() {
+    $('#report-table-body').remove();
+    $('#report-table').append(`<tbody id="report-table-body">
+    </tbody>`)
+    $('#code-start').html("Code Started: " + actions[0].time);
+    $('#elapsed-time').html("Elapsed time: " + $('#main-minutes').html() + ":" + $('#main-seconds').html());
+    for (let i = 0; i < actions.length; i++) {
+        for (let j = 0; j < medications.length; j++) {
+            if (actions[i].tag == medications[j].dataTag) {
+                if (actions[i].desc == "") {
+                    actions[i].desc = medications[j].doseAmount + ` ` + medications[j].doseUnit + ` ` + medications[j].route;
+                }
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    } else {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    }
+                } else {
+                    $('#report-table-body').append(`
+                    <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                    <td> ` + actions[i].name + ` </td> 
+                    <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                    <td> ` + actions[i].time + ` </td> 
+                    </tr>`);
+                }
+            }
+        }
+        for (let j = 0; j < procedures.length; j++) {
+            if (actions[i].tag == procedures[j].dataTag) {
+                if (actions[i].desc == "") {
+                    actions[i].desc = procedures[j].details;
+                }
+                if ('flag' in actions[i]) {
+                    if (actions[i].flag) {
+                        $('#report-table-body').append(`
+                            <tr class='report-row modal-trigger' bgcolor="#f0e68c" data-target="report-modal" data='` + i + `'> 
+                            <td> ` + actions[i].name + ` </td> 
+                            <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                            <td> ` + actions[i].time + ` </td> 
+                            </tr>`);
+                    } else {
+                        $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                    }
+                } else {
+                    $('#report-table-body').append(`
+                        <tr class='report-row modal-trigger' data-target="report-modal" data='` + i + `'> 
+                        <td> ` + actions[i].name + ` </td> 
+                        <td class="report-desc"> ` + actions[i].desc + ` </td> 
+                        <td> ` + actions[i].time + ` </td> 
+                        </tr>`);
+                }
+            }
+        }
+    }
+    $('#report-table-body').append(`<script>
+        $('.report-row').click(function () {
+            showReportDetails($(this).attr('data'));
+        });
+    </script>`);
+}
+
+function showReportDetails(id) {
+    $('#report-action-name').val(actions[id].name);
+    $('#report-action-time').val(actions[id].time);
+    $('#report-action-description').val(actions[id].desc);
+    editActionId = id;
+    $('#report-modal').modal();
+}
+
+function populateMedicationModal() {
+    medications.sort(sortByProperty('name'));
+    for (let i = 0; i < medications.length; i++) {
+        if (medications[i].route == 'drip') {
+            $('#med-btn-container').append(`
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                </div>
+                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+            </div>
+            `);
+        } else if (medications[i].route == 'IVP' && medications[i].type != "timer") {
+            $('#med-btn-container').append(`
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                </div>
+                <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+            </div>`);
+        } else if (medications[i].route == 'IVP' && medications[i].type == "timer") {
+            $('#med-btn-container').append(`
+            <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
+            <div class="collap-body" id="` + medications[i].dataTag + `-body">
+                <div class="input-field col s6">
+                    <select id="` + medications[i].dataTag + `-dose-select">
+                        <option value="" disabled selected>Amount</option>
+                        ` + returnDoseOptions(medications[i]) + `
+                    </select>
+                    <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
+                </div>
+                <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
+            </div>`);
+        } else {
+            $('#med-btn-container').append(`
+            <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
+            `);
+        }
+    }
+    dropMeds();
+    alertMeds()
+    confirmMeds();
+    initMaterial();
+}
+
+function returnDoseOptions(med) {
+    let opts = "";
+    med.dose.forEach(function(e) {
+        opts += " <option value='" + e + "'>" + e + "</option> ";
+    });
+    return opts;
+}
+
+function populateProcedureModal() {
+    procedures.sort(sortByProperty('name'));
+    for (let i = 0; i < procedures.length; i++) {
+        if (procedures[i].dataTag == 'iv') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='site-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'interos') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='io-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'pulse') {
+            $('#proc-btn-container').append(`
+            <button id="pulse-btn" data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pulse-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'intubat') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='intu-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'nasogas') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='naso-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'pacing') {
+            $('#proc-btn-container').append(`
+            <button data-type='` + procedures[i].type + `' data-tag='` + procedures[i].dataTag + `' data-target='pacing-selection-modal' class='btn btn-outline-secondary proc-btn modal-trigger modal-close'>` + procedures[i].name + `</button>
+            `);
+        } else if (procedures[i].dataTag == 'new') {
+            $('#proc-btn-container').append(
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' data-target='new-proc-modal' class='btn btn-outline-secondary proc-btn modal-close modal-trigger' onclick='newProcPopulate(" + i + ")'>" + procedures[i].name + "</button>"
+            );
+        } else {
+            $('#proc-btn-container').append(
+                "<button data-type='" + procedures[i].type + "' data-tag='" + procedures[i].dataTag + "' class='btn btn-outline-secondary proc-btn modal-close'>" + procedures[i].name + "</button>"
+            );
+        }
+    }
+}
+populateProcedureModal();
+
+$('.proc-btn').click(function() {
+    var type = $(this).attr('data-type');
+    var tag = $(this).attr('data-tag');
+    var name = $(this).html();
+    if (tag == 'iv') {
+        showSiteOptions();
+    } else if (tag == 'interos') {
+        showIOOptions();
+    } else if (tag == 'intubat') {
+        showIntubationOptions();
+    } else if (tag == 'pulse') {
+        showPulseOptions();
+    } else if (tag == 'nasogas') {
+        //showNasoOptions();
+    } else if (tag == 'pacing') {
+
+    } else if (tag == 'new') {
+
+    } else {
+        if (tag in timers) {
+            restartTimer(timers[tag]);
+        } else {
+            if (type == "timer") {
+                createTimer(tag, 'procedure');
+            }
+            if (type == "alert") {
+                actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': "" });
+                callToast(name);
+            }
+        }
+    }
+});
+
+function newProcPopulate(key) {
+    $('#new-proc-confirm').attr('data-tag', key);
+    $('#new-proc-title').html(procedures[key].name);
+    $('#new-selection-container').empty();
+    $(procedures[key].params).each(function() {
+        let id = "new-select-" + this.name.replace(/\s/g, "");
+        $('#new-selection-container').append(`
+        <div class="input-field col s12">
+            <select id="` + id + `">
+                <option value="" disabled selected>` + this.name + `</option>
+        `);
+        $(this.vals).each(function() {
+            $('#' + id).append(`
+                <option value="` + this + `">` + this + `</option>
+            `);
+        });
+        $('#new-selection-container').append(`
+            </select>
+        </div>`);
+    });
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+}
+
+$('#new-proc-confirm').click(function() {
+    let id = $(this).attr('data-tag');
+    let name = procedures[id].name;
+    let tag = procedures[id].dataTag;
+    let desc = "";
+    $('#new-selection-container').find('select').each(function() {
+        let label = this.id.replace('new-select-', "");
+        let val = $(this).val();
+        desc += label + ': ' + val + ', ';
+    });
+
+    desc = desc.slice(0, -2)
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc });
+    callToast(name);
+    console.log(actions);
+});
+
+$('#select-site-confirm').click(() => {
+    let size = $('#site-select-size').val();
+    let side = $('#site-select-side').val();
+    let site = $('#site-select-site').val();
+    var flag = false;
+    if (size == null) {
+        size = "N/A";
+        flag = true;
+    }
+    if (side == null) {
+        side = "N/A";
+        flag = true;
+    }
+    if (site == null) {
+        site = "N/A";
+        flag = true;
+    }
+    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
+    callToast('IV');
+});
+
+$('#io-selection-confirm').click(() => {
+    let size = $('#io-select-size').val();
+    let side = $('#io-select-side').val();
+    let site = $('#io-select-site').val();
+    var flag = false;
+    if (size == null) {
+        size = "N/A";
+        flag = true;
+    }
+    if (site == null) {
+        site = "N/A";
+        flag = true;
+    }
+    if (side == null) {
+        side = "N/A";
+        flag = true;
+    }
+    actions.push({ 'name': 'Interosseous', 'tag': 'interos', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
+    callToast('Interosseous');
+});
+
+$('#pulse-no-action').click(() => {
+    $('#pulse-selection-confirm').click();
+});
+
+$('#pulse-selection-confirm').click(() => {
+    var flag = false;
+    if (cardioOptionsVisible) {
+        if ($('#cardio-select-joules').val() == null) {
+            var desc = "Sync. Cardioversion (?) joules";
+        } else {
+            var desc = "Sync. Cardioversion " + $('#cardio-select-joules').val() + " joules";
+        }
+    } else if (defibOptionsVisible) {
+        if ($('#defib-select-joules').val() == null) {
+            var desc = "Defibrillation (?) joules";
+        } else {
+            var desc = "Defibrillation " + $('#defib-select-joules').val() + " joules";
+        }
+    } else {
+        var desc = "Check for pulse";
+    }
+    if ('pulse' in timers) {
+        restartTimer(timers['pulse']);
+    } else {
+        createTimer("pulse", "procedure");
+    }
+    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pulse Check');
+});
+
+$('#pacing-selection-confirm').click(() => {
+    let rate = $('#pacing-select-rate').val();
+    let ma = $('#pacing-select-ma').val();
+    let flag = false;
+    if (rate == null || ma == null) {
+        flag = true;
+    }
+    console.log(flag);
+    let desc = "Rate: " + rate + ", MA: " + ma;
+    actions.push({ 'name': 'Pacing', 'tag': 'pacing', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pacing');
+});
+
+$('#report-edit-btn').click(() => {
+    let name = $('#report-action-name').val();
+    let time = $('#report-action-time').val();
+    let desc = $('#report-action-description').val();
+    actions[editActionId].name = name;
+    actions[editActionId].time = time;
+    actions[editActionId].desc = desc;
+    if ('flag' in actions[editActionId]) {
+        if (actions[editActionId].flag) {
+            actions[editActionId].flag = false;
+        }
+    }
+    populateReport();
+});
+
+$('#report-delete-btn').click(() => {
+    actions.splice(editActionId, 1);
+    populateReport();
+    // need to check for count and decrement as necessary
+});
+
+// will need new modal here to specify options
+// also will add selection to action description when pushed
+
+function showPulseOptions() {
+    $('#cardio-options-container').hide();
+    cardioOptionsVisible = false;
+    $('#defib-options-container').hide();
+    defibOptionsVisible = false;
+    $('#pulse-defib-btn').removeClass('red');
+    $('#pulse-cardio-btn').removeClass('red');
+    $('#pulse-selection-modal').modal();
+}
+
+function showIntubationOptions() {
+    oralSelect = false;
+    $('#intu-oral-select').removeClass('red');
+    nasalSelect = false;
+    $('#intu-nasal-select').removeClass('red');
+    $('#intu-selection-modal').modal();
+}
+
+function showIOOptions() {
+
+}
+
+function showSiteOptions() {
+
+}
+
+$('#intu-oral-select').click(() => {
+    if (!oralSelect) {
+        oralSelect = true;
+        $('#intu-oral-select').addClass('red');
+    }
+
+    if (nasalSelect) {
+        nasalSelect = false;
+        $('#intu-nasal-select').removeClass('red');
+    }
+});
+
+$('#intu-nasal-select').click(() => {
+    if (!nasalSelect) {
+        nasalSelect = true;
+        $('#intu-nasal-select').addClass('red');
+    }
+
+    if (oralSelect) {
+        oralSelect = false;
+        $('#intu-oral-select').removeClass('red');
+    }
+});
+
+$('#intu-selection-confirm').click(() => {
+    var flag = false;
+    if ($('#intu-select-size').val() == null) {
+        flag = true;
+        var size = '';
+    } else {
+        var size = $('#intu-select-size').val();
+    }
+
+    if ($('#intu-select-depth').val() == null) {
+        flag = true;
+        var depth = '';
+    } else {
+        var depth = $('#intu-select-depth').val();
+    }
+
+    if (oralSelect) {
+        var desc = "Oral - Size: " + size + ", Depth: " + depth;
+    } else if (nasalSelect) {
+        var desc = "Nasal - Size: " + size + ", Depth: " + depth;
+    } else {
+        flag = true;
+        var desc = "Size: " + size + ", Depth: " + depth;
+    }
+    actions.push({ 'name': 'Intubation', 'tag': 'intubat', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Intubation');
+});
+
+$('#naso-selection-confirm').click(() => {
+    var flag = false;
+    if ($('#naso-select-size').val() == null) {
+        flag = true;
+        var size = '';
+    } else {
+        var size = $('#naso-select-size').val();
+    }
+
+    if (flag) {
+        var desc = "";
+    } else {
+        var desc = "Size: " + size;
+    }
+    actions.push({ 'name': 'Nasogastric Tube', 'tag': 'nasogas', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Nasogastric Tube');
+});
+
+function createTimer(tag, type) {
+    var data, item, t;
+    if (type == 'procedure') {
+        data = procedures;
+    } else if (type == 'medication') {
+        data = medications;
+    }
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].dataTag == tag) {
+            item = data[i];
+        }
+    }
+
+    for (let i = 0; i < timersData.length; i++) {
+        if (timersData[i].dataTag == item.dataTag) {
+            t = timersData[i];
+        }
+    }
+
+    if (type == 'procedure') {
+        timers[item.dataTag] = {
+            'id': item.dataTag,
+            'name': item.name,
+            'type': 'procedure',
+            'min': 0,
+            'sec': 0,
+            'startTime': timeNow(),
+            'interval': null,
+            'running': true,
+            'count': 1,
+            'alert': {
+                'min': t.alertMin,
+                'sec': t.alertSec
+            },
+            'details': item.details
+        };
+    } else if (type == 'medication') {
+        timers[item.dataTag] = {
+            'id': item.dataTag,
+            'name': item.name,
+            'type': 'medication',
+            'min': 0,
+            'sec': 0,
+            'startTime': timeNow(),
+            'interval': null,
+            'running': true,
+            'count': 1,
+            'alert': {
+                'min': t.alertMin,
+                'sec': t.alertSec
+            },
+            'doseAmount': item.dose,
+            'doseUnit': item.unit,
+            'route': item.route
+        };
+    }
+
+    $('#timer-container').append(`
+<div class="col s6 m4 l3 xl2">
+    <div data="` + item.dataTag + `" id="` + item.dataTag + `-timer-card" class="card text-center timer-card" align="center">
+        <span id="` + item.dataTag + `-count" class="card-title">count: 1</span>
+        <div id="` + item.dataTag + `-timer-div" data="` + item.dataTag + `">
+            <div class="card-content center">
+                <h4 class="timer"><span id="` + item.dataTag + `-minutes">00</span>:<span id="` + item.dataTag + `-seconds">00</span></h4>
+            </div>
+            <div class="card-action center" id="` + item.dataTag + `-timer">
+                <span class="flow-text truncate timer-name">` + item.name + `</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$('#` + item.dataTag + `-timer-div').click(function () {
+    var id = $(this).attr('data');
+    $('#` + item.dataTag + `-count').html("count: " + (timers[id].count + 1));
+    if(id == 'pulse') {
+        $('#pulse-btn').click();
+    } else {
+        restartTimer(timers[id]);
+    }
+});
+</script>
+    `);
+    startTimer(timers[item.dataTag]);
+}
+
+$('.timer-card').click(function() {
+    var id = $(this).attr('data');
+    restartTimer(timers[id]);
+});
+
+function showDefibOptions() {
+    if (defibOptionsVisible) {
+        $('#defib-options-container').hide();
+        defibOptionsVisible = false;
+        $('#pulse-defib-btn').removeClass('red');
+    } else {
+        $('#defib-options-container').show();
+        defibOptionsVisible = true;
+        $('#pulse-defib-btn').addClass('red');
+    }
+
+    if (cardioOptionsVisible) {
+        $('#cardio-options-container').hide();
+        cardioOptionsVisible = false;
+        $('#pulse-cardio-btn').removeClass('red');
+    }
+}
+
+function showCardioOptions() {
+    if (cardioOptionsVisible) {
+        $('#cardio-options-container').hide();
+        cardioOptionsVisible = false;
+        $('#pulse-cardio-btn').removeClass('red');
+    } else {
+        $('#cardio-options-container').show();
+        cardioOptionsVisible = true;
+        $('#pulse-cardio-btn').addClass('red');
+    }
+
+    if (defibOptionsVisible) {
+        $('#defib-options-container').hide();
+        defibOptionsVisible = false;
+        $('#pulse-defib-btn').removeClass('red');
+    }
+}

@@ -1,5 +1,5 @@
 var defaultMedications = [{
-        name: "Amioderone",
+        name: "Amiodarone",
         dataTag: "amni",
         dose: [150, 300],
         unit: "MG",
@@ -15,8 +15,9 @@ var defaultMedications = [{
         route: "IVP",
         type: "timer",
         timer: {
-            min: 2,
-            sec: 45
+            min: 3,
+            sec: 0,
+            alert: 15
         }
     },
     {
@@ -63,8 +64,9 @@ var defaultMedications = [{
         route: "IVP",
         type: "timer",
         timer: {
-            min: 2,
-            sec: 45
+            min: 3,
+            sec: 0,
+            alert: 5
         }
     },
     {
@@ -111,8 +113,9 @@ var defaultMedications = [{
         route: "IVP",
         type: "timer",
         timer: {
-            min: 14,
-            sec: 45,
+            min: 15,
+            sec: 0,
+            alert: 15
         }
     },
     {
@@ -185,8 +188,9 @@ var defaultProcedures = [{
         dataTag: "pulse",
         type: "timer",
         timer: {
-            min: 1,
-            sec: 45
+            min: 2,
+            sec: 0,
+            alert: 15
         }
     },
 ];

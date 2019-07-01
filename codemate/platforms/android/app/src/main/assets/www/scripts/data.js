@@ -220,7 +220,3 @@ if (JSON.parse(localStorage.getItem('New_Procedures')) != null) {
 } else {
     newProcedures = [];
 }
-
-console.log(JSON.parse(localStorage.getItem('Medications')));
-console.log(JSON.parse(localStorage.getItem('New_Procedures')));
-console.log(JSON.parse(localStorage.getItem('Code_History')));

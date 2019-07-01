@@ -63,7 +63,7 @@ function startTimer(arr) {
                 $("#" + arr['id'] + "-timer-card").addClass("pulse-red");
                 cordova.plugins.notification.local.schedule({
                     title: arr['name'],
-                    text: 'Timer expiring in ' + arr['alert'] + ' seconds.',
+                    text: 'Timer expiring in ' + arr.alert.exp + ' seconds.',
                     foreground: true
                 });
             }
@@ -108,7 +108,6 @@ function decrementCount(arr) {
         if (arr.actions.time == actions[editActionId].time) {
             // deleted item is the same as the timer
             // need to restart the timer to the next startTime
-            console.log(true);
         }
         $("#" + arr['id'] + "-timer-card").removeClass('pulse-red');
         $("#" + arr['id'] + "-count").html("count: " + arr['count']);
@@ -238,5 +237,5 @@ function timerAlertCalc(min, sec, alert) {
             sec -= 60;
         }
     }
-    return { min: min, sec: sec };
+    return { min: min, sec: sec, exp: alert };
 }

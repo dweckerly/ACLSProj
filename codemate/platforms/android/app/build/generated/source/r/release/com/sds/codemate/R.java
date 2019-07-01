@@ -230,9 +230,9 @@ public final class R {
      * @see #FontFamily_fontProviderQuery
      */
     public static final int[] FontFamily={
-      0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 
-      0x7f010005, 0x7f010006
-    };
+        0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 
+        0x7f010005, 0x7f010006
+      };
     /**
      * <p>This symbol is the offset where the {@link com.sds.codemate.R.attr#fontProviderAuthority}
      * attribute's value can be found in the {@link #FontFamily} array.
@@ -325,8 +325,8 @@ public final class R {
      * @see #FontFamilyFont_fontWeight
      */
     public static final int[] FontFamilyFont={
-      0x7f010000, 0x7f010007, 0x7f010008
-    };
+        0x7f010000, 0x7f010007, 0x7f010008
+      };
     /**
      * <p>This symbol is the offset where the {@link com.sds.codemate.R.attr#font}
      * attribute's value can be found in the {@link #FontFamilyFont} array.

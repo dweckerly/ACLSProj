@@ -253,8 +253,8 @@ $('#new-med-save-btn').click(() => {
         inc = 0;
     }
 
-    if (parseFloat(min).toFixed(2) > parseFloat(max).toFixed(2)) {
-        err = "Max does must be more than the min dose."
+    if (parseFloat(max) < parseFloat(min)) {
+        err = "Max dose cannot be less than the min dose."
     }
 
     if (err != '') {

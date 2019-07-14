@@ -187,6 +187,9 @@ function initMaterial() {
     $(document).ready(function() {
         $('.collapsible').collapsible();
     });
+    $(document).ready(function() {
+        $('.dropdown-trigger').dropdown();
+    });
 }
 
 function createDoseArray(min, max, inc) {

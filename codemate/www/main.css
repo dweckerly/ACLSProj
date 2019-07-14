@@ -5,6 +5,12 @@
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(img/MaterialIcons-Regular.woff2) format('woff2'), url(img/MaterialIcons-Regular.woff) format('woff'), url(img/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+.input-field {
+    cursor: pointer!important;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;

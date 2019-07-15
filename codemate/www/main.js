@@ -93,97 +93,68 @@ function populateMedicationModal() {
         if (medications[i].route == 'drip' && medications[i].timer == false) {
             if (medications[i].dose.length > 1) {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
-                <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                    <div class="input-field col s6">
-                        <select id="` + medications[i].dataTag + `-dose-select">
-                            <option value="" disabled selected>Amount</option>
-                            ` + returnDoseOptions(medications[i]) + `
-                        </select>
-                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
-                    </div>
-                    <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-                </div>
+                <a class='dropdown-trigger btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn' href='#' data-target='dropdown-` + medications[i].dataTag + `' data-tag="` + medications[i].dataTag + `">` + medications[i].name + ` DRIP</a>
+                <ul id='dropdown-` + medications[i].dataTag + `' class='dropdown-content'>
+                    ` + returnDoseOptions(medications[i], i, false) + `
+                </ul>
                 `);
             } else {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip med-btn-confirm modal-close med-btn'>` + medications[i].name + ` DRIP</button>
+                <a onclick="confirmMeds(` + i + `, ` + medications[i].dose[0] + `, ` + false + `)" class='btn btn-outline-secondary yellow lighten-3 drip med-btn-confirm modal-close med-btn'>` + medications[i].name + ` DRIP</a>
                 `);
             }
         } else if (medications[i].route == 'drip' && medications[i].timer != false) {
             if (medications[i].dose.length > 1) {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn'>` + medications[i].name + ` DRIP</button>
-                <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                    <div class="input-field col s6">
-                        <select id="` + medications[i].dataTag + `-dose-select">
-                            <option value="" disabled selected>Amount</option>
-                            ` + returnDoseOptions(medications[i]) + `
-                        </select>
-                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
-                    </div>
-                    <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-                </div>
+                <a class='dropdown-trigger btn btn-outline-secondary yellow lighten-3 drip drop-med-btn med-btn' href='#' data-target='dropdown-` + medications[i].dataTag + `' data-tag="` + medications[i].dataTag + `">` + medications[i].name + ` DRIP</a>
+                <ul id='dropdown-` + medications[i].dataTag + `' class='dropdown-content'>
+                    ` + returnDoseOptions(medications[i], i, true) + `
+                </ul>
                 `);
             } else {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-timer="yes" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary yellow lighten-3 drip med-btn-confirm modal-close med-btn'>` + medications[i].name + ` DRIP</button>
+                <a onclick="confirmMeds(` + i + `, ` + medications[i].dose[0] + `, ` + true + `)" class='btn btn-outline-secondary yellow lighten-3 drip med-btn-confirm modal-close med-btn'>` + medications[i].name + ` DRIP</a>
                 `);
             }
         } else if (medications[i].route == 'IVP' && medications[i].timer == false) {
             if (medications[i].dose.length > 1) {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
-                <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                    <div class="input-field col s6">
-                        <select id="` + medications[i].dataTag + `-dose-select">
-                            <option value="" disabled selected>Amount</option>
-                            ` + returnDoseOptions(medications[i]) + `
-                        </select>
-                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
-                    </div>
-                    <button data-tag="` + medications[i].dataTag + `" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-                </div>`);
+                <a class='dropdown-trigger btn btn-outline-secondary drop-med-btn med-btn' href='#' data-target='dropdown-` + medications[i].dataTag + `' data-tag="` + medications[i].dataTag + `">` + medications[i].name + `</a>
+                <ul id='dropdown-` + medications[i].dataTag + `' class='dropdown-content'>
+                    ` + returnDoseOptions(medications[i], i, false) + `
+                </ul>
+                `);
             } else {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary med-btn-confirm modal-close med-btn'>` + medications[i].name + `</button>
+                <a onclick="confirmMeds(` + i + `, ` + medications[i].dose[0] + `, ` + false + `)" class='btn btn-outline-secondary med-btn-confirm modal-close med-btn'>` + medications[i].name + `</a>
                 `);
             }
         } else if (medications[i].route == 'IVP' && medications[i].timer != false) {
             if (medications[i].dose.length > 1) {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary drop-med-btn med-btn'>` + medications[i].name + `</button>
-                <div class="collap-body" id="` + medications[i].dataTag + `-body">
-                    <div class="input-field col s6">
-                        <select id="` + medications[i].dataTag + `-dose-select">
-                            <option value="" disabled selected>Amount</option>
-                            ` + returnDoseOptions(medications[i]) + `
-                        </select>
-                        <p id="` + medications[i].dataTag + `-unit">` + medications[i].unit + `</p>
-                    </div>
-                    <button data-tag="` + medications[i].dataTag + `" data-timer="yes" class="btn btn-outline-secondary med-btn-confirm modal-close purple lighten-2">Confirm</button>
-                </div>`);
+                <a class='dropdown-trigger btn btn-outline-secondary drop-med-btn med-btn' href='#' data-target='dropdown-` + medications[i].dataTag + `' data-tag="` + medications[i].dataTag + `">` + medications[i].name + `</a>
+                <ul id='dropdown-` + medications[i].dataTag + `' class='dropdown-content'>
+                    ` + returnDoseOptions(medications[i], i, true) + `
+                </ul>
+                `);
             } else {
                 $('#med-btn-container').append(`
-                <button id="` + medications[i].dataTag + `-btn-label" data-timer="yes" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary med-btn-confirm modal-close med-btn'>` + medications[i].name + `</button>
+                <a onclick="confirmMeds(` + i + `, ` + medications[i].dose[0] + `, ` + true + `)" class='btn btn-outline-secondary med-btn-confirm modal-close med-btn'>` + medications[i].name + `</a>
                 `);
             }
         } else {
-            $('#med-btn-container').append(`
-            <button data-type="` + medications[i].type + `" data-tag="` + medications[i].dataTag + `" class='btn btn-outline-secondary alert-med-btn med-btn modal-close'>` + medications[i].name + `</button>
-            `);
+
         }
     }
     dropMeds();
     alertMeds()
-    confirmMeds();
     initMaterial();
 }
 
-function returnDoseOptions(med) {
+function returnDoseOptions(med, i, timer) {
     let opts = "";
     med.dose.forEach(function(e) {
-        opts += " <option value='" + e + "'>" + e + "</option> ";
+        opts += "<li class='modal-close' onclick='confirmMeds(" + i + ", " + e + ", " + timer + ");'><a href='#!'>" + e + " " + med.unit + "</a></li> ";
     });
     return opts;
 }

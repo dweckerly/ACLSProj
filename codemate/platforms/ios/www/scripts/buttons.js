@@ -49,41 +49,20 @@ function dropMeds() {
     });
 }
 
-function confirmMeds() {
-    $(".med-btn-confirm").click(function() {
-        var tag = $(this).attr('data-tag');
-        var med;
-        for (i = 0; i < medications.length; i++) {
-            if (medications[i].dataTag == tag) {
-                med = medications[i];
-            }
-        }
-        var name = $('#' + tag + '-btn-label').html();
-        if ($('#' + tag + '-dose-select').val() != null) {
-            var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html() + " " + med.route;
-            var flag = false;
+function confirmMeds(i, dose, timer) {
+    var name = medications[i].name;
+    var desc = dose + " " + medications[i].unit + " " + medications[i].route;
+    var flag = false;
+    var tag = medications[i].dataTag;
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
+    callToast(name);
+    if (timer) {
+        if (tag in timers) {
+            restartTimer(timers[tag]);
         } else {
-            if (med.dose.length > 1) {
-                var desc = "? " + med.unit + " " + med.route;;
-                var flag = true;
-            } else {
-                var desc = med.dose[0] + " " + med.unit + " " + med.route;;
-                var flag = false;
-            }
+            createTimer(tag, 'medication');
         }
-        $(".collap-body").each(function() {
-            $(this).css("display", "none");
-        });
-        actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
-        callToast(name);
-        if ($(this).attr('data-timer')) {
-            if (tag in timers) {
-                restartTimer(timers[tag]);
-            } else {
-                createTimer(tag, 'medication');
-            }
-        }
-    });
+    }
 }
 
 

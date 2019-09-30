@@ -331,6 +331,9 @@ function pulseSelection(action, charge) {
         var desc = "Defibrillation " + charge +  " joules";
     } else if (action == "sync") {
         var desc = "Sync. Cardioversion " + charge + " joules";
+    } else {
+        var desc = "Pulse check ?";
+        flag = true;
     }
     if ('pulse' in timers) {
         if(timers['pulse']['min'] > timers['pulse']['alert']['min']) {

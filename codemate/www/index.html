@@ -190,30 +190,36 @@
             <div id="pulse-selection-container" class="row" align="center">
                 <div class="input-field col s12">
                     <button class="btn waves-effect waves-light modal-close std-btn" id="pulse-no-action">No Action</button>
-                    <button class="btn waves-effect waves-light std-btn" id="pulse-defib-btn" onclick="showDefibOptions()">Defibrillation</button>
-                    <div id="defib-options-container" style="display: hidden;">
-                        <div class="input-field col s12">
-                            <select id="defib-select-joules">
-                                <option value="" disabled selected>Joules</option>
-                                <option value="200">200</option>
-                                <option value="300">300</option>
-                                <option value="360">360</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button class="btn waves-effect waves-light std-btn" id="pulse-cardio-btn" onclick="showCardioOptions()">Sync. Cardioversion</button>
-                    <div id="cardio-options-container" style="display: hidden;">
-                        <div class="input-field col s12">
-                            <select id="cardio-select-joules">
-                                <option value="" disabled selected>Joules</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="200">200</option>
-                                <option value="300">300</option>
-                                <option value="360">360</option>
-                            </select>
-                        </div>
-                    </div>
+                    <a class="btn waves-effect waves-light std-btn dropdown-trigger" id="pulse-defib-btn" data-target="dropdown-defib">Defibrillation</a>
+                    <ul id="dropdown-defib" class="dropdown-content" tabindex="0">
+                        <li class="modal-close" onclick="pulseSelection('defib', 200)">
+                            <a href="#!">200</a>
+                        </li>
+                        <li class="modal-close" onclick="pulseSelection('defib', 300)">
+                            <a href="#!">300</a>
+                        </li>
+                        <li class="modal-close" onclick="pulseSelection('defib', 360)">
+                            <a href="#!">360</a>
+                        </li>
+                    </ul>
+                    <button class="btn waves-effect waves-light std-btn dropdown-trigger" id="pulse-cardio-btn" data-target="dropdown-cardiosync">Sync. Cardioversion</button>
+                    <ul id="dropdown-cardiosync" class="dropdown-content" tabindex="0">
+                        <li class="modal-close" onclick="pulseSelection('sync', 50)">
+                            <a href="#!">50</a>
+                        </li>
+                        <li class="modal-close" onclick="pulseSelection('sync', 100)">
+                            <a href="#!">100</a>
+                        </li>
+                        <li class="modal-close" onclick="pulseSelection('sync', 200)">
+                            <a href="#!">200</a>
+                        </li>
+                        <li class="modal-close" onclick="pulseSelection('sync', 300)">
+                            <a href="#!">300</a>
+                        </li>
+                        <li class="modal-close" onclick="pulseSelection('sync', 360)">
+                            <a href="#!">360</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

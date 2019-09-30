@@ -320,36 +320,32 @@ $('#io-selection-confirm').click(() => {
 });
 
 $('#pulse-no-action').click(() => {
-    $('#pulse-selection-confirm').click();
+    pulseSelection("none", 0)
 });
 
-$('#pulse-selection-confirm').click(() => {
+function pulseSelection(action, charge) {
     var flag = false;
-    if (cardioOptionsVisible) {
-        if ($('#cardio-select-joules').val() == null) {
-            var desc = "Sync. Cardioversion (?) joules";
-            flag = true;
-        } else {
-            var desc = "Sync. Cardioversion " + $('#cardio-select-joules').val() + " joules";
-        }
-    } else if (defibOptionsVisible) {
-        if ($('#defib-select-joules').val() == null) {
-            var desc = "Defibrillation (?) joules";
-            flag = true;
-        } else {
-            var desc = "Defibrillation " + $('#defib-select-joules').val() + " joules";
-        }
-    } else {
-        var desc = "Check for pulse";
+    if(action == "none") {
+        var desc = "Check for pulse"
+    } else if (action == "defib") {
+        var desc = "Defibrillation " + charge +  " joules";
+    } else if (action == "sync") {
+        var desc = "Sync. Cardioversion " + charge + " joules";
     }
-    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
-    callToast('Pulse Check');
     if ('pulse' in timers) {
+        if(timers['pulse']['min'] > timers['pulse']['alert']['min']) {
+
+        } else if (timers['pulse']['min'] >= timers['pulse']['alert']['min'] && timers['pulse']['sec'] > timers['pulse']['alert']['sec']) {
+            flag = true;
+        }
         restartTimer(timers['pulse']);
     } else {
         createTimer("pulse", "procedure");
     }
-});
+    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pulse Check');
+    return false;
+}
 
 $('#pacing-selection-confirm').click(() => {
     let rate = $('#pacing-select-rate').val();

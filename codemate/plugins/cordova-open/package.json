@@ -40,7 +40,7 @@
   "deprecated": false,
   "description": "Open audio, video, images and more with applications installed on the user's device",
   "devDependencies": {
-    "eslint": "^0.24.1",
+    "eslint": "^6.6.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^0.15.0"
   },

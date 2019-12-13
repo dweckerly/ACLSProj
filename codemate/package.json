@@ -20,7 +20,7 @@
         "cordova-plugin-file-transfer": "^1.7.1",
         "cordova-plugin-local-notification": "git+https://github.com/katzer/cordova-plugin-local-notifications.git",
         "jspdf": "^1.5.3",
-        "npm": "^6.4.1"
+        "npm": "^6.13.4"
     },
     "cordova": {
         "plugins": {

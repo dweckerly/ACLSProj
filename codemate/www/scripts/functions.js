@@ -179,9 +179,6 @@ function initMaterial() {
         $('.fixed-action-btn').floatingActionButton();
     });
     $(document).ready(function() {
-        $('select').formSelect();
-    });
-    $(document).ready(function() {
         $('.tooltipped').tooltip();
     });
     $(document).ready(function() {

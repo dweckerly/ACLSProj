@@ -210,6 +210,6 @@
     text-align: center;
 }
 
-input.select-dropdown:focus {
-    text-indent: -9999999em;
+select {
+    display: block;
 }

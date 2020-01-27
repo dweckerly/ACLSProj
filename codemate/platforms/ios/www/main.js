@@ -172,7 +172,7 @@ function populateMedicationModal() {
 function returnDoseOptions(med, i, timer) {
     let opts = "";
     med.dose.forEach(function(e) {
-        opts += "<li class='modal-close' onclick='confirmMeds(" + i + ", " + e + ", " + timer + ");'><a href='#!'>" + e + " " + med.unit + "</a></li> ";
+        opts += "<li class='modal-close' onclick='confirmMeds(" + i + ", " + e + ", " + timer + ");return false;'><a href='#!'>" + e + " " + med.unit + "</a></li> ";
     });
     return opts;
 }
@@ -270,9 +270,6 @@ function newProcPopulate(key) {
             </select>
         </div>`);
     });
-    $(document).ready(function() {
-        $('select').formSelect();
-    });
 }
 
 $('#new-proc-confirm').click(function() {
@@ -298,9 +295,9 @@ $('#new-proc-confirm').click(function() {
 $('#select-site-confirm').click(() => {
     var desc = $("#site-selection-params").html();
     var flag = false;
-    if(ivParams['gauge'] == "" || ivParams['side'] == "" || ivParams['site'] == "") {
-        flag  = true;
-    }   
+    if (ivParams['gauge'] == "" || ivParams['side'] == "" || ivParams['site'] == "") {
+        flag = true;
+    }
     clearVars();
     actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('IV');
@@ -333,10 +330,10 @@ $('#pulse-no-action').click(() => {
 
 function pulseSelection(action, charge) {
     var flag = false;
-    if(action == "none") {
+    if (action == "none") {
         var desc = "Check for pulse"
     } else if (action == "defib") {
-        var desc = "Defibrillation " + charge +  " joules";
+        var desc = "Defibrillation " + charge + " joules";
     } else if (action == "sync") {
         var desc = "Sync. Cardioversion " + charge + " joules";
     } else {
@@ -344,7 +341,7 @@ function pulseSelection(action, charge) {
         flag = true;
     }
     if ('pulse' in timers) {
-        if(timers['pulse']['min'] > timers['pulse']['alert']['min']) {
+        if (timers['pulse']['min'] > timers['pulse']['alert']['min']) {
 
         } else if (timers['pulse']['min'] >= timers['pulse']['alert']['min'] && timers['pulse']['sec'] > timers['pulse']['alert']['sec']) {
             flag = true;

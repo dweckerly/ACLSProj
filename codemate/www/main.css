@@ -212,4 +212,9 @@
 
 select {
     display: block;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 2px 0 white;
+    border-radius: 2px;
 }

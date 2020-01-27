@@ -146,7 +146,7 @@ function medModalSearch() {
     input = document.getElementById('med-search');
     filter = input.value.toUpperCase();
     ul = document.getElementById("med-btn-container");
-    li = ul.getElementsByTagName('button');
+    li = ul.getElementsByTagName('a');
     for (i = 0; i < li.length; i++) {
         if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
             li[i].style.display = "";

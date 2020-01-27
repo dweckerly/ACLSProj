@@ -2,11 +2,29 @@ $('#options-container').hide();
 $('#report-container').hide();
 
 var editActionId;
-var defibOptionsVisible = false;
-var cardioOptionsVisible = false;
 
 var oralSelect = false;
 var nasalSelect = false;
+
+var ivParams = {
+    "gauge": "",
+    "side": "",
+    "site": ""
+}
+
+function clearVars() {
+    ivParams = {
+        "gauge": "",
+        "side": "",
+        "site": ""
+    }
+    $("#site-selection-params").html("Gauge: , Side: , Site: ");
+}
+
+function ivSelection(action, param) {
+    ivParams[action] = param;
+    $("#site-selection-params").html("Gauge: " + ivParams['gauge'] + ", Side: " + ivParams['side'] + ", Site: " + ivParams['site']);
+}
 
 $(document).ready(function() {
 
@@ -278,23 +296,13 @@ $('#new-proc-confirm').click(function() {
 });
 
 $('#select-site-confirm').click(() => {
-    let size = $('#site-select-size').val();
-    let side = $('#site-select-side').val();
-    let site = $('#site-select-site').val();
+    var desc = $("#site-selection-params").html();
     var flag = false;
-    if (size == null) {
-        size = "Size: ?";
-        flag = true;
-    }
-    if (side == null) {
-        side = "Side: ?";
-        flag = true;
-    }
-    if (site == null) {
-        site = "Site: ?";
-        flag = true;
-    }
-    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': size + ", " + side + " " + site, flag: flag });
+    if(ivParams['gauge'] == "" || ivParams['side'] == "" || ivParams['site'] == "") {
+        flag  = true;
+    }   
+    clearVars();
+    actions.push({ 'name': 'IV', 'tag': 'iv', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
     callToast('IV');
 });
 
@@ -320,36 +328,35 @@ $('#io-selection-confirm').click(() => {
 });
 
 $('#pulse-no-action').click(() => {
-    $('#pulse-selection-confirm').click();
+    pulseSelection("none", 0)
 });
 
-$('#pulse-selection-confirm').click(() => {
+function pulseSelection(action, charge) {
     var flag = false;
-    if (cardioOptionsVisible) {
-        if ($('#cardio-select-joules').val() == null) {
-            var desc = "Sync. Cardioversion (?) joules";
-            flag = true;
-        } else {
-            var desc = "Sync. Cardioversion " + $('#cardio-select-joules').val() + " joules";
-        }
-    } else if (defibOptionsVisible) {
-        if ($('#defib-select-joules').val() == null) {
-            var desc = "Defibrillation (?) joules";
-            flag = true;
-        } else {
-            var desc = "Defibrillation " + $('#defib-select-joules').val() + " joules";
-        }
+    if(action == "none") {
+        var desc = "Check for pulse"
+    } else if (action == "defib") {
+        var desc = "Defibrillation " + charge +  " joules";
+    } else if (action == "sync") {
+        var desc = "Sync. Cardioversion " + charge + " joules";
     } else {
-        var desc = "Check for pulse";
+        var desc = "Pulse check ?";
+        flag = true;
     }
-    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
-    callToast('Pulse Check');
     if ('pulse' in timers) {
+        if(timers['pulse']['min'] > timers['pulse']['alert']['min']) {
+
+        } else if (timers['pulse']['min'] >= timers['pulse']['alert']['min'] && timers['pulse']['sec'] > timers['pulse']['alert']['sec']) {
+            flag = true;
+        }
         restartTimer(timers['pulse']);
     } else {
         createTimer("pulse", "procedure");
     }
-});
+    actions.push({ 'name': 'Pulse Check', 'tag': 'pulse', 'action': 'pressed', 'time': timeNow(), 'desc': desc, flag: flag });
+    callToast('Pulse Check');
+    return false;
+}
 
 $('#pacing-selection-confirm').click(() => {
     let rate = $('#pacing-select-rate').val();

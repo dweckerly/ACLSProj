@@ -63,6 +63,7 @@ function confirmMeds(i, dose, timer) {
             createTimer(tag, 'medication');
         }
     }
+    return false;
 }
 
 

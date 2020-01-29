@@ -1,1 +1,1 @@
-[{"outputType":{"type":"PROCESSED_RES"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":10000},"path":"resources-debug.ap_","properties":{"packageId":"io.cordova.codemate","split":"","minSdkVersion":"19"}}]
+[{"outputType":{"type":"PROCESSED_RES"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":10003},"path":"resources-debug.ap_","properties":{"packageId":"com.sds.codemate","split":"","minSdkVersion":"19"}}]

@@ -141,7 +141,6 @@ function getNewProcParams() {
             newParamArr.push(paramJson);
         }
     }
-    console.log(newParamArr);
     return newParamArr;
 }
 

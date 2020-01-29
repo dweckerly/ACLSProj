@@ -82,6 +82,25 @@ function populateEditMedication() {
         $('#ivp-type').prop('checked', true);
     }
 
+    if (!medications[editKey].timer) {
+        $('#timer-no').prop('checked', true);
+        $('#timer-yes').prop('checked', false);
+        hideTimerContainer();
+        $('#timer-minute-label').removeClass('active');
+        $('#timer-second-label').removeClass('active');
+        $('#timer-alert-label').removeClass('active');
+    } else {
+        $('#timer-no').prop('checked', false);
+        $('#timer-yes').prop('checked', true);
+        showTimerContainer();
+        $('#timer-minute-label').addClass('active');
+        $('#timer-minute').val(medications[editKey].timer.min);
+        $('#timer-second-label').addClass('active');
+        $('#timer-second').val(medications[editKey].timer.sec);
+        $('#timer-alert-label').addClass('active');
+        $('#timer-alert').val(medications[editKey].timer.alert);
+    }
+
     $('#new-med-min-dose').val(medications[editKey].dose[0]);
     $('#new-med-max-dose').val(medications[editKey].dose[medications[editKey].dose.length - 1]);
     if (medications[editKey].dose.length > 1) {
@@ -143,14 +162,20 @@ function clearNewMedForm() {
     $('#max-label').removeClass('active');
     $('#inc-label').removeClass('active');
     $('#dose-label').removeClass('active');
+    $('#timer-yes').prop('checked', false);
+    $('#timer-no').prop('checked', true);
+    $('#timer-minute').val('');
+    $('#timer-second').val('');
+    $('#timer-alert').val('');
+    $('#timer-minute').removeClass('active');
+    $('#timer-second').removeClass('active');
+    $('#timer-alert').removeClass('active');
+    $('#new-med-form-message').html('');
+
 }
 
 function returnToAddNewMedication() {
-    $('#new-med-name').val('');
-    $('#new-med-min-dose').val('');
-    $('#new-med-max-dose').val('');
-    $('#new-med-dose-inc').val('');
-    $('#new-med-dose-unit').val('');
+    clearNewMedForm()
     $('#new-med-form').fadeOut(() => {
         populateEditMedList();
         $('#add-med-btn').fadeIn();
@@ -159,6 +184,7 @@ function returnToAddNewMedication() {
 }
 
 $('#new-med-save-btn').click(() => {
+    var err = '';
     var name = $('#new-med-name').val();
     let route;
     if ($('#ivp-type').prop('checked')) {
@@ -166,15 +192,71 @@ $('#new-med-save-btn').click(() => {
     } else if ($('#drip-type').prop('checked')) {
         route = "drip";
     }
+    let timer;
+    if ($('#timer-no').prop('checked')) {
+        timer = false;
+    } else if ($('#timer-yes').prop('checked')) {
+        if (($('#timer-minute').val() == '' && $('#timer-second').val() == '')) {
+            err = "Please input valid timer information.";
+        } else {
+            let tMin, tSec, alert;
+            if ($('#timer-second').val() == undefined || $('#timer-second').val() == null || $('#timer-second').val() == "") {
+                tSec = 0;
+            } else {
+                tSec = parseInt($('#timer-second').val());
+            }
+            if ($('#timer-minute').val() == undefined || $('#timer-minute').val() == null || $('#timer-minute').val() == "") {
+                tMin = 0;
+            } else {
+                tMin = parseInt($('#timer-minute').val());
+            }
+            if ($('#timer-minute').val() == undefined || $('#timer-minute').val() == null || $('#timer-minute').val() == "") {
+                alert = 0;
+            } else {
+                alert = parseInt($('#timer-alert').val());
+            }
+            let totalTime = tSec + (60 * tMin);
+            if (alert >= totalTime) {
+                err = "Alert must be less than total time.";
+            } else {
+                if (tMin == 0 && tSec == 0) {
+                    err = "Please input valid timer information.";
+                } else {
+                    timer = {
+                        min: tMin,
+                        sec: tSec,
+                        alert: alert
+                    }
+                }
+            }
+        }
+    }
     let min = $('#new-med-min-dose').val();
     let max = $('#new-med-max-dose').val();
     let inc = $('#new-med-dose-inc').val();
     let unit = $('#new-med-dose-unit').val();
-
-    var err = '';
-    if (name.trim() == '' || min.trim() == '' || max.trim() == '' || inc.trim() == '' || unit.trim() == '') {
-        err += "Please complete all fields before saving.";
+    if (name.trim() == '') {
+        err = "Please enter a name for the medication.";
+    } else if ((min.trim() == '' && max.trim() == '')) {
+        err = "Please enter a min or max dose.";
+    } else if (unit.trim() == '') {
+        err = "Please enter a unit."
     }
+
+    if (min.trim() == '') {
+        min = max;
+    } else if (max.trim() == '') {
+        max = min;
+    }
+
+    if (inc.trim() == '') {
+        inc = 0;
+    }
+
+    if (parseFloat(max) < parseFloat(min)) {
+        err = "Max dose cannot be less than the min dose."
+    }
+
     if (err != '') {
         $('#new-med-form-message').html(err);
     } else {
@@ -184,6 +266,7 @@ $('#new-med-save-btn').click(() => {
             medications[editKey].dose = createDoseArray(min, max, inc);
             medications[editKey].unit = unit;
             medications[editKey].route = route;
+            medications[editKey].timer = timer;
         } else {
             let tag = name.replace(/\s/g, "") + '-' + route;
             var newMed = {
@@ -192,7 +275,8 @@ $('#new-med-save-btn').click(() => {
                 dose: createDoseArray(min, max, inc),
                 unit: unit,
                 route: route,
-                type: "alert"
+                type: "alert",
+                timer: timer
             }
             medications.push(newMed);
         }
@@ -211,4 +295,14 @@ function toEditMedList() {
     $('#add-med-btn').show();
     $('#new-med-list').show();
     $('#add-edit-med').fadeIn();
+}
+
+function showTimerContainer() {
+    $('#timer-label').css("color", "#4db6ac");
+    $('#timer-input-container').show();
+}
+
+function hideTimerContainer() {
+    $('#timer-label').css("color", "lightgrey");
+    $('#timer-input-container').hide();
 }

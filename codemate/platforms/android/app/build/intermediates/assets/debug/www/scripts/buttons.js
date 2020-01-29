@@ -52,22 +52,37 @@ function dropMeds() {
 function confirmMeds() {
     $(".med-btn-confirm").click(function() {
         var tag = $(this).attr('data-tag');
+        var med;
+        for (i = 0; i < medications.length; i++) {
+            if (medications[i].dataTag == tag) {
+                med = medications[i];
+            }
+        }
         var name = $('#' + tag + '-btn-label').html();
         if ($('#' + tag + '-dose-select').val() != null) {
-            var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html();
+            var desc = $('#' + tag + '-dose-select').val() + " " + $('#' + tag + '-unit').html() + " " + med.route;
             var flag = false;
         } else {
-            var desc = "? " + $('#' + tag + '-unit').html();
-            var flag = true;
+            if (med.dose.length > 1) {
+                var desc = "? " + med.unit + " " + med.route;;
+                var flag = true;
+            } else {
+                var desc = med.dose[0] + " " + med.unit + " " + med.route;;
+                var flag = false;
+            }
         }
         $(".collap-body").each(function() {
             $(this).css("display", "none");
         });
-        if ($(this).attr('data-timer')) {
-            createTimer(tag, 'medication');
-        }
         actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': flag });
         callToast(name);
+        if ($(this).attr('data-timer')) {
+            if (tag in timers) {
+                restartTimer(timers[tag]);
+            } else {
+                createTimer(tag, 'medication');
+            }
+        }
     });
 }
 
@@ -77,6 +92,7 @@ $('#back-to-code').click(() => {
     $('#report-container').fadeOut(() => {
         $('#main-nav').fadeIn();
         $('#options-container').fadeIn();
+        $('#rhythm-footer').fadeIn();
         $('#timer-container').fadeIn();
     });
 });
@@ -85,6 +101,7 @@ $('#end-btn').click(() => {
     populateReport();
     $('#main-nav').fadeOut();
     $('#options-container').fadeOut();
+    $('#rhythm-footer').fadeOut();
     $('#timer-container').fadeOut(() => {
         $('#report-container').fadeIn();
         $('#report-footer').fadeIn();
@@ -106,4 +123,22 @@ $('#back-to-start').click(() => {
         $('#main-nav').fadeIn();
         location.reload();
     });
+});
+
+$(".rhytm-btn").click(function() {
+    let data = $(this).attr('data');
+    let tag = "rhythm-" + data;
+    let desc = data;
+    actions.push({ 'name': "Rhythm", 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
+    callToast(desc);
+});
+
+$('#timer-confirm-btn').click(function() {
+    let tag = $(this).attr('data-tag');
+    let name = $('#timer-confirm-title').html();
+    let desc = $('#timer-confirm-desc').html();
+    $('#' + tag + '-count').html("count: " + (timers[tag].count + 1) + "");
+    actions.push({ 'name': name, 'tag': tag, 'action': 'pressed', 'time': timeNow(), 'desc': desc, 'flag': false });
+    callToast(name);
+    restartTimer(timers[tag]);
 });

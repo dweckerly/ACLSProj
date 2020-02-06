@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sds.codemate"
     android:hardwareAccelerated="true"
-    android:versionCode="10003"
-    android:versionName="1.0.3" >
+    android:versionCode="10004"
+    android:versionName="1.0.4" >
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="27" />
+        android:targetSdkVersion="28" />
 
     <supports-screens
         android:anyDensity="true"

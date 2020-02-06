@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Jun 30 23:00:22 CDT 2019
+#Wed Feb 05 23:11:34 CST 2020
 56.path=www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js
 5.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\release
 42.base=C\:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\assets\\release

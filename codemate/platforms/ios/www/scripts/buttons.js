@@ -115,10 +115,10 @@ $('#back-to-start').click(() => {
     $('#main-nav').fadeOut();
     $('#new-proc-edit').fadeOut();
     $('#med-edit').fadeOut(function() {
-        $('#med-proc-edit-container').show();
         $('#history-container').hide();
         $('#add-edit-proc').hide();
         $('#add-edit-med').hide();
+        $('#med-proc-edit-container').fadeIn();
         $('#start-container').fadeIn();
         $('#main-nav').fadeIn();
         location.reload();

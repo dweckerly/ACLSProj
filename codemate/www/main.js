@@ -555,7 +555,8 @@ function createTimer(tag, type) {
             'count': 1,
             'alert': {
                 'min': alertTime.min,
-                'sec': alertTime.sec
+                'sec': alertTime.sec,
+                'exp': alertTime.exp
             },
             'doseAmount': item.dose,
             'doseUnit': item.unit,

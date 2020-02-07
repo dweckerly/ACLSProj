@@ -112,56 +112,35 @@
         <div class="modal-content">
             <i class="material-icons modal-close right">close</i>
             <h4 id='site-selection-title' class="red-text text-lighten-2">I.V.</h4>
-            <p id="site-selection-params">Gauge: , Side: , Site: </p>
             <div id="site-selection-container" class="row" align="center">
-                <a class="btn waves-effect waves-light std-btn dropdown-trigger" id="site-select-size-btn" data-target="dropdown-site-select-size">Gauge</a>
-                <ul id="dropdown-site-select-size" class="dropdown-content" tabindex="0">
-                    <li onclick="ivSelection('gauge', 14);return false;">
-                        <a href="#!">14</a>
-                    </li>
-                    <li onclick="ivSelection('gauge', 16);return false;">
-                        <a href="#!">16</a>
-                    </li>
-                    <li onclick="ivSelection('gauge', 18);return false;">
-                        <a href="#!">18</a>
-                    </li>
-                    <li onclick="ivSelection('gauge', 20);return false;">
-                        <a href="#!">20</a>
-                    </li>
-                    <li onclick="ivSelection('gauge', 22);return false;">
-                        <a href="#!">22</a>
-                    </li>
-                    <li onclick="ivSelection('gauge', 24);return false;">
-                        <a href="#!">24</a>
-                    </li>
-                </ul>
-                <a class="btn waves-effect waves-light std-btn dropdown-trigger" id="site-select-side-btn" data-target="dropdown-site-select-side">Side</a>
-                <ul id="dropdown-site-select-side" class="dropdown-content" tabindex="0">
-                    <li onclick="ivSelection('side', 'Left');return false;">
-                        <a href="#!">Left</a>
-                    </li>
-                    <li onclick="ivSelection('side', 'Right');return false;">
-                        <a href="#!">Right</a>
-                    </li>
-                </ul>
-                <a class="btn waves-effect waves-light std-btn dropdown-trigger" id="site-select-site-btn" data-target="dropdown-site-select-site">Site</a>
-                <ul id="dropdown-site-select-site" class="dropdown-content" tabindex="0">
-                    <li onclick="ivSelection('site', 'AC');return false;">
-                        <a href="#!">AC</a>
-                    </li>
-                    <li onclick="ivSelection('site', 'Arm');return false;">
-                        <a href="#!">Arm</a>
-                    </li>
-                    <li onclick="ivSelection('site', 'EJ');return false;">
-                        <a href="#!">EJ</a>
-                    </li>
-                    <li onclick="ivSelection('site', 'Hand');return false;">
-                        <a href="#!">Hand</a>
-                    </li>
-                    <li onclick="ivSelection('site', 'Other');return false;">
-                        <a href="#!">Other</a>
-                    </li>
-                </ul>
+                <div class="input-field col s6">
+                    <select id="site-select-size">
+                        <option value="" disabled selected>Gauge</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                        <option value="24">24</option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select id="site-select-side">
+                        <option value="" disabled selected>Side</option>
+                        <option value="Left">Left</option>
+                        <option value="Right">Right</option>
+                    </select>
+                </div>
+                <div class="input-field col s12">
+                    <select id="site-select-site">
+                        <option value="" disabled selected>Site</option>
+                        <option value="AC">AC</option>
+                        <option value="Arm">Arm</option>
+                        <option value="EJ">EJ</option>
+                        <option value="Hand">Hand</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -211,41 +190,35 @@
             <div id="pulse-selection-container" class="row" align="center">
                 <div class="input-field col s12">
                     <button class="btn waves-effect waves-light modal-close std-btn" id="pulse-no-action">No Action</button>
-                    <a class="btn waves-effect waves-light std-btn dropdown-trigger" id="pulse-defib-btn" data-target="dropdown-defib">Defibrillation</a>
-                    <ul id="dropdown-defib" class="dropdown-content" tabindex="0">
-                        <li class="modal-close" onclick="pulseSelection('defib', 200)">
-                            <a href="#!">200</a>
-                        </li>
-                        <li class="modal-close" onclick="pulseSelection('defib', 300)">
-                            <a href="#!">300</a>
-                        </li>
-                        <li class="modal-close" onclick="pulseSelection('defib', 360)">
-                            <a href="#!">360</a>
-                        </li>
-                    </ul>
-                    <button class="btn waves-effect waves-light std-btn dropdown-trigger" id="pulse-cardio-btn" data-target="dropdown-cardiosync">Sync. Cardioversion</button>
-                    <ul id="dropdown-cardiosync" class="dropdown-content" tabindex="0">
-                        <li class="modal-close" onclick="pulseSelection('sync', 50)">
-                            <a href="#!">50</a>
-                        </li>
-                        <li class="modal-close" onclick="pulseSelection('sync', 100)">
-                            <a href="#!">100</a>
-                        </li>
-                        <li class="modal-close" onclick="pulseSelection('sync', 200)">
-                            <a href="#!">200</a>
-                        </li>
-                        <li class="modal-close" onclick="pulseSelection('sync', 300)">
-                            <a href="#!">300</a>
-                        </li>
-                        <li class="modal-close" onclick="pulseSelection('sync', 360)">
-                            <a href="#!">360</a>
-                        </li>
-                    </ul>
+                    <button class="btn waves-effect waves-light std-btn" id="pulse-defib-btn" onclick="showDefibOptions()">Defibrillation</button>
+                    <div id="defib-options-container" style="display: hidden;">
+                        <div class="input-field col s12">
+                            <select id="defib-select-joules">
+                                <option value="" disabled selected>Joules</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="360">360</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light std-btn" id="pulse-cardio-btn" onclick="showCardioOptions()">Sync. Cardioversion</button>
+                    <div id="cardio-options-container" style="display: hidden;">
+                        <div class="input-field col s12">
+                            <select id="cardio-select-joules">
+                                <option value="" disabled selected>Joules</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="300">300</option>
+                                <option value="360">360</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn waves-effect waves-light modal-close " id="pulse-selection-confirm" onclick="pulseSelection('?', 0)">Confirm</button>
+            <button class="btn waves-effect waves-light modal-close " id="pulse-selection-confirm">Confirm</button>
         </div>
     </div>
 

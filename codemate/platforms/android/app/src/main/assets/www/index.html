@@ -56,74 +56,72 @@
 
     <div class="modal" id="medication-modal">
         <div class="modal-content">
-            <div>
-                <i class="material-icons modal-close right">close</i>
-                <h4 id="medications-modal-title">Medications</h4>
-                <nav class="white">
-                    <div class="nav-wrapper">
-                        <form action="javascript:void(0)">
-                            <div class="input-field">
-                                <input id="med-search" type="search" onkeyup="medModalSearch()" required>
-                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
-                <div id="med-btn-container" align="center"></div>
-            </div>
-        </div>
-
-        <div class="modal" id="procedure-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4>Procedures</h4>
-                <nav class="white">
-                    <div class="nav-wrapper">
-                        <form action="javascript:void(0)">
-                            <div class="input-field">
-                                <input id="proc-search" type="search" onkeyup="procModalSearch()" required>
-                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
-                <div id="proc-btn-container" align="center"></div>
-            </div>
-        </div>
-
-        <div id="report-modal" class="modal">
-            <div class="modal-content" id="report-content-div">
-                <i class="material-icons modal-close right">close</i>
-                <h4 class="red-text text-lighten-2">Edit Record</h4>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input value="" id="report-action-name" type="text" class="validate">
-                    </div>
-                    <div class="input-field col s6">
-                        <input value="" id="report-action-time" type="time" class="validate">
-                    </div>
+            <i class="material-icons modal-close right">close</i>
+            <h4 id="medications-modal-title">Medications</h4>
+            <nav class="white">
+                <div class="nav-wrapper">
+                    <form action="javascript:void(0)">
+                        <div class="input-field">
+                            <input id="med-search" type="search" onkeyup="medModalSearch()" required>
+                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea value="" id="report-action-description" type="text" class="materialize-textarea"></textarea>
-                    </div>
+            </nav>
+            <div id="med-btn-container" align="center"></div>
+        </div>
+    </div>
+    <div class="modal" id="procedure-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4>Procedures</h4>
+            <nav class="white">
+                <div class="nav-wrapper">
+                    <form action="javascript:void(0)">
+                        <div class="input-field">
+                            <input id="proc-search" type="search" onkeyup="procModalSearch()" required>
+                            <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
                 </div>
-                <div align="center">
-                    <button id="report-edit-btn" class='btn btn-outline-secondary med-btn modal-close'>Save</button>
-                    <button id="report-delete-btn" class='btn btn-outline-secondary med-btn red modal-close'>Delete</button>
+            </nav>
+            <div id="proc-btn-container" align="center"></div>
+        </div>
+    </div>
+
+    <div id="report-modal" class="modal">
+        <div class="modal-content" id="report-content-div">
+            <i class="material-icons modal-close right">close</i>
+            <h4 class="red-text text-lighten-2">Edit Record</h4>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input value="" id="report-action-name" type="text" class="validate">
+                </div>
+                <div class="input-field col s6">
+                    <input value="" id="report-action-time" type="time" class="validate">
                 </div>
             </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea value="" id="report-action-description" type="text" class="materialize-textarea"></textarea>
+                </div>
+            </div>
+            <div align="center">
+                <button id="report-edit-btn" class='btn btn-outline-secondary med-btn modal-close'>Save</button>
+                <button id="report-delete-btn" class='btn btn-outline-secondary med-btn red modal-close'>Delete</button>
+            </div>
         </div>
+    </div>
 
-        <div class="modal modal-fixed-footer" id="site-selection-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='site-selection-title' class="red-text text-lighten-2">I.V.</h4>
-                <div id="site-selection-container" class="row" align="center">
-                    <div class="input-field col s6">
-                        <select id="site-select-size">
+    <div class="modal modal-fixed-footer" id="site-selection-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='site-selection-title' class="red-text text-lighten-2">I.V.</h4>
+            <div id="site-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="site-select-size">
                         <option value="" disabled selected>Gauge</option>
                         <option value="14">14</option>
                         <option value="16">16</option>
@@ -132,16 +130,16 @@
                         <option value="22">22</option>
                         <option value="24">24</option>
                     </select>
-                    </div>
-                    <div class="input-field col s6">
-                        <select id="site-select-side">
+                </div>
+                <div class="input-field col s6">
+                    <select id="site-select-side">
                         <option value="" disabled selected>Side</option>
                         <option value="Left">Left</option>
                         <option value="Right">Right</option>
                     </select>
-                    </div>
-                    <div class="input-field col s12">
-                        <select id="site-select-site">
+                </div>
+                <div class="input-field col s12">
+                    <select id="site-select-site">
                         <option value="" disabled selected>Site</option>
                         <option value="AC">AC</option>
                         <option value="Arm">Arm</option>
@@ -149,71 +147,71 @@
                         <option value="Hand">Hand</option>
                         <option value="Other">Other</option>
                     </select>
-                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close" id="select-site-confirm">Confirm</button>
-            </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="select-site-confirm">Confirm</button>
+        </div>
+    </div>
 
-        <div class="modal modal-fixed-footer" id="io-selection-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='io-selection-title' class="red-text text-lighten-2">Intraosseous</h4>
-                <div id="io-selection-container" class="row" align="center">
-                    <div class="input-field col s6">
-                        <select id="io-select-size">
+    <div class="modal modal-fixed-footer" id="io-selection-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='io-selection-title' class="red-text text-lighten-2">Intraosseous</h4>
+            <div id="io-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="io-select-size">
                         <option value="" disabled selected>Size</option>
                         <option value="Pink">Pink</option>
                         <option value="Blue">Blue</option>
                         <option value="Yellow">Yellow</option>
                     </select>
-                    </div>
-                    <div class="input-field col s6">
-                        <select id="io-select-side">
+                </div>
+                <div class="input-field col s6">
+                    <select id="io-select-side">
                         <option value="" disabled selected>Side</option>
                         <option value="Left">Left</option>
                         <option value="Right">Right</option>
                     </select>
-                    </div>
-                    <div class="input-field col s12">
-                        <select id="io-select-site">
+                </div>
+                <div class="input-field col s12">
+                    <select id="io-select-site">
                         <option value="" disabled selected>Site</option>
                         <option value="Prox. Tibia">Prox. Tibia</option>
                         <option value="Dist. Tibia">Dist. Tibia</option>
                         <option value="Prox. Humerous">Prox. Humerous</option>
                     </select>
-                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close" id="io-selection-confirm">Confirm</button>
-            </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="io-selection-confirm">Confirm</button>
+        </div>
+    </div>
 
-        <div class="modal modal-fixed-footer" id="pulse-selection-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='pulse-selection-title' class="red-text text-lighten-2">Pulse Check</h4>
-                <div id="pulse-selection-container" class="row" align="center">
-                    <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light modal-close std-btn" id="pulse-no-action">No Action</button>
-                        <button class="btn waves-effect waves-light std-btn" id="pulse-defib-btn" onclick="showDefibOptions()">Defibrillation</button>
-                        <div id="defib-options-container" style="display: hidden;">
-                            <div class="input-field col s12">
-                                <select id="defib-select-joules">
+    <div class="modal modal-fixed-footer" id="pulse-selection-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='pulse-selection-title' class="red-text text-lighten-2">Pulse Check</h4>
+            <div id="pulse-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light modal-close std-btn" id="pulse-no-action">No Action</button>
+                    <button class="btn waves-effect waves-light std-btn" id="pulse-defib-btn" onclick="showDefibOptions()">Defibrillation</button>
+                    <div id="defib-options-container" style="display: hidden;">
+                        <div class="input-field col s12">
+                            <select id="defib-select-joules">
                                 <option value="" disabled selected>Joules</option>
                                 <option value="200">200</option>
                                 <option value="300">300</option>
                                 <option value="360">360</option>
                             </select>
-                            </div>
                         </div>
-                        <button class="btn waves-effect waves-light std-btn" id="pulse-cardio-btn" onclick="showCardioOptions()">Sync. Cardioversion</button>
-                        <div id="cardio-options-container" style="display: hidden;">
-                            <div class="input-field col s12">
-                                <select id="cardio-select-joules">
+                    </div>
+                    <button class="btn waves-effect waves-light std-btn" id="pulse-cardio-btn" onclick="showCardioOptions()">Sync. Cardioversion</button>
+                    <div id="cardio-options-container" style="display: hidden;">
+                        <div class="input-field col s12">
+                            <select id="cardio-select-joules">
                                 <option value="" disabled selected>Joules</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
@@ -221,27 +219,27 @@
                                 <option value="300">300</option>
                                 <option value="360">360</option>
                             </select>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close " id="pulse-selection-confirm">Confirm</button>
-            </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="pulse-selection-confirm">Confirm</button>
+        </div>
+    </div>
 
-        <div class="modal modal-fixed-footer" id="intu-selection-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='intu-selection-title' class="red-text text-lighten-2">Intubation</h4>
-                <div id="intu-selection-container" class="row" align="center">
-                    <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light std-btn" id="intu-oral-select">Oral</button>
-                        <button class="btn waves-effect waves-light std-btn" id="intu-nasal-select">Nasal</button>
-                        <div id="intu-options-container" class="row">
-                            <div class="input-field col s6">
-                                <select id="intu-select-size">
+    <div class="modal modal-fixed-footer" id="intu-selection-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='intu-selection-title' class="red-text text-lighten-2">Intubation</h4>
+            <div id="intu-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light std-btn" id="intu-oral-select">Oral</button>
+                    <button class="btn waves-effect waves-light std-btn" id="intu-nasal-select">Nasal</button>
+                    <div id="intu-options-container" class="row">
+                        <div class="input-field col s6">
+                            <select id="intu-select-size">
                                 <option value="" disabled selected>Size</option>
                                 <option value="6.0">6.0</option>
                                 <option value="6.5">6.5</option>
@@ -251,9 +249,9 @@
                                 <option value="8.5">8.5</option>
                                 <option value="9.0">9.0</option>
                             </select>
-                            </div>
-                            <div class="input-field col s6">
-                                <select id="intu-select-depth">
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="intu-select-depth">
                                 <option value="" disabled selected>Depth</option>
                                 <option value="17">17</option>
                                 <option value="18">18</option>
@@ -264,48 +262,48 @@
                                 <option value="23">23</option>
                                 <option value="24">24</option>
                             </select>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close " id="intu-selection-confirm">Confirm</button>
-            </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="intu-selection-confirm">Confirm</button>
+        </div>
+    </div>
 
-        <div class="modal modal-fixed-footer" id="naso-selection-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='naso-selection-title' class="red-text text-lighten-2">Nasogastric Tube</h4>
-                <div id="naso-selection-container" class="row" align="center">
-                    <div class="input-field col s12">
-                        <div id="naso-options-container" class="row">
-                            <div class="input-field col s12">
-                                <select id="naso-select-size">
+    <div class="modal modal-fixed-footer" id="naso-selection-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='naso-selection-title' class="red-text text-lighten-2">Nasogastric Tube</h4>
+            <div id="naso-selection-container" class="row" align="center">
+                <div class="input-field col s12">
+                    <div id="naso-options-container" class="row">
+                        <div class="input-field col s12">
+                            <select id="naso-select-size">
                                 <option value="" disabled selected>Size</option>
                                 <option value="12">12</option>
                                 <option value="14">14</option>
                                 <option value="16">16</option>
                                 <option value="18">18</option>
                             </select>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close " id="naso-selection-confirm">Confirm</button>
-            </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close " id="naso-selection-confirm">Confirm</button>
+        </div>
+    </div>
 
-        <div class="modal modal-fixed-footer" id="pacing-selection-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='pacing-selection-title' class="red-text text-lighten-2">Pacing</h4>
-                <div id="pacing-selection-container" class="row" align="center">
-                    <div class="input-field col s6">
-                        <select id="pacing-select-rate">
+    <div class="modal modal-fixed-footer" id="pacing-selection-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='pacing-selection-title' class="red-text text-lighten-2">Pacing</h4>
+            <div id="pacing-selection-container" class="row" align="center">
+                <div class="input-field col s6">
+                    <select id="pacing-select-rate">
                         <option value="" disabled selected>Rate</option>
                         <option value="50">50</option>
                         <option value="60">60</option>
@@ -314,9 +312,9 @@
                         <option value="90">90</option>
                         <option value="100">100</option>
                     </select>
-                    </div>
-                    <div class="input-field col s6">
-                        <select id="pacing-select-ma">
+                </div>
+                <div class="input-field col s6">
+                    <select id="pacing-select-ma">
                         <option value="" disabled selected>MA</option>
                         <option value="10">10</option>
                         <option value="20">20</option>
@@ -339,311 +337,311 @@
                         <option value="190">190</option>
                         <option value="200">200</option>
                     </select>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close" id="pacing-selection-confirm">Confirm</button>
-            </div>
-        </div>
-
-        <div class="modal" id="rhythm-modal">
-            <div class="modal-content center">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='rhythm-modal-title' class="red-text text-lighten-2">Rhythm</h4>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="ASYSTOLE">ASYSTOLE</button>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="BRADYCARDIA">BRADYCARDIA</button>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="NSR">NSR</button>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="PEA">PEA</button>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="SVT">SVT</button>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="V-FIB">V-FIB</button>
-                <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="V-TACH">V-TACH</button>
-            </div>
-        </div>
-
-        <div class="modal modal-fixed-footer" id="new-proc-modal">
-            <div class="modal-content">
-                <i class="material-icons modal-close right">close</i>
-                <h4 id='new-proc-title' class="red-text text-lighten-2"></h4>
-                <div id="new-selection-container" class="row" align="center">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm" data-tag="0">Confirm</button>
-            </div>
-        </div>
-
-        <div id="back-confirm-modal" class="modal">
-            <div class="modal-content ">
-                <i class="material-icons modal-close right ">close</i>
-                <h4>Return to Home Screen?</h4>
-                <hr>
-                <div class="center ">
-                    <button class="btn btn-outline-secondary med-btn modal-close red" id="confirm-back-btn" onclick="location.reload();">Yes</button>
-                    <button class="btn btn-outline-secondary med-btn modal-close ">No</button>
                 </div>
             </div>
         </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="pacing-selection-confirm">Confirm</button>
+        </div>
+    </div>
 
-        <div id="report-container">
-            <div class="fixed-action-btn">
-                <a id="back-to-code" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
+    <div class="modal" id="rhythm-modal">
+        <div class="modal-content center">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='rhythm-modal-title' class="red-text text-lighten-2">Rhythm</h4>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="ASYSTOLE">ASYSTOLE</button>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="BRADYCARDIA">BRADYCARDIA</button>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="NSR">NSR</button>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="PEA">PEA</button>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="SVT">SVT</button>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="V-FIB">V-FIB</button>
+            <button class='btn btn-outline-secondary med-btn rhytm-btn modal-close' data="V-TACH">V-TACH</button>
+        </div>
+    </div>
+
+    <div class="modal modal-fixed-footer" id="new-proc-modal">
+        <div class="modal-content">
+            <i class="material-icons modal-close right">close</i>
+            <h4 id='new-proc-title' class="red-text text-lighten-2"></h4>
+            <div id="new-selection-container" class="row" align="center">
             </div>
-            <h3 class="header red-text text-lighten-2">Report</h3>
-            <h5 id="code-start" class="center"></h5>
-            <h5 id="elapsed-time" class="center "></h5>
-            <h5 id="term-reason" class="center" hidden></h5>
-            <table id="report-table" class="highlight centered">
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Details</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody id="report-table-body">
-                </tbody>
-            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn waves-effect waves-light modal-close" id="new-proc-confirm" data-tag="0">Confirm</button>
+        </div>
+    </div>
+
+    <div id="back-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Return to Home Screen?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn btn-outline-secondary med-btn modal-close red" id="confirm-back-btn" onclick="location.reload();">Yes</button>
+                <button class="btn btn-outline-secondary med-btn modal-close ">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="report-container">
+        <div class="fixed-action-btn">
+            <a id="back-to-code" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">arrow_back</i></a>
+        </div>
+        <h3 class="header red-text text-lighten-2">Report</h3>
+        <h5 id="code-start" class="center"></h5>
+        <h5 id="elapsed-time" class="center "></h5>
+        <h5 id="term-reason" class="center" hidden></h5>
+        <table id="report-table" class="highlight centered">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Details</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="report-table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="med-edit" hidden>
+        <div class="fixed-action-btn">
+            <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">home</i></a>
+        </div>
+        <div id="med-proc-edit-container">
+            <button id="edit-med-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Medications <i class="material-icons right">edit</i></button>
+            <button id="edit-proc-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Procedures <i class="material-icons right">edit</i></button>
+            <button id="history-btn" class="settings-btn waves-effect waves-light btn-large center">History <i class="material-icons right">dehaze</i></button>
+        </div>
+        <div id="history-container" hidden></div>
+        <div id="add-edit-proc" hidden>
+            <div class="center" style="margin-top:80px;">
+                <button id="add-proc-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Procedure  <i class="material-icons right">add</i></button>
+            </div>
+            <div id="new-proc-list"></div>
         </div>
 
-        <div id="med-edit" hidden>
-            <div class="fixed-action-btn">
-                <a id="back-to-start" class="waves-effect waves-light btn-floating btn-large right"><i class="material-icons">home</i></a>
-            </div>
-            <div id="med-proc-edit-container">
-                <button id="edit-med-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Medications <i class="material-icons right">edit</i></button>
-                <button id="edit-proc-btn" class="settings-btn waves-effect waves-light btn-large red lighten-2 center">Procedures <i class="material-icons right">edit</i></button>
-                <button id="history-btn" class="settings-btn waves-effect waves-light btn-large center">History <i class="material-icons right">dehaze</i></button>
-            </div>
-            <div id="history-container" hidden></div>
-            <div id="add-edit-proc" hidden>
-                <div class="center" style="margin-top:80px;">
-                    <button id="add-proc-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Procedure  <i class="material-icons right">add</i></button>
-                </div>
-                <div id="new-proc-list"></div>
-            </div>
-
-            <div id="new-proc-edit" hidden>
-                <p id="new-proc-err" class="red-text"></p>
-                <div id="new-proc-container">
-                    <div id="proc-form-container" class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="new-proc-name" type="text" class="validate">
-                                    <label id="new-proc-name-label" for="new-proc-name">Name</label>
-                                </div>
-                            </div>
-                            <div id="new-proc-parameters">
-                                <a id="add-param-btn" class="btn waves-effect waves-light" onclick="addNewProcParam()">Add Parameter<i class="material-icons">add</i></a>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="new-proc-param-0" type="text" class="validate">
-                                        <label id="new-proc-param-0-label" for="new-proc-param-0">Parameter</label>
-                                    </div>
-                                </div>
-                                <div id="param-0-val-container">
-                                    <div class="row">
-                                        <div class="input-field col s6 center">
-                                            <input id="new-proc-val-0-0" type="text" class="validate">
-                                            <label id="new-proc-val-0-0-label" for="new-proc-val-0-0">Value</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12 center">
-                                        <a onclick="addVal(0)" class="waves-effect waves-light btn">Add Value</a>
-                                        <a id="del-btn-0" onclick="delVal(0)" class="waves-effect waves-light btn red disabled">Delete Value</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div align="center">
-                    <button id="new-proc-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
-                    <button hidden id="new-proc-delete-btn" data-target="delete-proc-confirm-modal" class='btn btn-outline-secondary med-btn purple modal-trigger'>Delete</button>
-                    <button id="new-proc-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
-                </div>
-            </div>
-            <div id="add-edit-med" hidden>
-                <div class="center" style="margin-top:80px;">
-                    <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
-                </div>
-                <div id="new-med-list"></div>
-            </div>
-            <div id="new-med-form" hidden>
-                <div class="row">
+        <div id="new-proc-edit" hidden>
+            <p id="new-proc-err" class="red-text"></p>
+            <div id="new-proc-container">
+                <div id="proc-form-container" class="row">
                     <form class="col s12">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="new-med-name" type="text" class="validate">
-                                <label id="name-label" for="new-med-name">Name</label>
+                                <input id="new-proc-name" type="text" class="validate">
+                                <label id="new-proc-name-label" for="new-proc-name">Name</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <p>
-                                    <label>
-                                    <input id="ivp-type" name="group1" type="radio" value="IVP" checked />
-                                    <span>IVP</span>
-                                </label>
-                                </p>
-                                <p>
-                                    <label>
-                                    <input id="drip-type" name="group1" type="radio" value="drip"/>
-                                    <span>Drip</span>
-                                </label>
-                                </p>
+                        <div id="new-proc-parameters">
+                            <a id="add-param-btn" class="btn waves-effect waves-light" onclick="addNewProcParam()">Add Parameter<i class="material-icons">add</i></a>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="new-proc-param-0" type="text" class="validate">
+                                    <label id="new-proc-param-0-label" for="new-proc-param-0">Parameter</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="new-med-min-dose" type="number" min="0.01" step="0.01" class="validate">
-                                <label id="min-label" for="new-med-min-dose">Min Dose</label>
+                            <div id="param-0-val-container">
+                                <div class="row">
+                                    <div class="input-field col s6 center">
+                                        <input id="new-proc-val-0-0" type="text" class="validate">
+                                        <label id="new-proc-val-0-0-label" for="new-proc-val-0-0">Value</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-field col s6">
-                                <input id="new-med-max-dose" type="number" min="0.01" step="0.01" class="validate">
-                                <label id="max-label" for="new-med-max-dose">Max Dose</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="new-med-dose-inc" type="number" min="0" step="0.01" class="validate">
-                                <label id="inc-label" for="new-med-dose-inc">Increment</label>
-                                <span class="helper-text">Steps between min dose and max dose.</span>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="new-med-dose-unit" type="text" class="validate">
-                                <label id="dose-label" for="new-med-dose-unit">Unit</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6" align="center">
-                                <h3 id="timer-label" style="color: lightgrey;">Timer</h3>
-                            </div>
-                            <div class="input-field col s6" id="timer-selection-container">
-                                <p>
-                                    <label>
-                                    <input id="timer-no" name="group2" type="radio" value="false" onclick="hideTimerContainer()" checked />
-                                    <span>No</span>
-                                </label>
-                                </p>
-                                <p>
-                                    <label>
-                                    <input id="timer-yes" name="group2" type="radio" value="true" onclick="showTimerContainer()"/>
-                                    <span>Yes</span>
-                                </label>
-                                </p>
-                            </div>
-                        </div>
-                        <div id="timer-input-container" class="row" hidden>
-                            <div class="input-field col s6">
-                                <input id="timer-minute" type="number" step="1" min="0" class="validate">
-                                <label id="timer-minute-label" for="timer-minute">Minutes</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="timer-second" type="number" step="1" min="0" class="validate">
-                                <label id="timer-second-label" for="timer-second">Seconds</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="timer-alert" type="number" step="1" min="0" class="validate">
-                                <label id="timer-alert-label" for="timer-second">Alert</label>
-                                <span class="helper-text">Seconds before timer expiration to be alerted.</span>
+                            <div class="row">
+                                <div class="input-field col s12 center">
+                                    <a onclick="addVal(0)" class="waves-effect waves-light btn">Add Value</a>
+                                    <a id="del-btn-0" onclick="delVal(0)" class="waves-effect waves-light btn red disabled">Delete Value</a>
+                                </div>
                             </div>
                         </div>
                     </form>
-                    <div class="row center">
-                        <p id="new-med-form-message" class="red-text"></p>
+                </div>
+            </div>
+            <div align="center">
+                <button id="new-proc-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
+                <button hidden id="new-proc-delete-btn" data-target="delete-proc-confirm-modal" class='btn btn-outline-secondary med-btn purple modal-trigger'>Delete</button>
+                <button id="new-proc-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
+            </div>
+        </div>
+        <div id="add-edit-med" hidden>
+            <div class="center" style="margin-top:80px;">
+                <button id="add-med-btn" class="waves-effect waves-light btn-large red lighten-2 center">New Medication  <i class="material-icons right">add</i></button>
+            </div>
+            <div id="new-med-list"></div>
+        </div>
+        <div id="new-med-form" hidden>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="new-med-name" type="text" class="validate">
+                            <label id="name-label" for="new-med-name">Name</label>
+                        </div>
                     </div>
-                    <div align="center">
-                        <button id="new-med-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
-                        <button id="new-med-delete-btn" data-target="delete-confirm-modal" class='btn btn-outline-secondary med-btn purple modal-trigger'>Delete</button>
-                        <button id="new-med-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <p>
+                                <label>
+                                    <input id="ivp-type" name="group1" type="radio" value="IVP" checked />
+                                    <span>IVP</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input id="drip-type" name="group1" type="radio" value="drip"/>
+                                    <span>Drip</span>
+                                </label>
+                            </p>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="new-med-min-dose" type="number" min="0.01" step="0.01" class="validate">
+                            <label id="min-label" for="new-med-min-dose">Min Dose</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="new-med-max-dose" type="number" min="0.01" step="0.01" class="validate">
+                            <label id="max-label" for="new-med-max-dose">Max Dose</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="new-med-dose-inc" type="number" min="0" step="0.01" class="validate">
+                            <label id="inc-label" for="new-med-dose-inc">Increment</label>
+                            <span class="helper-text">Steps between min dose and max dose.</span>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="new-med-dose-unit" type="text" class="validate">
+                            <label id="dose-label" for="new-med-dose-unit">Unit</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6" align="center">
+                            <h3 id="timer-label" style="color: lightgrey;">Timer</h3>
+                        </div>
+                        <div class="input-field col s6" id="timer-selection-container">
+                            <p>
+                                <label>
+                                    <input id="timer-no" name="group2" type="radio" value="false" onclick="hideTimerContainer()" checked />
+                                    <span>No</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input id="timer-yes" name="group2" type="radio" value="true" onclick="showTimerContainer()"/>
+                                    <span>Yes</span>
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="timer-input-container" class="row" hidden>
+                        <div class="input-field col s6">
+                            <input id="timer-minute" type="number" step="1" min="0" class="validate">
+                            <label id="timer-minute-label" for="timer-minute">Minutes</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="timer-second" type="number" step="1" min="0" class="validate">
+                            <label id="timer-second-label" for="timer-second">Seconds</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="timer-alert" type="number" step="1" min="0" class="validate">
+                            <label id="timer-alert-label" for="timer-second">Alert</label>
+                            <span class="helper-text">Seconds before timer expiration to be alerted.</span>
+                        </div>
+                    </div>
+                </form>
+                <div class="row center">
+                    <p id="new-med-form-message" class="red-text"></p>
+                </div>
+                <div align="center">
+                    <button id="new-med-save-btn" class='btn btn-outline-secondary med-btn'>Save</button>
+                    <button id="new-med-delete-btn" data-target="delete-confirm-modal" class='btn btn-outline-secondary med-btn purple modal-trigger'>Delete</button>
+                    <button id="new-med-cancel-btn" class='btn btn-outline-secondary med-btn red'>Cancel</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div id="delete-confirm-modal" class="modal">
-            <div class="modal-content ">
-                <i class="material-icons modal-close right ">close</i>
-                <h4>Delete this medication?</h4>
-                <hr>
-                <div class="center ">
-                    <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteMedication();">Yes</button>
-                    <button class="btn waves-effect waves-light btn-large modal-close">No</button>
-                </div>
+    <div id="delete-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this medication?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteMedication();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
             </div>
         </div>
+    </div>
 
-        <div id="delete-proc-confirm-modal" class="modal">
-            <div class="modal-content ">
-                <i class="material-icons modal-close right ">close</i>
-                <h4>Delete this procedure?</h4>
-                <hr>
-                <div class="center ">
-                    <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteProcedure();">Yes</button>
-                    <button class="btn waves-effect waves-light btn-large modal-close">No</button>
-                </div>
+    <div id="delete-proc-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this procedure?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteProcedure();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
             </div>
         </div>
+    </div>
 
-        <div id="delete-report-confirm-modal" class="modal">
-            <div class="modal-content ">
-                <i class="material-icons modal-close right ">close</i>
-                <h4>Delete this report?</h4>
-                <hr>
-                <div class="center ">
-                    <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteReport();">Yes</button>
-                    <button class="btn waves-effect waves-light btn-large modal-close">No</button>
-                </div>
+    <div id="delete-report-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Delete this report?</h4>
+            <hr>
+            <div class="center ">
+                <button class="btn waves-effect waves-light btn-large modal-close red" onclick="deleteReport();">Yes</button>
+                <button class="btn waves-effect waves-light btn-large modal-close">No</button>
             </div>
         </div>
+    </div>
 
-        <div class="footer" id="report-footer">
-            <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
-            <a id="print-report" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Get PDF</a>
-            <a id="view-report-delete-btn" data-target="delete-report-confirm-modal" class="waves-effect waves-light btn-large lighten-2 purple modal-trigger">Delete</a>
-        </div>
+    <div class="footer" id="report-footer">
+        <a id="code-term" data-target="code-term-modal" class="waves-effect waves-light btn-large red lighten-2 modal-trigger">Code Termination</a>
+        <a id="print-report" class="waves-effect waves-light btn-large lighten-2" onclick="generatePDF()">Get PDF</a>
+        <a id="view-report-delete-btn" data-target="delete-report-confirm-modal" class="waves-effect waves-light btn-large lighten-2 purple modal-trigger">Delete</a>
+    </div>
 
-        <div id="code-term-modal" class="modal">
-            <div class="modal-content ">
-                <i class="material-icons modal-close right ">close</i>
-                <h4>Code Termination</h4>
-                <hr>
-                <div class="center">
-                    <button class="btn waves-effect waves-light btn-large modal-close med-btn" onclick="codeTerm('Deceased');">Deceased</button>
-                    <button class="btn waves-effect waves-light btn-large modal-close med-btn" onclick="codeTerm('ROSC');">ROSC</button>
-                    <button class="btn waves-effect waves-light btn-large modal-close med-btn" onclick="codeTerm('Transferred Care');">Transferred Care</button>
-                </div>
+    <div id="code-term-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4>Code Termination</h4>
+            <hr>
+            <div class="center">
+                <button class="btn waves-effect waves-light btn-large modal-close med-btn" onclick="codeTerm('Deceased');">Deceased</button>
+                <button class="btn waves-effect waves-light btn-large modal-close med-btn" onclick="codeTerm('ROSC');">ROSC</button>
+                <button class="btn waves-effect waves-light btn-large modal-close med-btn" onclick="codeTerm('Transferred Care');">Transferred Care</button>
             </div>
         </div>
+    </div>
 
-        <div id="timer-confirm-modal" class="modal">
-            <div class="modal-content ">
-                <i class="material-icons modal-close right ">close</i>
-                <h4 id="timer-confirm-title"></h4>
-                <h5 id="timer-confirm-desc"></h5>
-                <hr>
-                <div class="center">
-                    <button class="btn waves-effect waves-light med-btn modal-close med-btn" onclick="" data-tag="" id="timer-confirm-btn">Confirm</button>
-                    <button class="btn waves-effect waves-light med-btn modal-close med-btn red">Cancel</button>
-                </div>
+    <div id="timer-confirm-modal" class="modal">
+        <div class="modal-content ">
+            <i class="material-icons modal-close right ">close</i>
+            <h4 id="timer-confirm-title"></h4>
+            <h5 id="timer-confirm-desc"></h5>
+            <hr>
+            <div class="center">
+                <button class="btn waves-effect waves-light med-btn modal-close med-btn" onclick="" data-tag="" id="timer-confirm-btn">Confirm</button>
+                <button class="btn waves-effect waves-light med-btn modal-close med-btn red">Cancel</button>
             </div>
         </div>
+    </div>
 
-        <script src="cordova.js "></script>
-        <script type="text/javascript " src="js/index.js "></script>
-        <script type="text/javascript " src="scripts/buttons.js "></script>
-        <script type="text/javascript " src="scripts/editMeds.js "></script>
-        <script type="text/javascript " src="scripts/editProcs.js "></script>
-        <script type="text/javascript " src="scripts/saveCode.js "></script>
-        <script type="text/javascript " src="scripts/pdf.js "></script>
-        <script type="text/javascript " src="main.js "></script>
-        <script>
-            initMaterial();
-        </script>
+    <script src="cordova.js "></script>
+    <script type="text/javascript " src="js/index.js "></script>
+    <script type="text/javascript " src="scripts/buttons.js "></script>
+    <script type="text/javascript " src="scripts/editMeds.js "></script>
+    <script type="text/javascript " src="scripts/editProcs.js "></script>
+    <script type="text/javascript " src="scripts/saveCode.js "></script>
+    <script type="text/javascript " src="scripts/pdf.js "></script>
+    <script type="text/javascript " src="main.js "></script>
+    <script>
+        initMaterial();
+    </script>
 </body>
 
 </html>

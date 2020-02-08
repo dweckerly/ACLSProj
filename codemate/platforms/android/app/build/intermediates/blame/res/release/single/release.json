@@ -76,12 +76,12 @@
         "source": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_previous_item.png"
     },
     {
-        "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-land-xxxhdpi_screen.png.flat",
-        "source": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\screen.png"
-    },
-    {
         "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\5c4efdb508568aedda948b5927089ed1\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-land-xxxhdpi_screen.png.flat",
+        "source": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\screen.png"
     },
     {
         "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_icon_background.xml.flat",
@@ -96,12 +96,12 @@
         "source": "C:\\Users\\David\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\bc323415a3a4c40ed6bded426e24e611\\res\\layout\\notification_template_media.xml"
     },
     {
-        "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-land-hdpi_screen.png.flat",
-        "source": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\src\\main\\res\\drawable-land-hdpi\\screen.png"
-    },
-    {
         "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-port-xxhdpi_screen.png.flat",
         "source": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\src\\main\\res\\drawable-port-xxhdpi\\screen.png"
+    },
+    {
+        "merged": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-land-hdpi_screen.png.flat",
+        "source": "C:\\Users\\David\\Documents\\GitHub\\ACLSProj\\codemate\\platforms\\android\\app\\src\\main\\res\\drawable-land-hdpi\\screen.png"
     },
     {
         "merged": "C:\\Users\\David\\Documents\\Github\\ACLSProj\\codemate\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",

@@ -18,6 +18,7 @@
     "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "cordova-plugin-local-notification": "git+https://github.com/katzer/cordova-plugin-local-notifications.git",
     "jspdf": "^1.5.3",
     "npm": "^6.4.1"
@@ -29,7 +30,8 @@
       "cordova-pdf-generator": {},
       "cordova-plugin-file": {},
       "cordova-open": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-insomnia": {}
     },
     "platforms": [
       "android"

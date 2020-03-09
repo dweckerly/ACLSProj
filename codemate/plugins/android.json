@@ -27,6 +27,9 @@
     },
     "cordova-open": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "com.sds.codemate"
     }
   },
   "dependent_plugins": {

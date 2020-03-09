@@ -51,6 +51,10 @@
             {
               "xml": "<feature name=\"Open\"><param name=\"android-package\" value=\"com.disusered.Open\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Insomnia\"><param name=\"android-package\" value=\"nl.xservices.plugins.Insomnia\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -129,6 +133,9 @@
     },
     "cordova-open": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "com.sds.codemate"
     }
   },
   "dependent_plugins": {},
@@ -388,6 +395,14 @@
       "merges": [
         "cordova.plugins.disusered"
       ]
+    },
+    {
+      "id": "cordova-plugin-insomnia.Insomnia",
+      "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+      "pluginId": "cordova-plugin-insomnia",
+      "clobbers": [
+        "window.plugins.insomnia"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -400,6 +415,7 @@
     "cordova-plugin-file": "6.0.1",
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-file-transfer": "1.7.1",
-    "cordova-open": "1.0.12"
+    "cordova-open": "1.0.12",
+    "cordova-plugin-insomnia": "4.3.0"
   }
 }

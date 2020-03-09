@@ -255,6 +255,14 @@ module.exports = [
     "merges": [
       "cordova.plugins.disusered"
     ]
+  },
+  {
+    "id": "cordova-plugin-insomnia.Insomnia",
+    "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+    "pluginId": "cordova-plugin-insomnia",
+    "clobbers": [
+      "window.plugins.insomnia"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -269,7 +277,8 @@ module.exports.metadata =
   "cordova-plugin-file": "6.0.1",
   "cordova-plugin-inappbrowser": "3.0.0",
   "cordova-plugin-file-transfer": "1.7.1",
-  "cordova-open": "1.0.12"
+  "cordova-open": "1.0.12",
+  "cordova-plugin-insomnia": "4.3.0"
 };
 // BOTTOM OF METADATA
 });

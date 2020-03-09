@@ -9,7 +9,7 @@ var oralSelect = false;
 var nasalSelect = false;
 
 $(document).ready(function() {
-
+    window.plugins.insomnia.keepAwake()
 });
 
 document.addEventListener("backbutton", onBackKeyDown, false);

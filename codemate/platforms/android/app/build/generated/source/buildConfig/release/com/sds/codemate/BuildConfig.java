@@ -8,6 +8,6 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "com.sds.codemate";
   public static final String BUILD_TYPE = "release";
   public static final String FLAVOR = "";
-  public static final int VERSION_CODE = 10006;
-  public static final String VERSION_NAME = "1.0.6";
+  public static final int VERSION_CODE = 10007;
+  public static final String VERSION_NAME = "1.0.7";
 }

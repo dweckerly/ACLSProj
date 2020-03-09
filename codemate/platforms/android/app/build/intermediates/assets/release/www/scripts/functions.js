@@ -153,6 +153,9 @@ function medModalSearch() {
         } else {
             li[i].style.display = "none";
         }
+        if (li[i].innerHTML == "Confirm") {
+            li[i].style.display = "";
+        }
     }
 }
 
